@@ -12,6 +12,7 @@ import {ExploreOffersScreen} from './projects/whatsevr/src/screens/ExploreOffers
 import {ExploreScreen} from './projects/whatsevr/src/screens/ExploreScreen';
 import {ExploreWtvScreen} from './projects/whatsevr/src/screens/ExploreWtvScreen';
 import {FlowSequence} from './projects/whatsevr/src/flow/FlowSequence';
+import {FanFlowSequence} from './projects/whatsevr/src/flow/FanFlowSequence';
 import {GoLiveScreen} from './projects/whatsevr/src/screens/GoLiveScreen';
 import {IncomingCallScreen} from './projects/whatsevr/src/screens/IncomingCallScreen';
 import {ProfileScreen} from './projects/whatsevr/src/screens/ProfileScreen';
@@ -33,6 +34,8 @@ const WHATSEVR_SETTINGS_HEIGHT = 2400;
 const WHATSEVR_UPDATE_PROFILE_HEIGHT = 2500;
 // Keep in sync with FLOW_DURATION_IN_FRAMES in flow/FlowSequence.tsx, which warns on drift.
 const WHATSEVR_FLOW_DURATION = 569;
+// Keep in sync with FAN_FLOW_DURATION_IN_FRAMES in flow/FanFlowSequence.tsx
+const WHATSEVR_FAN_FLOW_DURATION = 415;
 
 export const RemotionRoot: FC = () => {
   return (
@@ -201,6 +204,14 @@ export const RemotionRoot: FC = () => {
         id="whatsevr-21-IncomingCall"
         component={IncomingCallScreen}
         durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-22-FanFlow"
+        component={FanFlowSequence}
+        durationInFrames={WHATSEVR_FAN_FLOW_DURATION}
         fps={30}
         width={WHATSEVR_WIDTH}
         height={WHATSEVR_HEIGHT}

@@ -221,5 +221,15 @@ export const compositions: CompositionEntry[] = [
     fps: 30,
     projectName: 'whatsevr',
     screenName: 'IncomingCall'
+  },
+  {
+    id: 'whatsevr-22-FanFlow',
+    component: React.lazy(() => import('@src/projects/whatsevr/src/flow/FanFlowSequence').then(m => ({ default: m.FanFlowSequence }))),
+    width: 921,
+    height: 1800,
+    durationInFrames: 415,
+    fps: 30,
+    projectName: 'whatsevr',
+    screenName: 'FanFlow'
   }
 ];
