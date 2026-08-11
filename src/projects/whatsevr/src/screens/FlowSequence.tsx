@@ -8,6 +8,7 @@ import {ExploreMemoriesScreen} from './ExploreMemoriesScreen';
 import {ExploreWtvScreen} from './ExploreWtvScreen';
 import {SpinScreen} from './SpinScreen';
 import {CallsScreen} from './CallsScreen';
+import {ChatScreen} from './ChatScreen';
 import {ProfileScreen} from './ProfileScreen';
 import {UpdateProfileScreen} from './UpdateProfileScreen';
 import {CommunityDetailScreen} from './CommunityDetailScreen';
@@ -42,6 +43,9 @@ export const FlowSequence: FC = () => {
       </Series.Sequence>
       <Series.Sequence durationInFrames={FRAMES_PER_SCREEN}>
         <CallsScreen />
+      </Series.Sequence>
+      <Series.Sequence durationInFrames={FRAMES_PER_SCREEN}>
+        <ChatScreen />
       </Series.Sequence>
       <Series.Sequence durationInFrames={FRAMES_PER_SCREEN}>
         <ProfileScreen />
