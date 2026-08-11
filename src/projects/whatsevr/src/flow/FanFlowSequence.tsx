@@ -100,7 +100,7 @@ export const FanFlowSequence: FC = () => {
     <TransitionSeries>
       {/* 1 — Rohan browses community memories and selects creator memory */}
       <TransitionSeries.Sequence durationInFrames={HOLD_EXPLORE_MEMORIES}>
-        <Tapped to={{x: 101, y: 204}} tapFrame={40}>
+        <Tapped to={{x: 202, y: 408}} tapFrame={40}>
           <ExploreMemoriesScreen />
         </Tapped>
       </TransitionSeries.Sequence>
@@ -109,7 +109,7 @@ export const FanFlowSequence: FC = () => {
 
       {/* 2 — Creator's community hub: taps Pencil/Upload icon */}
       <TransitionSeries.Sequence durationInFrames={HOLD_COMMUNITY_DETAIL}>
-        <Tapped to={{x: 354, y: 156}} tapFrame={40}>
+        <Tapped to={{x: 708, y: 312}} tapFrame={40}>
           <CommunityDetailScreen />
         </Tapped>
       </TransitionSeries.Sequence>
@@ -119,7 +119,7 @@ export const FanFlowSequence: FC = () => {
 
       {/* 3 — Content upload bottom sheet: selects "Create Memory" */}
       <TransitionSeries.Sequence durationInFrames={HOLD_UPLOAD_MODAL}>
-        <Tapped to={{x: 196, y: 596}} tapFrame={40}>
+        <Tapped to={{x: 392, y: 1192}} tapFrame={40}>
           <CommunityUploadModalScreen />
         </Tapped>
       </TransitionSeries.Sequence>
@@ -128,7 +128,7 @@ export const FanFlowSequence: FC = () => {
 
       {/* 4 — Gamification Spin wheel: taps "Spin" */}
       <TransitionSeries.Sequence durationInFrames={HOLD_SPIN}>
-        <Tapped to={{x: 196, y: 450}} tapFrame={45}>
+        <Tapped to={{x: 392, y: 900}} tapFrame={45}>
           <SpinScreen />
         </Tapped>
       </TransitionSeries.Sequence>
@@ -137,7 +137,7 @@ export const FanFlowSequence: FC = () => {
 
       {/* 5 — Coin Store: selects package and taps "Pay ₹399 for 600 Coins" */}
       <TransitionSeries.Sequence durationInFrames={HOLD_BUY_COINS}>
-        <Tapped to={{x: 196, y: 814}} tapFrame={50}>
+        <Tapped to={{x: 392, y: 1628}} tapFrame={50}>
           <BuyCoinsScreen />
         </Tapped>
       </TransitionSeries.Sequence>
@@ -147,7 +147,7 @@ export const FanFlowSequence: FC = () => {
 
       {/* 6 — Wallet & rate confirmation: taps "Save" */}
       <TransitionSeries.Sequence durationInFrames={HOLD_RATE_MODAL}>
-        <Tapped to={{x: 196, y: 814}} tapFrame={50}>
+        <Tapped to={{x: 392, y: 1628}} tapFrame={50}>
           <WalletRateModalScreen />
         </Tapped>
       </TransitionSeries.Sequence>

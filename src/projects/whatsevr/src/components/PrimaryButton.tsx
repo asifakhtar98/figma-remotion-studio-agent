@@ -14,7 +14,7 @@ export const PrimaryButton: FC<PrimaryButtonProps> = ({
   const baseBg = variant === 'disabled' ? 'bg-gray-400 text-white' : 'bg-black text-white';
   return (
     <div
-      className={`flex w-full items-center justify-center rounded-full py-3.5 min-h-[52px] text-base font-semibold ${baseBg} ${className}`}
+      className={`flex w-full items-center justify-center rounded-full py-5 min-h-[64px] text-xl font-semibold ${baseBg} ${className}`}
     >
       {children}
     </div>
