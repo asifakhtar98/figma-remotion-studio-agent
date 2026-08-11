@@ -1,5 +1,5 @@
 import type {FC} from 'react';
-import {AbsoluteFill} from 'remotion';
+import {AbsoluteFill, Img} from 'remotion';
 import {loadFont} from '@remotion/google-fonts/Poppins';
 import {
   ArrowLeft,
@@ -18,6 +18,9 @@ import {
 import {PrimaryButton} from '../components/PrimaryButton';
 
 const {fontFamily} = loadFont();
+
+const USER_AVATAR_URL =
+  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=240&h=240&fit=crop&q=80';
 
 export const UpdateProfileScreen: FC = () => {
   return (
@@ -39,9 +42,9 @@ export const UpdateProfileScreen: FC = () => {
 
         {/* Profile Avatar Card */}
         <div className="flex flex-col items-center justify-center p-8 bg-white rounded-3xl border border-gray-200 shadow-sm">
-          <div className="relative flex items-center justify-center w-36 h-36 rounded-full border-2 border-gray-900 bg-gray-100 text-gray-400">
-            <User size={80} />
-            <div className="absolute bottom-0 bg-black text-white p-2.5 rounded-full border-2 border-white cursor-pointer shadow-md">
+          <div className="relative flex items-center justify-center w-36 h-36 rounded-full border-2 border-gray-900 bg-gray-100 overflow-hidden shadow-md">
+            <Img src={USER_AVATAR_URL} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+            <div className="absolute bottom-0 right-0 bg-black text-white p-2.5 rounded-full border-2 border-white cursor-pointer shadow-md">
               <Camera size={18} />
             </div>
           </div>

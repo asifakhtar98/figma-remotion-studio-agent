@@ -80,12 +80,15 @@ export const ExploreOffersScreen: FC = () => {
 
           {/* Post Caption & Author info */}
           <div className="flex items-start gap-4 px-6 pt-5 pb-3">
-            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-200 text-gray-400 flex-shrink-0">
-              <User size={26} />
+            <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border border-gray-200 shadow-2xs">
+              <Img
+                src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&q=80"
+                style={{width: '100%', height: '100%', objectFit: 'cover'}}
+              />
             </div>
             <div className="flex-1 min-w-0">
               <h2 className="text-lg font-bold text-gray-900 leading-snug">
-                looking for a girlfriend in Assam, Guwahati.
+                Looking for a girlfriend in Assam, Guwahati.
               </h2>
               <p className="text-sm font-semibold text-gray-700 mt-0.5">ADITYA DEY</p>
               <p className="text-xs text-gray-400 mt-0.5">06 Oct, 2025 05:01 AM</p>

@@ -9,8 +9,14 @@ import {PrimaryButton} from '../components/PrimaryButton';
 const {fontFamily} = loadFont();
 
 const savedAccounts = [
-  {handle: 'wtv.aryan675'},
-  {handle: 'wtv.devak2_268'},
+  {
+    handle: 'wtv.aryan675',
+    avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&h=120&fit=crop&q=80',
+  },
+  {
+    handle: 'wtv.devak2_268',
+    avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&q=80',
+  },
 ];
 
 // Hero image: publicly available Unsplash photo of people with tech/digital overlay theme.
@@ -82,10 +88,10 @@ export const SignInScreen: FC = () => {
             <div key={account.handle} className="flex items-center gap-4 px-4 py-3.5">
               {/* Avatar: square-ish rounded tile with gray background */}
               <div
-                className="flex items-center justify-center rounded-xl bg-gray-100 border border-gray-200 flex-shrink-0"
+                className="relative overflow-hidden rounded-xl bg-gray-100 border border-gray-200 flex-shrink-0"
                 style={{width: 52, height: 52}}
               >
-                <User size={26} className="text-gray-400" />
+                <Img src={account.avatarUrl} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
               </div>
 
               <div className="flex-1 min-w-0">

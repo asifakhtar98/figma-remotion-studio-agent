@@ -29,9 +29,12 @@ import {
 
 const {fontFamily} = loadFont();
 
+const USER_AVATAR_URL =
+  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=160&h=160&fit=crop&q=80';
+
 // Avatar image placeholder URL for community member
 const COMMUNITY_AVATAR_URL =
-  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&h=120&fit=crop&q=80';
+  'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=120&h=120&fit=crop&q=80';
 
 export const SettingsScreen: FC = () => {
   return (
@@ -49,8 +52,8 @@ export const SettingsScreen: FC = () => {
         {/* User Profile Card */}
         <div className="flex items-center justify-between p-5 bg-white rounded-3xl border border-gray-200 shadow-sm">
           <div className="flex items-center gap-4">
-            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gray-200 text-gray-400">
-              <User size={36} />
+            <div className="relative w-16 h-16 rounded-full overflow-hidden border border-gray-200 flex-shrink-0 shadow-2xs">
+              <Img src={USER_AVATAR_URL} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
             </div>
             <div>
               <h2 className="text-xl font-bold text-gray-900">Aryan</h2>

@@ -11,15 +11,17 @@ const CREATOR_AVATAR =
 
 const tabs = ['About', 'Services', 'Media', 'Videos', 'Offers'];
 
+const COMMUNITY_COVER_URL =
+  'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=921&h=500&fit=crop&q=80';
+
 export const CommunityDetailScreen: FC = () => {
   return (
     <AbsoluteFill style={{fontFamily, backgroundColor: '#f8f9fa'}} className="flex flex-col overflow-hidden">
 
       {/* ── Community Cover Media Banner ── */}
-      <div className="relative w-full h-56 bg-gray-300 flex items-center justify-center">
-        <span className="text-3xl font-bold text-gray-500/80 tracking-wide select-none">
-          Community Cover Media
-        </span>
+      <div className="relative w-full h-56 bg-gray-900 overflow-hidden">
+        <Img src={COMMUNITY_COVER_URL} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
       </div>
 
       {/* ── Community Title Card ── */}
