@@ -325,7 +325,7 @@ These things work in browsers but **silently break or look wrong** in Remotion
 ## Remotion binding
 
 - One screen = one `<Composition>` in `src/Root.tsx`.
-- `id="<ProjectName>-<ScreenName>"`.
+- `id="<ProjectName>-<NN>-<ScreenName>"` where `<NN>` is a zero-padded two-digit serial number (`01`, `02`, `03`, etc.) representing the screen's chronological flow order, ensuring compositions sort in ascending numerical order in Remotion Studio.
 - `width`/`height` = detected canvas size.
 - Short fixed `durationInFrames` (still frame). No `useCurrentFrame`/timeline
   animation unless the user explicitly asks for it.
@@ -549,7 +549,7 @@ the screens:
    - Each `<Series.Sequence>` renders one screen as a still (no internal animation).
 
 2. Register a new Composition in `src/Root.tsx`:
-   - `id="<ProjectName>-Flow"`
+   - `id="<ProjectName>-<NN>-Flow"` (where `<NN>` is the next sequential serial number)
    - `width`/`height` = the project's standard canvas size.
    - `durationInFrames` = sum of all screen durations × fps.
    - `fps` = 30 (default).
