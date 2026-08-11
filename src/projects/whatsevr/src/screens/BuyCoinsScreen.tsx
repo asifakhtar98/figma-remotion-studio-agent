@@ -186,8 +186,8 @@ export const BuyCoinsScreen: FC = () => {
         </div>
 
         {/* ── Primary Action Button ── */}
-        <div className="flex items-center justify-center gap-2 w-full py-4.5 rounded-full bg-[#0088ff] text-white text-lg font-bold shadow-md cursor-pointer hover:bg-blue-600 transition-colors">
-          <Zap size={22} className="text-amber-300 fill-amber-300" />
+        <div className="flex items-center justify-center gap-2 w-full py-5.5 min-h-[68px] rounded-full bg-[#0088ff] text-white text-xl font-bold shadow-md cursor-pointer hover:bg-blue-600 transition-colors">
+          <Zap size={24} className="text-amber-300 fill-amber-300" />
           <span>Pay ₹399 for 600 Coins</span>
         </div>
 

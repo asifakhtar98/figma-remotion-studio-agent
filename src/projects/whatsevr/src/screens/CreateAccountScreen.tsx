@@ -91,7 +91,7 @@ export const CreateAccountScreen: FC<CreateAccountScreenProps> = ({
 
         {/* CTA button */}
         <div className="mt-5 w-full">
-          <PrimaryButton className="py-4 text-[18px] font-semibold rounded-2xl bg-[#141517]">
+          <PrimaryButton className="py-5 min-h-[64px] text-xl font-semibold rounded-2xl bg-[#141517]">
             Create account
           </PrimaryButton>
         </div>
@@ -124,7 +124,7 @@ export const CreateAccountScreen: FC<CreateAccountScreenProps> = ({
               </div>
 
               {/* Sign In action pill */}
-              <div className="rounded-full border border-gray-300 px-5 py-2 text-sm font-semibold text-gray-900 bg-white flex-shrink-0">
+              <div className="rounded-full border border-gray-300 px-5 py-2.5 text-base font-semibold text-gray-900 bg-white flex-shrink-0">
                 Sign In
               </div>
 

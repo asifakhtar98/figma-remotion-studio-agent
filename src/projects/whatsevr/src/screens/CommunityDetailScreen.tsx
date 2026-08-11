@@ -51,7 +51,7 @@ export const CommunityDetailScreen: FC = () => {
         <h2 className="text-3xl font-bold text-gray-900">2 Members</h2>
 
         {/* Chat Pill Button */}
-        <div className="mt-5 w-[88%] py-3.5 rounded-full border border-gray-300 bg-white text-center text-base font-semibold text-gray-900 shadow-sm cursor-pointer hover:bg-gray-50">
+        <div className="mt-5 w-[88%] py-5 min-h-[64px] flex items-center justify-center rounded-full border border-gray-300 bg-white text-center text-xl font-bold text-gray-900 shadow-sm cursor-pointer hover:bg-gray-50">
           Chat
         </div>
       </div>

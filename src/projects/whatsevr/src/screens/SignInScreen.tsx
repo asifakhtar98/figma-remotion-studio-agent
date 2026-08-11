@@ -120,7 +120,7 @@ export const SignInScreen: FC<SignInScreenProps> = ({
               </div>
 
               {/* Bordered "Sign In" pill */}
-              <div className="rounded-full border border-gray-300 px-4 py-1.5 text-sm font-semibold text-gray-900 flex-shrink-0">
+              <div className="rounded-full border border-gray-300 px-5 py-2.5 text-base font-semibold text-gray-900 flex-shrink-0">
                 Sign In
               </div>
 

@@ -44,8 +44,8 @@ export const GoLiveScreen: FC = () => {
 
       {/* ── Bottom Fixed CTA Button ── */}
       <div className="p-8 w-full">
-        <div className="flex items-center justify-center gap-3 w-full py-5 rounded-full bg-[#0088ff] text-white text-xl font-semibold shadow-lg shadow-blue-500/25 cursor-pointer">
-          <Radio size={24} />
+        <div className="flex items-center justify-center gap-3 w-full py-5.5 min-h-[68px] rounded-full bg-[#0088ff] text-white text-2xl font-bold shadow-lg shadow-blue-500/25 cursor-pointer">
+          <Radio size={26} />
           <span>Go live</span>
         </div>
       </div>

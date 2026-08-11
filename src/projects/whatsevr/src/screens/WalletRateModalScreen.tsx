@@ -83,7 +83,7 @@ export const WalletRateModalScreen: FC = () => {
         </div>
 
         {/* Save CTA Button */}
-        <div className="mt-8 w-full py-4.5 bg-gray-900 text-white font-semibold text-center text-lg rounded-2xl cursor-pointer">
+        <div className="mt-8 w-full py-5 min-h-[64px] flex items-center justify-center bg-gray-900 text-white font-bold text-center text-xl rounded-2xl cursor-pointer">
           Save
         </div>
       </div>
