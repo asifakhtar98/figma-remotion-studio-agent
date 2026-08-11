@@ -193,6 +193,7 @@ src/projects/whatsevr/
       ExploreScreen.tsx                     # explore / discovery screen
       ProfileScreen.tsx                     # user profile screen
       ResetPasswordScreen.tsx               # reset password screen
+      SettingsScreen.tsx                    # settings screen (combined tall scroll)
       SignInScreen.tsx                      # sign-in / welcome back screen
     components/
       Avatar.tsx                            # user avatar (circle/rounded tile)
@@ -208,6 +209,7 @@ Compositions registered in `src/Root.tsx`:
 - `whatsevr-Explore` → `ExploreScreen` (921 × 1800)
 - `whatsevr-Profile` → `ProfileScreen` (921 × 1800)
 - `whatsevr-ResetPassword` → `ResetPasswordScreen` (921 × 1800)
+- `whatsevr-Settings` → `SettingsScreen` (921 × 2400)
 - `whatsevr-SignIn` → `SignInScreen` (921 × 1800)
 
 ### Rules

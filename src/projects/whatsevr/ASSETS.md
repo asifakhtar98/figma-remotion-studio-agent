@@ -10,6 +10,8 @@
 | ResetPassword | Hero banner | Unsplash URL | `photo-1531482615713-2afd69097998` | ⚠️ Placeholder | Replace with official Whatsevr brand hero photo |
 | ResetPassword | Logo / brand mark | SVG (reconstructed) | `components/WhatsevrLogo.tsx` | ⚠️ Approximated | Reconstructed from screenshot |
 | ResetPassword | Saved account avatars | Placeholder | `lucide-react` `<User>` icon | ⚠️ Placeholder | Replace with real user profile photos when available |
+| Settings | Community member avatar | Unsplash URL | `photo-1534528741775-53994a69daeb` | ⚠️ Placeholder | Replace with actual community avatar photo |
+| Settings | Icons | Lucide | `lucide-react` | ✅ Real | Icons mapped from screenshots |
 | Explore | (see screen) | — | — | — | Asset audit not yet done for this screen |
 | Profile | (see screen) | — | — | — | Asset audit not yet done for this screen |
 
