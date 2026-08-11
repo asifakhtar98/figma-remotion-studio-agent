@@ -3,10 +3,11 @@
 Screenshot, **URL**, or plain description in, pixel-faithful React screen out, wired as a Remotion still Composition.
 Full spec: `docs/superpowers/specs/2026-08-11-screenshot-to-remotion-design.md`.
 
-## The two purposes of this repo
+## The three purposes of this repo
 
 1. **Creating UI** — pixel-faithful still screens, `durationInFrames={1}`. The default.
 2. **Creating user journey flows** — those same screens animated into a story. Only on request; read the **journey-flow-video** skill first.
+3. **Creating marketing posters & launch graphics** — high-fidelity product launch banners and promotional graphics. Read the **marketing-poster-design** skill first.
 
 **Separation of concerns is non-negotiable:** deleting `src/projects/<project>/src/flow/` must leave every screen and still Composition working. Screens are pure UI — no frames, no animation, no imports from `flow/`. They take plain data props defaulting to the still appearance; the flow computes those values per frame.
 
@@ -175,6 +176,17 @@ Summary of mandatory workflow:
 2. **HTML Source (Copy spec):** Extract text copy via `read_url_content`.
 3. **DOM Computed Styles (Token spec):** Evaluate exact computed RGB colors, gradients, background-images, borders, shadows, and `scrollHeight` via `evaluate_script`.
 4. **2-Pass Visual Refinement:** Render a still image (`npx remotion still`), visually compare against reference, and refine spacing/colors.
+
+---
+
+## Creating marketing posters & launch graphics
+
+When asked to create a launch poster, hero product graphic, feature poster, or social promo visual, **always read and follow the `marketing-poster-design` skill** (`.agents/skills/marketing-poster-design/SKILL.md`).
+
+Key rules:
+- **Aspect ratios:** Vertical (`1080×1920`), Landscape (`1920×1080`), or Square (`1080×1080`).
+- **5-zone layout:** Eyebrow badge → Brand header → Headline → Glassmorphic 3D device mockup with floating feature pills → Store download buttons & QR code.
+- **Still Composition:** Register as `durationInFrames={1}` still target in `src/Root.tsx`.
 
 ---
 
