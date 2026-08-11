@@ -338,15 +338,16 @@ Sometimes the user will describe a screen in words instead of sending a screensh
 Example: *"I need a login page for this project. Use the existing styles."*
 This is a valid and fully supported input mode. Follow these rules:
 
-### Step 1 — Ask three quick questions first
+### Step 1 — Clarify requirements and ask if they have anything more to add
 
-Before writing a single line, ask the user these three things in one short message:
+Before writing a single line of code for a description-only request, ask the user in one short message:
 
 1. **Which project?** (e.g. "Is this for the Whatsevr app or a different one?")
 2. **What should the screen do?** (e.g. "Just a sign-in form, or also sign-up / forgot password?")
-3. **Any specific colours, images, or text you want on it?**
+3. **Any specific colours, images, text, or additional elements you want on it?**
+4. **Is there anything more you'd like to add or specify before I create the UI?**
 
-If the user already answered these in their message, skip the ones they covered.
+If the user already answered any of these in their message, skip the ones they covered, but ALWAYS ask if they have anything more to add before proceeding with implementation.
 
 ### Step 2 — Scan the existing project for design tokens
 
@@ -415,7 +416,7 @@ Run start to finish with no confirmation checkpoints:
 2. Receive input — either a screenshot or a plain description.
    - **Screenshot provided** → go to step 3.
    - **Description only (no screenshot)** → follow *Building from a description* above,
-     then rejoin at step 4 once the three quick questions are answered.
+     confirm if the user has anything more to add, then rejoin at step 4 once answered.
 3. **Present the asset declaration box** and wait for the user to fill it in.
    - If the user explicitly says "skip" or "use defaults", apply fallback rules
      immediately and proceed without waiting.
