@@ -12,6 +12,7 @@ import {ChatScreen} from './ChatScreen';
 import {ProfileScreen} from './ProfileScreen';
 import {UpdateProfileScreen} from './UpdateProfileScreen';
 import {CommunityDetailScreen} from './CommunityDetailScreen';
+import {CommunityUploadModalScreen} from './CommunityUploadModalScreen';
 import {WalletScreen} from './WalletScreen';
 import {SettingsScreen} from './SettingsScreen';
 
@@ -55,6 +56,9 @@ export const FlowSequence: FC = () => {
       </Series.Sequence>
       <Series.Sequence durationInFrames={FRAMES_PER_SCREEN}>
         <CommunityDetailScreen />
+      </Series.Sequence>
+      <Series.Sequence durationInFrames={FRAMES_PER_SCREEN}>
+        <CommunityUploadModalScreen />
       </Series.Sequence>
       <Series.Sequence durationInFrames={FRAMES_PER_SCREEN}>
         <WalletScreen />

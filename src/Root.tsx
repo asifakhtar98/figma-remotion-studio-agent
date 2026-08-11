@@ -4,6 +4,7 @@ import {Composition} from 'remotion';
 import {CallsScreen} from './projects/whatsevr/src/screens/CallsScreen';
 import {ChatScreen} from './projects/whatsevr/src/screens/ChatScreen';
 import {CommunityDetailScreen} from './projects/whatsevr/src/screens/CommunityDetailScreen';
+import {CommunityUploadModalScreen} from './projects/whatsevr/src/screens/CommunityUploadModalScreen';
 import {ExploreMemoriesScreen} from './projects/whatsevr/src/screens/ExploreMemoriesScreen';
 import {ExploreOffersScreen} from './projects/whatsevr/src/screens/ExploreOffersScreen';
 import {ExploreScreen} from './projects/whatsevr/src/screens/ExploreScreen';
@@ -25,7 +26,7 @@ const WHATSEVR_WIDTH = 921;
 const WHATSEVR_HEIGHT = 1800;
 const WHATSEVR_SETTINGS_HEIGHT = 2400;
 const WHATSEVR_UPDATE_PROFILE_HEIGHT = 2500;
-const WHATSEVR_FLOW_DURATION = 1260; // 14 screens × 90 frames (3s each)
+const WHATSEVR_FLOW_DURATION = 1350; // 15 screens × 90 frames (3s each)
 
 export const RemotionRoot: FC = () => {
   return (
@@ -49,6 +50,14 @@ export const RemotionRoot: FC = () => {
       <Composition
         id="whatsevr-CommunityDetail"
         component={CommunityDetailScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-CommunityUploadModal"
+        component={CommunityUploadModalScreen}
         durationInFrames={1}
         fps={30}
         width={WHATSEVR_WIDTH}
