@@ -44,7 +44,7 @@ Each skill's `SKILL.md` links to deeper reference files inside its folder (e.g. 
 - After each screen is built, say what was done in plain language and list anything still needing a real photo or logo from the user.
 - No code, file paths, or terminal output in chat unless the user specifically asks to see it.
 - **Do not narrate work in progress.** No status updates, no "now building X", no step-by-step commentary between tool calls. Stay silent while working. Speak only at a checkpoint, at a real blocker, or in the final summary.
-- **Ask every checkpoint question through the `AskUserQuestion` tool**, not as plain chat text. One call per checkpoint, all its questions batched into that single call, with concrete options the user can pick. Fall back to plain text only if the tool is unavailable.
+- **Ask every checkpoint question through the `ask_question` tool**, not as plain chat text. One call per checkpoint, all its questions batched into that single call, with concrete options the user can pick. Fall back to plain text only if the tool is unavailable.
 
 ---
 
@@ -212,7 +212,7 @@ Example: *"I need a login page for this project. Use the existing styles."* This
 
 ### Step 1 — Clarify requirements (STRICT Q&A)
 
-Before writing any code for a new screen (whether from a description or an ambiguous screenshot), ask the user these clarifying questions in one `AskUserQuestion` call:
+Before writing any code for a new screen (whether from a description or an ambiguous screenshot), ask the user these clarifying questions in one `ask_question` call:
 
 1. **Which project?**
 2. **What should the screen do / what business problem does it solve?**
@@ -237,7 +237,7 @@ Example: *"I want to edit the Wallet page to add a transaction filter."*
 
 ### Step 1 — Clarify requirements (STRICT Q&A)
 
-Before editing any existing screen, ask the user these clarifying questions in one `AskUserQuestion` call:
+Before editing any existing screen, ask the user these clarifying questions in one `ask_question` call:
 
 1. **Which specific elements or sections on the screen should be updated, added, or removed?**
 2. **Any specific copy, colours, layout adjustments, or new UI components needed for this edit?**
