@@ -33,6 +33,16 @@ export const compositions: CompositionEntry[] = [
     screenName: 'PlatformDashboard'
   },
   {
+    id: 'vhims-03-Pricing',
+    component: React.lazy(() => import('@src/projects/vhims/src/screens/PricingScreen').then(m => ({ default: m.PricingScreen }))),
+    width: 1920,
+    height: 2400,
+    durationInFrames: 1,
+    fps: 30,
+    projectName: 'vhims',
+    screenName: 'Pricing'
+  },
+  {
     id: 'whatsevr-01-SignIn',
     component: React.lazy(() => import('@src/projects/whatsevr/src/screens/SignInScreen').then(m => ({ default: m.SignInScreen }))),
     width: 786,

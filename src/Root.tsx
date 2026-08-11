@@ -25,6 +25,7 @@ import {WalletRateModalScreen} from './projects/whatsevr/src/screens/WalletRateM
 import {WalletScreen} from './projects/whatsevr/src/screens/WalletScreen';
 import {AdminDashboardScreen} from './projects/vhims/src/screens/AdminDashboardScreen';
 import {PlatformDashboardScreen} from './projects/vhims/src/screens/PlatformDashboardScreen';
+import {PricingScreen} from './projects/vhims/src/screens/PricingScreen';
 
 // Each project registers its screens here as <Composition> entries.
 // id="<ProjectName>-<Number>-<ScreenName>", width/height = detected canvas size,
@@ -32,6 +33,7 @@ import {PlatformDashboardScreen} from './projects/vhims/src/screens/PlatformDash
 
 const VHIMS_WIDTH = 1920;
 const VHIMS_HEIGHT = 1080;
+const VHIMS_PRICING_HEIGHT = 2400;
 
 const WHATSEVR_WIDTH = 786;
 const WHATSEVR_HEIGHT = 1704;
@@ -60,6 +62,14 @@ export const RemotionRoot: FC = () => {
         fps={30}
         width={VHIMS_WIDTH}
         height={VHIMS_HEIGHT}
+      />
+      <Composition
+        id="vhims-03-Pricing"
+        component={PricingScreen}
+        durationInFrames={1}
+        fps={30}
+        width={VHIMS_WIDTH}
+        height={VHIMS_PRICING_HEIGHT}
       />
       <Composition
         id="whatsevr-01-SignIn"
