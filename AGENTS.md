@@ -8,7 +8,7 @@ Full spec: `docs/superpowers/specs/2026-08-11-screenshot-to-remotion-design.md`.
 1. **Creating UI** — pixel-faithful still screens, `durationInFrames={1}`. The default.
 2. **Creating user journey flows** — those same screens animated into a story. Only on request; read the **journey-flow-video** skill first.
 
-A flow never forks a still screen — it drives the same component through an optional `animateFrom` prop.
+**Separation of concerns is non-negotiable:** deleting `src/projects/<project>/src/flow/` must leave every screen and still Composition working. Screens are pure UI — no frames, no animation, no imports from `flow/`. They take plain data props defaulting to the still appearance; the flow computes those values per frame.
 
 ---
 
@@ -184,11 +184,12 @@ src/
   projects/
     <project-name>/                 # one client or app — kebab-case
       src/
-        screens/<ScreenName>.tsx    # one full screen = one component
-        screens/FlowSequence.tsx    # optional — the animated journey composition
-        components/<Component>.tsx  # shared pieces, THIS project only
-        components/TapCursor.tsx    # optional — animated finger/tap pointer
-        components/TypeEffects.tsx  # optional — typewriter, caret, typing dots, reveals
+        screens/<ScreenName>.tsx    # one full screen = one component (pure UI)
+        components/<Component>.tsx  # shared pieces, THIS project only (pure UI)
+        flow/                       # optional, fully deletable — the journey video
+          FlowSequence.tsx          #   story + composition
+          TapCursor.tsx             #   animated hand
+          timing.ts                 #   frame-driven helpers
         assets/                     # user-supplied files (logos, photos)
         reference/                  # saved reference images per project
 viewer/                             # custom lightweight composition viewer (Vite + React)

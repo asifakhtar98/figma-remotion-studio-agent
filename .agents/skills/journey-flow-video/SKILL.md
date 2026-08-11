@@ -1,65 +1,93 @@
 ---
 name: journey-flow-video
-description: Turn this repo's still screens into an animated user-journey video — a story, an animated finger tapping real controls, typed text entry, staggered message reveals. Use whenever the user asks for a flow, journey, walkthrough, demo video, or "show the real user experience".
+description: Turn this repo's still screens into an animated user-journey video — a story, an animated hand tapping real controls, typed text entry, staggered message reveals — without the UI depending on the flow. Use whenever the user asks for a flow, journey, walkthrough, demo video, or "show the real user experience".
 ---
 
 # Journey flow video
 
-This repo has exactly two purposes: **creating UI** (still screens) and **creating user journey flows** (this skill).
+This repo has exactly two purposes, in this order:
 
-Read the official Remotion skills first — they own the mechanics, and this file does not repeat them:
+1. **Creating UI** — still screens. Always the default, and the only output unless a flow is asked for.
+2. **Creating a user journey flow** — those screens animated into a story. Only on request.
+
+Read the official Remotion skills first; they own the mechanics and this file does not repeat them:
 
 | For | Read |
 |---|---|
 | `TransitionSeries`, presentations, transition timing | `.agents/skills/remotion-markup/transitions.md` |
 | `interpolate`, easing, clamping | `.agents/skills/remotion-markup/timing.md` |
-| Sequences and multi-scene structure | `.agents/skills/remotion-markup/sequencing.md`, `multi-scene-video.md` |
+| Sequences, multi-scene structure | `.agents/skills/remotion-markup/sequencing.md`, `multi-scene-video.md` |
 | Measuring elements, `useCurrentScale()` | `.agents/skills/remotion-markup/measuring-dom-nodes.md` |
-| Looking up any other Remotion API | `.agents/skills/remotion-docs/SKILL.md` |
+| Any other Remotion API | `.agents/skills/remotion-docs/SKILL.md` |
 
-What follows is only what is specific to this repo.
+**Prefer an existing published skill over writing your own.** This repo installs skills from `remotion-dev/skills` (see `skills-lock.json`); check that catalogue before inventing an approach.
 
-## 1. Story first — mandatory
+---
 
-**Do not pick screens, order, or tap targets before the story exists.** A flow assembled screen-by-screen is a feature tour: aimless, and it reads as fake. A flow built from a story is something a viewer follows.
+## 1. Separation of concerns — the load-bearing rule
 
-Write one short paragraph naming:
+> **Deleting the `flow/` folder must leave every screen and every still Composition working, untouched.**
 
-- **Who** the person is and what they want from the product.
-- **One goal** for this single sitting — not three.
-- **Why each tap happens** — every screen is a step toward that goal, and every tap is what that person would actually press next.
+The flow is strictly additive. UI is the product; the journey video is a view onto it.
 
-Confirm it with the user via `AskUserQuestion` before writing code. Screens that don't serve the story get cut, however good they look. Eight screens that tell a story beat fourteen that don't.
+```
+src/projects/<project>/src/
+  screens/      ← pure UI. No frames, no animation, no imports from flow/
+  components/   ← pure UI pieces, presentational only
+  flow/         ← the entire journey: FlowSequence, TapCursor, timing helpers
+```
 
-> **Aryan earns his first payout.** A new creator who joined because a friend said you can make money taking calls. He signs up, looks at what creators post to see what earns, takes a call from a fan, chats with her after, goes live to earn properly, then checks his wallet and cashes out.
-
-Keep the story as a comment block at the top of `FlowSequence.tsx`, each numbered beat naming its screen and what gets tapped. That comment is the spec; code and story must stay in agreement.
-
-## 2. One component, two purposes
-
-A screen must render **identically to its still** when given no animation props. Animation is opt-in through a single optional `animateFrom` prop (a frame number). This is what lets one component serve both of the repo's purposes without forking.
+**Screens must be frame-agnostic.** A screen never calls `useCurrentFrame`, never imports `interpolate`/`spring`, and never imports anything from `flow/`. It takes plain data props — a string, a number, a boolean — each defaulting to the still appearance:
 
 ```tsx
 type ChatScreenProps = {
-  /** Frame the conversation starts at. Omit for the static still. */
-  animateFrom?: number;
+  visibleMessageCount?: number;          // defaults to the whole conversation
+  typingIndicator?: 'alex' | 'sarah' | null;
+  draftMessage?: string;
+  draftCaretVisible?: boolean;
 };
 ```
 
-Sentinel values disable an effect for the still render, and **must be finite** — `interpolate` returns `NaN` on an infinite input range, which silently blanks the element:
+**The flow owns all timing.** For each screen that animates, `flow/` holds a small "beat" component that computes those plain values per frame and passes them down:
 
 ```tsx
-export const ALREADY_REVEALED = -100_000; // reveal already happened → visible
-export const NEVER_TYPED = 100_000;       // typing never starts → empty field
+const CreateAccountBeat: FC = () => {
+  const emailValue = useTypedText(CREATE_ACCOUNT_EMAIL, EMAIL_TYPE_START);
+  const caretVisible = useCaretVisible(useIsTyping(CREATE_ACCOUNT_EMAIL, EMAIL_TYPE_START));
+  return <CreateAccountScreen emailValue={emailValue} caretVisible={caretVisible} />;
+};
 ```
 
-Hooks run every frame, so hook order must never vary: compute all hooks at the top before any early return, never call one inside a ternary, and destructure `useVideoConfig()` exactly once.
+**Verify the separation, don't assume it.** Two checks, both cheap:
+
+```bash
+grep -rn "flow/" src/projects/<project>/src/screens/ src/projects/<project>/src/components/
+grep -rn "useCurrentFrame\|interpolate\|spring(" src/projects/<project>/src/screens/ src/projects/<project>/src/components/
+```
+
+Both must return nothing. Then prove it end to end: copy the project to a scratch directory, delete `flow/`, remove the Flow `<Composition>` from `Root.tsx`, and run `npx tsc --noEmit`. It must pass.
+
+An earlier version of this flow put `animateFrom` props and typing state *inside* the screens. It worked, but deleting the flow would have left dead imports and broken UI. Data-in/props-down is what makes the boundary real.
+
+---
+
+## 2. Story first — mandatory
+
+**Do not pick screens, order, or tap targets before the story exists.** A flow assembled screen-by-screen is a feature tour: aimless, and it reads as fake.
+
+Write one short paragraph naming **who** the person is, the **one goal** they have this sitting, and **why each tap happens**. Confirm it with the user via `AskUserQuestion` before writing code. Cut screens that don't serve the story, however good they look — eight screens that tell a story beat fourteen that don't.
+
+> **Aryan earns his first payout.** A new creator who joined because a friend said you can make money taking calls. He signs up, sees what creators post to learn what earns, takes a fan's call, replies to her after, goes live to earn properly, then checks his wallet and cashes out.
+
+Keep the story as a comment block at the top of `FlowSequence.tsx`, each numbered beat naming its screen and what gets tapped. That comment is the spec; code and story must agree.
+
+---
 
 ## 3. Tap targets — measure, never estimate
 
-Reading JSX to guess a button's position lands 20–50px off, and a tap that misses reads as a glitch. Measure the rendered DOM instead.
+Reading JSX to guess a button's position lands 20–50px off, and a tap that misses reads as a glitch. Measured against a guess, the real "Sign in" button was 44px higher than estimated.
 
-In the viewer, `.__remotion-player` is the canvas root; its rendered width over the composition width gives the scale (or use `useCurrentScale()` per the official measuring doc). Select a composition by **clicking its sidebar button** — the `?comp=` URL parameter does not switch compositions, so you will otherwise measure the wrong screen.
+In the viewer, `.__remotion-player` is the canvas root; its rendered width over the composition width gives the scale. **Select a composition by clicking its sidebar button** — the `?comp=` URL parameter does not switch compositions, so you will otherwise measure the wrong screen.
 
 ```js
 const player = document.querySelector('.__remotion-player');
@@ -74,33 +102,47 @@ const toCanvas = (r) => ({
 
 Aim at genuinely interactive controls: primary buttons, nav icons, send, accept. Never empty background. Re-measure after any layout change.
 
-## 4. Project components
+---
 
-Per-project, under `src/projects/<project>/src/components/` (projects never share code):
+## 4. The hand
 
-- **`TapCursor.tsx`** — a 👆 emoji hand that flies in, presses with a ripple at the contact point, and lifts away. Offset the glyph so the **fingertip**, not the glyph centre, rests on the target.
-- **`TypeEffects.tsx`** — `useTypedText`, `isTyping`, `<BlinkingCaret>`, `<TypingDots>`, `useEnterStyle`. Type at ~1.4–1.6 chars/frame; mask passwords with `'•'.repeat(typed.length)` so the mask grows live.
+Use a **Lucide icon, never an emoji** — emoji render inconsistently across platforms and the repo's UI rules forbid them. `Pointer` filled white with a dark stroke and a drop shadow reads clearly on both light and dark screens.
+
+Offset the icon so the **fingertip**, not the icon box centre, rests on the target, and rotate it slightly so it looks like a hand rather than a cursor. The tap itself needs three things to read as real: an approach with easing, a scale dip on contact, and a ripple at the contact point.
+
+---
 
 ## 5. Timing
 
-Default hold 75 frames (2.5s), tap at 42. **A screen that types needs a longer hold and a later tap** — the finger must land after the text finishes. Derive it, never guess:
+Default hold 70–80 frames, tap around frame 40–48. **A screen that types needs a longer hold and a later tap** — the finger must land after the text finishes. Derive it, never guess:
 
 ```tsx
-const T_TYPE_END = T_TYPE_START + Math.ceil(TEXT.length / CHARS_PER_FRAME);
-export const CHAT_SEND_TAP_FRAME = T_TYPE_END + 6;
+export const CHAT_SEND_TAP = REPLY_TYPE_START + framesToType(REPLY) + 8;
+const HOLD_CHAT = CHAT_SEND_TAP + 45;
 ```
 
-Export that constant from the screen and import it into `FlowSequence.tsx` so the two cannot drift. Transitions overlap, so `durationInFrames` = sum of holds − sum of transition frames; set it in `src/Root.tsx` or the ending truncates.
+Transitions overlap, so `durationInFrames` = sum of holds − sum of transition frames. Derive that too, and have `FlowSequence` compare it against `useVideoConfig().durationInFrames` and warn on mismatch — otherwise the ending silently truncates.
 
-Match transition to meaning: push-slide from right for forward navigation, slide from bottom for modals and interruptions (incoming call), fade for tab switches and post-auth landings.
+Match transition to meaning: push-slide from right for forward navigation, slide from bottom for modals and interruptions (an incoming call), fade for tab switches and post-auth landings.
 
-## 6. Verify in the browser — mandatory
+---
 
-`tsc --noEmit` passes on both of the failures that actually happen here: a hook-order crash, and a `NaN` blanking the render. Neither is visible without looking.
+## 6. Runtime traps that typecheck clean
 
-1. Open the flow in the viewer; check the console for `Rendered more hooks` or error-boundary messages.
+Both of these pass `tsc --noEmit` and produce a broken video:
+
+- **Hook order must be identical every frame.** Never call a hook after an early return, and never behind a `?:` or `&&` — `revealed === 1 && useRevealedCount(x)` short-circuits and crashes with `Rendered more hooks than during the previous render`. Compute all hooks unconditionally at the top, then branch on the values. Destructure `useVideoConfig()` exactly once.
+- **`interpolate` returns `NaN` on an infinite input range**, which silently blanks the element. Sentinels must be finite (`-100_000`, `100_000`).
+
+---
+
+## 7. Verify in the browser — mandatory
+
+`tsc --noEmit` cannot see either trap above. A Chat still once rendered nothing but an error triangle while typechecking clean.
+
+1. Open the flow in the viewer; check the console for `Rendered more hooks` and error-boundary messages.
 2. Screenshot at several timeline points — a composition can render frame 0 fine and crash at frame 60.
-3. **Open the individual stills too** and confirm they still render exactly as before.
+3. **Open the individual stills too** and confirm they render exactly as before.
 
 ```js
 () => {

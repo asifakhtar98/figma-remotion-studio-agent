@@ -5,7 +5,7 @@ import {Mail, User, X, Scan} from 'lucide-react';
 import {WhatsevrLogo} from '../components/WhatsevrLogo';
 import {TextField} from '../components/TextField';
 import {PrimaryButton} from '../components/PrimaryButton';
-import {useTypedText, isTyping, BlinkingCaret, NEVER_TYPED} from '../components/TypeEffects';
+import {TextCaret} from '../components/TextCaret';
 
 const {fontFamily} = loadFont();
 
@@ -28,19 +28,19 @@ const savedAccounts = [
 const HERO_IMAGE_URL =
   'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=921&h=560&fit=crop&q=80';
 
-const TYPED_EMAIL = 'asifakhtar91298.personal@gmail';
+export const CREATE_ACCOUNT_EMAIL = 'asifakhtar91298.personal@gmail';
 
 type CreateAccountScreenProps = {
-  /** Frame the email field starts typing at. Omit for the static (fully-filled) still. */
-  animateFrom?: number;
+  /** Text in the email field. Defaults to the filled address — the still render. */
+  emailValue?: string;
+  /** Whether the input caret is drawn this frame. */
+  caretVisible?: boolean;
 };
 
-export const CreateAccountScreen: FC<CreateAccountScreenProps> = ({animateFrom}) => {
-  const animating = animateFrom !== undefined;
-  const emailStart = animateFrom ?? NEVER_TYPED;
-  const typedEmail = useTypedText(TYPED_EMAIL, emailStart);
-  const emailCaretActive = isTyping(TYPED_EMAIL, emailStart);
-
+export const CreateAccountScreen: FC<CreateAccountScreenProps> = ({
+  emailValue = CREATE_ACCOUNT_EMAIL,
+  caretVisible = false,
+}) => {
   return (
     <AbsoluteFill style={{fontFamily, backgroundColor: '#f5f6f8'}} className="flex flex-col">
       {/* ── Hero banner ── */}
@@ -84,8 +84,8 @@ export const CreateAccountScreen: FC<CreateAccountScreenProps> = ({animateFrom})
         <div className="mt-8 flex w-full flex-col gap-4">
           <TextField
             icon={<Mail size={22} />}
-            value={animating ? typedEmail : TYPED_EMAIL}
-            trailing={emailCaretActive ? <BlinkingCaret active /> : undefined}
+            value={emailValue}
+            trailing={caretVisible ? <TextCaret /> : undefined}
           />
         </div>
 

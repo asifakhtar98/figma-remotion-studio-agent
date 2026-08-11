@@ -11,7 +11,7 @@ import {ExploreMemoriesScreen} from './projects/whatsevr/src/screens/ExploreMemo
 import {ExploreOffersScreen} from './projects/whatsevr/src/screens/ExploreOffersScreen';
 import {ExploreScreen} from './projects/whatsevr/src/screens/ExploreScreen';
 import {ExploreWtvScreen} from './projects/whatsevr/src/screens/ExploreWtvScreen';
-import {FlowSequence} from './projects/whatsevr/src/screens/FlowSequence';
+import {FlowSequence} from './projects/whatsevr/src/flow/FlowSequence';
 import {GoLiveScreen} from './projects/whatsevr/src/screens/GoLiveScreen';
 import {IncomingCallScreen} from './projects/whatsevr/src/screens/IncomingCallScreen';
 import {ProfileScreen} from './projects/whatsevr/src/screens/ProfileScreen';
@@ -31,8 +31,8 @@ const WHATSEVR_WIDTH = 921;
 const WHATSEVR_HEIGHT = 1800;
 const WHATSEVR_SETTINGS_HEIGHT = 2400;
 const WHATSEVR_UPDATE_PROFILE_HEIGHT = 2500;
-// "Aryan earns his first payout" — 8 screens, 730 frames of holds minus 135 frames of overlapping transitions.
-const WHATSEVR_FLOW_DURATION = 595;
+// Keep in sync with FLOW_DURATION_IN_FRAMES in flow/FlowSequence.tsx, which warns on drift.
+const WHATSEVR_FLOW_DURATION = 569;
 
 export const RemotionRoot: FC = () => {
   return (

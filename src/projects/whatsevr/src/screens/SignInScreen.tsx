@@ -5,7 +5,7 @@ import {Mail, Lock, EyeOff, X} from 'lucide-react';
 import {WhatsevrLogo} from '../components/WhatsevrLogo';
 import {TextField} from '../components/TextField';
 import {PrimaryButton} from '../components/PrimaryButton';
-import {useTypedText, isTyping, BlinkingCaret, NEVER_TYPED} from '../components/TypeEffects';
+import {TextCaret} from '../components/TextCaret';
 
 const {fontFamily} = loadFont();
 
@@ -25,24 +25,20 @@ const savedAccounts = [
 const HERO_IMAGE_URL =
   'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=921&h=560&fit=crop&q=80';
 
-const TYPED_EMAIL = 'aryan.rider@gmail.com';
-const TYPED_PASSWORD = 'SecurePass92';
-
 type SignInScreenProps = {
-  /** Frame the email field starts typing at. Omit for the static (untyped) still. */
-  animateFrom?: number;
+  /** Text in the email field. Empty shows the placeholder — the still render. */
+  emailValue?: string;
+  /** Text in the password field; rendered masked. */
+  passwordValue?: string;
+  /** Which field currently draws a caret, if any. */
+  caretField?: 'email' | 'password' | null;
 };
 
-export const SignInScreen: FC<SignInScreenProps> = ({animateFrom}) => {
-  const animating = animateFrom !== undefined;
-  const emailStart = animateFrom ?? NEVER_TYPED;
-  const passwordStart = animating ? emailStart + Math.ceil(TYPED_EMAIL.length / 1.4) + 6 : NEVER_TYPED;
-
-  const typedEmail = useTypedText(TYPED_EMAIL, emailStart);
-  const typedPasswordRaw = useTypedText(TYPED_PASSWORD, passwordStart);
-  const emailCaretActive = isTyping(TYPED_EMAIL, emailStart);
-  const passwordCaretActive = isTyping(TYPED_PASSWORD, passwordStart);
-
+export const SignInScreen: FC<SignInScreenProps> = ({
+  emailValue = '',
+  passwordValue = '',
+  caretField = null,
+}) => {
   return (
     <AbsoluteFill style={{fontFamily, backgroundColor: '#f2f3f5'}} className="flex flex-col">
 
@@ -75,20 +71,14 @@ export const SignInScreen: FC<SignInScreenProps> = ({animateFrom}) => {
           <TextField
             icon={<Mail size={20} />}
             placeholder="Email address"
-            value={animating ? typedEmail : undefined}
-            trailing={emailCaretActive ? <BlinkingCaret active /> : undefined}
+            value={emailValue || undefined}
+            trailing={caretField === 'email' ? <TextCaret /> : undefined}
           />
           <TextField
             icon={<Lock size={20} />}
             placeholder="Password"
-            value={animating ? '•'.repeat(typedPasswordRaw.length) : undefined}
-            trailing={
-              passwordCaretActive ? (
-                <BlinkingCaret active />
-              ) : typedPasswordRaw.length > 0 ? (
-                <EyeOff size={20} />
-              ) : undefined
-            }
+            value={passwordValue ? '•'.repeat(passwordValue.length) : undefined}
+            trailing={caretField === 'password' ? <TextCaret /> : <EyeOff size={20} />}
           />
         </div>
 

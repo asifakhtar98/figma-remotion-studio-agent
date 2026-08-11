@@ -33,8 +33,12 @@ function resolveValue(raw) {
 
 // 2. Extract import paths: { ComponentName → relative import path from src/ }
 const importMap = new Map();
-for (const match of rootSource.matchAll(/import\s*\{(\w+)\}\s*from\s*'\.\/(.+?)'/g)) {
-  importMap.set(match[1], match[2]);
+// Handles multi-name imports too, e.g. `import {FlowSequence, FLOW_DURATION} from './x'`.
+for (const match of rootSource.matchAll(/import\s*\{([^}]+)\}\s*from\s*'\.\/(.+?)'/g)) {
+  for (const rawName of match[1].split(',')) {
+    const name = rawName.replace(/^\s*type\s+/, '').split(/\s+as\s+/).pop().trim();
+    if (name) importMap.set(name, match[2]);
+  }
 }
 
 // 3. Parse each <Composition ... /> block
