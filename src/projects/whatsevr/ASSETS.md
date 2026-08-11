@@ -12,6 +12,8 @@
 | ResetPassword | Saved account avatars | Placeholder | `lucide-react` `<User>` icon | ⚠️ Placeholder | Replace with real user profile photos when available |
 | Settings | Community member avatar | Unsplash URL | `photo-1534528741775-53994a69daeb` | ⚠️ Placeholder | Replace with actual community avatar photo |
 | Settings | Icons | Lucide | `lucide-react` | ✅ Real | Icons mapped from screenshots |
+| Calls | Call avatars | Unsplash URLs | `photo-1500648767791...` | ⚠️ Placeholder | Replace with actual contact avatars |
+| Wallet | Balance & Activity Icons | Lucide | `lucide-react` | ✅ Real | Icons mapped from screenshots |
 | Explore | (see screen) | — | — | — | Asset audit not yet done for this screen |
 | Profile | (see screen) | — | — | — | Asset audit not yet done for this screen |
 

@@ -190,11 +190,13 @@ src/projects/whatsevr/
   ASSETS.md                                 # asset registry
   src/
     screens/
+      CallsScreen.tsx                       # call history screen
       ExploreScreen.tsx                     # explore / discovery screen
       ProfileScreen.tsx                     # user profile screen
       ResetPasswordScreen.tsx               # reset password screen
       SettingsScreen.tsx                    # settings screen (combined tall scroll)
       SignInScreen.tsx                      # sign-in / welcome back screen
+      WalletScreen.tsx                      # wallet balance and top-up screen
     components/
       Avatar.tsx                            # user avatar (circle/rounded tile)
       BottomNavBar.tsx                      # bottom tab navigation bar
@@ -206,11 +208,13 @@ src/projects/whatsevr/
 ```
 
 Compositions registered in `src/Root.tsx`:
+- `whatsevr-Calls` → `CallsScreen` (921 × 1800)
 - `whatsevr-Explore` → `ExploreScreen` (921 × 1800)
 - `whatsevr-Profile` → `ProfileScreen` (921 × 1800)
 - `whatsevr-ResetPassword` → `ResetPasswordScreen` (921 × 1800)
 - `whatsevr-Settings` → `SettingsScreen` (921 × 2400)
 - `whatsevr-SignIn` → `SignInScreen` (921 × 1800)
+- `whatsevr-Wallet` → `WalletScreen` (921 × 1800)
 
 ### Rules
 
