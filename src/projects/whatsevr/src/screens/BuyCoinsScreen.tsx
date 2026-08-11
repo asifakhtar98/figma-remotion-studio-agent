@@ -7,7 +7,6 @@ import {
   Sparkles,
   Zap,
   ShieldCheck,
-  Check,
   QrCode,
 } from 'lucide-react';
 

@@ -1,7 +1,7 @@
 import type {FC} from 'react';
 import {AbsoluteFill, Img} from 'remotion';
 import {loadFont} from '@remotion/google-fonts/Poppins';
-import {Mail, Lock, EyeOff, X, User} from 'lucide-react';
+import {Mail, Lock, EyeOff, X} from 'lucide-react';
 import {WhatsevrLogo} from '../components/WhatsevrLogo';
 import {TextField} from '../components/TextField';
 import {PrimaryButton} from '../components/PrimaryButton';

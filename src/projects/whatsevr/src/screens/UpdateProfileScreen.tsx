@@ -12,7 +12,6 @@ import {
   Phone,
   Mail,
   PlusCircle,
-  User,
   Bot,
 } from 'lucide-react';
 import {PrimaryButton} from '../components/PrimaryButton';

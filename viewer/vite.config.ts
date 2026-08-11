@@ -1,10 +1,14 @@
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
-import { exec } from 'child_process'
+import { execFile } from 'child_process'
 import { promises as fs } from 'fs'
 import { randomUUID } from 'crypto'
 import type { IncomingMessage, ServerResponse } from 'http'
+
+const COMPOSITION_ID_PATTERN = /^[A-Za-z0-9_-]+$/;
+const SUPPORTED_FORMATS = ['png', 'jpeg', 'mp4'] as const;
+type SupportedFormat = (typeof SUPPORTED_FORMATS)[number];
 
 function remotionRenderPlugin(): Plugin {
   const projectRoot = path.resolve(__dirname, '..');
@@ -24,24 +28,42 @@ function remotionRenderPlugin(): Plugin {
         req.on('end', () => {
           try {
             const { compositionId, format } = JSON.parse(body) as {
-              compositionId: string;
-              format: 'png' | 'jpeg' | 'mp4';
+              compositionId: unknown;
+              format: unknown;
             };
 
+            if (typeof compositionId !== 'string' || !COMPOSITION_ID_PATTERN.test(compositionId)) {
+              res.statusCode = 400;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: 'Invalid compositionId' }));
+              return;
+            }
+
+            if (!SUPPORTED_FORMATS.includes(format as SupportedFormat)) {
+              res.statusCode = 400;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: 'Invalid format' }));
+              return;
+            }
+
+            const ext = format as SupportedFormat;
             const tmpId = randomUUID();
-            const ext = format === 'jpeg' ? 'jpeg' : format === 'mp4' ? 'mp4' : 'png';
             const outputPath = path.join(projectRoot, 'out', `${tmpId}.${ext}`);
             const filename = `${compositionId}.${ext}`;
 
-            let command: string;
-            if (format === 'mp4') {
-              command = `npx remotion render src/index.ts "${compositionId}" "${outputPath}"`;
-            } else {
-              const imgFlag = format === 'jpeg' ? ' --image-format=jpeg --quality=90' : '';
-              command = `npx remotion still src/index.ts "${compositionId}"${imgFlag} "${outputPath}"`;
-            }
+            const args =
+              ext === 'mp4'
+                ? ['remotion', 'render', 'src/index.ts', compositionId, outputPath]
+                : [
+                    'remotion',
+                    'still',
+                    'src/index.ts',
+                    compositionId,
+                    ...(ext === 'jpeg' ? ['--image-format=jpeg', '--quality=90'] : []),
+                    outputPath,
+                  ];
 
-            exec(command, { cwd: projectRoot, timeout: 120_000 }, async (error) => {
+            execFile('npx', args, { cwd: projectRoot, timeout: 120_000 }, async (error) => {
               if (error) {
                 res.statusCode = 500;
                 res.setHeader('Content-Type', 'application/json');

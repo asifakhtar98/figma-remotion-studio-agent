@@ -211,6 +211,14 @@ Before writing any code for a new screen (whether from a description or an ambig
 
 If the user already answered any of these, skip the ones they covered, but always ask #4 before proceeding.
 
+### Step 2 — Ground the design in real UI, never generic AI output
+
+When no screenshot or reference image exists, before building layout, research 2–3 real, well-known products in the same category (via WebSearch/WebFetch — actual apps/sites, not imagined ones) for proven layout, spacing, and component patterns. Never default to generic "AI-slop" UI (centered hero + 3 feature cards + gradient blob, boilerplate SaaS look, symmetric equal-weight grids, everything center-aligned, uniform card sizes with no focal point). Adapt real patterns to this project's brand/tokens — don't copy verbatim.
+
+This applies to overall layout hierarchy and composition too, not just individual components: establish a clear visual hierarchy (one dominant focal element, not a flat grid of equal-weight blocks), use asymmetry and varied element sizes where real products do, break the obvious "centered stack" default, and vary spacing/rhythm intentionally instead of uniform padding everywhere.
+
+Always apply UX psychology for the end user's point of view: Fitts's Law, Hick's Law, Peak-End Rule, Zeigarnik Effect, Goal Gradient, Cognitive Load, Social Proof, Loss Aversion, Reciprocity, Mere Exposure, Anchoring, Primacy–Recency, Variable Ratio Reinforcement — apply deliberately to every new screen, not just ones built from a description.
+
 ---
 
 ## Modifying an existing screen (editing existing UI)

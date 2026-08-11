@@ -13,28 +13,31 @@ function StillPreview({
   panOffset: { x: number; y: number };
   onPanChange: (offset: { x: number; y: number }) => void;
 }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isDragging = useRef(false);
+  const [isDragging, setIsDragging] = useState(false);
   const dragStart = useRef({ x: 0, y: 0 });
   const panStart = useRef({ x: 0, y: 0 });
 
-  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+  const handlePointerDown = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
     if (zoom <= 100) return;
-    isDragging.current = true;
     dragStart.current = { x: e.clientX, y: e.clientY };
     panStart.current = { ...panOffset };
+    e.currentTarget.setPointerCapture(e.pointerId);
+    setIsDragging(true);
     e.preventDefault();
   }, [zoom, panOffset]);
 
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!isDragging.current) return;
+  const handlePointerMove = useCallback((e: React.PointerEvent) => {
+    if (!isDragging) return;
     const dx = e.clientX - dragStart.current.x;
     const dy = e.clientY - dragStart.current.y;
     onPanChange({ x: panStart.current.x + dx, y: panStart.current.y + dy });
-  }, [onPanChange]);
+  }, [isDragging, onPanChange]);
 
-  const handleMouseUp = useCallback(() => {
-    isDragging.current = false;
+  const handlePointerUp = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    }
+    setIsDragging(false);
   }, []);
 
   const canPan = zoom > 100;
@@ -42,13 +45,12 @@ function StillPreview({
 
   return (
     <div
-      ref={containerRef}
-      className="w-full h-full overflow-hidden relative"
-      style={{ cursor: canPan ? (isDragging.current ? 'grabbing' : 'grab') : 'default' }}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
+      className="w-full h-full overflow-hidden relative touch-none"
+      style={{ cursor: canPan ? (isDragging ? 'grabbing' : 'grab') : 'default' }}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
     >
       <div
         className="absolute inset-0 flex items-center justify-center"
@@ -99,6 +101,20 @@ function RenderPanel({
 }) {
   const [rendering, setRendering] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (isOpen) setError(null);
+  }, [isOpen, composition.id]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const isStill = composition.durationInFrames <= 1;
@@ -127,8 +143,8 @@ function RenderPanel({
       anchor.click();
       document.body.removeChild(anchor);
       URL.revokeObjectURL(url);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Render failed');
     } finally {
       setRendering(null);
     }
@@ -137,6 +153,9 @@ function RenderPanel({
   return (
     <div className="absolute inset-0 bg-black/20 z-50 flex items-center justify-center" onClick={onClose}>
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label={`Export ${composition.screenName}`}
         className="bg-white rounded-lg shadow-xl border border-gray-200 w-[400px]"
         onClick={(e) => e.stopPropagation()}
       >

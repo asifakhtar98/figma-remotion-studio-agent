@@ -12,7 +12,6 @@ import {
   Send,
   Bookmark,
   MoreVertical,
-  User,
 } from 'lucide-react';
 import {WhatsevrLogo} from '../components/WhatsevrLogo';
 import {BottomNavBar} from '../components/BottomNavBar';
