@@ -32,6 +32,7 @@ This project ships official Remotion skills at `.agents/skills/`.
 | Work with Remotion Studio (preview, hot-reload) | **remotion-studio** | `.agents/skills/remotion-studio/SKILL.md` |
 | Look up any Remotion API you are unsure about | **remotion-docs** | `.agents/skills/remotion-docs/SKILL.md` |
 | Animate still screens into a user-journey flow video | **journey-flow-video** | `.agents/skills/journey-flow-video/SKILL.md` |
+| Build UI compositions from a website URL | **url-to-remotion-design** | `.agents/skills/url-to-remotion-design/SKILL.md` |
 
 Prefer the official skills above over inventing an approach. `remotion-markup/` already covers transitions, timing, sequencing, and DOM measuring.
 
@@ -164,56 +165,15 @@ https://images.unsplash.com/photo-<ID>?w=<WIDTH>&h=<HEIGHT>&fit=crop&q=80
 
 ## Building from a URL (screenshot-first)
 
-When the user provides a URL instead of a screenshot, **never build from HTML text alone**. Reading HTML/CSS as text and re-interpreting it visually is inherently lossy — computed styles, actual rendered layout, visual hierarchy, images, and font rendering are all lost. This produces designs that structurally resemble the original but miss the pixel-level fidelity the user expects.
+When the user provides a URL instead of a screenshot, **never build from HTML text alone**.
 
-### Mandatory three-source capture
+Always read and follow the **`url-to-remotion-design`** skill (`.agents/skills/url-to-remotion-design/SKILL.md`).
 
-All three sources are required. None alone is sufficient.
-
-| Source | What it provides | What it misses |
-|---|---|---|
-| Screenshot (visual ground truth) | Exact rendered layout, spacing, font rendering, image placement, visual hierarchy | Exact hex values, font-family names, copy text buried in markup |
-| HTML source (data/token source) | Exact copy text, font names, CSS class names, semantic structure | Computed CSS values, combined background gradients, runtime styles |
-| DOM Computed Styles (`evaluate_script`) | **Exact computed RGB/HEX colors, linear/radial gradients, background-image URLs, borders, box shadows** | Layout positioning context and responsive behavior |
-| **All three combined** | **Everything needed for 100% pixel-faithful reproduction** | **Nothing material** |
-
-### Step-by-step workflow
-
-1. **Take a full-page screenshot first** using Chrome DevTools MCP:
-   ```
-   navigate_page → URL
-   take_screenshot → fullPage: true
-   ```
-   For long pages, also take viewport-sized screenshots at scroll positions to capture all sections clearly. Save all screenshots into `src/projects/<project-name>/src/reference/`.
-
-2. **Read the HTML source second** using `read_url_content` to extract:
-   - Exact copy text (headlines, body text, button labels, metadata)
-   - Font family names from `<link>` tags or `@font-face` declarations
-   - Structural hierarchy (section order, nesting, semantic elements)
-   - Any structured data (pricing tiers, feature lists, plan details)
-
-3. **Evaluate DOM computed styles third** using Chrome DevTools MCP `evaluate_script` to extract:
-   - Exact computed background colors (`window.getComputedStyle(el).backgroundColor`)
-   - Exact background images and gradients (`window.getComputedStyle(el).backgroundImage`)
-   - Exact text colors (`window.getComputedStyle(el).color`)
-   - Exact border properties and corner radii (`window.getComputedStyle(el).borderColor`, `borderRadius`)
-   - Exact box shadows (`window.getComputedStyle(el).boxShadow`)
-
-4. **Build from all three sources (Pass 1)** — treat the screenshot as the pixel-perfect visual spec (layout, spacing, proportions), the HTML as the copy source, and DOM computed styles as the authoritative color & effect tokens.
-
-5. **Automated 2-Pass Visual Refinement (Pass 2)** — review the rendered output against the reference spec:
-   - Render a still image of the built composition using `npx remotion still <composition-id> <out-path>` (or inspect viewer output).
-   - Compare the rendered output side-by-side against the reference screenshot in `src/reference/`.
-   - Audit visual discrepancies: spacing, alignment, font sizes, line heights, color shades, contrast, element padding, and component boundaries.
-   - Perform pass 2 edits to fix any discrepancies and re-verify `tsc --noEmit`.
-
-### Rules
-
-- **Mandatory DOM Style Extraction:** Never estimate or approximate colors, background images, borders, or button gradients from text or screenshot inspection. Always run `evaluate_script` to retrieve exact computed values directly from the browser runtime.
-- **The screenshot is the spec, not the HTML.** If the HTML suggests one layout but the screenshot shows another (due to CSS transforms, media queries, JavaScript-rendered content), match the screenshot.
-- **Extract exact copy from the HTML source** rather than OCR-guessing from the screenshot. The HTML has the authoritative text.
-- **For long-scroll pages**, take multiple screenshots at different scroll positions to capture all sections. Treat them as *Multiple screenshots of the same page*.
-- **If Chrome DevTools MCP is unavailable**, tell the user: "I can get a much better result if you send me a screenshot of this page. Without one, I'll build from the HTML structure alone, which may miss visual details." Then proceed with HTML-only as a fallback, but flag reduced fidelity in the summary.
+Summary of mandatory workflow:
+1. **Screenshot (Visual spec):** Take full-page screenshot via Chrome DevTools MCP.
+2. **HTML Source (Copy spec):** Extract text copy via `read_url_content`.
+3. **DOM Computed Styles (Token spec):** Evaluate exact computed RGB colors, gradients, background-images, borders, shadows, and `scrollHeight` via `evaluate_script`.
+4. **2-Pass Visual Refinement:** Render a still image (`npx remotion still`), visually compare against reference, and refine spacing/colors.
 
 ---
 
