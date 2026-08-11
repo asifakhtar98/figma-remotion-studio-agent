@@ -5,7 +5,9 @@
   "scripts": {
     "start": "remotion studio src/index.ts",
     "build": "remotion render",
-    "upgrade": "remotion upgrade"
+    "upgrade": "remotion upgrade",
+    "sync:viewer": "node scripts/sync-viewer-registry.mjs",
+    "viewer": "npm run sync:viewer && cd viewer && npm run dev"
   },
   "dependencies": {
     "@remotion/cli": "4.0.508",

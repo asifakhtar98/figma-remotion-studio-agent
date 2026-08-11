@@ -48,6 +48,7 @@ Runs continuously start to finish. It stops only at the three fixed checkpoints 
 5. Detect (or inherit) canvas size. Strip chrome. Identify or reuse fonts, colours, icons.
 6. Build the screen component(s) under `projects/<name>/src/screens/`.
 7. Register Composition(s) in `src/Root.tsx`.
+7b. Run `npm run sync:viewer` to regenerate the viewer's composition registry.
 8. Run `npx tsc --noEmit`.
 9. **If step 8 reports errors:** fix and re-run, up to 3 attempts. If still failing after 3 attempts, stop and report the problem in plain language — do not proceed to sweep or commit with failing types.
 10. Run the *post-task sweep*.
@@ -178,6 +179,12 @@ src/
         components/<Component>.tsx  # shared pieces, THIS project only
         assets/                     # user-supplied files (logos, photos)
         reference/                  # saved reference images per project
+viewer/                             # custom lightweight composition viewer (Vite + React)
+  src/
+    App.tsx                         # main viewer app with sidebar, preview, zoom, export
+    compositionRegistry.ts          # auto-generated — DO NOT edit manually
+scripts/
+  sync-viewer-registry.mjs          # parses Root.tsx → regenerates compositionRegistry.ts
 ```
 
 - `<project-name>` = one client or app/domain (kebab-case, e.g. `acme-banking-app`).
@@ -464,6 +471,53 @@ Skip the question if the user already described a flow.
 - Default transition = `cut` (instant switch). For fades or slides, use `<TransitionSeries>` from `@remotion/transitions`.
 - Do NOT create a flow automatically if the user hasn't defined one yet — always ask first.
 - When a new screen is added to a project that already has a flow, ask where it fits in the sequence.
+
+---
+
+## Custom viewer
+
+A separate lightweight Vite + React app at `viewer/` that previews all compositions using `@remotion/player`. It is an alternative to the default Remotion Studio, with a minimal light-mode UI.
+
+### Architecture
+
+- Lives at `viewer/`, fully separate from the Remotion project.
+- Imports screen components from `../src/projects/` via Vite alias (`@src`).
+- Uses `dedupe` in `vite.config.ts` for `react`, `react-dom`, `remotion`, `@remotion/player`, `@remotion/google-fonts`, and `lucide-react` to avoid duplicate module instances.
+- **Does NOT duplicate any screen code** — it lazy-loads the same components.
+
+### Composition registry sync
+
+`viewer/src/compositionRegistry.ts` is **auto-generated** by `scripts/sync-viewer-registry.mjs`. **Never edit it manually.**
+
+The sync script parses `src/Root.tsx` — extracting imports, constants, and `<Composition>` blocks — and regenerates the registry.
+
+Run it:
+
+```bash
+npm run sync:viewer
+```
+
+**When to run:** after every change to `src/Root.tsx` (adding, removing, or modifying a Composition). The workflow step 7b covers this automatically.
+
+### Starting the viewer
+
+```bash
+npm run viewer
+```
+
+This syncs the registry first, then starts the Vite dev server on port 4000.
+
+### Features
+
+- **Project-grouped sidebar** — compositions grouped by project name, collapsible sections, sticky headers.
+- **Still vs video detection** — stills (`durationInFrames <= 1`) render via `<Thumbnail>`, videos render via `<Player>` with playback controls.
+- **Zoom slider** — 25% to 300%, stills only. "Fit" button resets to 100%.
+- **Pan / hand tool** — when zoomed past 100%, the cursor changes to a hand and click-drag pans the image.
+- **Direct export** — "Export" button opens a modal with one-click PNG, JPEG, or MP4 export. The Vite server runs Remotion's CLI on the backend and returns the file as a download.
+
+### Export API
+
+A Vite server plugin at `viewer/vite.config.ts` exposes `POST /api/render` which accepts `{ compositionId, format }` and spawns `npx remotion still` or `npx remotion render`, returning the rendered file.
 
 ---
 
