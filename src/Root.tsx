@@ -11,12 +11,14 @@ import {ExploreOffersScreen} from './projects/whatsevr/src/screens/ExploreOffers
 import {ExploreScreen} from './projects/whatsevr/src/screens/ExploreScreen';
 import {ExploreWtvScreen} from './projects/whatsevr/src/screens/ExploreWtvScreen';
 import {FlowSequence} from './projects/whatsevr/src/screens/FlowSequence';
+import {GoLiveScreen} from './projects/whatsevr/src/screens/GoLiveScreen';
 import {ProfileScreen} from './projects/whatsevr/src/screens/ProfileScreen';
 import {ResetPasswordScreen} from './projects/whatsevr/src/screens/ResetPasswordScreen';
 import {SettingsScreen} from './projects/whatsevr/src/screens/SettingsScreen';
 import {SignInScreen} from './projects/whatsevr/src/screens/SignInScreen';
 import {SpinScreen} from './projects/whatsevr/src/screens/SpinScreen';
 import {UpdateProfileScreen} from './projects/whatsevr/src/screens/UpdateProfileScreen';
+import {WalletRateModalScreen} from './projects/whatsevr/src/screens/WalletRateModalScreen';
 import {WalletScreen} from './projects/whatsevr/src/screens/WalletScreen';
 
 // Each project registers its screens here as <Composition> entries.
@@ -163,6 +165,22 @@ export const RemotionRoot: FC = () => {
       <Composition
         id="whatsevr-17-CreateAccount"
         component={CreateAccountScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-18-GoLive"
+        component={GoLiveScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-19-WalletRateModal"
+        component={WalletRateModalScreen}
         durationInFrames={1}
         fps={30}
         width={WHATSEVR_WIDTH}
