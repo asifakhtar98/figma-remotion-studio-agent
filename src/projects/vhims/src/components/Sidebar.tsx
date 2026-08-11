@@ -32,7 +32,11 @@ const navItems: NavItem[] = [
   { id: 'upgrade', label: 'A/C Upgrade Requests', icon: TrendingUp },
 ];
 
-export const Sidebar: React.FC = () => {
+interface SidebarProps {
+  activeId?: string;
+}
+
+export const Sidebar: React.FC<SidebarProps> = ({ activeId = 'accounts' }) => {
   return (
     <aside className="w-64 bg-[#2b3534] text-white flex flex-col shrink-0 h-full select-none border-r border-[#3a4645]">
       {/* Brand Header */}
@@ -52,11 +56,12 @@ export const Sidebar: React.FC = () => {
       <nav className="flex-1 py-4 px-3 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
           const Icon = item.icon;
+          const isActive = item.id === activeId;
           return (
             <div
               key={item.id}
               className={`flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                item.active
+                isActive
                   ? 'bg-[#ff4d15] text-white shadow-sm'
                   : 'text-gray-300 hover:bg-[#364241] hover:text-white'
               }`}
@@ -70,3 +75,4 @@ export const Sidebar: React.FC = () => {
     </aside>
   );
 };
+
