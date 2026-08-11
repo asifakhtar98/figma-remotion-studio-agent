@@ -3,6 +3,12 @@
 Screenshot **or plain description** in, pixel-faithful React screen out, wired as a Remotion still Composition.
 Full spec: `docs/superpowers/specs/2026-08-11-screenshot-to-remotion-design.md`.
 
+## STRICT RULE: NO MARKDOWN FILE CREATION (MANDATORY)
+
+- **DO NOT create or generate any `.md` / markdown files in any session.**
+- Do NOT create `ASSETS.md`, `FLOW.md`, or any other markdown documentation files under any circumstances.
+- Build screens, components, and video compositions purely in React (`.tsx`, `.ts`, `.css`).
+
 ## Remotion skills (MANDATORY — read before writing any Remotion code)
 
 This project ships with official Remotion skills at `.agents/skills/`. **Read the
@@ -135,22 +141,6 @@ https://images.unsplash.com/photo-<ID>?w=<WIDTH>&h=<HEIGHT>&fit=crop&q=80
 - Prefer landscape crops for hero banners (`&fit=crop&crop=faces,center`).
 - Document the Unsplash photo ID in a comment so it is easy to replace.
 
-### Asset registry file
-
-Each project MUST maintain an `ASSETS.md` file at
-`src/projects/<project-name>/ASSETS.md`. Create it on first build; update it on
-every subsequent screen. Format:
-
-```markdown
-# <project-name> — Asset Registry
-
-| Screen | Slot | Type | Source | Notes |
-|---|---|---|---|---|
-| SignIn | Hero banner | Unsplash URL | photo-1531482615713... | Replace with real brand photo |
-| SignIn | Logo | Placeholder | Gray box with text "W" | Waiting for real logo file |
-| SignIn | Avatars | Placeholder | lucide User icon | Replace when user photos available |
-```
-
 ---
 
 ## What this repo does
@@ -174,7 +164,6 @@ src/
   Root.tsx                          # registers ALL Compositions, all projects
   projects/
     <project-name>/                 # one client or app — kebab-case
-      ASSETS.md                     # asset registry — created on first build
       src/
         screens/<ScreenName>.tsx    # one full screen = one component
         components/<Component>.tsx  # shared pieces, THIS project only
@@ -185,7 +174,7 @@ src/
 
 - `<project-name>` = one client or app/domain (kebab-case, e.g. `acme-banking-app`).
 - Projects are fully isolated under `src/projects/<project-name>/`. **Never** share components or assets across `projects/*/`.
-- Each project tracks its own assets in `src/projects/<project-name>/ASSETS.md` and optional video sequence order in `src/projects/<project-name>/FLOW.md`.
+- **Never create `.md` files** in any project folder.
 
 ## Per-screen build rules
 
@@ -376,7 +365,7 @@ When there is no screenshot to measure:
 ### Step 5 — Apply the same build and asset rules
 
 All other rules still apply: strip chrome, ask for assets, use the asset declaration
-box, run `tsc --noEmit`, and update `ASSETS.md`.
+box, and run `tsc --noEmit`.
 
 ### Step 6 — Tell the user what you assumed
 
@@ -424,9 +413,8 @@ Run start to finish with no confirmation checkpoints:
    own screen.
 5. Detect (or inherit) canvas size. Strip chrome. Identify or reuse fonts, colours, icons.
 6. Build the screen component(s) under `projects/<name>/src/screens/`.
-7. Create or update `src/projects/<name>/ASSETS.md` with every asset used.
-8. Register Composition(s) in `src/Root.tsx`.
-9. Run `npx tsc --noEmit` to confirm zero type errors before reporting done.
+7. Register Composition(s) in `src/Root.tsx`.
+8. Run `npx tsc --noEmit` to confirm zero type errors before reporting done.
 10. **Run the post-task sweep** (see below).
 11. **Auto git commit** (see below).
 12. **Ask about screen flow** if this is the 2nd+ screen in a project (see below).
@@ -469,10 +457,9 @@ reporting done. Do NOT ask for permission — just do it. The sweep covers:
 - **Spacing** — check for padding/gap values that break the project's rhythm.
 - **Border radius** — ensure inputs and cards use the same radius across all screens.
 
-### 4. Project asset & flow registries update
+### 4. Cleanup check
 
-- Update the project's `ASSETS.md` registry with any new or modified assets.
-- If a screen flow exists, update `FLOW.md` to reflect the new sequence.
+- Ensure no temporary or markdown documentation files were created.
 
 ### 5. Report
 
@@ -539,26 +526,6 @@ After building the **2nd screen** (or later) in a project, always ask:
 
 If the user already described a flow in their message, skip the question.
 
-### How to store the flow
-
-Each project maintains a `FLOW.md` file at `src/projects/<project-name>/FLOW.md`.
-Create it when the user defines a flow; update it when screens are added or reordered.
-
-```markdown
-# <project-name> — Screen Flow
-
-> The order screens appear when rendered as a video sequence.
-> Each screen shows for the specified duration before transitioning to the next.
-
-| Order | Screen | Duration (seconds) | Transition |
-|---|---|---|---|
-| 1 | SignInScreen | 3 | cut |
-| 2 | ExploreScreen | 3 | cut |
-| 3 | ProfileScreen | 3 | cut |
-
-Render command: `npx remotion render src/index.ts <project-name>-Flow --codec h264`
-```
-
 ### How to wire the flow in Remotion
 
 When the user defines a flow, create (or update) a **flow composition** that sequences
@@ -574,8 +541,6 @@ the screens:
    - `width`/`height` = the project's standard canvas size.
    - `durationInFrames` = sum of all screen durations × fps.
    - `fps` = 30 (default).
-
-3. Update `FLOW.md` with the current order.
 
 ### Rules
 
@@ -595,5 +560,5 @@ the screens:
 
 - Complex timeline animation within a single screen (motion graphics, keyframes).
 - Shared cross-project design system or component library.
-- Per-project metadata tracking beyond `ASSETS.md` and `FLOW.md`.
+- Creating markdown documentation files (`ASSETS.md`, `FLOW.md`, etc.).
 
