@@ -2,11 +2,15 @@ import './style.css';
 import type {FC} from 'react';
 import {Composition} from 'remotion';
 import {CallsScreen} from './projects/whatsevr/src/screens/CallsScreen';
+import {ExploreMemoriesScreen} from './projects/whatsevr/src/screens/ExploreMemoriesScreen';
+import {ExploreOffersScreen} from './projects/whatsevr/src/screens/ExploreOffersScreen';
 import {ExploreScreen} from './projects/whatsevr/src/screens/ExploreScreen';
+import {ExploreWtvScreen} from './projects/whatsevr/src/screens/ExploreWtvScreen';
 import {ProfileScreen} from './projects/whatsevr/src/screens/ProfileScreen';
 import {ResetPasswordScreen} from './projects/whatsevr/src/screens/ResetPasswordScreen';
 import {SettingsScreen} from './projects/whatsevr/src/screens/SettingsScreen';
 import {SignInScreen} from './projects/whatsevr/src/screens/SignInScreen';
+import {SpinScreen} from './projects/whatsevr/src/screens/SpinScreen';
 import {WalletScreen} from './projects/whatsevr/src/screens/WalletScreen';
 
 // Each project registers its screens here as <Composition> entries.
@@ -31,6 +35,30 @@ export const RemotionRoot: FC = () => {
       <Composition
         id="whatsevr-Explore"
         component={ExploreScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-ExploreMemories"
+        component={ExploreMemoriesScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-ExploreOffers"
+        component={ExploreOffersScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-ExploreWtv"
+        component={ExploreWtvScreen}
         durationInFrames={1}
         fps={30}
         width={WHATSEVR_WIDTH}
@@ -63,6 +91,14 @@ export const RemotionRoot: FC = () => {
       <Composition
         id="whatsevr-SignIn"
         component={SignInScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-Spin"
+        component={SpinScreen}
         durationInFrames={1}
         fps={30}
         width={WHATSEVR_WIDTH}

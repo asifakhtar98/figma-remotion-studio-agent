@@ -14,7 +14,10 @@
 | Settings | Icons | Lucide | `lucide-react` | ✅ Real | Icons mapped from screenshots |
 | Calls | Call avatars | Unsplash URLs | `photo-1500648767791...` | ⚠️ Placeholder | Replace with actual contact avatars |
 | Wallet | Balance & Activity Icons | Lucide | `lucide-react` | ✅ Real | Icons mapped from screenshots |
-| Explore | (see screen) | — | — | — | Asset audit not yet done for this screen |
+| Spin | Spin Button & Navigation | Lucide | `lucide-react` | ✅ Real | Icons mapped from screenshot |
+| ExploreOffers | Feed photos | Unsplash URLs | `photo-1506794778202...` | ⚠️ Placeholder | Replace with creator offer photos |
+| ExploreMemories | Story tile photos & avatars | Unsplash URLs | `photo-1507525428034...` | ⚠️ Placeholder | Replace with real user story media |
+| ExploreWtv | Video thumbnails & avatars | Unsplash URLs | `photo-1517457373958...` | ⚠️ Placeholder | Replace with video poster frames |
 | Profile | (see screen) | — | — | — | Asset audit not yet done for this screen |
 
 ## Legend

@@ -191,11 +191,15 @@ src/projects/whatsevr/
   src/
     screens/
       CallsScreen.tsx                       # call history screen
+      ExploreMemoriesScreen.tsx             # explore memories grid tab screen
+      ExploreOffersScreen.tsx               # explore offers feed tab screen
       ExploreScreen.tsx                     # explore / discovery screen
+      ExploreWtvScreen.tsx                  # explore video feed tab screen
       ProfileScreen.tsx                     # user profile screen
       ResetPasswordScreen.tsx               # reset password screen
       SettingsScreen.tsx                    # settings screen (combined tall scroll)
       SignInScreen.tsx                      # sign-in / welcome back screen
+      SpinScreen.tsx                        # stranger video spin / random match screen
       WalletScreen.tsx                      # wallet balance and top-up screen
     components/
       Avatar.tsx                            # user avatar (circle/rounded tile)
@@ -210,10 +214,14 @@ src/projects/whatsevr/
 Compositions registered in `src/Root.tsx`:
 - `whatsevr-Calls` → `CallsScreen` (921 × 1800)
 - `whatsevr-Explore` → `ExploreScreen` (921 × 1800)
+- `whatsevr-ExploreMemories` → `ExploreMemoriesScreen` (921 × 1800)
+- `whatsevr-ExploreOffers` → `ExploreOffersScreen` (921 × 1800)
+- `whatsevr-ExploreWtv` → `ExploreWtvScreen` (921 × 1800)
 - `whatsevr-Profile` → `ProfileScreen` (921 × 1800)
 - `whatsevr-ResetPassword` → `ResetPasswordScreen` (921 × 1800)
 - `whatsevr-Settings` → `SettingsScreen` (921 × 2400)
 - `whatsevr-SignIn` → `SignInScreen` (921 × 1800)
+- `whatsevr-Spin` → `SpinScreen` (921 × 1800)
 - `whatsevr-Wallet` → `WalletScreen` (921 × 1800)
 
 ### Rules
