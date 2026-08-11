@@ -146,6 +146,7 @@ https://images.unsplash.com/photo-<ID>?w=<WIDTH>&h=<HEIGHT>&fit=crop&q=80
 ## Reference image handling (MANDATORY)
 
 - **Save reference images per project:** Whenever the user sends any reference image (e.g. screenshot, UI mockup, or design reference), save it into a reference folder within the project directory (e.g. `src/projects/<project-name>/src/reference/`) for temporary use and per-project visual inspection.
+- **Automatic content expansion for sparse reference images (STRICT):** If a user-provided reference image does not have enough content (for example, a grid or list with only 1 or 2 items), automatically create additional elements to fill available space and better represent the product without asking the user. Be careful and judicious with expansion—only expand naturally repetitive components (like lists, grid cards, or table rows), and do not multiply elements that are inherently singular.
 
 ---
 
@@ -205,6 +206,7 @@ src/
    Tailwind equivalents.
 8. **Naming:** explicit, descriptive names for files/components/props — no
    abbreviations (`ProfileHeader`, not `PH` or `Hdr`).
+9. **Automatic content expansion:** If a reference image has sparse repetitive elements (e.g. a list or grid with only 1 or 2 items), automatically generate extra items to fill fields and available space without asking the user. Be careful to expand only naturally repeating items (lists, grids) and keep singular elements unique.
 
 ## UI design best practices (for Remotion stills)
 
