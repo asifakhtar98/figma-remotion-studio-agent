@@ -13,6 +13,7 @@ import {ExploreScreen} from './projects/whatsevr/src/screens/ExploreScreen';
 import {ExploreWtvScreen} from './projects/whatsevr/src/screens/ExploreWtvScreen';
 import {FlowSequence} from './projects/whatsevr/src/screens/FlowSequence';
 import {GoLiveScreen} from './projects/whatsevr/src/screens/GoLiveScreen';
+import {IncomingCallScreen} from './projects/whatsevr/src/screens/IncomingCallScreen';
 import {ProfileScreen} from './projects/whatsevr/src/screens/ProfileScreen';
 import {ResetPasswordScreen} from './projects/whatsevr/src/screens/ResetPasswordScreen';
 import {SettingsScreen} from './projects/whatsevr/src/screens/SettingsScreen';
@@ -190,6 +191,14 @@ export const RemotionRoot: FC = () => {
       <Composition
         id="whatsevr-20-BuyCoins"
         component={BuyCoinsScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-21-IncomingCall"
+        component={IncomingCallScreen}
         durationInFrames={1}
         fps={30}
         width={WHATSEVR_WIDTH}

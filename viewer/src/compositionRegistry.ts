@@ -211,5 +211,15 @@ export const compositions: CompositionEntry[] = [
     fps: 30,
     projectName: 'whatsevr',
     screenName: 'BuyCoins'
+  },
+  {
+    id: 'whatsevr-21-IncomingCall',
+    component: React.lazy(() => import('@src/projects/whatsevr/src/screens/IncomingCallScreen').then(m => ({ default: m.IncomingCallScreen }))),
+    width: 921,
+    height: 1800,
+    durationInFrames: 1,
+    fps: 30,
+    projectName: 'whatsevr',
+    screenName: 'IncomingCall'
   }
 ];
