@@ -210,7 +210,7 @@ Before building, read every existing screen and shared component in the project 
 - **Corner radius** — `rounded-full`, `rounded-2xl`, or something else?
 - **Component patterns** — does a `TextField`, `PrimaryButton`, `Avatar` etc. already exist?
 
-Use those exact values. Never invent new colours or spacing that don't already exist in the project.
+Use those existing design tokens as the foundation, and invent new consistent tokens only when necessary for new elements.
 
 ### Step 3 — Reuse existing components
 
