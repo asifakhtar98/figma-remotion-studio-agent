@@ -7,6 +7,9 @@
 | SignIn | Hero banner | Unsplash URL | `photo-1531482615713-2afd69097998` | ⚠️ Placeholder | Replace with official Whatsevr brand hero photo |
 | SignIn | Logo / brand mark | SVG (reconstructed) | `components/WhatsevrLogo.tsx` | ⚠️ Approximated | Reconstructed from screenshot — get official SVG from brand team |
 | SignIn | Saved account avatars | Placeholder | `lucide-react` `<User>` icon | ⚠️ Placeholder | Replace with real user profile photos when available |
+| ResetPassword | Hero banner | Unsplash URL | `photo-1531482615713-2afd69097998` | ⚠️ Placeholder | Replace with official Whatsevr brand hero photo |
+| ResetPassword | Logo / brand mark | SVG (reconstructed) | `components/WhatsevrLogo.tsx` | ⚠️ Approximated | Reconstructed from screenshot |
+| ResetPassword | Saved account avatars | Placeholder | `lucide-react` `<User>` icon | ⚠️ Placeholder | Replace with real user profile photos when available |
 | Explore | (see screen) | — | — | — | Asset audit not yet done for this screen |
 | Profile | (see screen) | — | — | — | Asset audit not yet done for this screen |
 
