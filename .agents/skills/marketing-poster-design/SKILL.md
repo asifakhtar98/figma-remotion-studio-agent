@@ -56,11 +56,15 @@ Select an art direction tailored to the product personality while inheriting the
 
 ## 4. Poster Formats & Aspect Ratios
 
-| Format / Aspect Ratio | Resolution (`width` × `height`) | Target Medium |
-|---|---|---|
-| **Full HD Vertical Poster** | `1080 × 1920` (9:16) | Mobile social stories (Instagram, TikTok), digital signage, mobile sharing |
-| **Landscape Banner Poster** | `1920 × 1080` (16:9) | Desktop web headers, presentation slides, YouTube banners, digital billboards |
-| **Square Social Poster** | `1080 × 1080` (1:1) | Instagram/Twitter feed posts, LinkedIn updates, product cards |
+- 🌟 **Square Social Poster (`1080 × 1080`, 1:1) — MANDATORY RECOMMENDED DEFAULT**: Ideal for primary product launches, LinkedIn updates, Twitter/X feed posts, Instagram posts, and embedded product cards. Always recommend this format first.
+- **Full HD Vertical Poster (`1080 × 1920`, 9:16)**: Best for mobile social stories (Instagram Stories, TikTok), digital signage, and mobile sharing.
+- **Landscape Banner Poster (`1920 × 1080`, 16:9)**: Best for desktop web headers, presentation slides, YouTube banners, and digital billboards.
+
+| Format / Aspect Ratio | Resolution (`width` × `height`) | Status | Target Medium |
+|---|---|---|---|
+| **Square Social Poster** | `1080 × 1080` (1:1) | **(Recommended Default)** | Instagram/Twitter feed posts, LinkedIn updates, product cards |
+| **Full HD Vertical Poster** | `1080 × 1920` (9:16) | Secondary | Mobile social stories (Instagram, TikTok), digital signage |
+| **Landscape Banner Poster** | `1920 × 1080` (16:9) | Secondary | Desktop web headers, presentation slides, YouTube banners |
 
 ---
 
@@ -105,11 +109,11 @@ When the user requests a QR code on a poster (or provides a target website URL /
 ## 7. Workflow & Implementation Steps
 
 ### Step 1 — Clarify Requirements & Poster Content (Q&A)
-Always ask the user through `ask_question` before writing code:
-1. **Poster Content & Key Features**: What specific features, copy, metrics, app screenshots, or product highlights should be included on the poster?
-2. **Headline & Core Value Prop**: What main headline and key takeaway message should be displayed?
-3. **Aspect Ratio / Format**: Vertical (`1080x1920`), Landscape (`1920x1080`), or Square (`1080x1080`).
-4. **Creative Art Direction**: Cyber-Glass (Default), Neo-Brutalist, or Studio Minimalist.
+Always ask the user through `ask_question` before writing code, prioritizing the recommended options:
+1. **Aspect Ratio / Format**: Always recommend **"(Recommended) Square Social Poster (1080×1080)"** first as the primary format choice.
+2. **Poster Content & Key Features**: What specific features, copy, metrics, app screenshots, or product highlights should be included on the poster?
+3. **Headline & Core Value Prop**: What main headline and key takeaway message should be displayed?
+4. **Creative Art Direction**: Cyber-Glass (Default), Neo-Brutalist, or Studio Minimalist (matching product vibe).
 5. **Download Links & QR Code Details**: App Store / Google Play badges, functional QR code target URL, website link.
 
 ### Step 2 — Asset & Token Grounding
