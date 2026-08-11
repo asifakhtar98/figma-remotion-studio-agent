@@ -7,6 +7,7 @@ import {ExploreMemoriesScreen} from './projects/whatsevr/src/screens/ExploreMemo
 import {ExploreOffersScreen} from './projects/whatsevr/src/screens/ExploreOffersScreen';
 import {ExploreScreen} from './projects/whatsevr/src/screens/ExploreScreen';
 import {ExploreWtvScreen} from './projects/whatsevr/src/screens/ExploreWtvScreen';
+import {FlowSequence} from './projects/whatsevr/src/screens/FlowSequence';
 import {ProfileScreen} from './projects/whatsevr/src/screens/ProfileScreen';
 import {ResetPasswordScreen} from './projects/whatsevr/src/screens/ResetPasswordScreen';
 import {SettingsScreen} from './projects/whatsevr/src/screens/SettingsScreen';
@@ -23,6 +24,7 @@ const WHATSEVR_WIDTH = 921;
 const WHATSEVR_HEIGHT = 1800;
 const WHATSEVR_SETTINGS_HEIGHT = 2400;
 const WHATSEVR_UPDATE_PROFILE_HEIGHT = 2500;
+const WHATSEVR_FLOW_DURATION = 1170; // 13 screens × 90 frames (3s each)
 
 export const RemotionRoot: FC = () => {
   return (
@@ -127,6 +129,14 @@ export const RemotionRoot: FC = () => {
         id="whatsevr-Wallet"
         component={WalletScreen}
         durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-Flow"
+        component={FlowSequence}
+        durationInFrames={WHATSEVR_FLOW_DURATION}
         fps={30}
         width={WHATSEVR_WIDTH}
         height={WHATSEVR_HEIGHT}

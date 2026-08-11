@@ -188,6 +188,7 @@ src/
 ```
 src/projects/whatsevr/
   ASSETS.md                                 # asset registry
+  FLOW.md                                   # screen flow order for video sequence
   src/
     screens/
       CallsScreen.tsx                       # call history screen
@@ -196,6 +197,7 @@ src/projects/whatsevr/
       ExploreOffersScreen.tsx               # explore offers feed tab screen
       ExploreScreen.tsx                     # explore / discovery screen
       ExploreWtvScreen.tsx                  # explore video feed tab screen
+      FlowSequence.tsx                      # video sequence of all screens (Series)
       ProfileScreen.tsx                     # user profile screen
       ResetPasswordScreen.tsx               # reset password screen
       SettingsScreen.tsx                    # settings screen (combined tall scroll)
@@ -220,6 +222,7 @@ Compositions registered in `src/Root.tsx`:
 - `whatsevr-ExploreMemories` → `ExploreMemoriesScreen` (921 × 1800)
 - `whatsevr-ExploreOffers` → `ExploreOffersScreen` (921 × 1800)
 - `whatsevr-ExploreWtv` → `ExploreWtvScreen` (921 × 1800)
+- `whatsevr-Flow` → `FlowSequence` (921 × 1800, 1170 frames / 39s video)
 - `whatsevr-Profile` → `ProfileScreen` (921 × 1800)
 - `whatsevr-ResetPassword` → `ResetPasswordScreen` (921 × 1800)
 - `whatsevr-Settings` → `SettingsScreen` (921 × 2400)
