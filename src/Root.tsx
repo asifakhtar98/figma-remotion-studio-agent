@@ -19,7 +19,7 @@ import {UpdateProfileScreen} from './projects/whatsevr/src/screens/UpdateProfile
 import {WalletScreen} from './projects/whatsevr/src/screens/WalletScreen';
 
 // Each project registers its screens here as <Composition> entries.
-// id="<ProjectName>-<ScreenName>", width/height = detected canvas size,
+// id="<ProjectName>-<Number>-<ScreenName>", width/height = detected canvas size,
 // short still duration (no animation unless requested).
 
 const WHATSEVR_WIDTH = 921;
@@ -32,95 +32,7 @@ export const RemotionRoot: FC = () => {
   return (
     <>
       <Composition
-        id="whatsevr-Calls"
-        component={CallsScreen}
-        durationInFrames={1}
-        fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
-      />
-      <Composition
-        id="whatsevr-Chat"
-        component={ChatScreen}
-        durationInFrames={1}
-        fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
-      />
-      <Composition
-        id="whatsevr-CommunityDetail"
-        component={CommunityDetailScreen}
-        durationInFrames={1}
-        fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
-      />
-      <Composition
-        id="whatsevr-CommunityUploadModal"
-        component={CommunityUploadModalScreen}
-        durationInFrames={1}
-        fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
-      />
-      <Composition
-        id="whatsevr-Explore"
-        component={ExploreScreen}
-        durationInFrames={1}
-        fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
-      />
-      <Composition
-        id="whatsevr-ExploreMemories"
-        component={ExploreMemoriesScreen}
-        durationInFrames={1}
-        fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
-      />
-      <Composition
-        id="whatsevr-ExploreOffers"
-        component={ExploreOffersScreen}
-        durationInFrames={1}
-        fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
-      />
-      <Composition
-        id="whatsevr-ExploreWtv"
-        component={ExploreWtvScreen}
-        durationInFrames={1}
-        fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
-      />
-      <Composition
-        id="whatsevr-Profile"
-        component={ProfileScreen}
-        durationInFrames={1}
-        fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
-      />
-      <Composition
-        id="whatsevr-ResetPassword"
-        component={ResetPasswordScreen}
-        durationInFrames={1}
-        fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
-      />
-      <Composition
-        id="whatsevr-Settings"
-        component={SettingsScreen}
-        durationInFrames={1}
-        fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_SETTINGS_HEIGHT}
-      />
-      <Composition
-        id="whatsevr-SignIn"
+        id="whatsevr-01-SignIn"
         component={SignInScreen}
         durationInFrames={1}
         fps={30}
@@ -128,7 +40,47 @@ export const RemotionRoot: FC = () => {
         height={WHATSEVR_HEIGHT}
       />
       <Composition
-        id="whatsevr-Spin"
+        id="whatsevr-02-ResetPassword"
+        component={ResetPasswordScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-03-Explore"
+        component={ExploreScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-04-ExploreOffers"
+        component={ExploreOffersScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-05-ExploreMemories"
+        component={ExploreMemoriesScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-06-ExploreWtv"
+        component={ExploreWtvScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-07-Spin"
         component={SpinScreen}
         durationInFrames={1}
         fps={30}
@@ -136,7 +88,31 @@ export const RemotionRoot: FC = () => {
         height={WHATSEVR_HEIGHT}
       />
       <Composition
-        id="whatsevr-UpdateProfile"
+        id="whatsevr-08-Calls"
+        component={CallsScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-09-Chat"
+        component={ChatScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-10-Profile"
+        component={ProfileScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-11-UpdateProfile"
         component={UpdateProfileScreen}
         durationInFrames={1}
         fps={30}
@@ -144,7 +120,23 @@ export const RemotionRoot: FC = () => {
         height={WHATSEVR_UPDATE_PROFILE_HEIGHT}
       />
       <Composition
-        id="whatsevr-Wallet"
+        id="whatsevr-12-CommunityDetail"
+        component={CommunityDetailScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-13-CommunityUploadModal"
+        component={CommunityUploadModalScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-14-Wallet"
         component={WalletScreen}
         durationInFrames={1}
         fps={30}
@@ -152,7 +144,15 @@ export const RemotionRoot: FC = () => {
         height={WHATSEVR_HEIGHT}
       />
       <Composition
-        id="whatsevr-Flow"
+        id="whatsevr-15-Settings"
+        component={SettingsScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_SETTINGS_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-16-Flow"
         component={FlowSequence}
         durationInFrames={WHATSEVR_FLOW_DURATION}
         fps={30}
