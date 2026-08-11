@@ -1,5 +1,5 @@
 import React from 'react';
-import { AbsoluteFill } from 'remotion';
+import { AbsoluteFill, Img } from 'remotion';
 import { loadFont } from '@remotion/google-fonts/Inter';
 import {
   Sparkles,
@@ -296,10 +296,14 @@ export const MarketingPosterScreen: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Side: QR Code Demo Scan Container */}
+        {/* Right Side: Real Functional QR Code Demo Scan Container */}
         <div className="flex items-center gap-3.5 bg-slate-900/95 border border-slate-700/80 rounded-2xl px-4.5 py-3 backdrop-blur-md shadow-lg">
-          <div className="w-12 h-12 bg-white p-1 rounded-xl flex items-center justify-center shrink-0 shadow-sm">
-            <QrCode className="w-10 h-10 text-slate-900" />
+          <div className="w-12 h-12 bg-white p-1 rounded-xl flex items-center justify-center shrink-0 shadow-sm overflow-hidden">
+            <Img
+              src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent('https://www.vhims.com/start-trial/')}`}
+              className="w-full h-full object-contain"
+              alt="Scan to Book Demo"
+            />
           </div>
           <div className="flex flex-col">
             <span className="text-xs font-black text-white tracking-tight">SCAN TO BOOK DEMO</span>

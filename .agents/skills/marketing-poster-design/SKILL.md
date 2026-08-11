@@ -67,21 +67,38 @@ Select an art direction tailored to the product personality:
 ├──────────────────────────────────────────────────────────┤
 │ 5. Bottom Actionable Footer:                             │
 │    - Store Badges (App Store & Google Play SVG icons)    │
-│    - QR Code Installation Frame                          │
+│    - Real Functional Scannable QR Code Frame             │
 │    - Web Domain Link (e.g., www.domain.com)              │
 └──────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 5. Workflow & Implementation Steps
+## 5. Functional QR Code Generation
 
-### Step 1 — Clarify Requirements (Q&A)
-Ask the user through `ask_question`:
-1. **Aspect Ratio**: Vertical (`1080x1920`), Landscape (`1920x1080`), or Square (`1080x1080`).
-2. **Creative Art Direction**: Cyber-Glass (Default), Neo-Brutalist, or Studio Minimalist.
-3. **Headline & Core Value Prop**.
-4. **Download Links / QR Code Details**.
+When the user requests a QR code on a poster (or provides a target website URL / app download link):
+- **Always generate a real, 100% scannable functional QR code** using standard Remotion `<Img>` with a dynamic QR code API endpoint (e.g. `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(targetUrl)}`) or an installed QR code library.
+- **Never render a static icon fallback** (like `<QrCode />` from Lucide) when a functional QR code is requested or appropriate.
+- **Code Snippet**:
+  ```tsx
+  <Img
+    src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(targetUrl)}`}
+    className="w-12 h-12 rounded-lg bg-white p-1 shadow-md shrink-0"
+    alt="Scan QR Code"
+  />
+  ```
+
+---
+
+## 6. Workflow & Implementation Steps
+
+### Step 1 — Clarify Requirements & Poster Content (Q&A)
+Always ask the user through `ask_question` before writing code:
+1. **Poster Content & Key Features**: What specific features, copy, metrics, app screenshots, or product highlights should be included on the poster?
+2. **Headline & Core Value Prop**: What main headline and key takeaway message should be displayed?
+3. **Aspect Ratio / Format**: Vertical (`1080x1920`), Landscape (`1920x1080`), or Square (`1080x1080`).
+4. **Creative Art Direction**: Cyber-Glass (Default), Neo-Brutalist, or Studio Minimalist.
+5. **Download Links & QR Code Details**: App Store / Google Play badges, functional QR code target URL, website link.
 
 ### Step 2 — Asset & Token Grounding
 - Inspect existing project screens to re-use brand colors, typography, logos, and real screen mockups.
@@ -91,6 +108,7 @@ Ask the user through `ask_question`:
 - Use `AbsoluteFill` from `remotion`.
 - Implement chosen creative aesthetic with asymmetric floating cards and layered ambient lighting.
 - Render realistic app screen content inside device frame (using `<Img>` for photo assets, live chat badges, real metrics).
+- If QR code is requested, render a real functional QR code using the `<Img>` API pattern shown in Section 5.
 
 ### Step 4 — Register & Sync
 - Register `<Composition>` in `src/Root.tsx` with `durationInFrames={1}`.
@@ -100,7 +118,7 @@ Ask the user through `ask_question`:
 
 ---
 
-## 6. CSS Utilities & Code Snippets
+## 7. CSS Utilities & Code Snippets
 
 - **Glassmorphic Card with Ambient Rim**:
   ```tsx
