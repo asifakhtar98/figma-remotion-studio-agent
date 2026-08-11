@@ -33,6 +33,7 @@ This project ships official Remotion skills at `.agents/skills/`.
 | Look up any Remotion API you are unsure about | **remotion-docs** | `.agents/skills/remotion-docs/SKILL.md` |
 | Animate still screens into a user-journey flow video | **journey-flow-video** | `.agents/skills/journey-flow-video/SKILL.md` |
 | Build UI compositions from a website URL | **url-to-remotion-design** | `.agents/skills/url-to-remotion-design/SKILL.md` |
+| Create marketing posters & launch graphics | **marketing-poster-design** | `.agents/skills/marketing-poster-design/SKILL.md` |
 
 Prefer the official skills above over inventing an approach. `remotion-markup/` already covers transitions, timing, sequencing, and DOM measuring.
 
