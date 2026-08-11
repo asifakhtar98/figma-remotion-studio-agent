@@ -143,6 +143,12 @@ https://images.unsplash.com/photo-<ID>?w=<WIDTH>&h=<HEIGHT>&fit=crop&q=80
 
 ---
 
+## Reference image handling (MANDATORY)
+
+- **Save reference images per project:** Whenever the user sends any reference image (e.g. screenshot, UI mockup, or design reference), save it into a reference folder within the project directory (e.g. `src/projects/<project-name>/src/reference/`) for temporary use and per-project visual inspection.
+
+---
+
 ## What this repo does
 
 User gives a screenshot (or multiple screenshots of the same page) of an app screen or
@@ -168,6 +174,7 @@ src/
         screens/<ScreenName>.tsx    # one full screen = one component
         components/<Component>.tsx  # shared pieces, THIS project only
         assets/                     # user-supplied files (logos, photos)
+        reference/                  # saved reference images per project
 ```
 
 ### Rules
