@@ -9,14 +9,18 @@ This skill guides the creation of high-fidelity, bespoke marketing posters, laun
 
 ---
 
-## 1. Mandatory Product Vibe & Design Token Inheritance
+## 1. Mandatory Product & Poster Vibe Inheritance
 
-Whenever creating a marketing poster for a project that already has existing screens or components in `src/projects/<project>/`:
+Whenever creating a marketing poster for a project:
 
-- **Extract Existing Tokens First**: Inspect `src/projects/<project>/src/screens/` and `src/projects/<project>/src/components/` to extract exact brand hex colors, gradient definitions, Google Font families (`loadFont()`), corner radii (`rounded-2xl`, `rounded-full`), border styling, and button/badge patterns.
-- **Match the Product Vibe**:
+- **Extract Existing Product Tokens First**: Inspect `src/projects/<project>/src/screens/` and `src/projects/<project>/src/components/` to extract exact brand hex colors, gradient definitions, Google Font families (`loadFont()`), corner radii (`rounded-2xl`, `rounded-full`), border styling, and button/badge patterns.
+- **Match the Real Product Vibe**:
   - **NEVER use generic stock palettes or arbitrary color schemes.** The poster MUST channel the exact visual vibe, brand identity, and color harmony of the real product.
   - Use the product's primary brand color and signature gradients (e.g. VHiMS forest green `#3e4f47` + orange `#ff4d15` gradient, Whatsevr hot pink `#ff2d55`) as the poster's dominant accent hues, ambient glows, CTA buttons, and badge highlights.
+- **Inherit Existing Poster Vibe (Cohesive Campaign Suite)**:
+  - **If an existing poster already exists in `src/projects/<project>/src/screens/`** (e.g., `MarketingPosterScreen.tsx`, `StudioMinimalistPosterScreen.tsx`, or poster reference graphics), inspect it first.
+  - The new poster MUST inherit and build upon the established aesthetic vibe, art direction, card treatment, floating pill styling, and creative tone of the existing poster.
+  - Ensure all posters for a project feel like a unified, agency-grade campaign suite for that brand.
 - **Embed Authentic UI Elements**: Place real miniaturized project components or actual screen fragments (`PlatformMetricsCards`, `ApplicantActivityFeed`, etc.) inside the poster's device mockup frame rather than dummy wireframes.
 
 ---
@@ -35,7 +39,7 @@ To ensure every poster looks like it was designed by a world-class brand agency 
 
 ## 3. Distinct Creative Aesthetic Directions
 
-Select an art direction tailored to the product personality while inheriting the product's design tokens:
+Select an art direction tailored to the product personality while inheriting the product and existing poster tokens:
 
 ### Direction A — Dark Cyber-Glass (Modern Tech & Social Platforms)
 - **Palette**: Obsidian/Slate background (`#090d16`), vivid cyan/sky or brand accent highlights, ambient directional lighting.
@@ -113,17 +117,17 @@ Always ask the user through `ask_question` before writing code, prioritizing the
 1. **Aspect Ratio / Format**: Always recommend **"(Recommended) Square Social Poster (1080×1080)"** first as the primary format choice.
 2. **Poster Content & Key Features**: What specific features, copy, metrics, app screenshots, or product highlights should be included on the poster?
 3. **Headline & Core Value Prop**: What main headline and key takeaway message should be displayed?
-4. **Creative Art Direction**: Cyber-Glass (Default), Neo-Brutalist, or Studio Minimalist (matching product vibe).
+4. **Creative Art Direction**: Inherit existing poster vibe if available, or choose Cyber-Glass, Neo-Brutalist, or Studio Minimalist.
 5. **Download Links & QR Code Details**: App Store / Google Play badges, functional QR code target URL, website link.
 
 ### Step 2 — Asset & Token Grounding
-- Inspect existing project screens (`src/projects/<project>/src/screens/`) to extract and re-use brand colors, typography, logos, and real screen mockups.
-- Match the visual vibe and design language of existing screens.
+- Inspect existing screens (`src/projects/<project>/src/screens/`) and any existing posters (`*Poster*.tsx`) to extract brand colors, typography, layout rhythm, and artistic vibe.
+- Match the visual vibe and design language of existing product screens and existing posters.
 - Import real logo/product asset images from `src/projects/<project>/src/assets/`.
 
 ### Step 3 — Build Component (`src/projects/<project>/src/screens/<PosterNameScreen>.tsx`)
 - Use `AbsoluteFill` from `remotion`.
-- Implement chosen creative aesthetic using extracted brand design tokens.
+- Implement creative aesthetic using extracted brand design tokens and existing poster vibe.
 - Render realistic app screen content inside device frame (using `<Img>` for photo assets, live chat badges, real metrics).
 - If QR code is requested, render a real functional QR code using the `<Img>` API pattern shown in Section 6.
 

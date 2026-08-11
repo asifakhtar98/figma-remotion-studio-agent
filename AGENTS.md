@@ -186,6 +186,7 @@ When asked to create a launch poster, hero product graphic, feature poster, or s
 Key rules:
 - **Clarify requirements & poster content first:** Always ask the user via `ask_question` what specific features, copy, metrics, aspect ratio, art direction, and download elements should be included on the poster before writing code.
 - **Aspect ratios:** Recommend **Square Social Poster (`1080×1080`, 1:1)** as the primary default choice, followed by Vertical (`1080×1920`) or Landscape (`1920×1080`).
+- **Inherit existing poster vibe:** If any poster already exists for the project, inspect it and match its established visual vibe, art direction, and layout treatment to maintain brand consistency.
 - **5-zone layout:** Eyebrow badge → Brand header → Headline → Glassmorphic 3D device mockup with floating feature pills → Store download buttons & QR code.
 - **Still Composition:** Register as `durationInFrames={1}` still target in `src/Root.tsx`.
 
