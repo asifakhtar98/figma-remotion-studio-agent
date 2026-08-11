@@ -32,31 +32,34 @@ Each skill's `SKILL.md` links to deeper reference files inside its folder (e.g. 
 - Ask, don't assume. If anything is unclear — which screen, which photo, which colour — stop and ask in one simple question before continuing.
 - After each screen is built, say what was done in plain language and list anything still needing a real photo or logo from the user.
 - No code, file paths, or terminal output in chat unless the user specifically asks to see it.
+- **Do not narrate work in progress.** No status updates, no "now building X", no step-by-step commentary between tool calls. Stay silent while working. Speak only at a checkpoint, at a real blocker, or in the final summary.
+- **Ask every checkpoint question through the `AskUserQuestion` tool**, not as plain chat text. One call per checkpoint, all its questions batched into that single call, with concrete options the user can pick. Fall back to plain text only if the tool is unavailable.
 
 ---
 
 ## Workflow — Guided Autorun
 
-Runs continuously start to finish. It stops only at the three fixed checkpoints marked below — no other pauses, no extra questions.
+Runs continuously start to finish. It stops only at the four fixed checkpoints marked below — no other pauses, no extra questions.
 
 1. **Launch Remotion Studio** (see *Session startup*) if not already running.
-2. **Receive input** — either a screenshot or a plain description.
+2. **Receive input** — a screenshot, a plain description, or an edit request on an existing screen.
    - Screenshot provided → go to step 3.
    - Description only → follow *Building from a description*, confirm if the user has anything more to add **[checkpoint]**, then rejoin at step 4 once answered.
+   - Edit to an existing screen → follow *Modifying an existing screen*, ask its Q&A and wait **[checkpoint]**, then rejoin at step 5 once answered.
 3. **Resolve assets** (see *Asset declaration*). First screen of a project: present the full box and wait **[checkpoint]**. Later screens: reuse everything already declared; only ask about assets this screen introduces that aren't yet known.
 4. **If multiple screenshots share the same page**, treat as one long-scroll design (see *Multiple screenshots of the same page*). Otherwise treat each as its own screen.
 5. Detect (or inherit) canvas size. Strip chrome. Identify or reuse fonts, colours, icons.
-6. Build the screen component(s) under `projects/<name>/src/screens/`.
-7. Register Composition(s) in `src/Root.tsx`.
-7b. Run `npm run sync:viewer` to regenerate the viewer's composition registry.
+6. Build the screen component(s) under `src/projects/<name>/src/screens/`.
+7. Register Composition(s) in `src/Root.tsx`, then run `npm run sync:viewer` to regenerate the viewer's composition registry.
 8. Run `npx tsc --noEmit`.
 9. **If step 8 reports errors:** fix and re-run, up to 3 attempts. If still failing after 3 attempts, stop and report the problem in plain language — do not proceed to sweep or commit with failing types.
 10. Run the *post-task sweep*.
-11. *Auto git commit*.
-12. **If this is the 2nd+ screen in a project**, ask about screen flow **[checkpoint]** (see *Screen flow*).
-13. Report what was built, which existing styles were reused, and which slots are still placeholders the user needs to fill in.
+11. Re-run `npx tsc --noEmit` — the sweep edits code and can reintroduce type errors. Same 3-attempt limit as step 9. Never commit with failing types.
+12. *Auto git commit*.
+13. **If this is the 2nd+ screen in a project**, ask about screen flow **[checkpoint]** (see *Screen flow*).
+14. Report what was built, which existing styles were reused, and which slots are still placeholders the user needs to fill in.
 
-Only stop mid-flow for a real blocker outside the three checkpoints above: content genuinely unreadable, cut off, or ambiguous with no reasonable guess possible. Everything else — proceed on best judgment and note it in the summary.
+Only stop mid-flow for a real blocker outside the four checkpoints above: content genuinely unreadable, cut off, or ambiguous with no reasonable guess possible. Everything else — proceed on best judgment and note it in the summary.
 
 ---
 
@@ -188,7 +191,8 @@ scripts/
 ```
 
 - `<project-name>` = one client or app/domain (kebab-case, e.g. `acme-banking-app`).
-- Projects are fully isolated under `src/projects/<project-name>/`. **Never** share components or assets across `projects/*/`.
+- Projects are fully isolated under `src/projects/<project-name>/`. **Never** share components or assets across `src/projects/*/`.
+- All project paths in this file are relative to the repo root and always begin with `src/projects/`.
 
 ---
 
@@ -198,7 +202,7 @@ Example: *"I need a login page for this project. Use the existing styles."* This
 
 ### Step 1 — Clarify requirements (STRICT Q&A)
 
-Before writing any code for a new screen (whether from a description or an ambiguous screenshot), ask the user clarifying Q&A questions in one short message:
+Before writing any code for a new screen (whether from a description or an ambiguous screenshot), ask the user these clarifying questions in one `AskUserQuestion` call:
 
 1. **Which project?**
 2. **What should the screen do / what business problem does it solve?**
@@ -215,7 +219,7 @@ Example: *"I want to edit the Wallet page to add a transaction filter."*
 
 ### Step 1 — Clarify requirements (STRICT Q&A)
 
-Before editing any existing screen, ask the user clarifying Q&A questions in one short message:
+Before editing any existing screen, ask the user these clarifying questions in one `AskUserQuestion` call:
 
 1. **Which specific elements or sections on the screen should be updated, added, or removed?**
 2. **Any specific copy, colours, layout adjustments, or new UI components needed for this edit?**
@@ -239,7 +243,7 @@ Use those existing design tokens as the foundation, and invent new consistent to
 
 ### Step 3 — Reuse existing components
 
-If a suitable shared component already exists in `projects/<name>/src/components/`, import and reuse it. Only create a new component if nothing close enough exists.
+If a suitable shared component already exists in `src/projects/<name>/src/components/`, import and reuse it. Only create a new component if nothing close enough exists.
 
 ### Step 4 — Canvas size for description-only screens
 
@@ -365,7 +369,8 @@ Match whatever the screenshot shows. If dark, use dark Tailwind classes directly
 - One screen = one `<Composition>` in `src/Root.tsx`.
 - `id="<ProjectName>-<NN>-<ScreenName>"` where `<NN>` is a zero-padded two-digit serial number representing the screen's chronological flow order.
 - `width`/`height` = detected canvas size.
-- Short fixed `durationInFrames` (still frame). No `useCurrentFrame`/timeline animation unless the user explicitly asks for it.
+- `durationInFrames={1}` for every still screen. The custom viewer treats `durationInFrames <= 1` as a still and renders it via `<Thumbnail>`; any higher value makes it render as a video with playback controls. Only flow compositions get a longer duration.
+- No `useCurrentFrame`/timeline animation unless the user explicitly asks for it.
 
 ---
 
