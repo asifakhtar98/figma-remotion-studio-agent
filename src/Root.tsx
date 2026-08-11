@@ -23,10 +23,14 @@ import {SpinScreen} from './projects/whatsevr/src/screens/SpinScreen';
 import {UpdateProfileScreen} from './projects/whatsevr/src/screens/UpdateProfileScreen';
 import {WalletRateModalScreen} from './projects/whatsevr/src/screens/WalletRateModalScreen';
 import {WalletScreen} from './projects/whatsevr/src/screens/WalletScreen';
+import {AdminDashboardScreen} from './projects/vhims/src/screens/AdminDashboardScreen';
 
 // Each project registers its screens here as <Composition> entries.
 // id="<ProjectName>-<Number>-<ScreenName>", width/height = detected canvas size,
 // short still duration (no animation unless requested).
+
+const VHIMS_WIDTH = 1920;
+const VHIMS_HEIGHT = 1080;
 
 const WHATSEVR_WIDTH = 786;
 const WHATSEVR_HEIGHT = 1704;
@@ -40,6 +44,14 @@ const WHATSEVR_FAN_FLOW_DURATION = 415;
 export const RemotionRoot: FC = () => {
   return (
     <>
+      <Composition
+        id="vhims-01-AdminDashboard"
+        component={AdminDashboardScreen}
+        durationInFrames={1}
+        fps={30}
+        width={VHIMS_WIDTH}
+        height={VHIMS_HEIGHT}
+      />
       <Composition
         id="whatsevr-01-SignIn"
         component={SignInScreen}
