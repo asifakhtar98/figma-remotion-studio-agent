@@ -181,62 +181,11 @@ src/
         assets/                     # user-supplied files (logos, photos)
 ```
 
-### Current projects (actual file tree — keep this updated)
-
-#### whatsevr
-
-```
-src/projects/whatsevr/
-  ASSETS.md                                 # asset registry
-  FLOW.md                                   # screen flow order for video sequence
-  src/
-    screens/
-      CallsScreen.tsx                       # call history screen
-      CommunityDetailScreen.tsx             # community detail & about tab screen
-      ExploreMemoriesScreen.tsx             # explore memories grid tab screen
-      ExploreOffersScreen.tsx               # explore offers feed tab screen
-      ExploreScreen.tsx                     # explore / discovery screen
-      ExploreWtvScreen.tsx                  # explore video feed tab screen
-      FlowSequence.tsx                      # video sequence of all screens (Series)
-      ProfileScreen.tsx                     # user profile screen
-      ResetPasswordScreen.tsx               # reset password screen
-      SettingsScreen.tsx                    # settings screen (combined tall scroll)
-      SignInScreen.tsx                      # sign-in / welcome back screen
-      SpinScreen.tsx                        # stranger video spin / random match screen
-      UpdateProfileScreen.tsx               # edit user & portfolio profile form (tall scroll)
-      WalletScreen.tsx                      # wallet balance and top-up screen
-    components/
-      Avatar.tsx                            # user avatar (circle/rounded tile)
-      BottomNavBar.tsx                      # bottom tab navigation bar
-      PlaceholderPhoto.tsx                  # gray placeholder for missing photos
-      PrimaryButton.tsx                     # dark filled CTA button (rounded-full)
-      TextField.tsx                         # input field (rounded-2xl, icon + text)
-      WhatsevrLogo.tsx                      # logo placeholder (white circle, "W" text)
-    assets/                                 # (empty — waiting for user-supplied files)
-```
-
-Compositions registered in `src/Root.tsx`:
-- `whatsevr-Calls` → `CallsScreen` (921 × 1800)
-- `whatsevr-CommunityDetail` → `CommunityDetailScreen` (921 × 1800)
-- `whatsevr-Explore` → `ExploreScreen` (921 × 1800)
-- `whatsevr-ExploreMemories` → `ExploreMemoriesScreen` (921 × 1800)
-- `whatsevr-ExploreOffers` → `ExploreOffersScreen` (921 × 1800)
-- `whatsevr-ExploreWtv` → `ExploreWtvScreen` (921 × 1800)
-- `whatsevr-Flow` → `FlowSequence` (921 × 1800, 1170 frames / 39s video)
-- `whatsevr-Profile` → `ProfileScreen` (921 × 1800)
-- `whatsevr-ResetPassword` → `ResetPasswordScreen` (921 × 1800)
-- `whatsevr-Settings` → `SettingsScreen` (921 × 2400)
-- `whatsevr-SignIn` → `SignInScreen` (921 × 1800)
-- `whatsevr-Spin` → `SpinScreen` (921 × 1800)
-- `whatsevr-UpdateProfile` → `UpdateProfileScreen` (921 × 2500)
-- `whatsevr-Wallet` → `WalletScreen` (921 × 1800)
-
 ### Rules
 
 - `<project-name>` = one client or app/domain (kebab-case, e.g. `acme-banking-app`).
-- Projects are fully isolated. **Never** share components or assets across `projects/*/`.
-- No metadata file per project beyond `ASSETS.md` — folder name is the identifier.
-- When you add a new screen or component, **update this file tree** in AGENTS.md.
+- Projects are fully isolated under `src/projects/<project-name>/`. **Never** share components or assets across `projects/*/`.
+- Each project tracks its own assets in `src/projects/<project-name>/ASSETS.md` and optional video sequence order in `src/projects/<project-name>/FLOW.md`.
 
 ## Per-screen build rules
 
@@ -520,10 +469,10 @@ reporting done. Do NOT ask for permission — just do it. The sweep covers:
 - **Spacing** — check for padding/gap values that break the project's rhythm.
 - **Border radius** — ensure inputs and cards use the same radius across all screens.
 
-### 4. AGENTS.md tree update
+### 4. Project asset & flow registries update
 
-- **Always update the project file tree** in the "Current projects" section of this
-  file to reflect any added, renamed, or deleted files.
+- Update the project's `ASSETS.md` registry with any new or modified assets.
+- If a screen flow exists, update `FLOW.md` to reflect the new sequence.
 
 ### 5. Report
 
@@ -558,11 +507,11 @@ git commit -m "<type>(<project>): <screen> — <summary>"
 **Examples:**
 
 ```
-feat(whatsevr): SignInScreen — initial build from screenshot
-fix(whatsevr): SignInScreen — match TextField border radius to screenshot
-refactor(whatsevr): extract Avatar into shared component
-assets(whatsevr): add real logo SVG, replace placeholder
-flow(whatsevr): create SignIn → Explore → Profile sequence
+feat(acme-app): SignInScreen — initial build from screenshot
+fix(acme-app): SignInScreen — match TextField border radius to screenshot
+refactor(acme-app): extract Avatar into shared component
+assets(acme-app): add real logo SVG, replace placeholder
+flow(acme-app): create SignIn → Explore → Profile sequence
 ```
 
 ### Rules
@@ -627,8 +576,6 @@ the screens:
    - `fps` = 30 (default).
 
 3. Update `FLOW.md` with the current order.
-
-4. Update the **project file tree** in AGENTS.md.
 
 ### Rules
 
