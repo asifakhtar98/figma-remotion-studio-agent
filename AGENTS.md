@@ -265,7 +265,7 @@ If a suitable shared component already exists in `src/projects/<name>/src/compon
 
 ### Step 4 — Canvas size for description-only screens
 
-Use the same `width`/`height` already defined for that project in `src/Root.tsx`. If the project has no compositions yet, default to `393 × 852` (standard iPhone portrait).
+Use the same `width`/`height` already defined for that project in `src/Root.tsx`. If the project has no compositions yet, default to `786 × 1704` (2x Retina HD mobile portrait) or `393 × 852` for mobile, and `1920 × 1080` (Full HD 16:9) for desktop.
 
 ### Step 5 — Apply the same build and asset rules
 
@@ -294,7 +294,7 @@ When the user sends more than one screenshot that all belong to the same page (s
 ## Per-screen build rules
 
 1. **Strip chrome.** Never code status bars, home indicators, browser tab/address bars, OS nav — only the app/website content itself.
-2. **Canvas size** = screenshot aspect ratio minus chrome (not a fixed default).
+2. **Canvas size** = screenshot aspect ratio minus chrome (not a fixed default). For mobile UI, use `786 × 1704` (2x Retina HD) or `393 × 852` for standard 1x. For desktop web UI, use `1920 × 1080` (Full HD 16:9).
 3. **Fidelity: high.** Match colors, spacing, type scale, and layout hierarchy closely. Treat the screenshot as the spec, not a rough guide.
 4. **Fonts:** identify the closest Google Font, load via `@remotion/google-fonts`.
 5. **Icons:** swap to the closest Lucide or Heroicons equivalent.
