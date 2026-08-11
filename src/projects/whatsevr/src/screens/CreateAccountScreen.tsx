@@ -5,6 +5,7 @@ import {Mail, User, X, Scan} from 'lucide-react';
 import {WhatsevrLogo} from '../components/WhatsevrLogo';
 import {TextField} from '../components/TextField';
 import {PrimaryButton} from '../components/PrimaryButton';
+import {useTypedText, isTyping, BlinkingCaret} from '../components/TypeEffects';
 
 const {fontFamily} = loadFont();
 
@@ -27,7 +28,19 @@ const savedAccounts = [
 const HERO_IMAGE_URL =
   'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=921&h=560&fit=crop&q=80';
 
-export const CreateAccountScreen: FC = () => {
+const TYPED_EMAIL = 'asifakhtar91298.personal@gmail';
+
+type CreateAccountScreenProps = {
+  /** Frame the email field starts typing at. Omit for the static (fully-filled) still. */
+  animateFrom?: number;
+};
+
+export const CreateAccountScreen: FC<CreateAccountScreenProps> = ({animateFrom}) => {
+  const animating = animateFrom !== undefined;
+  const emailStart = animateFrom ?? Number.POSITIVE_INFINITY;
+  const typedEmail = useTypedText(TYPED_EMAIL, emailStart);
+  const emailCaretActive = isTyping(TYPED_EMAIL, emailStart);
+
   return (
     <AbsoluteFill style={{fontFamily, backgroundColor: '#f5f6f8'}} className="flex flex-col">
       {/* ── Hero banner ── */}
@@ -71,7 +84,8 @@ export const CreateAccountScreen: FC = () => {
         <div className="mt-8 flex w-full flex-col gap-4">
           <TextField
             icon={<Mail size={22} />}
-            value="asifakhtar91298.personal@gmail"
+            value={animating ? typedEmail : TYPED_EMAIL}
+            trailing={emailCaretActive ? <BlinkingCaret active /> : undefined}
           />
         </div>
 

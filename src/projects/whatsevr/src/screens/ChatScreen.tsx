@@ -1,5 +1,5 @@
 import type {FC} from 'react';
-import {AbsoluteFill, Img} from 'remotion';
+import {AbsoluteFill, Img, useCurrentFrame} from 'remotion';
 import {loadFont} from '@remotion/google-fonts/Poppins';
 import {
   ArrowLeft,
@@ -9,8 +9,23 @@ import {
   Send,
   CheckCheck,
 } from 'lucide-react';
+import {useTypedText, isTyping, BlinkingCaret, TypingDots, useEnterStyle} from '../components/TypeEffects';
 
 const {fontFamily} = loadFont();
+
+// Timeline (relative frames) used only when `animateFrom` is provided.
+const T_DOTS_1 = 0;
+const T_MSG_1 = 14; // Alex's message lands
+const T_DOTS_2 = 24;
+const T_MSG_2 = 46; // Sarah's message + attachment lands
+const T_MSG_3 = 60; // our first outgoing message lands
+const T_INPUT_TYPE_START = 78; // user starts typing the reply
+const OUTGOING_REPLY = 'Looks great, thanks for the quick turnaround!';
+const T_INPUT_TYPE_CHARS_PER_FRAME = 1.6;
+const T_INPUT_TYPE_END =
+  T_INPUT_TYPE_START + Math.ceil(OUTGOING_REPLY.length / T_INPUT_TYPE_CHARS_PER_FRAME);
+export const CHAT_SEND_TAP_FRAME = T_INPUT_TYPE_END + 6;
+const T_SENT_BUBBLE = CHAT_SEND_TAP_FRAME + 8;
 
 const ALEX_AVATAR =
   'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&h=120&fit=crop&q=80';
@@ -19,7 +34,31 @@ const SARAH_AVATAR =
 const ATTACHMENT_PREVIEW =
   'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&h=350&fit=crop&q=80';
 
-export const ChatScreen: FC = () => {
+type ChatScreenProps = {
+  /** Frame the conversation timeline starts at. Omit for the static (fully-sent) still. */
+  animateFrom?: number;
+};
+
+export const ChatScreen: FC<ChatScreenProps> = ({animateFrom}) => {
+  const frame = useCurrentFrame();
+  const animating = animateFrom !== undefined;
+  const base = animateFrom ?? 0;
+  const rel = frame - base;
+
+  const NEVER = Number.NEGATIVE_INFINITY;
+  const dots1Visible = animating && rel >= T_DOTS_1 && rel < T_MSG_1;
+  const msg1Style = useEnterStyle(animating ? base + T_MSG_1 : NEVER);
+  const dots2Visible = animating && rel >= T_DOTS_2 && rel < T_MSG_2;
+  const msg2Style = useEnterStyle(animating ? base + T_MSG_2 : NEVER);
+  const msg3Style = useEnterStyle(animating ? base + T_MSG_3 : NEVER);
+
+  const inputTypeStart = animating ? base + T_INPUT_TYPE_START : Number.POSITIVE_INFINITY;
+  const inputTypedText = useTypedText(OUTGOING_REPLY, inputTypeStart, T_INPUT_TYPE_CHARS_PER_FRAME);
+  const inputCaretActive = isTyping(OUTGOING_REPLY, inputTypeStart, T_INPUT_TYPE_CHARS_PER_FRAME);
+  const sentBubbleStyle = useEnterStyle(animating ? base + T_SENT_BUBBLE : NEVER);
+  const showSentBubble = !animating || rel >= T_SENT_BUBBLE - 6;
+  const showInputText = !animating || rel < T_SENT_BUBBLE;
+
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#fafbfc'}}
@@ -82,7 +121,15 @@ export const ChatScreen: FC = () => {
         </div>
 
         {/* Incoming Message 1 */}
-        <div className="flex items-start gap-3 max-w-[80%]">
+        {dots1Visible ? (
+          <div className="flex items-start gap-3 max-w-[80%]">
+            <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 mt-1">
+              <Img src={ALEX_AVATAR} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+            </div>
+            <TypingDots startFrame={base + T_DOTS_1} endFrame={base + T_MSG_1} />
+          </div>
+        ) : null}
+        <div className="flex items-start gap-3 max-w-[80%]" style={msg1Style}>
           <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 mt-1">
             <Img
               src={ALEX_AVATAR}
@@ -101,7 +148,15 @@ export const ChatScreen: FC = () => {
         </div>
 
         {/* Incoming Message 2 with Attachment */}
-        <div className="flex items-start gap-3 max-w-[82%]">
+        {dots2Visible ? (
+          <div className="flex items-start gap-3 max-w-[82%]">
+            <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 mt-1">
+              <Img src={SARAH_AVATAR} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+            </div>
+            <TypingDots startFrame={base + T_DOTS_2} endFrame={base + T_MSG_2} />
+          </div>
+        ) : null}
+        <div className="flex items-start gap-3 max-w-[82%]" style={msg2Style}>
           <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 mt-1">
             <Img
               src={SARAH_AVATAR}
@@ -126,7 +181,7 @@ export const ChatScreen: FC = () => {
         </div>
 
         {/* Outgoing Message 1 */}
-        <div className="flex justify-end">
+        <div className="flex justify-end" style={msg3Style}>
           <div className="bg-[#1e2229] text-white rounded-2xl rounded-tr-xs p-4 max-w-[78%] shadow-sm">
             <p className="text-base leading-relaxed">
               Thanks Sarah! Checking out the layout right now. Looking super clean and responsive.
@@ -138,23 +193,32 @@ export const ChatScreen: FC = () => {
           </div>
         </div>
 
-        {/* Outgoing Message 2 (EXACT screenshot message) */}
-        <div className="flex justify-end">
-          <div className="bg-[#1c1f26] text-white rounded-2xl rounded-tr-xs px-5 py-3 shadow-sm min-w-[140px]">
-            <p className="text-lg font-medium text-right mb-1">hi</p>
-            <div className="flex items-center justify-end gap-1.5">
-              <span className="text-[11px] text-gray-400 font-medium">9:34 PM</span>
-              <CheckCheck size={16} className="text-gray-300" />
+        {/* Outgoing Message 2 — the reply the user is shown typing live into the input bar */}
+        {showSentBubble ? (
+          <div className="flex justify-end" style={sentBubbleStyle}>
+            <div className="bg-[#1c1f26] text-white rounded-2xl rounded-tr-xs px-5 py-3 shadow-sm max-w-[78%]">
+              <p className="text-lg font-medium text-right mb-1">{animating ? OUTGOING_REPLY : 'hi'}</p>
+              <div className="flex items-center justify-end gap-1.5">
+                <span className="text-[11px] text-gray-400 font-medium">9:34 PM</span>
+                <CheckCheck size={16} className="text-gray-300" />
+              </div>
             </div>
           </div>
-        </div>
+        ) : null}
       </div>
 
       {/* ── Bottom Input Bar (Matching Screenshot) ── */}
       <div className="relative z-10 flex items-center gap-4 px-7 py-5 bg-white border-t border-gray-200/80 shadow-lg">
         <Paperclip size={28} className="text-blue-500 cursor-pointer flex-shrink-0" />
         <div className="flex-1 bg-white border border-gray-300/80 rounded-full px-6 py-4 flex items-center">
-          <span className="text-gray-400 text-lg font-normal">Write a message...</span>
+          {animating && showInputText && inputTypedText.length > 0 ? (
+            <span className="text-gray-900 text-lg font-normal">
+              {inputTypedText}
+              <BlinkingCaret active={inputCaretActive} />
+            </span>
+          ) : (
+            <span className="text-gray-400 text-lg font-normal">Write a message...</span>
+          )}
         </div>
         <button className="w-14 h-14 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center text-white shadow-md flex-shrink-0 transition-transform active:scale-95">
           <Send size={24} className="translate-x-0.5" />

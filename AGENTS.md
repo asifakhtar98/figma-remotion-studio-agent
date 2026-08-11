@@ -3,6 +3,13 @@
 Screenshot **or plain description** in, pixel-faithful React screen out, wired as a Remotion still Composition.
 Full spec: `docs/superpowers/specs/2026-08-11-screenshot-to-remotion-design.md`.
 
+## The two purposes of this repo
+
+1. **Still UI (default).** Every screen build produces one pixel-faithful component registered with `durationInFrames={1}`. Nothing animates. Unless the user asks for a flow, this is the only output.
+2. **Journey flow video (on request).** When the user asks for a flow, journey, walkthrough, demo video, or "show the real user experience", the existing still screens are composed into one animated composition that plays like a real person using the app — native transitions, an animated finger tapping real controls, text typing itself into fields, chat messages arriving one at a time. Read the **journey-flow-video** skill before writing any of it.
+
+A flow **never** forks or duplicates a still screen. It imports the same component and drives it with an optional `animateFrom` prop. With that prop absent, the screen must render exactly as its still does.
+
 ---
 
 ## Non-negotiable rules
@@ -23,6 +30,7 @@ This project ships official Remotion skills at `.agents/skills/`.
 | Write React markup, layout, text, images, effects | **remotion-markup** | `.agents/skills/remotion-markup/SKILL.md` |
 | Export / render a still frame or video | **remotion-render** | `.agents/skills/remotion-render/SKILL.md` |
 | Work with Remotion Studio (preview, hot-reload) | **remotion-studio** | `.agents/skills/remotion-studio/SKILL.md` |
+| Animate still screens into a user-journey flow video (taps, typing, transitions) | **journey-flow-video** | `.agents/skills/journey-flow-video/SKILL.md` |
 
 Each skill's `SKILL.md` links to deeper reference files inside its folder (e.g. `remotion-markup/images.md`, `remotion-create/tailwind.md`). Follow those links when needed. Skipping this step causes avoidable mistakes: `<img>` instead of `<Img>`, wrong Tailwind wiring, wrong render CLI flags.
 
@@ -65,20 +73,15 @@ Only stop mid-flow for a real blocker outside the four checkpoints above: conten
 
 ## Session startup
 
-At the start of every session, before any implementation work, check whether Remotion Studio is already running. If not, launch it in the background:
+Use this project's custom viewer, never default Remotion Studio.
+
+At session start, if nothing listens on port 4000, run in background:
 
 ```bash
-npm start
+npm run viewer
 ```
 
-(`npm start` maps to `npx remotion studio` via the project's `package.json`.)
-
-Rules:
-- Run it from the repo root (`/Users/asak/Documents/dev/proj/designnflow`).
-- Send it to the background (async) — do NOT block implementation on it.
-- Do not re-launch if a process is already listening on the Studio port (default 3000).
-- After launching, tell the user: "Remotion Studio is running at http://localhost:3000 — open it in your browser to see live previews."
-- After each file change, Studio hot-reloads automatically — no manual restart needed.
+Never run `npm start` (default Studio, port 3000). After adding a Composition, re-run `npm run sync:viewer`. Tell user: "Viewer running at http://localhost:4000." Hot-reloads on file change.
 
 ---
 
@@ -179,7 +182,10 @@ src/
     <project-name>/                 # one client or app — kebab-case
       src/
         screens/<ScreenName>.tsx    # one full screen = one component
+        screens/FlowSequence.tsx    # optional — the animated journey composition
         components/<Component>.tsx  # shared pieces, THIS project only
+        components/TapCursor.tsx    # optional — animated finger/tap pointer
+        components/TypeEffects.tsx  # optional — typewriter, caret, typing dots, reveals
         assets/                     # user-supplied files (logos, photos)
         reference/                  # saved reference images per project
 viewer/                             # custom lightweight composition viewer (Vite + React)
@@ -378,7 +384,7 @@ Match whatever the screenshot shows. If dark, use dark Tailwind classes directly
 - `id="<ProjectName>-<NN>-<ScreenName>"` where `<NN>` is a zero-padded two-digit serial number representing the screen's chronological flow order.
 - `width`/`height` = detected canvas size.
 - `durationInFrames={1}` for every still screen. The custom viewer treats `durationInFrames <= 1` as a still and renders it via `<Thumbnail>`; any higher value makes it render as a video with playback controls. Only flow compositions get a longer duration.
-- No `useCurrentFrame`/timeline animation unless the user explicitly asks for it.
+- No `useCurrentFrame`/timeline animation unless the user explicitly asks for it. When they do ask, animation enters through an optional `animateFrom` prop that leaves the still render untouched (see the *journey-flow-video* skill).
 
 ---
 
@@ -467,23 +473,27 @@ Skip the question if the user already described a flow.
 
 ### How to wire the flow in Remotion
 
+**Read `.agents/skills/journey-flow-video/SKILL.md` first.** It carries the full recipe — the animation primitives, the hook-safety rules that prevent a runtime crash, transition vocabulary, and timing maths. What follows is only the summary.
+
 1. Create `src/projects/<project-name>/src/screens/FlowSequence.tsx`:
    - Import all screens in flow order.
-   - Use Remotion's `<Series>` component to show each screen for its duration.
-   - Each `<Series.Sequence>` renders one screen as a still (no internal animation).
+   - Use `<TransitionSeries>` from `@remotion/transitions` — push-slide for forward navigation, slide-up for modals and overlays, fade for tab switches.
+   - Overlay a `<TapCursor>` on each screen, aimed at a real interactive control.
+   - Pass `animateFrom` to screens that type text or reveal messages progressively.
 2. Register a new Composition in `src/Root.tsx`:
    - `id="<ProjectName>-<NN>-Flow"` (next sequential serial number).
    - `width`/`height` = the project's standard canvas size.
-   - `durationInFrames` = sum of all screen durations × fps.
+   - `durationInFrames` = sum of screen holds **minus** overlapping transition frames.
    - `fps` = 30 (default).
 
 ### Rules
 
-- The flow composition is **in addition to** the individual still Compositions — never remove the per-screen Compositions.
-- Default duration per screen = 3 seconds (90 frames at 30fps) unless the user says otherwise.
-- Default transition = `cut` (instant switch). For fades or slides, use `<TransitionSeries>` from `@remotion/transitions`.
+- The flow composition is **in addition to** the individual still Compositions — never remove or alter the per-screen Compositions.
+- Default hold per screen = 2.5 seconds (75 frames at 30fps), tap at frame 42, unless the user says otherwise.
+- Screens that type get a longer hold and a later tap, derived from the typing duration — never guessed.
 - Do NOT create a flow automatically if the user hasn't defined one yet — always ask first.
 - When a new screen is added to a project that already has a flow, ask where it fits in the sequence.
+- **Always verify a flow in the browser before reporting done.** `tsc --noEmit` cannot catch hook-order violations, which crash the player at runtime while typechecking clean.
 
 ---
 
@@ -536,6 +546,6 @@ A Vite server plugin at `viewer/vite.config.ts` exposes `POST /api/render` which
 
 ## Explicitly out of scope
 
-- Complex timeline animation within a single screen (motion graphics, keyframes).
+- Motion-graphics work unrelated to demonstrating the product (title cards, logo animations, keyframed effects). Journey-flow animation — taps, typing, message reveals, screen transitions — is in scope and covered by the *journey-flow-video* skill.
 - Shared cross-project design system or component library.
 - Creating markdown documentation files during screen-building sessions (see *Non-negotiable rules*).

@@ -31,7 +31,7 @@ const WHATSEVR_WIDTH = 921;
 const WHATSEVR_HEIGHT = 1800;
 const WHATSEVR_SETTINGS_HEIGHT = 2400;
 const WHATSEVR_UPDATE_PROFILE_HEIGHT = 2500;
-const WHATSEVR_FLOW_DURATION = 1350; // 15 screens × 90 frames (3s each)
+const WHATSEVR_FLOW_DURATION = 855; // 14 screens (SignIn/CreateAccount/Chat get longer typing holds), minus overlapping transitions
 
 export const RemotionRoot: FC = () => {
   return (

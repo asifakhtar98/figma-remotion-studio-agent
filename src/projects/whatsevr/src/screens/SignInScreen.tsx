@@ -5,6 +5,7 @@ import {Mail, Lock, EyeOff, X} from 'lucide-react';
 import {WhatsevrLogo} from '../components/WhatsevrLogo';
 import {TextField} from '../components/TextField';
 import {PrimaryButton} from '../components/PrimaryButton';
+import {useTypedText, isTyping, BlinkingCaret} from '../components/TypeEffects';
 
 const {fontFamily} = loadFont();
 
@@ -24,7 +25,24 @@ const savedAccounts = [
 const HERO_IMAGE_URL =
   'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=921&h=560&fit=crop&q=80';
 
-export const SignInScreen: FC = () => {
+const TYPED_EMAIL = 'aryan.rider@gmail.com';
+const TYPED_PASSWORD = 'SecurePass92';
+
+type SignInScreenProps = {
+  /** Frame the email field starts typing at. Omit for the static (untyped) still. */
+  animateFrom?: number;
+};
+
+export const SignInScreen: FC<SignInScreenProps> = ({animateFrom}) => {
+  const animating = animateFrom !== undefined;
+  const emailStart = animateFrom ?? Number.POSITIVE_INFINITY;
+  const passwordStart = animating ? emailStart + Math.ceil(TYPED_EMAIL.length / 1.4) + 6 : Number.POSITIVE_INFINITY;
+
+  const typedEmail = useTypedText(TYPED_EMAIL, emailStart);
+  const typedPasswordRaw = useTypedText(TYPED_PASSWORD, passwordStart);
+  const emailCaretActive = isTyping(TYPED_EMAIL, emailStart);
+  const passwordCaretActive = isTyping(TYPED_PASSWORD, passwordStart);
+
   return (
     <AbsoluteFill style={{fontFamily, backgroundColor: '#f2f3f5'}} className="flex flex-col">
 
@@ -54,11 +72,23 @@ export const SignInScreen: FC = () => {
 
         {/* Fields */}
         <div className="mt-8 flex w-full flex-col gap-4">
-          <TextField icon={<Mail size={20} />} placeholder="Email address" />
+          <TextField
+            icon={<Mail size={20} />}
+            placeholder="Email address"
+            value={animating ? typedEmail : undefined}
+            trailing={emailCaretActive ? <BlinkingCaret active /> : undefined}
+          />
           <TextField
             icon={<Lock size={20} />}
             placeholder="Password"
-            trailing={<EyeOff size={20} />}
+            value={animating ? '•'.repeat(typedPasswordRaw.length) : undefined}
+            trailing={
+              passwordCaretActive ? (
+                <BlinkingCaret active />
+              ) : typedPasswordRaw.length > 0 ? (
+                <EyeOff size={20} />
+              ) : undefined
+            }
           />
         </div>
 
