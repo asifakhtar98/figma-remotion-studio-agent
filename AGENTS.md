@@ -189,16 +189,34 @@ src/
 
 Example: *"I need a login page for this project. Use the existing styles."* This is a valid, fully supported input mode.
 
-### Step 1 — Clarify requirements
+### Step 1 — Clarify requirements (STRICT Q&A)
 
-Before writing any code for a description-only request, ask the user in one short message:
+Before writing any code for a new screen (whether from a description or an ambiguous screenshot), ask the user clarifying Q&A questions in one short message:
 
 1. **Which project?**
-2. **What should the screen do?**
+2. **What should the screen do / what business problem does it solve?**
 3. **Any specific colours, images, text, or additional elements you want on it?**
 4. **Anything more you'd like to add or specify before I create the UI?**
 
 If the user already answered any of these, skip the ones they covered, but always ask #4 before proceeding.
+
+---
+
+## Modifying an existing screen (editing existing UI)
+
+Example: *"I want to edit the Wallet page to add a transaction filter."*
+
+### Step 1 — Clarify requirements (STRICT Q&A)
+
+Before editing any existing screen, ask the user clarifying Q&A questions in one short message:
+
+1. **Which specific elements or sections on the screen should be updated, added, or removed?**
+2. **Any specific copy, colours, layout adjustments, or new UI components needed for this edit?**
+3. **Anything more you'd like to specify before I update the UI?**
+
+Always confirm these details with the user before mutating existing screen code.
+
+---
 
 ### Step 2 — Scan the existing project for design tokens
 
