@@ -63,13 +63,14 @@ Runs continuously start to finish. It stops only at the four fixed checkpoints m
 5. Detect (or inherit) canvas size. Strip chrome. Identify or reuse fonts, colours, icons.
 6. Build the screen component(s) under `src/projects/<name>/src/screens/`.
 7. Register Composition(s) in `src/Root.tsx`, then run `npm run sync:viewer` to regenerate the viewer's composition registry.
-8. Run `npx tsc --noEmit`.
-9. **If step 8 reports errors:** fix and re-run, up to 3 attempts. If still failing after 3 attempts, stop and report the problem in plain language — do not proceed to sweep or commit with failing types.
-10. Run the *post-task sweep*.
-11. Re-run `npx tsc --noEmit` — the sweep edits code and can reintroduce type errors. Same 3-attempt limit as step 9. Never commit with failing types.
-12. *Auto git commit*.
-13. **If this is the 2nd+ screen in a project**, ask about screen flow **[checkpoint]** (see *Screen flow*).
-14. Report what was built, which existing styles were reused, and which slots are still placeholders the user needs to fill in.
+8. **2-Pass Automatic Design Review:** Render a still image (`npx remotion still`), visually compare rendered output against reference spec/screenshots, and perform pass 2 precision refinements on spacing, typography, and colors.
+9. Run `npx tsc --noEmit`.
+10. **If step 9 reports errors:** fix and re-run, up to 3 attempts. If still failing after 3 attempts, stop and report the problem in plain language — do not proceed to sweep or commit with failing types.
+11. Run the *post-task sweep*.
+12. Re-run `npx tsc --noEmit` — the sweep edits code and can reintroduce type errors. Same 3-attempt limit as step 10. Never commit with failing types.
+13. *Auto git commit*.
+14. **If this is the 2nd+ screen in a project**, ask about screen flow **[checkpoint]** (see *Screen flow*).
+15. Report what was built, which existing styles were reused, and which slots are still placeholders the user needs to fill in.
 
 Only stop mid-flow for a real blocker outside the four checkpoints above: content genuinely unreadable, cut off, or ambiguous with no reasonable guess possible. Everything else — proceed on best judgment and note it in the summary.
 
@@ -191,7 +192,13 @@ Both sources are required. Neither alone is sufficient.
    - Structural hierarchy (section order, nesting, semantic elements)
    - Any structured data (pricing tiers, feature lists, plan details)
 
-3. **Build from both sources** — treat the screenshot as the pixel-perfect visual spec (layout, spacing, proportions, visual weight) and the HTML as the exact data source (copy, colours, font names).
+3. **Build from both sources (Pass 1)** — treat the screenshot as the pixel-perfect visual spec (layout, spacing, proportions, visual weight) and the HTML as the exact data source (copy, colours, font names).
+
+4. **Automated 2-Pass Visual Refinement (Pass 2)** — review the rendered output against the reference spec:
+   - Render a still image of the built composition using `npx remotion still <composition-id> <out-path>` (or inspect viewer output).
+   - Compare the rendered output side-by-side against the reference screenshot in `src/reference/`.
+   - Audit visual discrepancies: spacing, alignment, font sizes, line heights, color shades, contrast, element padding, and component boundaries.
+   - Perform pass 2 edits to fix any discrepancies and re-verify `tsc --noEmit`.
 
 ### Rules
 
