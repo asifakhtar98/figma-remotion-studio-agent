@@ -1,28 +1,32 @@
 import type {FC} from 'react';
+import {Img} from 'remotion';
+import logoImg from '../assets/app_icon_transparent.png';
 
 interface WhatsevrLogoProps {
   size?: number;
   ringed?: boolean;
 }
 
-// Logo placeholder — waiting for the real logo file from the user.
-// The real logo should be dropped into assets/ and imported here.
 export const WhatsevrLogo: FC<WhatsevrLogoProps> = ({size = 48, ringed = false}) => {
   return (
     <div
-      className={'flex items-center justify-center rounded-full bg-white' + (ringed ? ' shadow-lg' : '')}
+      className={
+        'flex items-center justify-center rounded-full bg-white overflow-hidden' +
+        (ringed ? ' shadow-lg border-2 border-sky-400/80' : '')
+      }
       style={{
         width: size,
         height: size,
-        border: `3px solid #29B6F6`,
       }}
     >
-      <span
-        className="font-bold text-sky-500 select-none"
-        style={{fontSize: size * 0.35, lineHeight: 1}}
-      >
-        W
-      </span>
+      <Img
+        src={logoImg}
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+        }}
+      />
     </div>
   );
 };
