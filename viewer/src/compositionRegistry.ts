@@ -13,6 +13,16 @@ export interface CompositionEntry {
 
 export const compositions: CompositionEntry[] = [
   {
+    id: 'vhims-00-Home',
+    component: React.lazy(() => import('@src/projects/vhims/src/screens/HomeScreen').then(m => ({ default: m.HomeScreen }))),
+    width: 1920,
+    height: 2800,
+    durationInFrames: 1,
+    fps: 30,
+    projectName: 'vhims',
+    screenName: 'Home'
+  },
+  {
     id: 'vhims-01-AdminDashboard',
     component: React.lazy(() => import('@src/projects/vhims/src/screens/AdminDashboardScreen').then(m => ({ default: m.AdminDashboardScreen }))),
     width: 1920,
