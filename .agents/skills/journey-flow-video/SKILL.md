@@ -30,6 +30,8 @@ Read the official Remotion skills first; they own the mechanics and this file do
 
 The flow is strictly additive. UI is the product; the journey video is a view onto it.
 
+**Match Real Product Vibe & Tokens**: All animated scenes, overlays, and flow components must inherit the project's existing design tokens (typography, color palettes, spacing rhythm, button shapes) so the video matches the exact look and feel of the real product.
+
 ```
 src/projects/<project>/src/
   screens/      ← pure UI. No frames, no animation, no imports from flow/

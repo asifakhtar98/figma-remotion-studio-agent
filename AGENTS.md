@@ -184,6 +184,7 @@ Summary of mandatory workflow:
 When asked to create a launch poster, hero product graphic, feature poster, or social promo visual, **always read and follow the `marketing-poster-design` skill** (`.agents/skills/marketing-poster-design/SKILL.md`).
 
 Key rules:
+- **Clarify requirements & poster content first:** Always ask the user via `ask_question` what specific features, copy, metrics, aspect ratio, art direction, and download elements should be included on the poster before writing code.
 - **Aspect ratios:** Vertical (`1080×1920`), Landscape (`1920×1080`), or Square (`1080×1080`).
 - **5-zone layout:** Eyebrow badge → Brand header → Headline → Glassmorphic 3D device mockup with floating feature pills → Store download buttons & QR code.
 - **Still Composition:** Register as `durationInFrames={1}` still target in `src/Root.tsx`.
@@ -279,15 +280,15 @@ Always confirm these details with the user before mutating existing screen code.
 
 ### Step 2 — Scan the existing project for design tokens
 
-Before building, read every existing screen and shared component in the project to extract:
+Before building any screen, marketing poster, or journey flow, read every existing screen and shared component in the project to extract:
 
-- **Colours** — background, text, button, link, border colours already in use.
+- **Colours** — background, text, button, link, accent gradients, and border colours already in use.
 - **Font** — which Google Font is loaded (from `loadFont()` calls).
 - **Spacing rhythm** — padding and gap sizes used on other screens.
 - **Corner radius** — `rounded-full`, `rounded-2xl`, or something else?
 - **Component patterns** — does a `TextField`, `PrimaryButton`, `Avatar` etc. already exist?
 
-Use those existing design tokens as the foundation, and invent new consistent tokens only when necessary for new elements.
+**Mandatory Vibe & Token Inheritance**: If design tokens already exist in the project, ALL new UI screens, marketing posters, and video compositions MUST match the exact vibe, visual identity, typography, and brand color palette of the real product. Never default to arbitrary stock presets or generic color schemes when project tokens exist.
 
 ### Step 3 — Reuse existing components
 
