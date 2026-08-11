@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, ChevronDown, QrCode, MoreVertical, ShieldCheck, Users, Crown } from 'lucide-react';
+import { ChevronDown, QrCode, MoreVertical, ShieldCheck, Users, Crown } from 'lucide-react';
 
 interface DirectoryRow {
   id: string;

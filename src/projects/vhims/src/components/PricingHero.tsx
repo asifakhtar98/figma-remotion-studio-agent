@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ShieldCheck, Sparkles, CheckCircle2, RefreshCw } from 'lucide-react';
 
 interface PricingHeroProps {

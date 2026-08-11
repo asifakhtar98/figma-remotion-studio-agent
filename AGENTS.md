@@ -1,6 +1,6 @@
 # designnflow — Agent Instructions
 
-Screenshot **or plain description** in, pixel-faithful React screen out, wired as a Remotion still Composition.
+Screenshot, **URL**, or plain description in, pixel-faithful React screen out, wired as a Remotion still Composition.
 Full spec: `docs/superpowers/specs/2026-08-11-screenshot-to-remotion-design.md`.
 
 ## The two purposes of this repo
@@ -53,8 +53,9 @@ Each skill's `SKILL.md` links to deeper reference files inside its folder (e.g. 
 Runs continuously start to finish. It stops only at the four fixed checkpoints marked below — no other pauses, no extra questions.
 
 1. **Launch Remotion Studio** (see *Session startup*) if not already running.
-2. **Receive input** — a screenshot, a plain description, or an edit request on an existing screen.
+2. **Receive input** — a screenshot, a URL, a plain description, or an edit request on an existing screen.
    - Screenshot provided → go to step 3.
+   - URL provided → follow *Building from a URL (screenshot-first)*, then rejoin at step 3 with the captured screenshot as the visual reference.
    - Description only → follow *Building from a description*, confirm if the user has anything more to add **[checkpoint]**, then rejoin at step 4 once answered.
    - Edit to an existing screen → follow *Modifying an existing screen*, ask its Q&A and wait **[checkpoint]**, then rejoin at step 5 once answered.
 3. **Resolve assets** (see *Asset declaration*). First screen of a project: present the full box and wait **[checkpoint]**. Later screens: reuse everything already declared; only ask about assets this screen introduces that aren't yet known.
@@ -160,6 +161,48 @@ https://images.unsplash.com/photo-<ID>?w=<WIDTH>&h=<HEIGHT>&fit=crop&q=80
 
 ---
 
+## Building from a URL (screenshot-first)
+
+When the user provides a URL instead of a screenshot, **never build from HTML text alone**. Reading HTML/CSS as text and re-interpreting it visually is inherently lossy — computed styles, actual rendered layout, visual hierarchy, images, and font rendering are all lost. This produces designs that structurally resemble the original but miss the pixel-level fidelity the user expects.
+
+### Mandatory two-source capture
+
+Both sources are required. Neither alone is sufficient.
+
+| Source | What it provides | What it misses |
+|---|---|---|
+| Screenshot (visual ground truth) | Exact rendered layout, spacing, colours as displayed, font rendering, image placement, visual hierarchy | Exact hex values, font-family names, copy text buried in markup |
+| HTML source (data/token source) | Exact copy text, hex/rgb colour values, font names, CSS class names, semantic structure | Actual computed layout, how styles combine, responsive rendering |
+| **Both combined** | **Everything needed for pixel-faithful reproduction** | **Nothing material** |
+
+### Step-by-step workflow
+
+1. **Take a full-page screenshot first** using Chrome DevTools MCP:
+   ```
+   navigate_page → URL
+   take_screenshot → fullPage: true
+   ```
+   For long pages, also take viewport-sized screenshots at scroll positions to capture all sections clearly. Save all screenshots into `src/projects/<project-name>/src/reference/`.
+
+2. **Read the HTML source second** using `read_url_content` to extract:
+   - Exact copy text (headlines, body text, button labels, metadata)
+   - Hex/RGB colour values from inline styles or CSS custom properties
+   - Font family names from `<link>` tags or `@font-face` declarations
+   - Structural hierarchy (section order, nesting, semantic elements)
+   - Any structured data (pricing tiers, feature lists, plan details)
+
+3. **Build from both sources** — treat the screenshot as the pixel-perfect visual spec (layout, spacing, proportions, visual weight) and the HTML as the exact data source (copy, colours, font names).
+
+### Rules
+
+- **The screenshot is the spec, not the HTML.** If the HTML suggests one layout but the screenshot shows another (due to CSS transforms, media queries, JavaScript-rendered content), match the screenshot.
+- **Extract exact colour values from the HTML source** rather than guessing from the screenshot. Look for CSS custom properties (`--primary-500`), Tailwind config values, or inline style declarations.
+- **Extract exact copy from the HTML source** rather than OCR-guessing from the screenshot. The HTML has the authoritative text.
+- **For long-scroll pages**, take multiple screenshots at different scroll positions to capture all sections. Treat them as *Multiple screenshots of the same page*.
+- **If Chrome DevTools MCP is unavailable**, tell the user: "I can get a much better result if you send me a screenshot of this page. Without one, I'll build from the HTML structure alone, which may miss visual details." Then proceed with HTML-only as a fallback, but flag reduced fidelity in the summary.
+
+---
+
 ## Reference image handling
 
 - **Save reference images per project:** whenever the user sends a reference image (screenshot, mockup, design reference), save it into `src/projects/<project-name>/src/reference/` for temporary use and per-project visual inspection.
@@ -170,7 +213,7 @@ https://images.unsplash.com/photo-<ID>?w=<WIDTH>&h=<HEIGHT>&fit=crop&q=80
 
 ## What this repo does
 
-The user gives a screenshot (or multiple screenshots of the same page) of an app screen or website — one client/domain per project. The agent turns it into a React + Tailwind component and registers it as a Remotion Composition — no video/animation, just a still-frame render target.
+The user gives a screenshot, a URL, or multiple screenshots of the same page of an app screen or website — one client/domain per project. The agent turns it into a React + Tailwind component and registers it as a Remotion Composition — no video/animation, just a still-frame render target.
 
 The user may also describe a screen in plain words instead of providing a screenshot. In that case the agent reuses the project's existing design tokens (colours, fonts, spacing, components) to build a consistent new screen.
 
