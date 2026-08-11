@@ -56,12 +56,19 @@ export const HomeHeader: React.FC = () => {
 
       {/* Sign In CTA */}
       <div className="flex items-center gap-4">
-        <a href="/signin/" className="px-6 py-2.5 bg-[#3e4f47] hover:bg-[#2b3534] text-white rounded-full text-xs font-bold flex items-center gap-2 transition-all shadow-sm no-underline">
-          <LogIn className="w-4 h-4 text-[#ff4d15]" />
+        <a
+          href="/signin/"
+          className="px-6 py-2.5 text-white rounded-full text-xs font-bold flex items-center gap-2 transition-all shadow-[0_4px_15px_rgba(62,79,71,0.2)] hover:opacity-95 no-underline"
+          style={{
+            background: 'linear-gradient(45deg, rgb(62, 79, 71), rgb(255, 69, 0))',
+          }}
+        >
+          <LogIn className="w-4 h-4 text-white" />
           <span>Sign In</span>
         </a>
       </div>
     </header>
   );
 };
+
 

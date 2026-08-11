@@ -90,11 +90,11 @@ export const ValueCards: React.FC = () => {
             return (
               <div
                 key={item.id}
-                className="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm hover:shadow-md transition-all flex flex-col items-center text-center justify-between"
+                className="bg-white rounded-2xl border border-[#e5e5e3] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.1)] hover:shadow-[0_6px_25px_rgba(0,0,0,0.15)] transition-all flex flex-col items-center text-center justify-between"
               >
                 <div>
-                  <div className="text-4xl text-[#ff4d15] mb-4 flex justify-center items-center w-[50px] h-[50px]">
-                    <Icon className="w-10 h-10 text-[#ff4d15]" />
+                  <div className="text-4xl text-[#ff4500] mb-4 flex justify-center items-center w-[50px] h-[50px]">
+                    <Icon className="w-10 h-10 text-[#ff4500]" />
                   </div>
 
                   <h3 className="text-2xl font-bold mb-4 text-[#3e4f47] tracking-tight">
@@ -116,7 +116,7 @@ export const ValueCards: React.FC = () => {
 
                 <button
                   onClick={() => toggleCard(item.id)}
-                  className="cursor-pointer text-[#ff4d15] font-semibold mt-6 flex items-center justify-center gap-2 no-underline transition-colors hover:text-[#3e4f47]"
+                  className="cursor-pointer text-[#ff4500] font-semibold mt-6 flex items-center justify-center gap-2 no-underline transition-colors hover:text-[#3e4f47]"
                 >
                   <span>{isOpen ? 'Show Less' : 'Read More'}</span>
                   {isOpen ? (
@@ -128,6 +128,7 @@ export const ValueCards: React.FC = () => {
               </div>
             );
           })}
+
         </div>
       </div>
     </section>
