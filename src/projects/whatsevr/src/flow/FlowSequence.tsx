@@ -160,7 +160,7 @@ export const FlowSequence: FC = () => {
     <TransitionSeries>
       {/* 1 — No account yet, so he reaches for "Create Account" */}
       <TransitionSeries.Sequence durationInFrames={HOLD_SIGN_IN}>
-        <Tapped to={{x: 460, y: 809}} tapFrame={40}>
+        <Tapped to={{x: 196, y: 383}} tapFrame={40}>
           <SignInScreen />
         </Tapped>
       </TransitionSeries.Sequence>
@@ -169,7 +169,7 @@ export const FlowSequence: FC = () => {
 
       {/* 2 — Types his email, then signs up */}
       <TransitionSeries.Sequence durationInFrames={HOLD_CREATE_ACCOUNT}>
-        <Tapped to={{x: 461, y: 617}} tapFrame={CREATE_ACCOUNT_TAP}>
+        <Tapped to={{x: 196, y: 292}} tapFrame={CREATE_ACCOUNT_TAP}>
           <CreateAccountBeat />
         </Tapped>
       </TransitionSeries.Sequence>
@@ -178,7 +178,7 @@ export const FlowSequence: FC = () => {
 
       {/* 3 — Lands in the app and opens a video post to see what earns */}
       <TransitionSeries.Sequence durationInFrames={HOLD_EXPLORE}>
-        <Tapped to={{x: 586, y: 478}} tapFrame={40}>
+        <Tapped to={{x: 250, y: 226}} tapFrame={40}>
           <ExploreScreen />
         </Tapped>
       </TransitionSeries.Sequence>
@@ -187,7 +187,7 @@ export const FlowSequence: FC = () => {
 
       {/* 4 — Plays a creator's flick */}
       <TransitionSeries.Sequence durationInFrames={HOLD_EXPLORE_WTV}>
-        <Tapped to={{x: 462, y: 387}} tapFrame={40}>
+        <Tapped to={{x: 197, y: 183}} tapFrame={40}>
           <ExploreWtvScreen />
         </Tapped>
       </TransitionSeries.Sequence>
@@ -197,7 +197,7 @@ export const FlowSequence: FC = () => {
 
       {/* 5 — His first real chance to earn: he accepts */}
       <TransitionSeries.Sequence durationInFrames={HOLD_INCOMING_CALL}>
-        <Tapped to={{x: 819, y: 1663}} tapFrame={48}>
+        <Tapped to={{x: 350, y: 787}} tapFrame={48}>
           <IncomingCallScreen />
         </Tapped>
       </TransitionSeries.Sequence>
@@ -206,7 +206,7 @@ export const FlowSequence: FC = () => {
 
       {/* 6 — She messages after the call; he types a reply and sends it */}
       <TransitionSeries.Sequence durationInFrames={HOLD_CHAT}>
-        <Tapped to={{x: 865, y: 1749}} tapFrame={CHAT_SEND_TAP}>
+        <Tapped to={{x: 369, y: 828}} tapFrame={CHAT_SEND_TAP}>
           <ChatBeat />
         </Tapped>
       </TransitionSeries.Sequence>
@@ -215,7 +215,7 @@ export const FlowSequence: FC = () => {
 
       {/* 7 — Now he goes live properly to earn */}
       <TransitionSeries.Sequence durationInFrames={HOLD_GO_LIVE}>
-        <Tapped to={{x: 460, y: 1734}} tapFrame={45}>
+        <Tapped to={{x: 196, y: 821}} tapFrame={45}>
           <GoLiveScreen />
         </Tapped>
       </TransitionSeries.Sequence>
@@ -224,7 +224,7 @@ export const FlowSequence: FC = () => {
 
       {/* 8 — The payoff: he checks his earnings and withdraws */}
       <TransitionSeries.Sequence durationInFrames={HOLD_WALLET}>
-        <Tapped to={{x: 255, y: 519}} tapFrame={52}>
+        <Tapped to={{x: 109, y: 246}} tapFrame={52}>
           <WalletScreen />
         </Tapped>
       </TransitionSeries.Sequence>

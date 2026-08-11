@@ -28,10 +28,10 @@ import {WalletScreen} from './projects/whatsevr/src/screens/WalletScreen';
 // id="<ProjectName>-<Number>-<ScreenName>", width/height = detected canvas size,
 // short still duration (no animation unless requested).
 
-const WHATSEVR_WIDTH = 921;
-const WHATSEVR_HEIGHT = 1800;
-const WHATSEVR_SETTINGS_HEIGHT = 2400;
-const WHATSEVR_UPDATE_PROFILE_HEIGHT = 2500;
+const WHATSEVR_WIDTH = 393;
+const WHATSEVR_HEIGHT = 852;
+const WHATSEVR_SETTINGS_HEIGHT = 1136;
+const WHATSEVR_UPDATE_PROFILE_HEIGHT = 1184;
 // Keep in sync with FLOW_DURATION_IN_FRAMES in flow/FlowSequence.tsx, which warns on drift.
 const WHATSEVR_FLOW_DURATION = 569;
 // Keep in sync with FAN_FLOW_DURATION_IN_FRAMES in flow/FanFlowSequence.tsx
