@@ -35,7 +35,7 @@ import {HomeScreen} from './projects/vhims/src/screens/HomeScreen';
 const VHIMS_WIDTH = 1920;
 const VHIMS_HEIGHT = 1080;
 const VHIMS_PRICING_HEIGHT = 2400;
-const VHIMS_HOME_HEIGHT = 2800;
+const VHIMS_HOME_HEIGHT = 3400;
 
 const WHATSEVR_WIDTH = 786;
 const WHATSEVR_HEIGHT = 1704;
