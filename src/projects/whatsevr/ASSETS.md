@@ -18,6 +18,8 @@
 | ExploreOffers | Feed photos | Unsplash URLs | `photo-1506794778202...` | ⚠️ Placeholder | Replace with creator offer photos |
 | ExploreMemories | Story tile photos & avatars | Unsplash URLs | `photo-1507525428034...` | ⚠️ Placeholder | Replace with real user story media |
 | ExploreWtv | Video thumbnails & avatars | Unsplash URLs | `photo-1517457373958...` | ⚠️ Placeholder | Replace with video poster frames |
+| UpdateProfile | Form Icons & Buttons | Lucide | `lucide-react` | ✅ Real | Icons mapped from screenshots |
+| CommunityDetail | Creator avatar | Unsplash URL | `photo-1507003211169...` | ⚠️ Placeholder | Replace with actual community owner photo |
 | Profile | (see screen) | — | — | — | Asset audit not yet done for this screen |
 
 ## Legend
