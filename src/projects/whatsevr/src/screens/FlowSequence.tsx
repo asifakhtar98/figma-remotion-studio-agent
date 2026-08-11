@@ -8,141 +8,127 @@ import {SignInScreen} from './SignInScreen';
 import {CreateAccountScreen} from './CreateAccountScreen';
 import {ExploreScreen} from './ExploreScreen';
 import {ExploreWtvScreen} from './ExploreWtvScreen';
-import {ExploreOffersScreen} from './ExploreOffersScreen';
-import {ExploreMemoriesScreen} from './ExploreMemoriesScreen';
 import {IncomingCallScreen} from './IncomingCallScreen';
 import {ChatScreen, CHAT_SEND_TAP_FRAME} from './ChatScreen';
-import {CommunityDetailScreen} from './CommunityDetailScreen';
 import {GoLiveScreen} from './GoLiveScreen';
 import {WalletScreen} from './WalletScreen';
-import {BuyCoinsScreen} from './BuyCoinsScreen';
-import {ProfileScreen} from './ProfileScreen';
-import {SettingsScreen} from './SettingsScreen';
 
-const HOLD = 75; // 2.5s at 30fps
-const PUSH_TRANSITION_FRAMES = 20;
-const MODAL_TRANSITION_FRAMES = 15;
+/*
+ * ─────────────────────────────────────────────────────────────────────────────
+ * STORY — "Aryan earns his first payout"
+ *
+ * Aryan is a new creator. A friend told him you can make money on Whatsevr by
+ * taking calls, and he wants to find out if that is true. Everything he taps in
+ * this flow is a step toward one goal: seeing real money land in his wallet.
+ *
+ *   1. SignIn        He has no account yet, so he skips the form → "Create Account"
+ *   2. CreateAccount He types his email and signs up            → "Create account"
+ *   3. Explore       Lands in the app, looks for what earns     → a video post
+ *   4. ExploreWtv    Watches a creator's flick to see the format → play
+ *   5. IncomingCall  A fan calls him — his first real chance    → accept
+ *   6. Chat          She messages after; he replies             → send
+ *   7. GoLive        Now he goes live properly to earn          → "Go live"
+ *   8. Wallet        The payoff: he checks earnings, cashes out → "Withdraw"
+ *
+ * Tap coordinates below are MEASURED from the rendered DOM, not estimated.
+ * Re-measure after any layout change (see the journey-flow-video skill).
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
 
-const push = linearTiming({durationInFrames: PUSH_TRANSITION_FRAMES});
-const modalUp = linearTiming({durationInFrames: MODAL_TRANSITION_FRAMES});
-const tabFade = linearTiming({durationInFrames: PUSH_TRANSITION_FRAMES});
+const PUSH_FRAMES = 20;
+const MODAL_FRAMES = 15;
 
-// Tap lands roughly mid-hold, giving the finger time to arrive and lift before the next transition.
-const TAP_FRAME = 42;
+const push = linearTiming({durationInFrames: PUSH_FRAMES});
+const modalUp = linearTiming({durationInFrames: MODAL_FRAMES});
+const tabFade = linearTiming({durationInFrames: PUSH_FRAMES});
 
-// Screens with a typing/typewriter interaction get a longer hold and a later tap
-// so the finger only lands once the text has actually finished appearing.
-const SIGNIN_ANIMATE_FROM = 4;
-const SIGNIN_TAP_FRAME = 55;
-const SIGNIN_HOLD = 95;
+const pushIn = slide({direction: 'from-right'});
+const riseIn = slide({direction: 'from-bottom'});
 
-const CREATE_ACCOUNT_ANIMATE_FROM = 4;
-const CREATE_ACCOUNT_TAP_FRAME = 45;
-const CREATE_ACCOUNT_HOLD = 85;
-
-const CHAT_ANIMATE_FROM = 2;
-const CHAT_TAP_FRAME = CHAT_ANIMATE_FROM + CHAT_SEND_TAP_FRAME;
-const CHAT_HOLD = 170;
+// Typing screens hold longer and tap later, so the finger lands after the text lands.
+const CREATE_ACCOUNT_TYPE_FROM = 4;
+const CHAT_TYPE_FROM = 2;
 
 type TappedProps<P extends object> = {
   screen: FC<P>;
   screenProps?: P;
   to: TapPoint;
-  tapFrame?: number;
+  tapFrame: number;
 };
 
 const Tapped = <P extends object>({screen: Screen, screenProps, to, tapFrame}: TappedProps<P>) => (
   <AbsoluteFill>
     <Screen {...((screenProps ?? {}) as P)} />
-    <TapCursor to={to} tapFrame={tapFrame ?? TAP_FRAME} />
+    <TapCursor to={to} tapFrame={tapFrame} />
   </AbsoluteFill>
 );
 
 export const FlowSequence: FC = () => {
   return (
     <TransitionSeries>
-      <TransitionSeries.Sequence durationInFrames={SIGNIN_HOLD}>
-        <Tapped
-          screen={SignInScreen}
-          screenProps={{animateFrom: SIGNIN_ANIMATE_FROM}}
-          to={{x: 460, y: 698}}
-          tapFrame={SIGNIN_TAP_FRAME}
-        />
+      {/* 1 — No account yet, so he reaches for "Create Account" */}
+      <TransitionSeries.Sequence durationInFrames={70}>
+        <Tapped screen={SignInScreen} to={{x: 460, y: 809}} tapFrame={40} />
       </TransitionSeries.Sequence>
 
-      <TransitionSeries.Transition presentation={slide({direction: 'from-right'})} timing={push} />
-      <TransitionSeries.Sequence durationInFrames={CREATE_ACCOUNT_HOLD}>
+      <TransitionSeries.Transition presentation={pushIn} timing={push} />
+
+      {/* 2 — Types his email, then signs up */}
+      <TransitionSeries.Sequence durationInFrames={90}>
         <Tapped
           screen={CreateAccountScreen}
-          screenProps={{animateFrom: CREATE_ACCOUNT_ANIMATE_FROM}}
-          to={{x: 460, y: 700}}
-          tapFrame={CREATE_ACCOUNT_TAP_FRAME}
+          screenProps={{animateFrom: CREATE_ACCOUNT_TYPE_FROM}}
+          to={{x: 461, y: 617}}
+          tapFrame={48}
         />
       </TransitionSeries.Sequence>
 
       <TransitionSeries.Transition presentation={fade()} timing={tabFade} />
-      <TransitionSeries.Sequence durationInFrames={HOLD}>
-        <Tapped screen={ExploreScreen} to={{x: 460, y: 1720}} />
+
+      {/* 3 — Lands in the app and opens a video post to see what earns */}
+      <TransitionSeries.Sequence durationInFrames={70}>
+        <Tapped screen={ExploreScreen} to={{x: 586, y: 478}} tapFrame={40} />
       </TransitionSeries.Sequence>
 
-      <TransitionSeries.Transition presentation={slide({direction: 'from-right'})} timing={push} />
-      <TransitionSeries.Sequence durationInFrames={HOLD}>
-        <Tapped screen={ExploreWtvScreen} to={{x: 460, y: 337}} />
+      <TransitionSeries.Transition presentation={pushIn} timing={push} />
+
+      {/* 4 — Plays a creator's flick */}
+      <TransitionSeries.Sequence durationInFrames={70}>
+        <Tapped screen={ExploreWtvScreen} to={{x: 462, y: 387}} tapFrame={40} />
       </TransitionSeries.Sequence>
 
-      <TransitionSeries.Transition presentation={slide({direction: 'from-right'})} timing={push} />
-      <TransitionSeries.Sequence durationInFrames={HOLD}>
-        <Tapped screen={ExploreOffersScreen} to={{x: 750, y: 735}} />
+      {/* A call interrupts him — rises over the screen like a real incoming call */}
+      <TransitionSeries.Transition presentation={riseIn} timing={modalUp} />
+
+      {/* 5 — His first real chance to earn: he accepts */}
+      <TransitionSeries.Sequence durationInFrames={80}>
+        <Tapped screen={IncomingCallScreen} to={{x: 819, y: 1663}} tapFrame={48} />
       </TransitionSeries.Sequence>
 
-      <TransitionSeries.Transition presentation={slide({direction: 'from-right'})} timing={push} />
-      <TransitionSeries.Sequence durationInFrames={HOLD}>
-        <Tapped screen={ExploreMemoriesScreen} to={{x: 230, y: 440}} />
-      </TransitionSeries.Sequence>
+      <TransitionSeries.Transition presentation={pushIn} timing={push} />
 
-      <TransitionSeries.Transition presentation={slide({direction: 'from-bottom'})} timing={modalUp} />
-      <TransitionSeries.Sequence durationInFrames={HOLD}>
-        <Tapped screen={IncomingCallScreen} to={{x: 730, y: 1684}} />
-      </TransitionSeries.Sequence>
-
-      <TransitionSeries.Transition presentation={slide({direction: 'from-right'})} timing={push} />
-      <TransitionSeries.Sequence durationInFrames={CHAT_HOLD}>
+      {/* 6 — She messages after the call; he types a reply and sends it */}
+      <TransitionSeries.Sequence durationInFrames={175}>
         <Tapped
           screen={ChatScreen}
-          screenProps={{animateFrom: CHAT_ANIMATE_FROM}}
-          to={{x: 855, y: 1710}}
-          tapFrame={CHAT_TAP_FRAME}
+          screenProps={{animateFrom: CHAT_TYPE_FROM}}
+          to={{x: 865, y: 1749}}
+          tapFrame={CHAT_TYPE_FROM + CHAT_SEND_TAP_FRAME}
         />
       </TransitionSeries.Sequence>
 
-      <TransitionSeries.Transition presentation={slide({direction: 'from-right'})} timing={push} />
-      <TransitionSeries.Sequence durationInFrames={HOLD}>
-        <Tapped screen={CommunityDetailScreen} to={{x: 460, y: 990}} />
+      <TransitionSeries.Transition presentation={pushIn} timing={push} />
+
+      {/* 7 — Now he goes live properly to earn */}
+      <TransitionSeries.Sequence durationInFrames={80}>
+        <Tapped screen={GoLiveScreen} to={{x: 460, y: 1734}} tapFrame={45} />
       </TransitionSeries.Sequence>
 
-      <TransitionSeries.Transition presentation={slide({direction: 'from-bottom'})} timing={modalUp} />
-      <TransitionSeries.Sequence durationInFrames={HOLD}>
-        <Tapped screen={GoLiveScreen} to={{x: 460, y: 1710}} />
-      </TransitionSeries.Sequence>
+      <TransitionSeries.Transition presentation={pushIn} timing={push} />
 
-      <TransitionSeries.Transition presentation={slide({direction: 'from-right'})} timing={push} />
-      <TransitionSeries.Sequence durationInFrames={HOLD}>
-        <Tapped screen={WalletScreen} to={{x: 460, y: 460}} />
-      </TransitionSeries.Sequence>
-
-      <TransitionSeries.Transition presentation={slide({direction: 'from-bottom'})} timing={modalUp} />
-      <TransitionSeries.Sequence durationInFrames={HOLD}>
-        <Tapped screen={BuyCoinsScreen} to={{x: 460, y: 1660}} />
-      </TransitionSeries.Sequence>
-
-      <TransitionSeries.Transition presentation={slide({direction: 'from-right'})} timing={push} />
-      <TransitionSeries.Sequence durationInFrames={HOLD}>
-        <Tapped screen={ProfileScreen} to={{x: 825, y: 490}} />
-      </TransitionSeries.Sequence>
-
-      <TransitionSeries.Transition presentation={slide({direction: 'from-right'})} timing={push} />
-      <TransitionSeries.Sequence durationInFrames={HOLD}>
-        <Tapped screen={SettingsScreen} to={{x: 825, y: 340}} />
+      {/* 8 — The payoff: he checks his earnings and withdraws */}
+      <TransitionSeries.Sequence durationInFrames={95}>
+        <Tapped screen={WalletScreen} to={{x: 255, y: 519}} tapFrame={52} />
       </TransitionSeries.Sequence>
     </TransitionSeries>
   );

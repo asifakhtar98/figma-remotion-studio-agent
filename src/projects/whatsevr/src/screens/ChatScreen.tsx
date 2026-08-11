@@ -9,7 +9,15 @@ import {
   Send,
   CheckCheck,
 } from 'lucide-react';
-import {useTypedText, isTyping, BlinkingCaret, TypingDots, useEnterStyle} from '../components/TypeEffects';
+import {
+  useTypedText,
+  isTyping,
+  BlinkingCaret,
+  TypingDots,
+  useEnterStyle,
+  ALREADY_REVEALED,
+  NEVER_TYPED,
+} from '../components/TypeEffects';
 
 const {fontFamily} = loadFont();
 
@@ -45,17 +53,16 @@ export const ChatScreen: FC<ChatScreenProps> = ({animateFrom}) => {
   const base = animateFrom ?? 0;
   const rel = frame - base;
 
-  const NEVER = Number.NEGATIVE_INFINITY;
   const dots1Visible = animating && rel >= T_DOTS_1 && rel < T_MSG_1;
-  const msg1Style = useEnterStyle(animating ? base + T_MSG_1 : NEVER);
+  const msg1Style = useEnterStyle(animating ? base + T_MSG_1 : ALREADY_REVEALED);
   const dots2Visible = animating && rel >= T_DOTS_2 && rel < T_MSG_2;
-  const msg2Style = useEnterStyle(animating ? base + T_MSG_2 : NEVER);
-  const msg3Style = useEnterStyle(animating ? base + T_MSG_3 : NEVER);
+  const msg2Style = useEnterStyle(animating ? base + T_MSG_2 : ALREADY_REVEALED);
+  const msg3Style = useEnterStyle(animating ? base + T_MSG_3 : ALREADY_REVEALED);
 
-  const inputTypeStart = animating ? base + T_INPUT_TYPE_START : Number.POSITIVE_INFINITY;
+  const inputTypeStart = animating ? base + T_INPUT_TYPE_START : NEVER_TYPED;
   const inputTypedText = useTypedText(OUTGOING_REPLY, inputTypeStart, T_INPUT_TYPE_CHARS_PER_FRAME);
   const inputCaretActive = isTyping(OUTGOING_REPLY, inputTypeStart, T_INPUT_TYPE_CHARS_PER_FRAME);
-  const sentBubbleStyle = useEnterStyle(animating ? base + T_SENT_BUBBLE : NEVER);
+  const sentBubbleStyle = useEnterStyle(animating ? base + T_SENT_BUBBLE : ALREADY_REVEALED);
   const showSentBubble = !animating || rel >= T_SENT_BUBBLE - 6;
   const showInputText = !animating || rel < T_SENT_BUBBLE;
 

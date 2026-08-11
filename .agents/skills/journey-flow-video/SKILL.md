@@ -1,152 +1,112 @@
 ---
 name: journey-flow-video
-description: Turn a project's existing still screens into an animated end-user journey video — native mobile transitions, an animated finger/tap cursor, live typewriter text entry, and staggered chat/message reveals. Use whenever the user asks for a flow, journey, walkthrough, demo video, "show the real user experience", "animate the screens", or a Figma-prototype-style playthrough.
+description: Turn this repo's still screens into an animated user-journey video — a story, an animated finger tapping real controls, typed text entry, staggered message reveals. Use whenever the user asks for a flow, journey, walkthrough, demo video, or "show the real user experience".
 ---
 
 # Journey flow video
 
-This repo has two output modes. Both are first-class.
+This repo has exactly two purposes: **creating UI** (still screens) and **creating user journey flows** (this skill).
 
-1. **Still UI** — the default. One screenshot or description in, one pixel-faithful screen component out, registered with `durationInFrames={1}`. Nothing animates. This is what every screen build produces.
-2. **Journey flow video** — this skill. Existing still screens are composed into one animated composition that plays like a real person using the app: screens push and slide, a finger taps the actual controls, text types itself into fields, chat messages arrive one at a time.
+Read the official Remotion skills first — they own the mechanics, and this file does not repeat them:
 
-The still screens are the source of truth. A flow **never** forks or duplicates them — it imports the same components and drives them with optional animation props.
+| For | Read |
+|---|---|
+| `TransitionSeries`, presentations, transition timing | `.agents/skills/remotion-markup/transitions.md` |
+| `interpolate`, easing, clamping | `.agents/skills/remotion-markup/timing.md` |
+| Sequences and multi-scene structure | `.agents/skills/remotion-markup/sequencing.md`, `multi-scene-video.md` |
+| Measuring elements, `useCurrentScale()` | `.agents/skills/remotion-markup/measuring-dom-nodes.md` |
+| Looking up any other Remotion API | `.agents/skills/remotion-docs/SKILL.md` |
 
-## Non-negotiable architecture rule
+What follows is only what is specific to this repo.
 
-> A screen must render identically to its still version when it is given no animation props.
+## 1. Story first — mandatory
 
-Animation is opt-in via a single optional prop, always named `animateFrom` (a frame number). When absent, the screen renders its resting state and its own `<Composition>` still stays byte-identical. This is what lets one component serve both purposes.
+**Do not pick screens, order, or tap targets before the story exists.** A flow assembled screen-by-screen is a feature tour: aimless, and it reads as fake. A flow built from a story is something a viewer follows.
+
+Write one short paragraph naming:
+
+- **Who** the person is and what they want from the product.
+- **One goal** for this single sitting — not three.
+- **Why each tap happens** — every screen is a step toward that goal, and every tap is what that person would actually press next.
+
+Confirm it with the user via `AskUserQuestion` before writing code. Screens that don't serve the story get cut, however good they look. Eight screens that tell a story beat fourteen that don't.
+
+> **Aryan earns his first payout.** A new creator who joined because a friend said you can make money taking calls. He signs up, looks at what creators post to see what earns, takes a call from a fan, chats with her after, goes live to earn properly, then checks his wallet and cashes out.
+
+Keep the story as a comment block at the top of `FlowSequence.tsx`, each numbered beat naming its screen and what gets tapped. That comment is the spec; code and story must stay in agreement.
+
+## 2. One component, two purposes
+
+A screen must render **identically to its still** when given no animation props. Animation is opt-in through a single optional `animateFrom` prop (a frame number). This is what lets one component serve both of the repo's purposes without forking.
 
 ```tsx
-type SignInScreenProps = {
-  /** Frame the email field starts typing at. Omit for the static still. */
+type ChatScreenProps = {
+  /** Frame the conversation starts at. Omit for the static still. */
   animateFrom?: number;
 };
-
-export const SignInScreen: FC<SignInScreenProps> = ({animateFrom}) => {
-  const animating = animateFrom !== undefined;
-  // ...
-};
 ```
 
-## Hooks safety (this WILL bite you)
-
-Remotion re-renders every frame. React demands the exact same hook count on every render. Two rules follow, and violating either produces `Rendered more hooks than during the previous render` and a blank player with an error boundary.
-
-1. **Never call a hook after an early return.** Compute every hook at the top of the component, then branch.
-2. **Never call a hook conditionally, including inside a ternary.** `animating ? useEnterStyle(x) : {...}` is a bug. Instead call the hook unconditionally and pass a sentinel frame that disables it:
+Sentinel values disable an effect for the still render, and **must be finite** — `interpolate` returns `NaN` on an infinite input range, which silently blanks the element:
 
 ```tsx
-const NEVER = Number.NEGATIVE_INFINITY;   // effect never starts → resting state
-const ALWAYS = Number.POSITIVE_INFINITY;  // typing never starts → empty/placeholder
-
-const msgStyle = useEnterStyle(animating ? base + T_MSG_1 : NEVER);
-const typed = useTypedText(TEXT, animating ? base + T_TYPE : ALWAYS);
+export const ALREADY_REVEALED = -100_000; // reveal already happened → visible
+export const NEVER_TYPED = 100_000;       // typing never starts → empty field
 ```
 
-Likewise, destructure everything you need from `useVideoConfig()` **once** at the top (`const {width, height, fps} = useVideoConfig()`), never call it a second time deeper in the function body.
+Hooks run every frame, so hook order must never vary: compute all hooks at the top before any early return, never call one inside a ternary, and destructure `useVideoConfig()` exactly once.
 
-## Shared animation primitives
+## 3. Tap targets — measure, never estimate
 
-Each project keeps its own copies under `src/projects/<project>/src/components/` — projects are never allowed to share code (see AGENTS.md). Copy and adapt these two files per project:
+Reading JSX to guess a button's position lands 20–50px off, and a tap that misses reads as a glitch. Measure the rendered DOM instead.
 
-### `TapCursor.tsx`
+In the viewer, `.__remotion-player` is the canvas root; its rendered width over the composition width gives the scale (or use `useCurrentScale()` per the official measuring doc). Select a composition by **clicking its sidebar button** — the `?comp=` URL parameter does not switch compositions, so you will otherwise measure the wrong screen.
 
-A finger/hand pointer that flies in from off-canvas, presses down (scale dip) with an expanding ripple at the contact point, holds, then lifts away and fades.
-
-```tsx
-<TapCursor to={{x: 460, y: 698}} tapFrame={42} />
+```js
+const player = document.querySelector('.__remotion-player');
+const pr = player.getBoundingClientRect();
+const scale = pr.width / CANVAS_WIDTH;
+const toCanvas = (r) => ({
+  x: Math.round((r.left + r.width / 2 - pr.left) / scale),
+  y: Math.round((r.top + r.height / 2 - pr.top) / scale),
+});
+// walk text leaves AND `svg.lucide, button` — most tap targets are icons with no text
 ```
 
-- `to` — the tap point in **canvas pixels**, top-left origin, in the composition's own coordinate space (e.g. 921×1800).
-- `tapFrame` — frame **relative to that screen's sequence**, when the press lands.
-- `from` — optional entry point; defaults to just off the bottom-right corner.
+Aim at genuinely interactive controls: primary buttons, nav icons, send, accept. Never empty background. Re-measure after any layout change.
 
-Aim at a real interactive-looking control: a primary button, a bottom-nav icon, a send button, a call-answer button. Never at empty background — that reads as a glitch, not a user.
+## 4. Project components
 
-### `TypeEffects.tsx`
+Per-project, under `src/projects/<project>/src/components/` (projects never share code):
 
-- `useTypedText(fullText, startFrame, charsPerFrame?)` → the progressively revealed substring.
-- `isTyping(fullText, startFrame, charsPerFrame?)` → whether the caret should be blinking right now.
-- `<BlinkingCaret active />` — a caret bar; pair with the field currently being filled.
-- `<TypingDots startFrame endFrame />` — the three-dot "someone is typing…" bubble for incoming chat messages.
-- `useEnterStyle(revealFrame, distance?)` → `{opacity, transform}` for a fade-and-rise entrance, hidden entirely before its frame.
+- **`TapCursor.tsx`** — a 👆 emoji hand that flies in, presses with a ripple at the contact point, and lifts away. Offset the glyph so the **fingertip**, not the glyph centre, rests on the target.
+- **`TypeEffects.tsx`** — `useTypedText`, `isTyping`, `<BlinkingCaret>`, `<TypingDots>`, `useEnterStyle`. Type at ~1.4–1.6 chars/frame; mask passwords with `'•'.repeat(typed.length)` so the mask grows live.
 
-Default typing speed is ~1.4–1.6 characters per frame at 30fps, which reads as a fast but human typist. Password fields show `'•'.repeat(typed.length)` so the mask still grows in real time.
+## 5. Timing
 
-## Composing the flow
-
-`FlowSequence.tsx` uses `<TransitionSeries>` from `@remotion/transitions` (install the version matching `remotion` in `package.json` exactly).
-
-Transition vocabulary — match the transition to what the navigation actually means:
-
-| Navigation | Presentation | Frames |
-|---|---|---|
-| Forward push (tap a row, open a detail) | `slide({direction: 'from-right'})` | 20 |
-| Modal, sheet, incoming call, purchase overlay | `slide({direction: 'from-bottom'})` | 15 |
-| Tab switch, landing after auth | `fade()` | 20 |
-
-A small typed helper keeps each entry to one line and lets typing screens override their tap frame:
-
-```tsx
-type TappedProps<P extends object> = {
-  screen: FC<P>;
-  screenProps?: P;
-  to: TapPoint;
-  tapFrame?: number;
-};
-
-const Tapped = <P extends object>({screen: Screen, screenProps, to, tapFrame}: TappedProps<P>) => (
-  <AbsoluteFill>
-    <Screen {...((screenProps ?? {}) as P)} />
-    <TapCursor to={to} tapFrame={tapFrame ?? TAP_FRAME} />
-  </AbsoluteFill>
-);
-```
-
-## Timing
-
-- Default hold per screen: **75 frames** (2.5s at 30fps). Default tap at frame **42** — late enough for the finger to arrive, early enough to lift before the transition.
-- **A screen that types needs a longer hold and a later tap.** The finger must land *after* the text finishes, never during. Derive the tap frame from the typing duration rather than guessing:
+Default hold 75 frames (2.5s), tap at 42. **A screen that types needs a longer hold and a later tap** — the finger must land after the text finishes. Derive it, never guess:
 
 ```tsx
 const T_TYPE_END = T_TYPE_START + Math.ceil(TEXT.length / CHARS_PER_FRAME);
 export const CHAT_SEND_TAP_FRAME = T_TYPE_END + 6;
 ```
 
-  Export that constant from the screen and import it into `FlowSequence.tsx`, so the two can never drift apart.
-- Transitions **overlap** their neighbours, so total duration is `sum(holds) − sum(transition frames)`. Compute it and set `durationInFrames` in `src/Root.tsx` to match; a wrong value silently truncates the ending or leaves dead frames.
+Export that constant from the screen and import it into `FlowSequence.tsx` so the two cannot drift. Transitions overlap, so `durationInFrames` = sum of holds − sum of transition frames; set it in `src/Root.tsx` or the ending truncates.
 
-## Chat screens specifically
+Match transition to meaning: push-slide from right for forward navigation, slide from bottom for modals and interruptions (incoming call), fade for tab switches and post-auth landings.
 
-A chat is the highest-value screen to animate, because a still chat looks like a screenshot while an animated one looks like a conversation. The sequence that reads as real:
+## 6. Verify in the browser — mandatory
 
-1. Typing dots appear beside the sender's avatar.
-2. Dots vanish, their message rises into place.
-3. Repeat for each incoming message, staggered.
-4. The user's reply types itself character by character into the input bar, caret blinking.
-5. The finger taps the send button.
-6. The input clears and the sent bubble appears with its delivered ticks.
+`tsc --noEmit` passes on both of the failures that actually happen here: a hook-order crash, and a `NaN` blanking the render. Neither is visible without looking.
 
-Steps 4–6 must be wired to the same constant so the tap lands exactly on the finished text.
+1. Open the flow in the viewer; check the console for `Rendered more hooks` or error-boundary messages.
+2. Screenshot at several timeline points — a composition can render frame 0 fine and crash at frame 60.
+3. **Open the individual stills too** and confirm they still render exactly as before.
 
-## Workflow
+```js
+() => {
+  const p = document.querySelector('.__remotion-player');
+  return {broken: p.textContent.includes('⚠'), text: p.textContent.slice(0, 80)};
+}
+```
 
-1. Confirm the journey with `AskUserQuestion` — which screens, what order, how long. Order should tell a story (onboard → browse → engage → transact), not just list files.
-2. Locate a real tap target per screen and estimate its centre in canvas pixels by reading the layout. Delegating this to an `Explore` subagent across many screens is efficient; ask for one `x, y` line per screen.
-3. Add or copy `TapCursor.tsx` and `TypeEffects.tsx` into the project's `components/`.
-4. Add optional `animateFrom` props to the screens that type or reveal content. Verify their stills still render unchanged.
-5. Build `FlowSequence.tsx` with `<TransitionSeries>`, per-screen holds, and tap points.
-6. Update `durationInFrames` in `src/Root.tsx`, then `npm run sync:viewer`.
-7. `npx tsc --noEmit`.
-8. **Verify in the browser.** A clean typecheck proves nothing here — hook-order violations are runtime-only. Open the flow in the viewer, check the console for React errors, and screenshot mid-playback to confirm the finger, the typing, and the transitions actually appear.
-9. Post-task sweep, then auto commit with the `flow` prefix.
-
-## Verification checklist
-
-- [ ] Console is free of React errors, especially hook-order warnings.
-- [ ] Every individual still composition still renders exactly as before.
-- [ ] The finger lands on a real control on every screen, and after typing completes where typing exists.
-- [ ] No screen's content is clipped by its transition.
-- [ ] `durationInFrames` matches the real end of the last screen.
+Then run the post-task sweep and commit with the `flow` prefix.

@@ -31,7 +31,8 @@ const WHATSEVR_WIDTH = 921;
 const WHATSEVR_HEIGHT = 1800;
 const WHATSEVR_SETTINGS_HEIGHT = 2400;
 const WHATSEVR_UPDATE_PROFILE_HEIGHT = 2500;
-const WHATSEVR_FLOW_DURATION = 855; // 14 screens (SignIn/CreateAccount/Chat get longer typing holds), minus overlapping transitions
+// "Aryan earns his first payout" — 8 screens, 730 frames of holds minus 135 frames of overlapping transitions.
+const WHATSEVR_FLOW_DURATION = 595;
 
 export const RemotionRoot: FC = () => {
   return (

@@ -13,6 +13,12 @@
       "skillPath": "skills/remotion-create/SKILL.md",
       "computedHash": "2f17964dcd662c933cd5e28312f70401fa3a64439c883afbc5853a838bb2d428"
     },
+    "remotion-docs": {
+      "source": "remotion-dev/skills",
+      "sourceType": "github",
+      "skillPath": "skills/remotion-docs/SKILL.md",
+      "computedHash": "381c99b79ba0e2034d5a57434183a0880280d811d58b7326b0d03d7b1276ff23"
+    },
     "remotion-markup": {
       "source": "remotion-dev/skills",
       "sourceType": "github",

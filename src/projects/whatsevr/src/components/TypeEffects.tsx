@@ -79,14 +79,24 @@ export const TypingDots: FC<{startFrame: number; endFrame: number}> = ({startFra
   );
 };
 
+/**
+ * Sentinel reveal frames. These must stay FINITE — `interpolate` returns NaN when
+ * handed an infinite input range, which silently blanks the whole composition.
+ */
+export const ALREADY_REVEALED = -100_000; // element is simply present (still render)
+export const NEVER_TYPED = 100_000; // typing never starts (still render)
+
 /** Fade + rise entrance for a chat bubble / list item, gated on a reveal frame. */
-export const useEnterStyle = (revealFrame: number, distance = 14): {opacity: number; transform: string; display?: 'none'} => {
+export const useEnterStyle = (
+  revealFrame: number,
+  distance = 14,
+): {opacity: number; transform: string; display?: 'none'} => {
   const frame = useCurrentFrame();
-  if (frame < revealFrame - 6) return {opacity: 0, transform: 'none', display: 'none'};
   const progress = interpolate(frame, [revealFrame, revealFrame + 10], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
+  if (frame < revealFrame - 6) return {opacity: 0, transform: 'none', display: 'none'};
   return {
     opacity: progress,
     transform: `translateY(${(1 - progress) * distance}px)`,

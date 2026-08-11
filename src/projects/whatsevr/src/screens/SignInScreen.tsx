@@ -5,7 +5,7 @@ import {Mail, Lock, EyeOff, X} from 'lucide-react';
 import {WhatsevrLogo} from '../components/WhatsevrLogo';
 import {TextField} from '../components/TextField';
 import {PrimaryButton} from '../components/PrimaryButton';
-import {useTypedText, isTyping, BlinkingCaret} from '../components/TypeEffects';
+import {useTypedText, isTyping, BlinkingCaret, NEVER_TYPED} from '../components/TypeEffects';
 
 const {fontFamily} = loadFont();
 
@@ -35,8 +35,8 @@ type SignInScreenProps = {
 
 export const SignInScreen: FC<SignInScreenProps> = ({animateFrom}) => {
   const animating = animateFrom !== undefined;
-  const emailStart = animateFrom ?? Number.POSITIVE_INFINITY;
-  const passwordStart = animating ? emailStart + Math.ceil(TYPED_EMAIL.length / 1.4) + 6 : Number.POSITIVE_INFINITY;
+  const emailStart = animateFrom ?? NEVER_TYPED;
+  const passwordStart = animating ? emailStart + Math.ceil(TYPED_EMAIL.length / 1.4) + 6 : NEVER_TYPED;
 
   const typedEmail = useTypedText(TYPED_EMAIL, emailStart);
   const typedPasswordRaw = useTypedText(TYPED_PASSWORD, passwordStart);

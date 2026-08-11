@@ -167,7 +167,7 @@ export const compositions: CompositionEntry[] = [
     component: React.lazy(() => import('@src/projects/whatsevr/src/screens/FlowSequence').then(m => ({ default: m.FlowSequence }))),
     width: 921,
     height: 1800,
-    durationInFrames: 855,
+    durationInFrames: 595,
     fps: 30,
     projectName: 'whatsevr',
     screenName: 'Flow'

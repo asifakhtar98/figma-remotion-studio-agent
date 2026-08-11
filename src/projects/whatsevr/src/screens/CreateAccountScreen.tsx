@@ -5,7 +5,7 @@ import {Mail, User, X, Scan} from 'lucide-react';
 import {WhatsevrLogo} from '../components/WhatsevrLogo';
 import {TextField} from '../components/TextField';
 import {PrimaryButton} from '../components/PrimaryButton';
-import {useTypedText, isTyping, BlinkingCaret} from '../components/TypeEffects';
+import {useTypedText, isTyping, BlinkingCaret, NEVER_TYPED} from '../components/TypeEffects';
 
 const {fontFamily} = loadFont();
 
@@ -37,7 +37,7 @@ type CreateAccountScreenProps = {
 
 export const CreateAccountScreen: FC<CreateAccountScreenProps> = ({animateFrom}) => {
   const animating = animateFrom !== undefined;
-  const emailStart = animateFrom ?? Number.POSITIVE_INFINITY;
+  const emailStart = animateFrom ?? NEVER_TYPED;
   const typedEmail = useTypedText(TYPED_EMAIL, emailStart);
   const emailCaretActive = isTyping(TYPED_EMAIL, emailStart);
 

@@ -5,10 +5,10 @@ Full spec: `docs/superpowers/specs/2026-08-11-screenshot-to-remotion-design.md`.
 
 ## The two purposes of this repo
 
-1. **Still UI (default).** Every screen build produces one pixel-faithful component registered with `durationInFrames={1}`. Nothing animates. Unless the user asks for a flow, this is the only output.
-2. **Journey flow video (on request).** When the user asks for a flow, journey, walkthrough, demo video, or "show the real user experience", the existing still screens are composed into one animated composition that plays like a real person using the app — native transitions, an animated finger tapping real controls, text typing itself into fields, chat messages arriving one at a time. Read the **journey-flow-video** skill before writing any of it.
+1. **Creating UI** — pixel-faithful still screens, `durationInFrames={1}`. The default.
+2. **Creating user journey flows** — those same screens animated into a story. Only on request; read the **journey-flow-video** skill first.
 
-A flow **never** forks or duplicates a still screen. It imports the same component and drives it with an optional `animateFrom` prop. With that prop absent, the screen must render exactly as its still does.
+A flow never forks a still screen — it drives the same component through an optional `animateFrom` prop.
 
 ---
 
@@ -30,7 +30,10 @@ This project ships official Remotion skills at `.agents/skills/`.
 | Write React markup, layout, text, images, effects | **remotion-markup** | `.agents/skills/remotion-markup/SKILL.md` |
 | Export / render a still frame or video | **remotion-render** | `.agents/skills/remotion-render/SKILL.md` |
 | Work with Remotion Studio (preview, hot-reload) | **remotion-studio** | `.agents/skills/remotion-studio/SKILL.md` |
-| Animate still screens into a user-journey flow video (taps, typing, transitions) | **journey-flow-video** | `.agents/skills/journey-flow-video/SKILL.md` |
+| Look up any Remotion API you are unsure about | **remotion-docs** | `.agents/skills/remotion-docs/SKILL.md` |
+| Animate still screens into a user-journey flow video | **journey-flow-video** | `.agents/skills/journey-flow-video/SKILL.md` |
+
+Prefer the official skills above over inventing an approach. `remotion-markup/` already covers transitions, timing, sequencing, and DOM measuring.
 
 Each skill's `SKILL.md` links to deeper reference files inside its folder (e.g. `remotion-markup/images.md`, `remotion-create/tailwind.md`). Follow those links when needed. Skipping this step causes avoidable mistakes: `<img>` instead of `<Img>`, wrong Tailwind wiring, wrong render CLI flags.
 
@@ -473,27 +476,14 @@ Skip the question if the user already described a flow.
 
 ### How to wire the flow in Remotion
 
-**Read `.agents/skills/journey-flow-video/SKILL.md` first.** It carries the full recipe — the animation primitives, the hook-safety rules that prevent a runtime crash, transition vocabulary, and timing maths. What follows is only the summary.
+**Read `.agents/skills/journey-flow-video/SKILL.md`** — it carries the whole recipe. Essentials only here:
 
-1. Create `src/projects/<project-name>/src/screens/FlowSequence.tsx`:
-   - Import all screens in flow order.
-   - Use `<TransitionSeries>` from `@remotion/transitions` — push-slide for forward navigation, slide-up for modals and overlays, fade for tab switches.
-   - Overlay a `<TapCursor>` on each screen, aimed at a real interactive control.
-   - Pass `animateFrom` to screens that type text or reveal messages progressively.
-2. Register a new Composition in `src/Root.tsx`:
-   - `id="<ProjectName>-<NN>-Flow"` (next sequential serial number).
-   - `width`/`height` = the project's standard canvas size.
-   - `durationInFrames` = sum of screen holds **minus** overlapping transition frames.
-   - `fps` = 30 (default).
-
-### Rules
-
-- The flow composition is **in addition to** the individual still Compositions — never remove or alter the per-screen Compositions.
-- Default hold per screen = 2.5 seconds (75 frames at 30fps), tap at frame 42, unless the user says otherwise.
-- Screens that type get a longer hold and a later tap, derived from the typing duration — never guessed.
-- Do NOT create a flow automatically if the user hasn't defined one yet — always ask first.
-- When a new screen is added to a project that already has a flow, ask where it fits in the sequence.
-- **Always verify a flow in the browser before reporting done.** `tsc --noEmit` cannot catch hook-order violations, which crash the player at runtime while typechecking clean.
+- Story first, confirmed with the user, before any code.
+- `FlowSequence.tsx` per project, built on `<TransitionSeries>`, with a `<TapCursor>` per screen.
+- Register `id="<ProjectName>-<NN>-Flow"` in `src/Root.tsx`; `durationInFrames` = sum of holds minus overlapping transitions.
+- The flow is **in addition to** the still Compositions — never remove or alter them.
+- Never create a flow unasked. When a new screen joins a project that has one, ask where it fits.
+- Verify in the browser before reporting done — `tsc --noEmit` cannot catch the runtime failures that occur here.
 
 ---
 
