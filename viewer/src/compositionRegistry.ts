@@ -271,5 +271,15 @@ export const compositions: CompositionEntry[] = [
     fps: 30,
     projectName: 'whatsevr',
     screenName: 'FanFlow'
+  },
+  {
+    id: 'whatsevr-23-MarketingPoster',
+    component: React.lazy(() => import('@src/projects/whatsevr/src/screens/MarketingPosterScreen').then(m => ({ default: m.MarketingPosterScreen }))),
+    width: 1080,
+    height: 1920,
+    durationInFrames: 1,
+    fps: 30,
+    projectName: 'whatsevr',
+    screenName: 'MarketingPoster'
   }
 ];

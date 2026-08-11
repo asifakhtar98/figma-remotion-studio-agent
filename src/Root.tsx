@@ -23,6 +23,7 @@ import {SpinScreen} from './projects/whatsevr/src/screens/SpinScreen';
 import {UpdateProfileScreen} from './projects/whatsevr/src/screens/UpdateProfileScreen';
 import {WalletRateModalScreen} from './projects/whatsevr/src/screens/WalletRateModalScreen';
 import {WalletScreen} from './projects/whatsevr/src/screens/WalletScreen';
+import {MarketingPosterScreen} from './projects/whatsevr/src/screens/MarketingPosterScreen';
 import {AdminDashboardScreen} from './projects/vhims/src/screens/AdminDashboardScreen';
 import {PlatformDashboardScreen} from './projects/vhims/src/screens/PlatformDashboardScreen';
 import {PricingScreen} from './projects/vhims/src/screens/PricingScreen';
@@ -45,6 +46,8 @@ const WHATSEVR_UPDATE_PROFILE_HEIGHT = 2368;
 const WHATSEVR_FLOW_DURATION = 569;
 // Keep in sync with FAN_FLOW_DURATION_IN_FRAMES in flow/FanFlowSequence.tsx
 const WHATSEVR_FAN_FLOW_DURATION = 415;
+const WHATSEVR_POSTER_WIDTH = 1080;
+const WHATSEVR_POSTER_HEIGHT = 1920;
 
 export const RemotionRoot: FC = () => {
   return (
@@ -256,6 +259,14 @@ export const RemotionRoot: FC = () => {
         fps={30}
         width={WHATSEVR_WIDTH}
         height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-23-MarketingPoster"
+        component={MarketingPosterScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_POSTER_WIDTH}
+        height={WHATSEVR_POSTER_HEIGHT}
       />
     </>
   );
