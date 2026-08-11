@@ -53,6 +53,16 @@ export const compositions: CompositionEntry[] = [
     screenName: 'Pricing'
   },
   {
+    id: 'vhims-04-MarketingPoster',
+    component: React.lazy(() => import('@src/projects/vhims/src/screens/MarketingPosterScreen').then(m => ({ default: m.VhimsMarketingPosterScreen }))),
+    width: 1080,
+    height: 1080,
+    durationInFrames: 1,
+    fps: 30,
+    projectName: 'vhims',
+    screenName: 'MarketingPoster'
+  },
+  {
     id: 'whatsevr-01-SignIn',
     component: React.lazy(() => import('@src/projects/whatsevr/src/screens/SignInScreen').then(m => ({ default: m.SignInScreen }))),
     width: 786,
@@ -276,10 +286,20 @@ export const compositions: CompositionEntry[] = [
     id: 'whatsevr-23-MarketingPoster',
     component: React.lazy(() => import('@src/projects/whatsevr/src/screens/MarketingPosterScreen').then(m => ({ default: m.MarketingPosterScreen }))),
     width: 1080,
-    height: 1920,
+    height: 1080,
     durationInFrames: 1,
     fps: 30,
     projectName: 'whatsevr',
     screenName: 'MarketingPoster'
+  },
+  {
+    id: 'whatsevr-24-StudioMinimalistPoster',
+    component: React.lazy(() => import('@src/projects/whatsevr/src/screens/StudioMinimalistPosterScreen').then(m => ({ default: m.StudioMinimalistPosterScreen }))),
+    width: 1080,
+    height: 1080,
+    durationInFrames: 1,
+    fps: 30,
+    projectName: 'whatsevr',
+    screenName: 'StudioMinimalistPoster'
   }
 ];

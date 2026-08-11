@@ -24,10 +24,12 @@ import {UpdateProfileScreen} from './projects/whatsevr/src/screens/UpdateProfile
 import {WalletRateModalScreen} from './projects/whatsevr/src/screens/WalletRateModalScreen';
 import {WalletScreen} from './projects/whatsevr/src/screens/WalletScreen';
 import {MarketingPosterScreen} from './projects/whatsevr/src/screens/MarketingPosterScreen';
+import {StudioMinimalistPosterScreen} from './projects/whatsevr/src/screens/StudioMinimalistPosterScreen';
 import {AdminDashboardScreen} from './projects/vhims/src/screens/AdminDashboardScreen';
 import {PlatformDashboardScreen} from './projects/vhims/src/screens/PlatformDashboardScreen';
 import {PricingScreen} from './projects/vhims/src/screens/PricingScreen';
 import {HomeScreen} from './projects/vhims/src/screens/HomeScreen';
+import {MarketingPosterScreen as VhimsMarketingPosterScreen} from './projects/vhims/src/screens/MarketingPosterScreen';
 
 // Each project registers its screens here as <Composition> entries.
 // id="<ProjectName>-<Number>-<ScreenName>", width/height = detected canvas size,
@@ -37,6 +39,8 @@ const VHIMS_WIDTH = 1920;
 const VHIMS_HEIGHT = 1080;
 const VHIMS_PRICING_HEIGHT = 2400;
 const VHIMS_HOME_HEIGHT = 3400;
+const VHIMS_POSTER_WIDTH = 1080;
+const VHIMS_POSTER_HEIGHT = 1080;
 
 const WHATSEVR_WIDTH = 786;
 const WHATSEVR_HEIGHT = 1704;
@@ -47,7 +51,7 @@ const WHATSEVR_FLOW_DURATION = 569;
 // Keep in sync with FAN_FLOW_DURATION_IN_FRAMES in flow/FanFlowSequence.tsx
 const WHATSEVR_FAN_FLOW_DURATION = 415;
 const WHATSEVR_POSTER_WIDTH = 1080;
-const WHATSEVR_POSTER_HEIGHT = 1920;
+const WHATSEVR_POSTER_HEIGHT = 1080;
 
 export const RemotionRoot: FC = () => {
   return (
@@ -83,6 +87,14 @@ export const RemotionRoot: FC = () => {
         fps={30}
         width={VHIMS_WIDTH}
         height={VHIMS_PRICING_HEIGHT}
+      />
+      <Composition
+        id="vhims-04-MarketingPoster"
+        component={VhimsMarketingPosterScreen}
+        durationInFrames={1}
+        fps={30}
+        width={VHIMS_POSTER_WIDTH}
+        height={VHIMS_POSTER_HEIGHT}
       />
       <Composition
         id="whatsevr-01-SignIn"
@@ -263,6 +275,14 @@ export const RemotionRoot: FC = () => {
       <Composition
         id="whatsevr-23-MarketingPoster"
         component={MarketingPosterScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_POSTER_WIDTH}
+        height={WHATSEVR_POSTER_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-24-StudioMinimalistPoster"
+        component={StudioMinimalistPosterScreen}
         durationInFrames={1}
         fps={30}
         width={WHATSEVR_POSTER_WIDTH}
