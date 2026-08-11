@@ -5,6 +5,7 @@ import {CallsScreen} from './projects/whatsevr/src/screens/CallsScreen';
 import {ChatScreen} from './projects/whatsevr/src/screens/ChatScreen';
 import {CommunityDetailScreen} from './projects/whatsevr/src/screens/CommunityDetailScreen';
 import {CommunityUploadModalScreen} from './projects/whatsevr/src/screens/CommunityUploadModalScreen';
+import {CreateAccountScreen} from './projects/whatsevr/src/screens/CreateAccountScreen';
 import {ExploreMemoriesScreen} from './projects/whatsevr/src/screens/ExploreMemoriesScreen';
 import {ExploreOffersScreen} from './projects/whatsevr/src/screens/ExploreOffersScreen';
 import {ExploreScreen} from './projects/whatsevr/src/screens/ExploreScreen';
@@ -155,6 +156,14 @@ export const RemotionRoot: FC = () => {
         id="whatsevr-16-Flow"
         component={FlowSequence}
         durationInFrames={WHATSEVR_FLOW_DURATION}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-17-CreateAccount"
+        component={CreateAccountScreen}
+        durationInFrames={1}
         fps={30}
         width={WHATSEVR_WIDTH}
         height={WHATSEVR_HEIGHT}
