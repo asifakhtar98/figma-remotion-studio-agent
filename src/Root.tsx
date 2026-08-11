@@ -1,6 +1,7 @@
 import './style.css';
 import type {FC} from 'react';
 import {Composition} from 'remotion';
+import {BuyCoinsScreen} from './projects/whatsevr/src/screens/BuyCoinsScreen';
 import {CallsScreen} from './projects/whatsevr/src/screens/CallsScreen';
 import {ChatScreen} from './projects/whatsevr/src/screens/ChatScreen';
 import {CommunityDetailScreen} from './projects/whatsevr/src/screens/CommunityDetailScreen';
@@ -181,6 +182,14 @@ export const RemotionRoot: FC = () => {
       <Composition
         id="whatsevr-19-WalletRateModal"
         component={WalletRateModalScreen}
+        durationInFrames={1}
+        fps={30}
+        width={WHATSEVR_WIDTH}
+        height={WHATSEVR_HEIGHT}
+      />
+      <Composition
+        id="whatsevr-20-BuyCoins"
+        component={BuyCoinsScreen}
         durationInFrames={1}
         fps={30}
         width={WHATSEVR_WIDTH}
