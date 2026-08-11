@@ -146,7 +146,7 @@ https://images.unsplash.com/photo-<ID>?w=<WIDTH>&h=<HEIGHT>&fit=crop&q=80
 ## Reference image handling (MANDATORY)
 
 - **Save reference images per project:** Whenever the user sends any reference image (e.g. screenshot, UI mockup, or design reference), save it into a reference folder within the project directory (e.g. `src/projects/<project-name>/src/reference/`) for temporary use and per-project visual inspection.
-- **Automatic content expansion for sparse reference images (STRICT):** If a user-provided reference image does not have enough content (for example, a grid or list with only 1 or 2 items), automatically create additional elements to fill available space and better represent the product without asking the user. Be careful and judicious with expansion—only expand naturally repetitive components (like lists, grid cards, or table rows), and do not multiply elements that are inherently singular.
+- **Automatic content expansion for sparse reference images (STRICT):** Content expansion applies ONLY when a user-provided reference image is present and contains sparse repetitive elements (e.g. a list or grid with only 1 or 2 items). In those specific cases, expand only naturally repeating items (lists, grid cards) to fill available space using the reference's existing patterns. NEVER invent new UI sections, unmentioned components, or unrequested features when building without a reference image or if the element is absent from the reference.
 - **Realistic text & content adaptation (STRICT):** Do not blindly copy-paste every piece of text verbatim from reference images. Adapt, polish, or generate realistic copy (headlines, item titles, descriptions, metrics, usernames) suitable for high-fidelity presentation mockups so the screen looks professional and production-ready.
 
 ---
@@ -207,7 +207,7 @@ src/
    Tailwind equivalents.
 8. **Naming:** explicit, descriptive names for files/components/props — no
    abbreviations (`ProfileHeader`, not `PH` or `Hdr`).
-9. **Automatic content expansion:** If a reference image has sparse repetitive elements (e.g. a list or grid with only 1 or 2 items), automatically generate extra items to fill fields and available space without asking the user. Be careful to expand only naturally repeating items (lists, grids) and keep singular elements unique.
+9. **Content expansion limits:** Automatic content expansion applies strictly to user-provided reference images with sparse repetitive elements (e.g. duplicating extra list rows or grid tiles based on existing reference items). Never invent new UI sections, unrequested components, or design elements that are not present in the reference image or explicitly described by the user.
 10. **Presentation-grade copy adaptation:** Avoid blindly copy-pasting every string verbatim. Polish or replace reference text with appropriate, contextually rich copy suitable for presentation mockups and product demos.
 
 ## UI design best practices (for Remotion stills)
