@@ -351,7 +351,7 @@ When the user sends more than one screenshot that all belong to the same page (s
 ## Per-screen build rules
 
 1. **Strip chrome.** Never code status bars, home indicators, browser tab/address bars, OS nav — only the app/website content itself.
-2. **Canvas size** = screenshot aspect ratio minus chrome (not a fixed default). For mobile UI, use `786 × 1704` (2x Retina HD) or `393 × 852` for standard 1x. For desktop web UI, use `1920 × 1080` (Full HD 16:9).
+2. **Canvas size & clipping prevention:** Canvas size = screenshot aspect ratio minus chrome (not a fixed default). For mobile UI, use `786 × 1704` (2x Retina HD) or `393 × 852` for standard 1x. For desktop web UI, use `1920 × 1080` (Full HD 16:9). **For tall scrollable web pages**, measure the full document height (`scrollHeight` via DevTools MCP or sum of section heights) and set the `<Composition>` `height` in `src/Root.tsx` to fit all content cleanly without clipping footers or bottom sections.
 3. **Fidelity: high.** Match colors, spacing, type scale, and layout hierarchy closely. Treat the screenshot as the spec, not a rough guide.
 4. **Fonts:** identify the closest Google Font, load via `@remotion/google-fonts`.
 5. **Icons:** swap to the closest Lucide or Heroicons equivalent.
