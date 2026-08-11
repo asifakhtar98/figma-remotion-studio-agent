@@ -31,13 +31,18 @@ function resolveValue(raw) {
   throw new Error(`Cannot resolve value: ${raw}`);
 }
 
-// 2. Extract import paths: { ComponentName → relative import path from src/ }
+// 2. Extract import paths: { LocalName → { importPath, exportName } }
 const importMap = new Map();
-// Handles multi-name imports too, e.g. `import {FlowSequence, FLOW_DURATION} from './x'`.
+// Handles multi-name imports & alias imports, e.g. `import {MarketingPosterScreen as VhimsMarketingPosterScreen} from './x'`.
 for (const match of rootSource.matchAll(/import\s*\{([^}]+)\}\s*from\s*'\.\/(.+?)'/g)) {
+  const importPath = match[2];
   for (const rawName of match[1].split(',')) {
-    const name = rawName.replace(/^\s*type\s+/, '').split(/\s+as\s+/).pop().trim();
-    if (name) importMap.set(name, match[2]);
+    const clean = rawName.replace(/^\s*type\s+/, '').trim();
+    if (!clean) continue;
+    const parts = clean.split(/\s+as\s+/);
+    const exportName = parts[0].trim();
+    const localName = (parts[1] || parts[0]).trim();
+    importMap.set(localName, { importPath, exportName });
   }
 }
 
@@ -63,8 +68,8 @@ for (const block of rootSource.matchAll(compositionRegex)) {
   if (!id) continue;
 
   const componentName = props.component;
-  const importPath = importMap.get(componentName);
-  if (!importPath) {
+  const importInfo = importMap.get(componentName);
+  if (!importInfo) {
     console.warn(`Warning: no import found for component "${componentName}", skipping`);
     continue;
   }
@@ -81,8 +86,8 @@ for (const block of rootSource.matchAll(compositionRegex)) {
 
   compositions.push({
     id,
-    componentName,
-    importPath: `@src/${importPath}`,
+    exportName: importInfo.exportName,
+    importPath: `@src/${importInfo.importPath}`,
     width: resolveValue(props.width),
     height: resolveValue(props.height),
     durationInFrames: resolveValue(props.durationInFrames),
@@ -96,7 +101,7 @@ for (const block of rootSource.matchAll(compositionRegex)) {
 const entries = compositions.map((c) => {
   return `  {
     id: '${c.id}',
-    component: React.lazy(() => import('${c.importPath}').then(m => ({ default: m.${c.componentName} }))),
+    component: React.lazy(() => import('${c.importPath}').then(m => ({ default: m.${c.exportName} }))),
     width: ${c.width},
     height: ${c.height},
     durationInFrames: ${c.durationInFrames},

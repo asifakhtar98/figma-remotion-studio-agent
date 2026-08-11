@@ -54,7 +54,7 @@ export const compositions: CompositionEntry[] = [
   },
   {
     id: 'vhims-04-MarketingPoster',
-    component: React.lazy(() => import('@src/projects/vhims/src/screens/MarketingPosterScreen').then(m => ({ default: m.VhimsMarketingPosterScreen }))),
+    component: React.lazy(() => import('@src/projects/vhims/src/screens/MarketingPosterScreen').then(m => ({ default: m.MarketingPosterScreen }))),
     width: 1080,
     height: 1080,
     durationInFrames: 1,
