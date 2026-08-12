@@ -1,6 +1,6 @@
 import type {FC} from 'react';
 import {AbsoluteFill, Img} from 'remotion';
-import {loadFont} from '@remotion/google-fonts/Poppins';
+import {loadFont} from '@remotion/google-fonts/Inter';
 import {
   Search,
   LayoutGrid,
@@ -17,142 +17,122 @@ import {
 import {WhatsevrLogo} from '../components/WhatsevrLogo';
 import {BottomNavBar} from '../components/BottomNavBar';
 
-const {fontFamily} = loadFont();
+const {fontFamily} = loadFont('normal', {
+  weights: ['400', '500', '600', '700', '800'],
+});
 
 const tabs = ['Offers', 'Posts', 'Memories', 'Flicks', 'Wtv'];
 
-const VIDEO_1_THUMB =
-  'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=921&h=550&fit=crop&q=80';
-const VIDEO_1_AVATAR =
-  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80';
-
-const VIDEO_2_THUMB =
-  'https://images.unsplash.com/photo-1484406566174-9da000fda645?w=921&h=550&fit=crop&q=80';
-const VIDEO_2_AVATAR =
-  'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&q=80';
+const videoPosts = [
+  {
+    id: '1',
+    author: 'Gaurav Gogoi',
+    subtitle: 'Nasiruddin Ahmed · 07:53 AM 20 Dec 2025',
+    thumb: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=921&h=550&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&q=80',
+    likes: 54,
+    comments: 12,
+  },
+  {
+    id: '2',
+    author: 'Mayuresh Hendre',
+    subtitle: 'Video Editing: 1 Minute Nature Documentary · 01:34 PM 05 Jul 2025',
+    thumb: 'https://images.unsplash.com/photo-1484406566174-9da000fda645?w=921&h=550&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&h=120&fit=crop&q=80',
+    likes: 128,
+    comments: 24,
+  },
+  {
+    id: '3',
+    author: 'Kavya Reddy',
+    subtitle: '10 Min Morning Yoga & Core Stretch · 08:00 AM 12 Aug 2026',
+    thumb: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=921&h=550&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&h=120&fit=crop&q=80',
+    likes: 240,
+    comments: 45,
+  },
+];
 
 export const ExploreWtvScreen: FC = () => {
   return (
-    <AbsoluteFill style={{fontFamily, backgroundColor: '#ffffff'}} className="flex flex-col">
-
+    <AbsoluteFill
+      style={{fontFamily, backgroundColor: '#ffffff'}}
+      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900"
+    >
       {/* ── Search Header Bar ── */}
-      <div className="flex items-center gap-3 px-6 pt-6 pb-4 bg-white">
-        <WhatsevrLogo size={42} />
-        <div className="flex flex-1 items-center justify-between gap-3 rounded-full border border-gray-200 bg-gray-50 px-5 py-3 shadow-sm">
-          <span className="text-lg text-gray-400 font-normal">Explore Whatsevr...</span>
-          <Search size={22} className="text-gray-400" />
+      <div className="flex items-center gap-4 px-7 pt-10 pb-4 bg-white border-b border-slate-100">
+        <WhatsevrLogo size={48} ringed />
+        <div className="flex flex-1 items-center justify-between gap-3 rounded-full border border-slate-200 bg-slate-50 px-5 py-3.5 shadow-2xs">
+          <span className="text-lg text-slate-400 font-medium">Explore Wtv Video Content...</span>
+          <Search size={22} className="text-slate-400" />
         </div>
       </div>
 
       {/* ── Sub Navigation Tabs ── */}
-      <div className="flex items-center gap-7 border-b border-gray-200 px-6 pb-1 bg-white">
+      <div className="flex items-center gap-8 border-b border-slate-200/90 px-7 pt-3 bg-white overflow-x-auto">
         {tabs.map((tab) => {
           const isActive = tab === 'Wtv';
           return (
-            <div key={tab} className="relative pb-3 cursor-pointer">
+            <div key={tab} className="relative pb-3.5 cursor-pointer">
               <span
                 className={
                   isActive
-                    ? 'text-lg font-bold text-gray-900'
-                    : 'text-lg text-gray-400 font-medium'
+                    ? 'text-xl font-extrabold text-slate-900'
+                    : 'text-xl text-slate-400 font-semibold hover:text-slate-700'
                 }
               >
                 {tab}
               </span>
               {isActive && (
-                <div className="absolute bottom-0 left-0 right-0 h-1 rounded-full bg-[#2196F3]" />
+                <div className="absolute bottom-0 left-0 right-0 h-1 rounded-full bg-sky-500 shadow-xs" />
               )}
             </div>
           );
         })}
       </div>
 
-      {/* ── Video Feed Content ── */}
-      <div className="flex flex-1 flex-col gap-6 overflow-hidden bg-white py-2">
-
-        {/* Video Card 1 */}
-        <div className="flex flex-col border-b border-gray-100 pb-4">
-          <div className="relative w-full flex items-center justify-center cursor-pointer" style={{height: 480}}>
-            <Img src={VIDEO_1_THUMB} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
-            {/* Play Button Overlay */}
-            <div className="absolute flex items-center justify-center w-16 h-16 rounded-full bg-black/50 text-white backdrop-blur-sm">
-              <Play size={32} fill="white" className="ml-1" />
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4 px-6 pt-4 pb-2">
-            <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
-              <Img src={VIDEO_1_AVATAR} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <h3 className="text-lg font-bold text-gray-900 leading-snug">Gaurav Gogoi</h3>
-              <p className="text-sm text-gray-400 mt-0.5">Nasiruddin Ahmed · 07:53 AM 20 Dec 2025</p>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between px-6 py-1">
-            <div className="flex items-center gap-6 text-gray-800">
-              <div className="flex items-center gap-1.5 cursor-pointer">
-                <Heart size={26} />
-                <span className="text-base font-bold">5</span>
+      {/* ── Video Feed Container (Expanded) ── */}
+      <div className="flex flex-1 flex-col gap-6 overflow-y-auto bg-slate-50 p-4">
+        {videoPosts.map((post) => (
+          <div key={post.id} className="flex flex-col rounded-3xl bg-white border border-slate-200/90 overflow-hidden shadow-sm">
+            <div className="relative w-full aspect-[16/9] overflow-hidden bg-slate-100 cursor-pointer group">
+              <Img src={post.thumb} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                <div className="w-20 h-20 rounded-full bg-sky-500 text-white backdrop-blur-md flex items-center justify-center shadow-xl">
+                  <Play size={36} fill="white" className="ml-1.5" />
+                </div>
               </div>
-              <div className="flex items-center gap-1.5 cursor-pointer">
-                <MessageCircle size={26} />
-                <span className="text-base font-bold">1</span>
+            </div>
+
+            <div className="flex items-start gap-4 p-5">
+              <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 border border-slate-200 shadow-2xs">
+                <Img src={post.avatar} className="w-full h-full object-cover" />
               </div>
-              <Send size={24} className="cursor-pointer" />
-            </div>
-            <div className="flex items-center gap-4 text-gray-800">
-              <Bookmark size={24} className="cursor-pointer" />
-              <MoreVertical size={24} className="cursor-pointer" />
-            </div>
-          </div>
-        </div>
-
-        {/* Video Card 2 */}
-        <div className="flex flex-col border-b border-gray-100 pb-4">
-          <div className="relative w-full flex items-center justify-center cursor-pointer" style={{height: 480}}>
-            <Img src={VIDEO_2_THUMB} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
-            {/* Play Button Overlay */}
-            <div className="absolute flex items-center justify-center w-16 h-16 rounded-full bg-black/50 text-white backdrop-blur-sm">
-              <Play size={32} fill="white" className="ml-1" />
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4 px-6 pt-4 pb-2">
-            <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
-              <Img src={VIDEO_2_AVATAR} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <h3 className="text-lg font-bold text-gray-900 leading-snug">
-                Video Editing: 1 Minute Nature Documentary
-              </h3>
-              <p className="text-sm text-gray-400 mt-0.5">Mayuresh Hendre · 01:34 PM 05 Jul 2025</p>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between px-6 py-1">
-            <div className="flex items-center gap-6 text-gray-800">
-              <div className="flex items-center gap-1.5 cursor-pointer">
-                <Heart size={26} />
-                <span className="text-base font-bold">33</span>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-lg font-bold text-slate-900 leading-snug">{post.author}</h3>
+                <p className="text-xs text-slate-400 font-medium mt-1">{post.subtitle}</p>
               </div>
-              <div className="flex items-center gap-1.5 cursor-pointer">
-                <MessageCircle size={26} />
-                <span className="text-base font-bold">6</span>
-              </div>
-              <Send size={24} className="cursor-pointer" />
+              <MoreVertical size={20} className="text-slate-400" />
             </div>
-            <div className="flex items-center gap-4 text-gray-800">
-              <Bookmark size={24} className="cursor-pointer" />
-              <MoreVertical size={24} className="cursor-pointer" />
+
+            <div className="flex items-center justify-between px-6 py-3 border-t border-slate-100 bg-slate-50/50">
+              <div className="flex items-center gap-6 text-slate-700">
+                <div className="flex items-center gap-2 font-bold text-sm cursor-pointer hover:text-rose-500">
+                  <Heart size={22} className="text-rose-500" />
+                  <span>{post.likes}</span>
+                </div>
+                <div className="flex items-center gap-2 font-bold text-sm cursor-pointer hover:text-sky-500">
+                  <MessageCircle size={22} className="text-sky-500" />
+                  <span>{post.comments}</span>
+                </div>
+                <Send size={20} className="cursor-pointer hover:text-sky-500" />
+              </div>
+              <Bookmark size={20} className="text-slate-400 cursor-pointer hover:text-slate-800" />
             </div>
           </div>
-        </div>
-
+        ))}
       </div>
 
-      {/* ── Bottom Navigation Bar ── */}
       <BottomNavBar
         items={[
           {icon: <LayoutGrid size={24} />},

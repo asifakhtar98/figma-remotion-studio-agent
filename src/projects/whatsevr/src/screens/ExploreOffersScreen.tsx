@@ -1,6 +1,6 @@
 import type {FC} from 'react';
 import {AbsoluteFill, Img} from 'remotion';
-import {loadFont} from '@remotion/google-fonts/Poppins';
+import {loadFont} from '@remotion/google-fonts/Inter';
 import {
   Search,
   LayoutGrid,
@@ -12,115 +12,142 @@ import {
   Send,
   Bookmark,
   MoreVertical,
+  Sparkles,
+  CheckCircle2,
 } from 'lucide-react';
 import {WhatsevrLogo} from '../components/WhatsevrLogo';
 import {BottomNavBar} from '../components/BottomNavBar';
 
-const {fontFamily} = loadFont();
+const {fontFamily} = loadFont('normal', {
+  weights: ['400', '500', '600', '700', '800'],
+});
 
 const tabs = ['Explore', 'Offers', 'Posts', 'Memories', 'Flicks', 'Wtv'];
 
-const MODEL_IMAGE_URL =
-  'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=921&h=900&fit=crop&q=80';
-const SECOND_POST_IMAGE =
-  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=921&h=500&fit=crop&q=80';
+const offerPosts = [
+  {
+    id: '1',
+    author: 'ADITYA DEY',
+    avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=120&h=120&fit=crop&q=80',
+    banner: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=921&h=900&fit=crop&q=80',
+    title: 'Model and Grooming Mentor',
+    caption: 'Looking for mentorship and 1:1 creative collaboration in Assam, Guwahati.',
+    time: '06 Oct, 2025 • 05:01 AM',
+    likes: 124,
+    comments: 18,
+  },
+  {
+    id: '2',
+    author: 'KAVYA REDDY',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&h=120&fit=crop&q=80',
+    banner: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=921&h=700&fit=crop&q=80',
+    title: 'Yoga Instructor & Mindset Coach',
+    caption: 'Join 1:1 morning mindfulness and posture correction sessions live.',
+    time: '07 Oct, 2025 • 08:30 AM',
+    likes: 256,
+    comments: 42,
+  },
+  {
+    id: '3',
+    author: 'RIYA BANERJEE',
+    avatar: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=120&h=120&fit=crop&q=80',
+    banner: 'https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=921&h=700&fit=crop&q=80',
+    title: 'Classical Dance & Performing Artist',
+    caption: 'Offering direct 1:1 choreography reviews and stage performance coaching.',
+    time: '08 Oct, 2025 • 06:15 PM',
+    likes: 310,
+    comments: 59,
+  },
+];
 
 export const ExploreOffersScreen: FC = () => {
   return (
-    <AbsoluteFill style={{fontFamily, backgroundColor: '#ffffff'}} className="flex flex-col">
-
+    <AbsoluteFill
+      style={{fontFamily, backgroundColor: '#ffffff'}}
+      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900"
+    >
       {/* ── Search Header Bar ── */}
-      <div className="flex items-center gap-3 px-6 pt-6 pb-4 bg-white">
-        <WhatsevrLogo size={42} />
-        <div className="flex flex-1 items-center justify-between gap-3 rounded-full border border-gray-200 bg-gray-50 px-5 py-3 shadow-sm">
-          <span className="text-lg text-gray-400 font-normal">Explore Whatsevr...</span>
-          <Search size={22} className="text-gray-400" />
+      <div className="flex items-center gap-4 px-7 pt-10 pb-4 bg-white border-b border-slate-100">
+        <WhatsevrLogo size={48} ringed />
+        <div className="flex flex-1 items-center justify-between gap-3 rounded-full border border-slate-200 bg-slate-50 px-5 py-3.5 shadow-2xs">
+          <span className="text-lg text-slate-400 font-medium">Explore Offers & Services...</span>
+          <Search size={22} className="text-slate-400" />
         </div>
       </div>
 
       {/* ── Sub Navigation Tabs ── */}
-      <div className="flex items-center gap-7 border-b border-gray-200 px-6 pb-1 bg-white">
+      <div className="flex items-center gap-8 border-b border-slate-200/90 px-7 pt-3 bg-white overflow-x-auto">
         {tabs.map((tab) => {
           const isActive = tab === 'Offers';
           return (
-            <div key={tab} className="relative pb-3 cursor-pointer">
+            <div key={tab} className="relative pb-3.5 cursor-pointer">
               <span
                 className={
                   isActive
-                    ? 'text-lg font-bold text-gray-900'
-                    : 'text-lg text-gray-400 font-medium'
+                    ? 'text-xl font-extrabold text-slate-900'
+                    : 'text-xl text-slate-400 font-semibold hover:text-slate-700'
                 }
               >
                 {tab}
               </span>
               {isActive && (
-                <div className="absolute bottom-0 left-0 right-0 h-1 rounded-full bg-[#2196F3]" />
+                <div className="absolute bottom-0 left-0 right-0 h-1 rounded-full bg-sky-500 shadow-xs" />
               )}
             </div>
           );
         })}
       </div>
 
-      {/* ── Offers Feed Content ── */}
-      <div className="flex flex-1 flex-col overflow-hidden bg-white">
-
-        {/* Post 1 */}
-        <div className="flex flex-col">
-
-          {/* Post Image Container */}
-          <div className="relative w-full" style={{height: 720}}>
-            <Img src={MODEL_IMAGE_URL} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
-            {/* Category Badge on Bottom Right */}
-            <div className="absolute bottom-5 right-5 flex items-center gap-2 px-4 py-2 rounded-full bg-[#2196F3] text-white text-sm font-semibold shadow-md">
-              <WhatsevrLogo size={18} />
-              <span>Model and Grooming Mentor</span>
-            </div>
-          </div>
-
-          {/* Post Caption & Author info */}
-          <div className="flex items-start gap-4 px-6 pt-5 pb-3">
-            <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border border-gray-200 shadow-2xs">
-              <Img
-                src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&q=80"
-                style={{width: '100%', height: '100%', objectFit: 'cover'}}
-              />
-            </div>
-            <div className="flex-1 min-w-0">
-              <h2 className="text-lg font-bold text-gray-900 leading-snug">
-                Looking for a girlfriend in Assam, Guwahati.
-              </h2>
-              <p className="text-sm font-semibold text-gray-700 mt-0.5">ADITYA DEY</p>
-              <p className="text-xs text-gray-400 mt-0.5">06 Oct, 2025 05:01 AM</p>
-            </div>
-          </div>
-
-          {/* Action Row */}
-          <div className="flex items-center justify-between px-6 py-2 border-b border-gray-100">
-            <div className="flex items-center gap-6 text-gray-800">
-              <div className="flex items-center gap-1.5 cursor-pointer">
-                <Heart size={26} />
-                <span className="text-base font-bold">2</span>
+      {/* ── Offers Feed Container (Expanded) ── */}
+      <div className="flex flex-1 flex-col overflow-y-auto bg-slate-50 gap-6 p-4">
+        {offerPosts.map((post) => (
+          <div key={post.id} className="flex flex-col rounded-3xl bg-white border border-slate-200/90 overflow-hidden shadow-sm">
+            {/* Post Media */}
+            <div className="relative w-full aspect-[4/3] overflow-hidden bg-slate-100">
+              <Img src={post.banner} className="w-full h-full object-cover" />
+              <div className="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 rounded-full bg-sky-500 text-white text-xs font-extrabold shadow-md">
+                <Sparkles size={14} />
+                <span>{post.title}</span>
               </div>
-              <div className="flex items-center gap-1.5 cursor-pointer">
-                <MessageCircle size={26} />
-                <span className="text-base font-bold">2</span>
-              </div>
-              <Send size={24} className="cursor-pointer" />
             </div>
 
-            <div className="flex items-center gap-4 text-gray-800">
-              <Bookmark size={24} className="cursor-pointer" />
-              <MoreVertical size={24} className="cursor-pointer" />
+            {/* Author & Header */}
+            <div className="flex items-start gap-4 p-5">
+              <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 border-2 border-sky-500 shadow-2xs">
+                <Img src={post.avatar} className="w-full h-full object-cover" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2">
+                  <span className="text-base font-extrabold text-slate-900">{post.author}</span>
+                  <CheckCircle2 size={16} className="text-sky-500" />
+                </div>
+                <p className="text-sm text-slate-700 font-semibold mt-1 leading-snug">
+                  {post.caption}
+                </p>
+                <p className="text-xs text-slate-400 font-medium mt-1">{post.time}</p>
+              </div>
+              <button className="text-slate-400 hover:text-slate-800">
+                <MoreVertical size={20} />
+              </button>
+            </div>
+
+            {/* Actions */}
+            <div className="flex items-center justify-between px-6 py-3 border-t border-slate-100 bg-slate-50/50">
+              <div className="flex items-center gap-6 text-slate-700">
+                <div className="flex items-center gap-2 font-bold text-sm cursor-pointer hover:text-rose-500">
+                  <Heart size={22} />
+                  <span>{post.likes}</span>
+                </div>
+                <div className="flex items-center gap-2 font-bold text-sm cursor-pointer hover:text-sky-500">
+                  <MessageCircle size={22} />
+                  <span>{post.comments}</span>
+                </div>
+                <Send size={20} className="cursor-pointer hover:text-sky-500" />
+              </div>
+              <Bookmark size={20} className="text-slate-400 cursor-pointer hover:text-slate-800" />
             </div>
           </div>
-
-        </div>
-
-        {/* Post 2 Snippet */}
-        <div className="w-full relative mt-2" style={{height: 300}}>
-          <Img src={SECOND_POST_IMAGE} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
-        </div>
-
+        ))}
       </div>
 
       {/* ── Bottom Navigation Bar ── */}

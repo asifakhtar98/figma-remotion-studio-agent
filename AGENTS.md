@@ -8,6 +8,7 @@ Full spec: `docs/superpowers/specs/2026-08-11-screenshot-to-remotion-design.md`.
 1. **Creating UI** — pixel-faithful still screens, `durationInFrames={1}`. The default.
 2. **Creating user journey flows** — those same screens animated into a story. Only on request; read the **journey-flow-video** skill first.
 3. **Creating marketing posters & launch graphics** — high-fidelity product launch banners and promotional graphics. Read the **marketing-poster-design** skill first.
+4. **Enhancing existing UI** — redesign or polish existing screens while preserving every feature. Only on request; read the **ui-enhancement-redesign** skill first.
 
 **Separation of concerns is non-negotiable:** deleting `src/projects/<project>/src/flow/` must leave every screen and still Composition working. Screens are pure UI — no frames, no animation, no imports from `flow/`. They take plain data props defaulting to the still appearance; the flow computes those values per frame.
 
@@ -35,6 +36,7 @@ This project ships official Remotion skills at `.agents/skills/`.
 | Animate still screens into a user-journey flow video | **journey-flow-video** | `.agents/skills/journey-flow-video/SKILL.md` |
 | Build UI compositions from a website URL | **url-to-remotion-design** | `.agents/skills/url-to-remotion-design/SKILL.md` |
 | Create marketing posters & launch graphics | **marketing-poster-design** | `.agents/skills/marketing-poster-design/SKILL.md` |
+| Enhance or redesign existing UI screens | **ui-enhancement-redesign** | `.agents/skills/ui-enhancement-redesign/SKILL.md` |
 
 Prefer the official skills above over inventing an approach. `remotion-markup/` already covers transitions, timing, sequencing, and DOM measuring.
 
@@ -195,7 +197,7 @@ Key rules:
 ## Reference image handling
 
 - **Save reference images per project:** whenever the user sends a reference image (screenshot, mockup, design reference), save it into `src/projects/<project-name>/src/reference/` for temporary use and per-project visual inspection.
-- **Automatic content expansion for sparse reference images (STRICT):** applies only when a user-provided reference image is present and contains sparse repetitive elements (a list or grid with only 1–2 items). In those cases, expand only naturally repeating items (list rows, grid cards) to fill available space using the reference's existing patterns. Never invent new UI sections, unmentioned components, or unrequested features when building without a reference image, or if the element is absent from the reference.
+- **Automatic content expansion for lists & grids (STRICT):** Always fill content in list and grid views where possible to populate the screen with rich, authentic domain data. Expand naturally repeating items (list rows, grid cards, chat messages, transactions) to fill available viewport space. Never invent new core functionality, unmentioned UI sections, or unrequested features.
 - **Realistic text & content adaptation (STRICT):** do not blindly copy every piece of text verbatim from reference images. Adapt or generate realistic copy (headlines, item titles, descriptions, metrics, usernames) suitable for high-fidelity presentation mockups.
 
 ---

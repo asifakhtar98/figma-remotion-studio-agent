@@ -1,6 +1,6 @@
 import type {FC} from 'react';
 import {AbsoluteFill, Img} from 'remotion';
-import {loadFont} from '@remotion/google-fonts/Poppins';
+import {loadFont} from '@remotion/google-fonts/Inter';
 import {
   ArrowLeft,
   Pencil,
@@ -27,104 +27,130 @@ import {
   User,
 } from 'lucide-react';
 
-const {fontFamily} = loadFont();
+const {fontFamily} = loadFont('normal', {
+  weights: ['400', '500', '600', '700', '800'],
+});
 
 const USER_AVATAR_URL =
   'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=160&h=160&fit=crop&q=80';
 
-// Avatar image placeholder URL for community member
-const COMMUNITY_AVATAR_URL =
-  'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=120&h=120&fit=crop&q=80';
+const communities = [
+  {
+    name: 'Testing Hub',
+    avatar: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=120&h=120&fit=crop&q=80',
+    color: 'border-rose-500',
+  },
+  {
+    name: 'Yoga & Mind',
+    avatar: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=120&h=120&fit=crop&q=80',
+    color: 'border-sky-500',
+  },
+  {
+    name: 'Music Lounge',
+    avatar: 'https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=120&h=120&fit=crop&q=80',
+    color: 'border-amber-500',
+  },
+  {
+    name: 'Design Talk',
+    avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=120&h=120&fit=crop&q=80',
+    color: 'border-emerald-500',
+  },
+];
 
 export const SettingsScreen: FC = () => {
   return (
-    <AbsoluteFill style={{fontFamily, backgroundColor: '#f2f3f5'}} className="flex flex-col overflow-hidden">
-
+    <AbsoluteFill
+      style={{fontFamily, backgroundColor: '#f8fafc'}}
+      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900"
+    >
       {/* ── Top Header ── */}
-      <div className="flex items-center gap-5 px-7 py-6 bg-white border-b border-gray-200">
-        <ArrowLeft size={28} className="text-gray-900 cursor-pointer" />
-        <h1 className="text-2xl font-bold text-gray-900">Settings</h1>
+      <div className="flex items-center gap-5 px-8 pt-10 pb-5 bg-white border-b border-slate-200/90">
+        <button className="p-2.5 rounded-2xl bg-slate-50 border border-slate-200 text-slate-900">
+          <ArrowLeft size={24} />
+        </button>
+        <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">Settings</h1>
       </div>
 
       {/* ── Settings Content Body ── */}
-      <div className="flex flex-col px-7 py-5 gap-5">
+      <div className="flex flex-col px-8 py-6 gap-6 overflow-y-auto bg-slate-50">
 
         {/* User Profile Card */}
-        <div className="flex items-center justify-between p-5 bg-white rounded-3xl border border-gray-200 shadow-sm">
+        <div className="flex items-center justify-between p-6 bg-white rounded-3xl border border-slate-200/90 shadow-sm">
           <div className="flex items-center gap-4">
-            <div className="relative w-16 h-16 rounded-full overflow-hidden border border-gray-200 flex-shrink-0 shadow-2xs">
-              <Img src={USER_AVATAR_URL} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+            <div className="relative w-16 h-16 rounded-full overflow-hidden border border-slate-200 shrink-0 shadow-2xs">
+              <Img src={USER_AVATAR_URL} className="w-full h-full object-cover" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-900">Aryan</h2>
-              <p className="text-base text-gray-500 font-medium">@wtv.aryan675</p>
+              <h2 className="text-xl font-extrabold text-slate-900">Aryan</h2>
+              <p className="text-sm text-slate-500 font-semibold">@wtv.aryan675</p>
             </div>
           </div>
-          <div className="p-3 text-gray-700 hover:bg-gray-100 rounded-full cursor-pointer">
+          <button className="p-3 text-slate-700 hover:bg-slate-100 rounded-full cursor-pointer transition-colors">
             <Pencil size={24} />
-          </div>
+          </button>
         </div>
 
-        {/* Your Communities Section */}
+        {/* Your Communities Section (Expanded) */}
         <div>
-          <h3 className="text-base font-semibold text-gray-700 mb-3 px-1">Your communities</h3>
-          <div className="flex items-center gap-5">
-            {/* Add community button */}
-            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-white border border-gray-300 text-gray-900 cursor-pointer shadow-sm">
-              <UserPlus size={28} />
+          <h3 className="text-xs font-extrabold text-slate-400 uppercase tracking-wider mb-3 px-1">
+            YOUR ACTIVE COMMUNITIES
+          </h3>
+          <div className="flex items-center gap-5 overflow-x-auto pb-1">
+            <div className="flex flex-col items-center gap-1.5 cursor-pointer">
+              <div className="flex items-center justify-center w-16 h-16 rounded-full bg-white border-2 border-dashed border-slate-300 text-slate-700 shadow-2xs hover:border-slate-400">
+                <UserPlus size={26} />
+              </div>
+              <span className="text-xs font-bold text-slate-600">Create</span>
             </div>
 
-            {/* Community card item */}
-            <div className="flex flex-col items-center gap-1.5 cursor-pointer">
-              <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-red-500 p-0.5">
-                <Img
-                  src={COMMUNITY_AVATAR_URL}
-                  style={{width: '100%', height: '100%', borderRadius: '9999px', objectFit: 'cover'}}
-                />
-                <div className="absolute bottom-0 right-0 bg-black text-white p-0.5 rounded-full border border-white">
-                  <User size={10} />
+            {communities.map((c) => (
+              <div key={c.name} className="flex flex-col items-center gap-1.5 cursor-pointer">
+                <div className={`relative w-16 h-16 rounded-full overflow-hidden border-2 ${c.color} p-0.5 shadow-2xs`}>
+                  <Img src={c.avatar} className="w-full h-full rounded-full object-cover" />
                 </div>
+                <span className="text-xs font-bold text-slate-800 truncate max-w-[70px]">{c.name}</span>
               </div>
-              <span className="text-xs font-medium text-gray-800">Hello sir I</span>
-            </div>
+            ))}
           </div>
         </div>
 
         {/* Account Section */}
         <div>
-          <h3 className="text-base font-semibold text-gray-700 mb-3 px-1">Account</h3>
+          <h3 className="text-xs font-extrabold text-slate-400 uppercase tracking-wider mb-3 px-1">
+            ACCOUNT & PREFERENCES
+          </h3>
           <div className="flex flex-col gap-3">
-            <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-gray-200 shadow-sm cursor-pointer">
+            <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200/90 shadow-2xs cursor-pointer">
               <div className="flex items-start gap-4">
-                <div className="mt-0.5 text-gray-900"><Lock size={22} /></div>
+                <div className="mt-0.5 text-slate-900"><Lock size={22} /></div>
                 <div>
-                  <h4 className="text-base font-bold text-gray-900">Public Portfolio</h4>
-                  <p className="text-sm text-gray-500">Grow your business and content creator journey</p>
+                  <h4 className="text-base font-bold text-slate-900">Public Portfolio</h4>
+                  <p className="text-xs text-slate-500 font-medium mt-0.5">Grow your business and content creator journey</p>
                 </div>
               </div>
-              <ChevronRight size={20} className="text-gray-400" />
+              <ChevronRight size={20} className="text-slate-400" />
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-gray-200 shadow-sm cursor-pointer">
+            <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200/90 shadow-2xs cursor-pointer">
               <div className="flex items-start gap-4">
-                <div className="mt-0.5 text-gray-900"><ArrowLeftRight size={22} /></div>
+                <div className="mt-0.5 text-slate-900"><ArrowLeftRight size={22} /></div>
                 <div>
-                  <h4 className="text-base font-bold text-gray-900">Default experience</h4>
-                  <p className="text-sm text-gray-500">Which side of the app opens first</p>
+                  <h4 className="text-base font-bold text-slate-900">Default Experience</h4>
+                  <p className="text-xs text-slate-500 font-medium mt-0.5">Which side of the app opens first</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-base font-medium text-gray-600">YourOnes</span>
-                <ChevronRight size={20} className="text-gray-400" />
+                <span className="text-sm font-bold text-slate-700">YourOnes</span>
+                <ChevronRight size={20} className="text-slate-400" />
               </div>
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-gray-200 shadow-sm cursor-pointer">
+            <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200/90 shadow-2xs cursor-pointer">
               <div className="flex items-start gap-4">
-                <div className="mt-0.5 text-gray-900"><UserCheck size={22} /></div>
+                <div className="mt-0.5 text-slate-900"><UserCheck size={22} /></div>
                 <div>
-                  <h4 className="text-base font-bold text-gray-900">Switch account</h4>
-                  <p className="text-sm text-gray-500">Add another account or change the signed-in one</p>
+                  <h4 className="text-base font-bold text-slate-900">Switch Account</h4>
+                  <p className="text-xs text-slate-500 font-medium mt-0.5">Add another account or change the signed-in one</p>
                 </div>
               </div>
             </div>
@@ -133,171 +159,20 @@ export const SettingsScreen: FC = () => {
 
         {/* Wallet Section */}
         <div>
-          <h3 className="text-base font-semibold text-gray-700 mb-3 px-1">Wallet</h3>
-          <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-gray-200 shadow-sm cursor-pointer">
+          <h3 className="text-xs font-extrabold text-slate-400 uppercase tracking-wider mb-3 px-1">
+            WALLET & BILLING
+          </h3>
+          <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200/90 shadow-2xs cursor-pointer">
             <div className="flex items-start gap-4">
-              <div className="mt-0.5 text-gray-900"><Wallet size={22} /></div>
+              <div className="mt-0.5 text-slate-900"><Wallet size={22} /></div>
               <div>
-                <h4 className="text-base font-bold text-gray-900">Wallet</h4>
-                <p className="text-sm text-gray-500">Balance, top-up and transactions</p>
+                <h4 className="text-base font-bold text-slate-900">Wallet Management</h4>
+                <p className="text-xs text-slate-500 font-medium mt-0.5">Balance, top-up and transactions</p>
               </div>
             </div>
-            <ChevronRight size={20} className="text-gray-400" />
+            <ChevronRight size={20} className="text-slate-400" />
           </div>
         </div>
-
-        {/* Privacy Section */}
-        <div>
-          <h3 className="text-base font-semibold text-gray-700 mb-3 px-1">Privacy</h3>
-          <div className="flex flex-col gap-3">
-            <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-gray-200 shadow-sm cursor-pointer">
-              <div className="flex items-center gap-4">
-                <LogIn size={22} className="text-gray-900" />
-                <h4 className="text-base font-bold text-gray-900">Active Login Sessions</h4>
-              </div>
-              <ChevronRight size={20} className="text-gray-400" />
-            </div>
-
-            <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-gray-200 shadow-sm cursor-pointer">
-              <div className="flex items-start gap-4">
-                <div className="mt-0.5 text-gray-900"><Asterisk size={22} /></div>
-                <div>
-                  <h4 className="text-base font-bold text-gray-900">Change password</h4>
-                  <p className="text-sm text-gray-500">Update the password you sign in with</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-gray-200 shadow-sm cursor-pointer">
-              <div className="flex items-start gap-4">
-                <div className="mt-0.5 text-gray-900"><Smartphone size={22} /></div>
-                <div>
-                  <h4 className="text-base font-bold text-gray-900">Device Permissions</h4>
-                  <p className="text-sm text-gray-500">Camera and microphone, needed to make calls</p>
-                </div>
-              </div>
-              <ChevronRight size={20} className="text-gray-400" />
-            </div>
-          </div>
-        </div>
-
-        {/* Storage / Cache Section */}
-        <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-gray-200 shadow-sm cursor-pointer">
-          <div className="flex items-center gap-4">
-            <HardDrive size={22} className="text-gray-900" />
-            <p className="text-sm text-gray-600 font-medium">
-              Clear all app caches (images, videos, data) - &lt; 0.1 MB
-            </p>
-          </div>
-        </div>
-
-        {/* Activity Alerts Section */}
-        <div>
-          <h3 className="text-base font-semibold text-gray-700 mb-3 px-1">Activity Alerts</h3>
-          <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-gray-200 shadow-sm cursor-pointer">
-            <div className="flex items-center gap-4">
-              <Bell size={22} className="text-gray-900" />
-              <h4 className="text-base font-bold text-gray-900">All Notifications</h4>
-            </div>
-            <ChevronRight size={20} className="text-gray-400" />
-          </div>
-        </div>
-
-        {/* Collaboration Section */}
-        <div>
-          <h3 className="text-base font-semibold text-gray-700 mb-3 px-1">Collaboration</h3>
-          <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-gray-200 shadow-sm cursor-pointer">
-            <div className="flex items-start gap-4">
-              <div className="mt-0.5 text-gray-900"><Briefcase size={22} /></div>
-              <div>
-                <h4 className="text-base font-bold text-gray-900">Promote With Us</h4>
-                <p className="text-sm text-gray-500">Contact us to promote your content or business with whatsevr</p>
-              </div>
-            </div>
-            <ChevronRight size={20} className="text-gray-400" />
-          </div>
-        </div>
-
-        {/* Support Section */}
-        <div>
-          <h3 className="text-base font-semibold text-gray-700 mb-3 px-1">Support</h3>
-          <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-gray-200 shadow-sm cursor-pointer">
-            <div className="flex items-start gap-4">
-              <div className="mt-0.5 text-gray-900"><Star size={22} /></div>
-              <div>
-                <h4 className="text-base font-bold text-gray-900">Rate &amp; Review</h4>
-                <p className="text-sm text-gray-500">Love the app? Let us know!</p>
-              </div>
-            </div>
-            <ChevronRight size={20} className="text-gray-400" />
-          </div>
-        </div>
-
-        {/* Legal Section */}
-        <div>
-          <h3 className="text-base font-semibold text-gray-700 mb-3 px-1">Legal</h3>
-          <div className="flex flex-col divide-y divide-gray-100 bg-white rounded-2xl border border-gray-200 shadow-sm">
-            <div className="flex items-center justify-between p-4 cursor-pointer">
-              <div className="flex items-center gap-4">
-                <FileText size={22} className="text-gray-900" />
-                <h4 className="text-base font-bold text-gray-900">Terms of Use</h4>
-              </div>
-              <ChevronRight size={20} className="text-gray-400" />
-            </div>
-
-            <div className="flex items-center justify-between p-4 cursor-pointer">
-              <div className="flex items-center gap-4">
-                <Shield size={22} className="text-gray-900" />
-                <h4 className="text-base font-bold text-gray-900">Privacy Policy</h4>
-              </div>
-              <ChevronRight size={20} className="text-gray-400" />
-            </div>
-
-            <div className="flex items-center justify-between p-4 cursor-pointer">
-              <div className="flex items-center gap-4">
-                <Users size={22} className="text-gray-900" />
-                <h4 className="text-base font-bold text-gray-900">Community Guidelines</h4>
-              </div>
-              <ChevronRight size={20} className="text-gray-400" />
-            </div>
-
-            <div className="flex items-center justify-between p-4 cursor-pointer">
-              <div className="flex items-center gap-4">
-                <Receipt size={22} className="text-gray-900" />
-                <h4 className="text-base font-bold text-gray-900">Refund &amp; Cancellation</h4>
-              </div>
-              <ChevronRight size={20} className="text-gray-400" />
-            </div>
-
-            <div className="flex items-center justify-between p-4 cursor-pointer">
-              <div className="flex items-center gap-4">
-                <Info size={22} className="text-gray-900" />
-                <h4 className="text-base font-bold text-gray-900">User Guide</h4>
-              </div>
-              <ChevronRight size={20} className="text-gray-400" />
-            </div>
-          </div>
-        </div>
-
-        {/* Account Actions Section */}
-        <div>
-          <h3 className="text-base font-semibold text-gray-700 mb-3 px-1">Account Actions</h3>
-          <div className="flex flex-col gap-3">
-            <div className="flex items-center p-4 bg-white rounded-2xl border border-gray-200 shadow-sm cursor-pointer gap-4">
-              <LogOut size={22} className="text-gray-900" />
-              <h4 className="text-base font-bold text-gray-900">Sign out</h4>
-            </div>
-
-            <div className="flex items-start p-4 bg-white rounded-2xl border border-gray-200 shadow-sm cursor-pointer gap-4">
-              <div className="mt-0.5 text-red-500"><UserX size={22} /></div>
-              <div>
-                <h4 className="text-base font-bold text-gray-900">Delete account</h4>
-                <p className="text-sm text-gray-500">Deactivates your account and signs you out</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </AbsoluteFill>
   );

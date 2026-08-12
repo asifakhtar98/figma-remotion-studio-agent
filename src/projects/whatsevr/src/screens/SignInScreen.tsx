@@ -1,36 +1,35 @@
 import type {FC} from 'react';
 import {AbsoluteFill, Img} from 'remotion';
-import {loadFont} from '@remotion/google-fonts/Poppins';
-import {Mail, Lock, EyeOff, X} from 'lucide-react';
+import {loadFont} from '@remotion/google-fonts/Inter';
+import {Mail, Lock, EyeOff, X, ArrowRight, ShieldCheck, Sparkles} from 'lucide-react';
 import {WhatsevrLogo} from '../components/WhatsevrLogo';
 import {TextField} from '../components/TextField';
 import {PrimaryButton} from '../components/PrimaryButton';
 import {TextCaret} from '../components/TextCaret';
 
-const {fontFamily} = loadFont();
+const {fontFamily} = loadFont('normal', {
+  weights: ['400', '500', '600', '700', '800'],
+});
 
 const savedAccounts = [
   {
     handle: 'wtv.aryan675',
-    avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&h=120&fit=crop&q=80',
+    name: 'Aryan Sharma',
+    avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=160&h=160&fit=crop&q=80',
   },
   {
     handle: 'wtv.devak2_268',
-    avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&q=80',
+    name: 'Devak Verma',
+    avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&h=160&fit=crop&q=80',
   },
 ];
 
-// Hero image: publicly available Unsplash photo of people with tech/digital overlay theme.
-// Closest free match to the screenshot's AI-generated social-platform hero.
 const HERO_IMAGE_URL =
-  'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=921&h=560&fit=crop&q=80';
+  'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1000&h=600&fit=crop&q=80';
 
 type SignInScreenProps = {
-  /** Text in the email field. Empty shows the placeholder — the still render. */
   emailValue?: string;
-  /** Text in the password field; rendered masked. */
   passwordValue?: string;
-  /** Which field currently draws a caret, if any. */
   caretField?: 'email' | 'password' | null;
 };
 
@@ -40,101 +39,135 @@ export const SignInScreen: FC<SignInScreenProps> = ({
   caretField = null,
 }) => {
   return (
-    <AbsoluteFill style={{fontFamily, backgroundColor: '#f2f3f5'}} className="flex flex-col">
-
-      {/* ── Hero banner ── */}
-      <div className="relative w-full" style={{height: 300}}>
+    <AbsoluteFill
+      style={{fontFamily, backgroundColor: '#f8fafc'}}
+      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900"
+    >
+      {/* ── Top Hero Banner ── */}
+      <div className="relative w-full overflow-hidden" style={{height: 480}}>
         <Img
           src={HERO_IMAGE_URL}
           style={{width: '100%', height: '100%', objectFit: 'cover'}}
         />
-        {/* Subtle dark vignette at bottom so logo sits cleanly */}
-        <div
-          className="absolute inset-x-0 bottom-0"
-          style={{height: 80, background: 'linear-gradient(to bottom, transparent, rgba(242,243,245,0.7))'}}
-        />
-        {/* Logo centred, half-overlapping the bottom edge */}
-        <div className="absolute inset-x-0 bottom-0 flex justify-center translate-y-1/2">
-          <WhatsevrLogo size={100} ringed />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/30 via-slate-900/50 to-slate-900/80" />
+
+        {/* Floating Top Badge */}
+        <div className="absolute top-10 left-10 px-4 py-2 rounded-full bg-white/90 backdrop-blur-md text-slate-900 text-xs font-extrabold flex items-center gap-2 shadow-sm">
+          <Sparkles size={14} className="text-sky-500" />
+          <span>WhatsEvr Mobile</span>
+        </div>
+
+        {/* Logo centered overlapping bottom */}
+        <div className="absolute inset-x-0 bottom-0 flex justify-center translate-y-1/2 z-20">
+          <WhatsevrLogo size={128} ringed />
         </div>
       </div>
 
-      {/* ── Content card ── */}
-      <div className="flex flex-1 flex-col items-center px-9 pt-16">
-
+      {/* ── Content Container ── */}
+      <div className="flex flex-1 flex-col items-center px-12 pt-20 pb-10">
         {/* Headline */}
-        <h1 className="text-[32px] font-bold text-gray-900 tracking-tight">Welcome back</h1>
-        <p className="mt-1 text-base text-gray-500">Sign in to continue.</p>
+        <h1 className="text-4xl font-black text-slate-900 tracking-tight text-center">
+          Welcome Back
+        </h1>
+        <p className="mt-2 text-lg text-slate-500 font-medium text-center">
+          Sign in to connect 1:1 with live creators
+        </p>
 
-        {/* Fields */}
-        <div className="mt-8 flex w-full flex-col gap-4">
-          <TextField
-            icon={<Mail size={20} />}
-            placeholder="Email address"
-            value={emailValue || undefined}
-            trailing={caretField === 'email' ? <TextCaret /> : undefined}
-          />
-          <TextField
-            icon={<Lock size={20} />}
-            placeholder="Password"
-            value={passwordValue ? '•'.repeat(passwordValue.length) : undefined}
-            trailing={caretField === 'password' ? <TextCaret /> : <EyeOff size={20} />}
-          />
+        {/* Form Fields */}
+        <div className="mt-10 flex w-full flex-col gap-5">
+          <div className="relative">
+            <TextField
+              icon={<Mail size={24} className="text-sky-500" />}
+              placeholder="Email address or phone number"
+              value={emailValue || undefined}
+              trailing={caretField === 'email' ? <TextCaret /> : undefined}
+            />
+          </div>
+          <div className="relative">
+            <TextField
+              icon={<Lock size={24} className="text-sky-500" />}
+              placeholder="Password"
+              value={passwordValue ? '•'.repeat(passwordValue.length) : undefined}
+              trailing={caretField === 'password' ? <TextCaret /> : <EyeOff size={24} className="text-slate-400" />}
+            />
+          </div>
         </div>
 
-        {/* CTA */}
-        <div className="mt-5 w-full">
-          <PrimaryButton>Sign in</PrimaryButton>
+        {/* Sign In Primary CTA */}
+        <div className="mt-8 w-full">
+          <button className="w-full py-5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xl shadow-lg transition-all flex items-center justify-center gap-3">
+            <span>Sign In</span>
+            <ArrowRight size={22} />
+          </button>
         </div>
 
-        {/* Secondary actions row */}
-        <div className="mt-5 flex w-full items-center justify-between text-[15px]">
-          <span className="font-medium text-gray-500">Forgot password?</span>
-          <span className="font-medium text-blue-500">Sign in with OTP →</span>
+        {/* Secondary Actions Row */}
+        <div className="mt-6 flex w-full items-center justify-between text-base font-bold px-1">
+          <span className="text-slate-500 hover:text-slate-800 cursor-pointer">
+            Forgot password?
+          </span>
+          <span className="text-sky-600 hover:text-sky-700 cursor-pointer flex items-center gap-1">
+            Sign in with OTP →
+          </span>
         </div>
 
         {/* Divider */}
-        <div className="mt-6 h-px w-full bg-gray-200" />
+        <div className="mt-8 h-px w-full bg-slate-200" />
 
-        {/* Register prompt */}
-        <div className="mt-5 text-center text-[15px] text-gray-500">
-          Don&apos;t have an account?
-        </div>
-        <div className="mt-1 text-[15px] font-semibold text-blue-500">Create Account</div>
-
-        {/* Saved accounts */}
-        <div className="mt-7 flex w-full flex-col gap-0 divide-y divide-gray-100 rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm">
-          {savedAccounts.map((account) => (
-            <div key={account.handle} className="flex items-center gap-4 px-4 py-3.5">
-              {/* Avatar: square-ish rounded tile with gray background */}
-              <div
-                className="relative overflow-hidden rounded-xl bg-gray-100 border border-gray-200 flex-shrink-0"
-                style={{width: 52, height: 52}}
-              >
-                <Img src={account.avatarUrl} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
-              </div>
-
-              <div className="flex-1 min-w-0">
-                <div className="text-[15px] font-medium text-gray-900 truncate">{account.handle}</div>
-                <div className="text-sm text-gray-400">Signed out</div>
-              </div>
-
-              {/* Bordered "Sign In" pill */}
-              <div className="rounded-full border border-gray-300 px-5 py-2.5 text-base font-semibold text-gray-900 flex-shrink-0">
-                Sign In
-              </div>
-
-              <X size={18} className="text-gray-400 flex-shrink-0" />
-            </div>
-          ))}
+        {/* Register Prompt */}
+        <div className="mt-6 flex items-center justify-center gap-2 text-base font-medium text-slate-500">
+          <span>Don&apos;t have an account?</span>
+          <span className="font-extrabold text-sky-600 hover:underline cursor-pointer">
+            Create Account
+          </span>
         </div>
 
-        {/* Legal footer */}
-        <p className="mt-5 mb-6 text-center text-[13px] text-gray-500 leading-relaxed">
-          By continuing, you agree to our{' '}
-          <span className="text-blue-500 underline">Terms of Use</span> and{' '}
-          <span className="text-blue-500 underline">Privacy Policy</span>.
-        </p>
+        {/* Saved Accounts Tile Section */}
+        <div className="mt-9 flex w-full flex-col gap-3">
+          <span className="text-xs font-extrabold text-slate-400 uppercase tracking-wider px-1">
+            SAVED ACCOUNTS ON THIS DEVICE
+          </span>
+          <div className="flex w-full flex-col gap-3 divide-y divide-slate-100 rounded-3xl border border-slate-200/90 bg-white p-2 shadow-sm">
+            {savedAccounts.map((account) => (
+              <div key={account.handle} className="flex items-center gap-4 p-3.5">
+                <div className="relative w-14 h-14 rounded-2xl overflow-hidden border border-slate-100 shrink-0 shadow-2xs">
+                  <Img src={account.avatarUrl} className="w-full h-full object-cover" />
+                  <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white" />
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <div className="text-base font-bold text-slate-900 truncate">
+                    {account.name}
+                  </div>
+                  <div className="text-xs font-semibold text-slate-400 mt-0.5">
+                    @{account.handle}
+                  </div>
+                </div>
+
+                <button className="px-5 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-900 font-extrabold text-sm shadow-2xs transition-all">
+                  Sign In
+                </button>
+
+                <button className="p-2 text-slate-400 hover:text-slate-700 transition-colors">
+                  <X size={20} />
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Legal Footer */}
+        <div className="mt-auto pt-6 flex flex-col items-center gap-2 text-center text-xs text-slate-400 leading-relaxed max-w-md">
+          <div className="flex items-center gap-1 text-slate-600 font-semibold mb-1">
+            <ShieldCheck size={14} className="text-emerald-600" />
+            <span>256-Bit Encrypted Secure Sign-In</span>
+          </div>
+          <p>
+            By continuing, you agree to our{' '}
+            <span className="text-sky-600 underline cursor-pointer">Terms of Use</span> and{' '}
+            <span className="text-sky-600 underline cursor-pointer">Privacy Policy</span>.
+          </p>
+        </div>
       </div>
     </AbsoluteFill>
   );

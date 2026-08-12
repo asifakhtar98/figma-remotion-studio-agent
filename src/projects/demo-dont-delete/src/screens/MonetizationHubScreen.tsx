@@ -1,6 +1,6 @@
 import type {FC} from 'react';
 import {AbsoluteFill, Img} from 'remotion';
-import {loadFont} from '@remotion/google-fonts/Inter';
+import {loadFont} from '@remotion/google-fonts/PlusJakartaSans';
 import {
   DollarSign,
   TrendingUp,
@@ -23,13 +23,16 @@ import {
   Settings,
   HelpCircle,
   LogOut,
+  Bell,
+  Search,
+  Plus,
 } from 'lucide-react';
 import {DemoPlatformLogo} from '../components/DemoPlatformLogo';
 import {StatCard} from '../components/StatCard';
 import {RevenueChart} from '../components/RevenueChart';
 
 const {fontFamily} = loadFont('normal', {
-  weights: ['400', '500', '600', '700', '800', '900'],
+  weights: ['400', '500', '600', '700', '800'],
 });
 
 const AVATAR_URL =
@@ -69,6 +72,14 @@ const sponsoredDeals = [
     status: 'Negotiating',
     dueDate: 'Sep 05, 2026',
   },
+  {
+    brand: 'Stripe',
+    logo: '💳',
+    campaign: 'Creator Monetization API Campaign',
+    amount: '$5,000',
+    status: 'Active',
+    dueDate: 'Sep 12, 2026',
+  },
 ];
 
 const digitalProducts = [
@@ -88,32 +99,40 @@ const digitalProducts = [
     thumbnail:
       'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=300&h=200&fit=crop&q=80',
   },
+  {
+    title: 'SaaS Video Production Template Pack',
+    sales: '215 units',
+    revenue: '$6,235',
+    price: '$29',
+    thumbnail:
+      'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=300&h=200&fit=crop&q=80',
+  },
 ];
 
 export const MonetizationHubScreen: FC = () => {
   return (
     <AbsoluteFill
-      style={{fontFamily, backgroundColor: '#0f172a', flexDirection: 'row'}}
+      style={{fontFamily, backgroundColor: '#090d16', flexDirection: 'row'}}
       className="flex flex-row w-[1920px] h-[1080px] overflow-hidden select-none text-slate-100"
     >
       {/* ── Left Sidebar Navigation ── */}
-      <div className="w-[280px] bg-slate-900 border-r border-slate-800 flex flex-col justify-between p-6 shrink-0">
-        <div className="flex flex-col gap-8">
-          <DemoPlatformLogo size={42} darkBg />
+      <div className="w-[300px] bg-slate-900/90 backdrop-blur-xl border-r border-slate-800 flex flex-col justify-between p-7 shrink-0 z-20 shadow-2xl">
+        <div className="flex flex-col gap-9">
+          <DemoPlatformLogo size={44} darkBg />
 
-          <nav className="flex flex-col gap-1.5">
+          <nav className="flex flex-col gap-2">
             {[
-              {icon: <BarChart3 size={20} />, label: 'Dashboard', active: false},
+              {icon: <BarChart3 size={20} />, label: 'Dashboard Overview', active: false},
               {icon: <Layers size={20} />, label: 'Content Studio', active: false},
-              {icon: <DollarSign size={20} />, label: 'Monetization', active: true},
+              {icon: <DollarSign size={20} />, label: 'Monetization Hub', active: true},
               {icon: <Users size={20} />, label: 'Audience & CRM', active: false},
-              {icon: <Settings size={20} />, label: 'Settings', active: false},
+              {icon: <Settings size={20} />, label: 'Suite Settings', active: false},
             ].map((item) => (
               <button
                 key={item.label}
-                className={`flex items-center gap-3 px-4 py-3 rounded-2xl font-extrabold text-sm transition-all ${
+                className={`flex items-center gap-3.5 px-4 py-3.5 rounded-2xl font-extrabold text-sm transition-all ${
                   item.active
-                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30'
+                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/35 border border-indigo-500/30'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
                 }`}
               >
@@ -125,46 +144,56 @@ export const MonetizationHubScreen: FC = () => {
         </div>
 
         {/* Sidebar Footer User Badge */}
-        <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl overflow-hidden border border-indigo-500 shrink-0">
+        <div className="pt-5 border-t border-slate-800/80 flex items-center justify-between">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-11 h-11 rounded-2xl overflow-hidden border-2 border-indigo-500 shrink-0 relative shadow-md">
               <Img src={AVATAR_URL} className="w-full h-full object-cover" />
             </div>
             <div className="flex flex-col min-w-0">
-              <span className="text-xs font-bold text-white truncate">Sarah Jenkins</span>
-              <span className="text-[10px] font-extrabold text-amber-400 flex items-center gap-0.5">
-                <Sparkles size={10} /> PRO CREATOR
+              <span className="text-xs font-black text-white truncate">Sarah Jenkins</span>
+              <span className="text-[10px] font-black text-amber-400 flex items-center gap-1">
+                <Sparkles size={11} /> PRO CREATOR PASS
               </span>
             </div>
           </div>
-          <button className="text-slate-500 hover:text-slate-300">
+          <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl transition-colors">
             <LogOut size={18} />
           </button>
         </div>
       </div>
 
       {/* ── Main Dashboard Body ── */}
-      <div className="flex-1 flex flex-col overflow-y-auto bg-slate-950 p-10 gap-8">
+      <div className="flex-1 flex flex-col overflow-y-auto bg-[#070a12] p-10 gap-8">
         {/* Top Header Controls */}
         <div className="flex items-center justify-between">
           <div>
             <div className="flex items-center gap-2 text-indigo-400 font-extrabold text-xs uppercase tracking-widest">
-              <DollarSign size={14} />
-              <span>REVENUE & MONETIZATION CENTER</span>
+              <DollarSign size={14} className="text-amber-400" />
+              <span>REVENUE & FINANCIAL CONTROL CENTER</span>
             </div>
             <h1 className="text-3xl font-black text-white tracking-tight mt-1">
               Monetization Overview
             </h1>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
+            <div className="relative">
+              <input
+                type="text"
+                readOnly
+                placeholder="Search deals, payouts..."
+                className="w-56 py-2.5 pl-9 pr-4 rounded-2xl bg-slate-900/90 text-xs font-semibold text-slate-200 placeholder:text-slate-500 border border-slate-800 focus:outline-none"
+              />
+              <Search size={14} className="absolute left-3 top-3 text-slate-500" />
+            </div>
+
             <div className="flex items-center gap-1 p-1 bg-slate-900 border border-slate-800 rounded-2xl">
               {['7D', '30D', '90D', '1Y', 'ALL'].map((period, i) => (
                 <button
                   key={period}
                   className={`px-3.5 py-1.5 rounded-xl text-xs font-extrabold transition-all ${
                     i === 1
-                      ? 'bg-indigo-600 text-white shadow-sm'
+                      ? 'bg-indigo-600 text-white shadow-md'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
@@ -173,9 +202,9 @@ export const MonetizationHubScreen: FC = () => {
               ))}
             </div>
 
-            <button className="px-4 py-2.5 rounded-2xl bg-slate-900 border border-slate-800 text-slate-200 font-extrabold text-xs hover:bg-slate-800 flex items-center gap-2">
-              <Download size={14} />
-              <span>Export Tax Report</span>
+            <button className="px-4 py-2.5 rounded-2xl bg-slate-900 border border-slate-800 text-slate-200 font-extrabold text-xs hover:bg-slate-800 flex items-center gap-2 transition-all">
+              <Download size={15} />
+              <span>Export Report</span>
             </button>
           </div>
         </div>
@@ -183,32 +212,36 @@ export const MonetizationHubScreen: FC = () => {
         {/* 4 Large Metric Cards */}
         <div className="grid grid-cols-4 gap-5">
           <StatCard
-            icon={<DollarSign size={24} />}
+            icon={<DollarSign size={24} className="stroke-[2.2]" />}
             label="Total Gross Income"
             value="$34,890.00"
             trend="+24.8%"
             darkTheme
+            subtext="ytd yield"
           />
           <StatCard
-            icon={<CreditCard size={24} />}
+            icon={<CreditCard size={24} className="stroke-[2.2]" />}
             label="AdSense Revenue"
             value="$18,400.00"
             trend="+18.2%"
             darkTheme
+            subtext="video ad sense"
           />
           <StatCard
-            icon={<Award size={24} />}
+            icon={<Award size={24} className="stroke-[2.2]" />}
             label="Brand Sponsorships"
             value="$10,500.00"
             trend="+42.0%"
             darkTheme
+            subtext="direct deals"
           />
           <StatCard
-            icon={<ShoppingBag size={24} />}
+            icon={<ShoppingBag size={24} className="stroke-[2.2]" />}
             label="Digital Store Goods"
             value="$5,990.00"
             trend="+8.4%"
             darkTheme
+            subtext="dsp store"
           />
         </div>
 
@@ -218,31 +251,33 @@ export const MonetizationHubScreen: FC = () => {
         {/* Bottom Split Section: Sponsored Deals + Digital Products */}
         <div className="grid grid-cols-2 gap-8">
           {/* Sponsored Deals Pipeline */}
-          <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 flex flex-col gap-5">
+          <div className="p-7 rounded-[28px] bg-slate-900/90 border border-slate-800 flex flex-col gap-5 shadow-xl">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-base font-black text-white">Active Sponsorship Deals</h3>
+                <h3 className="text-base font-black text-white tracking-tight">
+                  Active Brand Sponsorship Deals
+                </h3>
                 <p className="text-xs text-slate-400 font-medium mt-0.5">
-                  Direct brand partnerships & upcoming deliverables
+                  Direct brand partnerships & upcoming milestone deliverables
                 </p>
               </div>
-              <span className="text-xs font-bold text-indigo-400 hover:underline cursor-pointer">
-                View All Deals →
-              </span>
+              <button className="text-xs font-extrabold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+                View All Deals <ChevronRight size={14} />
+              </button>
             </div>
 
             <div className="flex flex-col gap-3">
               {sponsoredDeals.map((deal) => (
                 <div
                   key={deal.brand}
-                  className="flex items-center justify-between p-4 rounded-2xl bg-slate-800/60 border border-slate-700/60 hover:border-slate-600 transition-all"
+                  className="flex items-center justify-between p-4 rounded-2xl bg-slate-950/70 border border-slate-800/80 hover:border-slate-700 transition-all"
                 >
                   <div className="flex items-center gap-3.5">
-                    <div className="w-10 h-10 rounded-xl bg-slate-700/60 flex items-center justify-center text-xl shrink-0">
+                    <div className="w-11 h-11 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center text-xl shrink-0 shadow-inner">
                       {deal.logo}
                     </div>
                     <div>
-                      <div className="text-sm font-bold text-white">{deal.brand}</div>
+                      <div className="text-sm font-bold text-white tracking-tight">{deal.brand}</div>
                       <div className="text-xs text-slate-400 font-medium">{deal.campaign}</div>
                     </div>
                   </div>
@@ -250,15 +285,15 @@ export const MonetizationHubScreen: FC = () => {
                   <div className="flex items-center gap-6">
                     <div className="text-right">
                       <div className="text-sm font-black text-amber-400">{deal.amount}</div>
-                      <div className="text-[11px] text-slate-400 font-medium">Due {deal.dueDate}</div>
+                      <div className="text-[11px] text-slate-400 font-semibold">Due {deal.dueDate}</div>
                     </div>
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-extrabold border ${
                         deal.status === 'Active'
-                          ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
+                          ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30'
                           : deal.status === 'Review'
-                          ? 'bg-amber-500/10 text-amber-400 border-amber-500/20'
-                          : 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20'
+                          ? 'bg-amber-500/15 text-amber-400 border-amber-500/30'
+                          : 'bg-indigo-500/15 text-indigo-400 border-indigo-500/30'
                       }`}
                     >
                       {deal.status}
@@ -270,16 +305,18 @@ export const MonetizationHubScreen: FC = () => {
           </div>
 
           {/* Digital Products Performance */}
-          <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 flex flex-col gap-5">
+          <div className="p-7 rounded-[28px] bg-slate-900/90 border border-slate-800 flex flex-col gap-5 shadow-xl">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-base font-black text-white">Top Digital Products</h3>
+                <h3 className="text-base font-black text-white tracking-tight">
+                  Top Digital Products & Courses
+                </h3>
                 <p className="text-xs text-slate-400 font-medium mt-0.5">
-                  Direct sales from your DSP Storefront
+                  Direct automated sales from your DSP Storefront
                 </p>
               </div>
-              <button className="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-xs shadow-sm">
-                + Add Product
+              <button className="px-3.5 py-2 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-xs shadow-md shadow-indigo-600/30 flex items-center gap-1.5">
+                <Plus size={14} /> Add Product
               </button>
             </div>
 
@@ -287,14 +324,14 @@ export const MonetizationHubScreen: FC = () => {
               {digitalProducts.map((prod) => (
                 <div
                   key={prod.title}
-                  className="flex items-center justify-between p-4 rounded-2xl bg-slate-800/60 border border-slate-700/60 hover:border-slate-600 transition-all"
+                  className="flex items-center justify-between p-4 rounded-2xl bg-slate-950/70 border border-slate-800/80 hover:border-slate-700 transition-all"
                 >
                   <div className="flex items-center gap-3.5">
                     <div className="w-16 h-12 rounded-xl overflow-hidden bg-slate-800 shrink-0 border border-slate-700">
                       <Img src={prod.thumbnail} className="w-full h-full object-cover" />
                     </div>
                     <div>
-                      <div className="text-sm font-bold text-white">{prod.title}</div>
+                      <div className="text-sm font-bold text-white tracking-tight">{prod.title}</div>
                       <div className="text-xs text-slate-400 font-medium">
                         Price: <strong className="text-slate-200">{prod.price}</strong> • {prod.sales}
                       </div>
@@ -314,3 +351,4 @@ export const MonetizationHubScreen: FC = () => {
     </AbsoluteFill>
   );
 };
+

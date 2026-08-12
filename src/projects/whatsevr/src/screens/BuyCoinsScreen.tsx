@@ -1,6 +1,6 @@
 import type {FC} from 'react';
 import {AbsoluteFill} from 'remotion';
-import {loadFont} from '@remotion/google-fonts/Poppins';
+import {loadFont} from '@remotion/google-fonts/Inter';
 import {
   ArrowLeft,
   Coins,
@@ -10,7 +10,9 @@ import {
   QrCode,
 } from 'lucide-react';
 
-const {fontFamily} = loadFont();
+const {fontFamily} = loadFont('normal', {
+  weights: ['400', '500', '600', '700', '800'],
+});
 
 const coinPackages = [
   {
@@ -44,6 +46,16 @@ const coinPackages = [
     subtitle: '+300 bonus coins included',
   },
   {
+    id: 'ultra',
+    coins: 2000,
+    bonus: 500,
+    totalCoins: 2500,
+    price: '₹1,499',
+    badge: 'ULTRA PACK',
+    popular: false,
+    subtitle: '+500 bonus coins included',
+  },
+  {
     id: 'vip',
     coins: 3000,
     bonus: 1000,
@@ -53,101 +65,110 @@ const coinPackages = [
     popular: false,
     subtitle: '+1,000 bonus coins included',
   },
+  {
+    id: 'creator',
+    coins: 8000,
+    bonus: 2000,
+    totalCoins: 10000,
+    price: '₹4,999',
+    badge: 'CREATOR SUPERPACK',
+    popular: false,
+    subtitle: '+2,000 bonus coins included',
+  },
 ];
 
 export const BuyCoinsScreen: FC = () => {
   return (
-    <AbsoluteFill style={{fontFamily, backgroundColor: '#f2f3f5'}} className="flex flex-col overflow-y-auto">
+    <AbsoluteFill
+      style={{fontFamily, backgroundColor: '#f8fafc'}}
+      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900"
+    >
       {/* ── Header ── */}
-      <div className="flex items-center justify-between px-7 py-6 bg-white border-b border-gray-200">
+      <div className="flex items-center justify-between px-8 pt-10 pb-5 bg-white border-b border-slate-200/90">
         <div className="flex items-center gap-5">
-          <ArrowLeft size={28} className="text-gray-900 cursor-pointer" />
-          <h1 className="text-2xl font-bold text-gray-900">Buy Coins</h1>
+          <button className="p-2.5 rounded-2xl bg-slate-50 border border-slate-200 text-slate-900">
+            <ArrowLeft size={24} />
+          </button>
+          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">Buy Coins</h1>
         </div>
 
-        {/* Current Balance Badge */}
-        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 border border-amber-200 text-amber-700 font-bold text-sm">
+        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 border border-amber-200 text-amber-700 font-extrabold text-sm shadow-2xs">
           <Coins size={18} className="text-amber-500 fill-amber-400" />
           <span>45 Coins</span>
         </div>
       </div>
 
       {/* ── Main Content Area ── */}
-      <div className="flex flex-col px-7 py-6 gap-6">
-
+      <div className="flex flex-col px-8 py-6 gap-6 overflow-y-auto bg-slate-50">
         {/* ── Hero Balance Card ── */}
-        <div className="flex flex-col p-7 bg-[#0088ff] rounded-[32px] text-white shadow-md relative overflow-hidden">
-          <div className="absolute right-[-20px] top-[-20px] w-40 h-40 rounded-full bg-white/10 blur-xl pointer-events-none" />
+        <div className="flex flex-col p-8 bg-slate-900 rounded-[32px] text-white shadow-xl relative overflow-hidden">
+          <div className="absolute right-[-20px] top-[-20px] w-48 h-48 rounded-full bg-sky-500/20 blur-2xl pointer-events-none" />
 
           <div className="flex items-center justify-between z-10">
-            <span className="text-sm font-medium text-blue-100/90 tracking-wide">
-              Whatsevr Coin Store
+            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+              WhatsEvr Coin Store
             </span>
-            <Sparkles size={20} className="text-amber-300 fill-amber-300" />
+            <Sparkles size={20} className="text-amber-400 fill-amber-400" />
           </div>
 
-          <h2 className="text-4xl font-bold mt-1 tracking-tight z-10">
+          <h2 className="text-4xl font-black mt-2 tracking-tight z-10">
             45 Coins Available
           </h2>
 
-          <div className="w-full h-px bg-white/25 my-4 z-10" />
+          <div className="w-full h-px bg-slate-800 my-4 z-10" />
 
-          <p className="text-xs opacity-90 z-10 leading-relaxed">
-            Coins are used for live video calls, virtual gifts, and instant random matching.
+          <p className="text-xs text-slate-400 z-10 leading-relaxed font-medium">
+            Coins are used for live 1:1 video calls, virtual host gifts, and instant random matching.
           </p>
         </div>
 
-        {/* ── Select Coin Package ── */}
+        {/* ── Select Coin Package (Expanded to 6 packages) ── */}
         <div>
-          <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-1">
+          <h3 className="text-xs font-extrabold text-slate-400 uppercase tracking-wider mb-3 px-1">
             SELECT COIN PACKAGE
           </h3>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3.5">
             {coinPackages.map((pkg) => (
               <div
                 key={pkg.id}
                 className={`relative flex items-center justify-between p-5 rounded-3xl bg-white transition-all cursor-pointer ${
                   pkg.popular
-                    ? 'border-2 border-[#0088ff] shadow-md'
-                    : 'border border-gray-200 shadow-sm'
+                    ? 'border-2 border-sky-500 shadow-md'
+                    : 'border border-slate-200/90 shadow-2xs'
                 }`}
               >
-                {/* Popular Badge */}
                 {pkg.badge && (
-                  <div className="absolute -top-3 right-6 px-3.5 py-1 rounded-full bg-[#0088ff] text-white text-xs font-bold shadow-sm">
+                  <div className="absolute -top-3 right-6 px-3.5 py-1 rounded-full bg-sky-500 text-white text-[10px] font-black tracking-wider uppercase shadow-xs">
                     {pkg.badge}
                   </div>
                 )}
 
                 <div className="flex items-center gap-4">
-                  {/* Icon */}
-                  <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-amber-50 border border-amber-200/60 text-amber-500 flex-shrink-0">
+                  <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-amber-50 border border-amber-200 text-amber-500 shrink-0">
                     <Coins size={28} className="fill-amber-400" />
                   </div>
 
-                  {/* Info */}
                   <div>
                     <div className="flex items-baseline gap-2">
-                      <span className="text-xl font-bold text-gray-900">
+                      <span className="text-xl font-extrabold text-slate-900">
                         {pkg.totalCoins} Coins
                       </span>
                       {pkg.bonus > 0 && (
-                        <span className="text-xs font-bold text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded-md">
+                        <span className="text-xs font-extrabold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
                           +{pkg.bonus} Free
                         </span>
                       )}
                     </div>
-                    <p className="text-xs text-gray-400 mt-0.5">{pkg.subtitle}</p>
+                    <p className="text-xs text-slate-400 font-medium mt-0.5">{pkg.subtitle}</p>
                   </div>
                 </div>
 
-                {/* Price button */}
                 <div
-                  className={`px-5 py-2.5 rounded-full font-bold text-base flex-shrink-0 ${
+                  className={`px-5 py-2.5 rounded-full font-extrabold text-sm shrink-0 ${
                     pkg.popular
-                      ? 'bg-[#0088ff] text-white shadow-sm'
-                      : 'bg-gray-100 text-gray-900 border border-gray-200'
+                      ? 'bg-slate-900 text-white shadow-xs'
+                      : 'bg-slate-100 text-slate-900 border border-slate-200'
                   }`}
                 >
                   {pkg.price}
@@ -159,38 +180,30 @@ export const BuyCoinsScreen: FC = () => {
 
         {/* ── Payment Method Section ── */}
         <div>
-          <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-1">
-            PAYMENT METHOD
+          <h3 className="text-xs font-extrabold text-slate-400 uppercase tracking-wider mb-3 px-1">
+            INSTANT PAYMENT METHOD
           </h3>
 
-          <div className="flex items-center justify-between p-4 bg-white rounded-3xl border border-gray-200 shadow-sm">
+          <div className="flex items-center justify-between p-5 bg-white rounded-3xl border border-slate-200/90 shadow-2xs">
             <div className="flex items-center gap-4">
-              <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-blue-100 text-[#0088ff] flex-shrink-0">
+              <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 border border-sky-200 shrink-0">
                 <QrCode size={24} />
               </div>
               <div>
-                <h4 className="text-base font-bold text-gray-900">UPI Instant Pay</h4>
-                <p className="text-xs text-gray-400">Google Pay, PhonePe, Paytm, BHIM</p>
+                <h4 className="text-base font-bold text-slate-900">UPI Instant Pay</h4>
+                <p className="text-xs text-slate-400 font-medium">Google Pay, PhonePe, Paytm, BHIM</p>
               </div>
             </div>
-            <span className="text-xs font-bold text-blue-500 bg-blue-50 px-3 py-1.5 rounded-full">
+            <span className="text-xs font-extrabold text-sky-600 bg-sky-50 px-3 py-1.5 rounded-full border border-sky-200">
               DEFAULT
             </span>
           </div>
         </div>
 
-        {/* ── Security Disclaimer ── */}
-        <div className="flex items-center justify-center gap-2 text-xs font-medium text-gray-400">
+        <div className="flex items-center justify-center gap-2 text-xs font-bold text-slate-400">
           <ShieldCheck size={16} className="text-emerald-500" />
-          <span>100% Encrypted & Secure Payment • Instant Coin Credit</span>
+          <span>100% Encrypted & Secure Payment • Instant Credit</span>
         </div>
-
-        {/* ── Primary Action Button ── */}
-        <div className="flex items-center justify-center gap-2 w-full py-5.5 min-h-[68px] rounded-full bg-[#0088ff] text-white text-xl font-bold shadow-md cursor-pointer hover:bg-blue-600 transition-colors">
-          <Zap size={24} className="text-amber-300 fill-amber-300" />
-          <span>Pay ₹399 for 600 Coins</span>
-        </div>
-
       </div>
     </AbsoluteFill>
   );
