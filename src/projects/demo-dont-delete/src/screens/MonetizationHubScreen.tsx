@@ -93,8 +93,8 @@ const digitalProducts = [
 export const MonetizationHubScreen: FC = () => {
   return (
     <AbsoluteFill
-      style={{fontFamily, backgroundColor: '#0f172a'}}
-      className="flex w-[1920px] h-[1080px] overflow-hidden select-none text-slate-100"
+      style={{fontFamily, backgroundColor: '#0f172a', flexDirection: 'row'}}
+      className="flex flex-row w-[1920px] h-[1080px] overflow-hidden select-none text-slate-100"
     >
       {/* ── Left Sidebar Navigation ── */}
       <div className="w-[280px] bg-slate-900 border-r border-slate-800 flex flex-col justify-between p-6 shrink-0">
