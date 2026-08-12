@@ -1,113 +1,151 @@
 import type {FC} from 'react';
-import {AbsoluteFill} from 'remotion';
+import {AbsoluteFill, Img} from 'remotion';
 import {loadFont} from '@remotion/google-fonts/Inter';
 import {
-  Home,
   Shuffle,
-  LayoutGrid,
-  Headphones,
-  Wallet,
+  ShieldCheck,
+  Video,
+  Mic,
+  Settings,
+  Sparkles,
+  Zap,
+  RotateCcw,
+  Globe,
   User,
 } from 'lucide-react';
+import {WebSidebarNav} from '../components/WebSidebarNav';
 
 const {fontFamily} = loadFont('normal', {
-  weights: ['400', '500', '600', '700'],
+  weights: ['400', '500', '600', '700', '800'],
 });
-
-const navItems = [
-  {id: 'home', label: 'Home', icon: Home, active: false},
-  {id: 'random', label: 'Random', icon: Shuffle, active: true},
-  {id: 'one2one', label: 'One2One', icon: LayoutGrid, active: false},
-  {id: 'calls', label: 'Calls', icon: Headphones, active: false},
-  {id: 'wallet', label: 'Wallet', icon: Wallet, active: false},
-  {id: 'profile', label: 'Profile', icon: User, active: false},
-];
 
 export const WebRandomMatchScreen: FC = () => {
   return (
     <AbsoluteFill
-      style={{fontFamily, backgroundColor: '#ffffff'}}
-      className="flex flex-row w-[1920px] h-[1080px] overflow-hidden select-none text-zinc-900"
+      style={{fontFamily, backgroundColor: '#0f172a'}}
+      className="flex flex-row w-[1920px] h-[1080px] overflow-hidden select-none text-slate-100"
     >
-      {/* ── Left Sidebar Navigation (240px) ── */}
-      <aside className="w-[240px] h-full bg-white border-r border-zinc-200/90 flex flex-col justify-between p-6 z-20 shrink-0">
-        <div className="flex flex-col gap-7">
-          {/* Logo & Brand Header */}
-          <div className="flex flex-col px-1">
-            <div className="flex items-center gap-0">
-              <span className="text-xl font-bold tracking-tight text-zinc-900">
-                Whats
-              </span>
-              <span className="text-xl font-bold tracking-tight text-[#0088ff]">
-                Evr
+      {/* ── Left Sidebar Navigation (260px) ── */}
+      <WebSidebarNav activeTab="random" balance="₹1,000.00" />
+
+      {/* ── Main Viewport Matching Hub ── */}
+      <main className="relative flex-1 h-full bg-slate-950 flex flex-col items-center justify-between p-10 overflow-hidden">
+        {/* Glow Effects */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-10 right-10 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Top Header Bar */}
+        <div className="relative z-10 flex items-center justify-between w-full max-w-[1100px]">
+          <div className="flex flex-col">
+            <div className="flex items-center gap-3">
+              <h1 className="text-3xl font-extrabold text-white tracking-tight">
+                Random Video Chat
+              </h1>
+              <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                2,450 Users Online Now
               </span>
             </div>
-            <span className="text-[10px] font-semibold text-zinc-400 tracking-[0.18em] uppercase mt-1">
-              YOURONES
+            <p className="text-sm text-slate-400 font-medium mt-1">
+              Connect 1:1 with random people worldwide instantly.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-bold text-slate-300">
+              <Globe size={14} className="text-sky-400" />
+              <span>Matching Region: India</span>
+            </div>
+            <button className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">
+              <Settings size={18} />
+            </button>
+          </div>
+        </div>
+
+        {/* Video Preview Camera Stage Container */}
+        <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-[960px] my-auto">
+          <div className="relative w-full aspect-[16/9] max-h-[520px] rounded-3xl bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 shadow-2xl overflow-hidden flex flex-col items-center justify-center p-8">
+            {/* Camera Viewport Placeholder Graphic */}
+            <div className="relative w-full h-full rounded-2xl bg-slate-900/90 border border-slate-800/80 overflow-hidden flex items-center justify-center">
+              {/* User Self Camera Preview Box */}
+              <div className="absolute top-4 right-4 w-44 h-28 rounded-xl bg-slate-950 border border-slate-700/80 overflow-hidden shadow-lg flex flex-col items-center justify-center z-20">
+                <Img
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=150&fit=crop&q=80"
+                  className="w-full h-full object-cover opacity-80"
+                />
+                <span className="absolute bottom-2 left-2 text-[10px] font-bold text-white bg-black/60 px-2 py-0.5 rounded-md backdrop-blur-xs">
+                  You (Rahul)
+                </span>
+              </div>
+
+              {/* Central Radar Pulse Animation Graphic */}
+              <div className="flex flex-col items-center justify-center z-10 text-center p-6">
+                <div className="relative mb-6">
+                  <div className="absolute inset-0 rounded-full bg-sky-500/20 animate-ping" />
+                  <div className="relative w-28 h-28 rounded-full bg-gradient-to-tr from-sky-500 to-indigo-600 border-4 border-slate-950 shadow-xl flex items-center justify-center text-white">
+                    <Shuffle size={44} className="animate-spin-slow" />
+                  </div>
+                </div>
+
+                <h2 className="text-2xl font-extrabold text-white tracking-tight">
+                  Ready to Start Video Chat
+                </h2>
+                <p className="text-sm text-slate-400 font-medium max-w-md mt-2 leading-relaxed">
+                  Sessions shorter than 30 seconds are refunded automatically.
+                </p>
+
+                {/* Free Spin Pill */}
+                <div className="mt-4 px-4 py-1.5 rounded-full bg-sky-500/20 border border-sky-400/30 text-sky-300 text-xs font-extrabold flex items-center gap-1.5 shadow-sm">
+                  <Sparkles size={14} className="text-sky-400" />
+                  <span>You have a free spin — this match costs you nothing.</span>
+                </div>
+              </div>
+
+              {/* Bottom Camera Controls Bar */}
+              <div className="absolute bottom-4 inset-x-4 flex items-center justify-between px-6 py-3 rounded-2xl bg-slate-950/80 backdrop-blur-md border border-slate-800 z-20">
+                <div className="flex items-center gap-3">
+                  <button className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 text-xs font-bold">
+                    <Video size={15} className="text-emerald-400" />
+                    <span>Camera: HD On</span>
+                  </button>
+                  <button className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 text-xs font-bold">
+                    <Mic size={15} className="text-emerald-400" />
+                    <span>Mic: On</span>
+                  </button>
+                </div>
+
+                <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
+                  <ShieldCheck size={15} className="text-emerald-400" />
+                  <span>Safe & Moderated 24/7</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Action Trigger Button */}
+          <div className="mt-8 flex flex-col items-center">
+            <button className="group relative bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-extrabold text-lg tracking-wider uppercase px-12 py-5 rounded-2xl shadow-xl hover:shadow-sky-500/25 transition-all duration-200 cursor-pointer flex items-center gap-3">
+              <Zap size={22} className="fill-white" />
+              <span>START MATCHING NOW</span>
+              <Shuffle size={20} className="group-hover:rotate-180 transition-transform duration-300" />
+            </button>
+            <span className="text-xs text-slate-400 font-medium mt-3">
+              ⚡ Instant connection • Average queue time: &lt; 2 seconds
             </span>
           </div>
-
-          {/* Navigation Items */}
-          <nav className="flex flex-col gap-1">
-            {navItems.map((item) => {
-              const IconComponent = item.icon;
-              return (
-                <div
-                  key={item.id}
-                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-lg cursor-pointer transition-colors ${
-                    item.active
-                      ? 'bg-[#f4f4f5] text-zinc-900 font-semibold'
-                      : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 font-medium'
-                  }`}
-                >
-                  <IconComponent
-                    size={18}
-                    className={item.active ? 'text-zinc-900' : 'text-zinc-500'}
-                    strokeWidth={2}
-                  />
-                  <span className="text-sm tracking-tight">{item.label}</span>
-                </div>
-              );
-            })}
-          </nav>
         </div>
 
-        {/* Sidebar Footer: Loading Balance Pill & Logout */}
-        <div className="flex flex-col gap-2 px-1">
-          <div className="w-full py-2.5 px-4 rounded-xl border border-zinc-200/90 bg-white flex items-center justify-center shadow-2xs">
-            <span className="text-sm font-semibold text-zinc-400">...</span>
+        {/* Bottom Security Footer */}
+        <div className="relative z-10 flex items-center justify-between w-full max-w-[1100px] pt-4 border-t border-slate-900 text-xs font-medium text-slate-500">
+          <div className="flex items-center gap-6">
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck size={14} className="text-emerald-400" /> 100% Verified Community
+            </span>
+            <span className="flex items-center gap-1.5">
+              <RotateCcw size={14} className="text-sky-400" /> 30-Second Instant Refund Policy
+            </span>
           </div>
-          <button className="text-left text-xs font-medium text-zinc-500 hover:text-zinc-800 px-1 mt-1 transition-colors">
-            Log out
-          </button>
-        </div>
-      </aside>
-
-      {/* ── Main Viewport Area ── */}
-      <main className="relative flex-1 h-full bg-white flex flex-col items-center justify-center overflow-hidden">
-        {/* Dot Grid Background Pattern */}
-        <div
-          className="absolute inset-0 pointer-events-none opacity-50"
-          style={{
-            backgroundImage: `radial-gradient(#cbd5e1 1.2px, transparent 1.2px)`,
-            backgroundSize: '24px 24px',
-          }}
-        />
-
-        {/* Centered Action Content */}
-        <div className="relative z-10 flex flex-col items-center text-center max-w-lg px-6 -mt-12">
-          <h1 className="text-3xl font-bold text-zinc-900 tracking-tight">
-            Random video chat
-          </h1>
-          <p className="text-sm text-zinc-500 font-normal mt-2.5 leading-relaxed">
-            Sessions shorter than 30 seconds are refunded automatically.
-          </p>
-          <p className="text-sm text-zinc-500 font-normal mt-1 leading-relaxed">
-            You have a free spin — this match costs you nothing.
-          </p>
-          <button className="mt-7 bg-[#27272a] hover:bg-zinc-900 text-white font-bold text-sm tracking-wider uppercase px-8 py-3.5 rounded-xl shadow-md transition-colors cursor-pointer">
-            START MATCHING
-          </button>
+          <span>WhatsEvr Match Engine v2.4</span>
         </div>
       </main>
     </AbsoluteFill>

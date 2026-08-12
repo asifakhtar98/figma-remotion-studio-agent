@@ -2,297 +2,322 @@ import type {FC} from 'react';
 import {AbsoluteFill} from 'remotion';
 import {loadFont} from '@remotion/google-fonts/Inter';
 import {
-  Home,
-  Shuffle,
-  LayoutGrid,
-  Headphones,
   Wallet,
-  User,
+  Zap,
+  Sparkles,
   ChevronDown,
+  CheckCircle2,
+  ShieldCheck,
+  Tag,
+  ArrowUpRight,
+  Clock,
+  Crown,
+  CreditCard,
+  Plus,
 } from 'lucide-react';
+import {WebSidebarNav} from '../components/WebSidebarNav';
 
 const {fontFamily} = loadFont('normal', {
-  weights: ['400', '500', '600', '700'],
+  weights: ['400', '500', '600', '700', '800'],
 });
 
-const navItems = [
-  {id: 'home', label: 'Home', icon: Home, active: false},
-  {id: 'random', label: 'Random', icon: Shuffle, active: false},
-  {id: 'one2one', label: 'One2One', icon: LayoutGrid, active: false},
-  {id: 'calls', label: 'Calls', icon: Headphones, active: false},
-  {id: 'wallet', label: 'Wallet', icon: Wallet, active: true},
-  {id: 'profile', label: 'Profile', icon: User, active: false},
-];
-
 const packages = [
-  {amount: '₹100', extra: null, pay: 'pay ₹100'},
-  {amount: '₹525', extra: '+5% extra', pay: 'pay ₹500'},
-  {amount: '₹1,100', extra: '+10% extra', pay: 'pay ₹1,000'},
-  {amount: '₹2,240', extra: '+12% extra', pay: 'pay ₹2,000'},
-  {amount: '₹5,750', extra: '+15% extra', pay: 'pay ₹5,000'},
-  {amount: '₹12,000', extra: '+20% extra', pay: 'pay ₹10,000'},
+  {amount: '₹100', extra: null, pay: 'pay ₹100', popular: false},
+  {amount: '₹525', extra: '+5% BONUS', pay: 'pay ₹500', popular: false},
+  {amount: '₹1,100', extra: '+10% BONUS', pay: 'pay ₹1,000', popular: true},
+  {amount: '₹2,240', extra: '+12% BONUS', pay: 'pay ₹2,000', popular: false},
+  {amount: '₹5,750', extra: '+15% BONUS', pay: 'pay ₹5,000', popular: false},
+  {amount: '₹12,000', extra: '+20% BONUS', pay: 'pay ₹10,000', popular: false},
 ];
 
 export const WebWalletScreen: FC = () => {
   return (
     <AbsoluteFill
-      style={{fontFamily, backgroundColor: '#ffffff'}}
-      className="flex flex-row w-[1920px] h-[1080px] overflow-hidden select-none text-zinc-900"
+      style={{fontFamily, backgroundColor: '#f8fafc'}}
+      className="flex flex-row w-[1920px] h-[1080px] overflow-hidden select-none text-slate-900"
     >
-      {/* ── Left Sidebar Navigation (240px) ── */}
-      <aside className="w-[240px] h-full bg-white border-r border-zinc-200/90 flex flex-col justify-between p-6 z-20 shrink-0">
-        <div className="flex flex-col gap-7">
-          {/* Logo & Brand Header */}
-          <div className="flex flex-col px-1">
-            <div className="flex items-center gap-0">
-              <span className="text-xl font-bold tracking-tight text-zinc-900">
-                Whats
-              </span>
-              <span className="text-xl font-bold tracking-tight text-[#0088ff]">
-                Evr
-              </span>
-            </div>
-            <span className="text-[10px] font-semibold text-zinc-400 tracking-[0.18em] uppercase mt-1">
-              YOURONES
-            </span>
-          </div>
-
-          {/* Navigation Items */}
-          <nav className="flex flex-col gap-1">
-            {navItems.map((item) => {
-              const IconComponent = item.icon;
-              return (
-                <div
-                  key={item.id}
-                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-lg cursor-pointer transition-colors ${
-                    item.active
-                      ? 'bg-[#f4f4f5] text-zinc-900 font-semibold'
-                      : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 font-medium'
-                  }`}
-                >
-                  <IconComponent
-                    size={18}
-                    className={item.active ? 'text-zinc-900' : 'text-zinc-500'}
-                    strokeWidth={2}
-                  />
-                  <span className="text-sm tracking-tight">{item.label}</span>
-                </div>
-              );
-            })}
-          </nav>
-        </div>
-
-        {/* Sidebar Footer */}
-        <div className="flex flex-col gap-2 px-1">
-          <div className="w-full py-2.5 px-4 rounded-xl border border-zinc-200/90 bg-white flex items-center justify-center shadow-2xs">
-            <span className="text-sm font-semibold text-zinc-900">₹10,000.00</span>
-          </div>
-          <button className="text-left text-xs font-medium text-zinc-500 hover:text-zinc-800 px-1 mt-1 transition-colors">
-            Log out
-          </button>
-        </div>
-      </aside>
+      {/* ── Left Sidebar Navigation (260px) ── */}
+      <WebSidebarNav activeTab="wallet" balance="₹10,000.00" />
 
       {/* ── Main Viewport Area ── */}
-      <main className="relative flex-1 h-full bg-white flex flex-col overflow-hidden">
-        {/* Dot Grid Background Pattern */}
-        <div
-          className="absolute inset-0 pointer-events-none opacity-50"
-          style={{
-            backgroundImage: `radial-gradient(#cbd5e1 1.2px, transparent 1.2px)`,
-            backgroundSize: '24px 24px',
-          }}
-        />
+      <main className="relative flex-1 h-full bg-slate-50 flex flex-col overflow-hidden">
+        {/* Subtle Background Glow */}
+        <div className="absolute top-0 right-1/3 w-[500px] h-[500px] bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Scrollable Content Container */}
-        <div className="relative z-10 flex flex-col p-10 pl-14 pr-12 overflow-y-auto h-full max-w-[920px]">
-          {/* Section 1: Wallet Balance & Add Money Main Card */}
-          <div className="bg-white border border-zinc-200/90 rounded-2xl p-6 shadow-2xs flex flex-col gap-6">
-            {/* Balance Header */}
-            <div className="flex flex-col pb-6 border-b border-zinc-100">
-              <span className="text-[11px] font-bold text-zinc-400 tracking-wider uppercase">
-                WALLET BALANCE
-              </span>
-              <h1 className="text-3xl font-extrabold text-zinc-900 tracking-tight mt-1">
-                ₹10,000.00
-              </h1>
-              <div className="mt-2.5">
-                <span className="inline-flex items-center px-3 py-1 rounded-full border border-emerald-500/40 text-emerald-600 bg-emerald-50/50 text-xs font-semibold">
-                  3 free random matches
-                </span>
+        <div className="relative z-10 flex flex-col p-10 pl-14 pr-12 overflow-y-auto h-full gap-7 max-w-[1240px]">
+          {/* Header Title */}
+          <div className="flex flex-col">
+            <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+              Wallet & Payment Management
+            </h1>
+            <p className="text-base text-slate-500 font-medium mt-1">
+              Top up credits, manage active match filters, and review transaction history.
+            </p>
+          </div>
+
+          {/* Section 1: Main Balance & Add Money Hero Card */}
+          <div className="bg-white border border-slate-200/90 rounded-3xl p-8 shadow-sm flex flex-col gap-7">
+            {/* Balance Header Banner */}
+            <div className="flex items-center justify-between pb-7 border-b border-slate-100">
+              <div className="flex flex-col">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-extrabold text-slate-400 uppercase tracking-wider">
+                    CURRENT WALLET BALANCE
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 text-xs font-bold border border-emerald-500/20">
+                    Active
+                  </span>
+                </div>
+                <h2 className="text-4xl font-black text-slate-900 tracking-tight mt-1">
+                  ₹10,000.00
+                </h2>
+                <div className="flex items-center gap-2 mt-2">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-emerald-500/30 text-emerald-700 bg-emerald-50 text-xs font-extrabold">
+                    <Sparkles size={13} className="text-emerald-600" />
+                    3 free random matches available
+                  </span>
+                </div>
+              </div>
+
+              {/* Quick Payment Assurance Tag */}
+              <div className="flex items-center gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
+                <ShieldCheck size={28} className="text-sky-500" />
+                <div className="flex flex-col">
+                  <span className="text-xs font-bold text-slate-900">
+                    Instant & Secure Payments
+                  </span>
+                  <span className="text-[11px] text-slate-500 font-medium">
+                    UPI, NetBanking, Credit Cards & Wallets
+                  </span>
+                </div>
               </div>
             </div>
 
-            {/* Add Money Section */}
-            <div className="flex flex-col">
-              <span className="text-[11px] font-bold text-zinc-400 tracking-wider uppercase mb-3">
-                ADD MONEY
-              </span>
-              <div className="grid grid-cols-6 gap-3">
+            {/* Add Money Package Grid */}
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-extrabold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+                  <Zap size={14} className="text-sky-500 fill-sky-500" />
+                  SELECT TOP-UP PACKAGE
+                </span>
+                <span className="text-xs font-bold text-sky-600">
+                  ⚡ Bonus credits added instantly
+                </span>
+              </div>
+
+              <div className="grid grid-cols-6 gap-4 mt-1">
                 {packages.map((pkg, idx) => (
                   <div
                     key={idx}
-                    className="bg-white border border-zinc-200/90 rounded-xl p-3.5 flex flex-col justify-center gap-0.5 cursor-pointer shadow-2xs hover:border-zinc-300 transition-colors"
+                    className={`relative bg-white rounded-2xl p-4 flex flex-col justify-between cursor-pointer transition-all duration-150 ${
+                      pkg.popular
+                        ? 'border-2 border-sky-500 shadow-md bg-sky-50/20'
+                        : 'border border-slate-200/90 shadow-xs hover:border-slate-300 hover:shadow-md'
+                    }`}
                   >
-                    <span className="text-base font-bold text-zinc-900">
-                      {pkg.amount}
-                    </span>
-                    {pkg.extra ? (
-                      <span className="text-[11px] font-semibold text-emerald-600">
-                        {pkg.extra}
+                    {pkg.popular && (
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-sky-500 text-white text-[10px] font-black tracking-wider uppercase shadow-xs">
+                        MOST POPULAR
                       </span>
-                    ) : null}
-                    <span className="text-[11px] text-zinc-400 font-normal">
-                      {pkg.pay}
-                    </span>
+                    )}
+
+                    <div className="flex flex-col">
+                      <span className="text-xl font-extrabold text-slate-900">
+                        {pkg.amount}
+                      </span>
+                      {pkg.extra ? (
+                        <span className="text-xs font-black text-emerald-600 mt-0.5">
+                          {pkg.extra}
+                        </span>
+                      ) : (
+                        <span className="text-xs font-semibold text-slate-400 mt-0.5">
+                          Standard
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="mt-4 pt-2 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-600">
+                      <span>{pkg.pay}</span>
+                      <Plus size={14} className="text-sky-500" />
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Inputs Row: Another Amount & Have a Code */}
-            <div className="grid grid-cols-2 gap-6 pt-2">
-              {/* Another Amount */}
-              <div className="flex flex-col gap-1.5">
-                <span className="text-[11px] font-bold text-zinc-400 tracking-wider uppercase">
-                  ANOTHER AMOUNT
+            {/* Custom Amount & Coupon Inputs Row */}
+            <div className="grid grid-cols-2 gap-6 pt-3 border-t border-slate-100">
+              {/* Custom Amount */}
+              <div className="flex flex-col gap-2">
+                <span className="text-xs font-extrabold text-slate-900 uppercase tracking-wider">
+                  ENTER CUSTOM AMOUNT
                 </span>
                 <div className="flex items-center gap-2">
-                  <input
-                    type="text"
-                    placeholder="Amount in ₹"
-                    className="flex-1 bg-white border border-zinc-200/90 rounded-xl px-3.5 py-2.5 text-sm text-zinc-800 placeholder-zinc-400 outline-none font-normal shadow-2xs"
-                    readOnly
-                  />
-                  <button className="bg-[#27272a] hover:bg-zinc-800 text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow-2xs transition-colors">
-                    Add
+                  <div className="flex-1 bg-slate-50 border border-slate-200/90 rounded-2xl px-4 py-3 flex items-center gap-2">
+                    <span className="text-sm font-bold text-slate-400">₹</span>
+                    <input
+                      type="text"
+                      placeholder="Amount in ₹ (e.g. 500)"
+                      className="w-full bg-transparent text-sm text-slate-800 placeholder-slate-400 outline-none font-bold"
+                      readOnly
+                    />
+                  </div>
+                  <button className="bg-sky-500 hover:bg-sky-600 text-white text-xs font-bold px-6 py-3.5 rounded-2xl shadow-sm transition-all">
+                    Add Money
                   </button>
                 </div>
-                <span className="text-[11px] text-zinc-400 font-normal mt-0.5 leading-relaxed">
-                  ₹50 to ₹50,000. The bigger the top-up, the more extra you get — up to 20%.
+                <span className="text-[11px] text-slate-400 font-medium">
+                  Min ₹50 to Max ₹50,000. Top up larger amounts for up to 20% extra bonus.
                 </span>
               </div>
 
-              {/* Have a code */}
-              <div className="flex flex-col gap-1.5">
-                <span className="text-[11px] font-bold text-zinc-400 tracking-wider uppercase">
-                  HAVE A CODE?
+              {/* Promo Code */}
+              <div className="flex flex-col gap-2">
+                <span className="text-xs font-extrabold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+                  <Tag size={13} className="text-sky-500" />
+                  HAVE A PROMO / GIFT CODE?
                 </span>
                 <div className="flex items-center gap-2">
                   <input
                     type="text"
                     defaultValue="WELCOME10"
-                    className="flex-1 bg-white border border-zinc-200/90 rounded-xl px-3.5 py-2.5 text-sm text-zinc-800 outline-none font-medium shadow-2xs"
+                    className="flex-1 bg-slate-50 border border-slate-200/90 rounded-2xl px-4 py-3 text-sm text-slate-800 font-bold outline-none uppercase tracking-wider"
                     readOnly
                   />
-                  <button className="bg-white border border-zinc-200/90 hover:bg-zinc-50 text-zinc-800 text-xs font-semibold px-4 py-2.5 rounded-xl shadow-2xs transition-colors">
-                    Apply
+                  <button className="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-6 py-3.5 rounded-2xl shadow-sm transition-all">
+                    Apply Code
                   </button>
                 </div>
-                <span className="text-[11px] text-zinc-400 font-normal mt-0.5 leading-relaxed">
-                  Discount codes apply at checkout; gift codes are added straight away.
+                <span className="text-[11px] text-slate-400 font-medium">
+                  Discount codes apply automatically at checkout; gift vouchers credit instantly.
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Section 2: Two Side-by-Side Cards */}
-          <div className="grid grid-cols-2 gap-6 mt-6">
+          {/* Section 2: Two Side-by-Side Status & Subscriptions Cards */}
+          <div className="grid grid-cols-2 gap-6">
             {/* Card 1: Random Match Filters */}
-            <div className="bg-[#f8fafc] border border-zinc-200/90 rounded-2xl p-5 shadow-2xs flex flex-col justify-between gap-3.5">
+            <div className="bg-white border border-slate-200/90 rounded-3xl p-6 shadow-sm flex flex-col justify-between gap-5">
               <div>
-                <span className="text-[11px] font-bold text-zinc-400 tracking-wider uppercase">
-                  RANDOM MATCH FILTERS (1 WEEK)
-                </span>
-                <p className="text-xs text-zinc-500 font-normal mt-1 leading-relaxed">
-                  These decide who random match shows you. They do not change anything else on WhatsEvr.
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-extrabold text-slate-900 uppercase tracking-wider">
+                    RANDOM MATCH FILTERS (1 WEEK)
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-full bg-sky-50 text-sky-600 text-[10px] font-bold">
+                    Active Pass
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500 font-medium mt-1 leading-relaxed">
+                  Configure specific filters for random video matching. Does not affect 1:1 direct calls.
                 </p>
               </div>
 
               {/* Gender filter */}
-              <div className="flex items-center justify-between mt-1">
+              <div className="flex items-center justify-between p-3.5 bg-slate-50 rounded-2xl border border-slate-200/80">
                 <div className="flex flex-col">
-                  <span className="text-xs font-medium text-zinc-800">
-                    Gender filter
+                  <span className="text-xs font-bold text-slate-900">
+                    Gender Filter Pass
                   </span>
-                  <span className="text-[11px] text-zinc-400 font-normal">
-                    ₹500 for a week
+                  <span className="text-[11px] text-slate-500 font-medium">
+                    ₹500 for 7 days
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="bg-white border border-zinc-200/90 rounded-lg px-3 py-1.5 flex items-center gap-3 cursor-pointer">
-                    <span className="text-xs text-zinc-800 font-medium">Female</span>
-                    <ChevronDown size={14} className="text-zinc-400" />
+                  <div className="bg-white border border-slate-200/90 rounded-xl px-3 py-1.5 flex items-center gap-2 cursor-pointer shadow-xs">
+                    <span className="text-xs text-slate-800 font-bold">Female</span>
+                    <ChevronDown size={14} className="text-slate-400" />
                   </div>
-                  <button className="bg-white border border-zinc-200/90 hover:bg-zinc-50 text-zinc-900 text-xs font-semibold px-3.5 py-1.5 rounded-xl shadow-2xs transition-colors">
+                  <button className="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-xs transition-colors">
                     Activate
                   </button>
                 </div>
               </div>
 
               {/* Country filter */}
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between p-3.5 bg-slate-50 rounded-2xl border border-slate-200/80">
                 <div className="flex flex-col">
-                  <span className="text-xs font-medium text-zinc-800">
-                    Country filter
+                  <span className="text-xs font-bold text-slate-900">
+                    Country Filter Pass
                   </span>
-                  <span className="text-[11px] text-zinc-400 font-normal">
-                    ₹200 for a week
+                  <span className="text-[11px] text-slate-500 font-medium">
+                    ₹200 for 7 days
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="bg-white border border-zinc-200/90 rounded-lg px-4 py-1.5">
-                    <span className="text-xs text-zinc-400 font-medium">IN</span>
+                  <div className="bg-white border border-slate-200/90 rounded-xl px-4 py-1.5 shadow-xs">
+                    <span className="text-xs text-slate-800 font-bold">India (IN)</span>
                   </div>
-                  <button className="bg-white border border-zinc-200/90 hover:bg-zinc-50 text-zinc-900 text-xs font-semibold px-3.5 py-1.5 rounded-xl shadow-2xs transition-colors">
+                  <button className="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-xs transition-colors">
                     Activate
                   </button>
                 </div>
               </div>
             </div>
 
-            {/* Card 2: Premium Profile */}
-            <div className="bg-white border border-zinc-200/90 rounded-2xl p-5 shadow-2xs flex flex-col justify-between">
+            {/* Card 2: Premium Profile Subscription */}
+            <div className="bg-gradient-to-br from-slate-900 to-slate-950 text-white border border-slate-800 rounded-3xl p-6 shadow-md flex flex-col justify-between">
               <div>
-                <span className="text-[11px] font-bold text-zinc-400 tracking-wider uppercase">
-                  PREMIUM PROFILE (1 YEAR)
-                </span>
-                <div className="flex items-start justify-between mt-2">
-                  <div className="flex flex-col pr-2">
-                    <h3 className="text-xs font-bold text-zinc-900">
-                      Your badge, everywhere on WhatsEvr
-                    </h3>
-                    <p className="text-xs text-zinc-500 font-normal mt-1 leading-relaxed">
-                      Shows next to your name across SneekPeek and social — profile, chats, comments, live and random. ₹4999/year, cancel anytime.
-                    </p>
-                  </div>
-                  <span className="inline-flex items-center px-3 py-1 rounded-full border border-emerald-500/40 text-emerald-600 bg-emerald-50/50 text-xs font-semibold shrink-0">
-                    active
+                <div className="flex items-center justify-between">
+                  <span className="px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30 text-xs font-extrabold tracking-wider uppercase flex items-center gap-1.5">
+                    <Crown size={13} className="text-amber-400" />
+                    PREMIUM PROFILE (1 YEAR)
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold border border-emerald-500/30">
+                    Active Status
                   </span>
                 </div>
+
+                <div className="mt-4">
+                  <h3 className="text-lg font-extrabold text-white tracking-tight">
+                    VIP Verified Badge Everywhere
+                  </h3>
+                  <p className="text-xs text-slate-300 font-medium mt-1.5 leading-relaxed">
+                    Displays your official VIP status badge next to your name across WhatsEvr — profile, chats, live rooms and random matching.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between pt-4 border-t border-slate-800 text-xs font-bold text-slate-400">
+                <span>₹4,999 / year • Cancel anytime</span>
+                <button className="text-sky-400 hover:text-sky-300 flex items-center gap-1">
+                  Manage Subscription <ArrowUpRight size={14} />
+                </button>
               </div>
             </div>
           </div>
 
-          {/* Section 3: Recent Activity Table */}
-          <div className="bg-[#f8fafc] border border-zinc-200/90 rounded-2xl p-5 shadow-2xs flex flex-col gap-3 mt-6">
-            <span className="text-[11px] font-bold text-zinc-400 tracking-wider uppercase mb-1">
-              RECENT ACTIVITY
-            </span>
-            <div className="flex flex-col gap-2">
-              {/* Header Row */}
-              <div className="flex items-center text-[11px] font-bold text-zinc-400 uppercase tracking-wider pb-2 border-b border-zinc-200/60">
-                <span className="w-1/4">WHEN</span>
-                <span className="w-1/3">WHAT</span>
+          {/* Section 3: Transaction Ledger Table */}
+          <div className="bg-white border border-slate-200/90 rounded-3xl p-6 shadow-sm flex flex-col gap-4">
+            <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+              <span className="text-xs font-extrabold text-slate-900 uppercase tracking-wider flex items-center gap-2">
+                <Clock size={15} className="text-sky-500" />
+                RECENT TRANSACTIONS & BILLING LOG
+              </span>
+              <button className="text-xs font-bold text-sky-600 hover:text-sky-700">
+                Download Statement (PDF)
+              </button>
+            </div>
+
+            <div className="flex flex-col divide-y divide-slate-100">
+              {/* Header */}
+              <div className="flex items-center text-[11px] font-extrabold text-slate-400 uppercase tracking-wider py-2">
+                <span className="w-1/4">DATE & TIME</span>
+                <span className="w-1/3">DESCRIPTION</span>
                 <span className="w-1/5 text-right">AMOUNT</span>
                 <span className="w-1/5 text-right">BALANCE</span>
               </div>
+
               {/* Row 1 */}
-              <div className="flex items-center text-xs py-1">
-                <span className="w-1/4 text-zinc-500 font-normal">Aug 11, 14:08</span>
-                <span className="w-1/3 text-zinc-900 font-medium">Admin Adjust</span>
-                <span className="w-1/5 text-right text-emerald-600 font-semibold">+₹10,000.00</span>
-                <span className="w-1/5 text-right text-zinc-800 font-medium">₹10,000.00</span>
+              <div className="flex items-center text-xs py-3">
+                <span className="w-1/4 text-slate-500 font-semibold">Aug 11, 2026 • 14:08</span>
+                <div className="w-1/3 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <span className="text-slate-900 font-bold">Admin Top-Up Credit</span>
+                </div>
+                <span className="w-1/5 text-right text-emerald-600 font-extrabold">+₹10,000.00</span>
+                <span className="w-1/5 text-right text-slate-900 font-bold">₹10,000.00</span>
               </div>
             </div>
           </div>
