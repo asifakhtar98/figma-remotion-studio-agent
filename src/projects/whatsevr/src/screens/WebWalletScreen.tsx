@@ -14,6 +14,7 @@ import {
   Crown,
   CreditCard,
   Plus,
+  Sliders,
 } from 'lucide-react';
 import {WebSidebarNav} from '../components/WebSidebarNav';
 
@@ -56,7 +57,38 @@ export const WebWalletScreen: FC = () => {
             </p>
           </div>
 
-          {/* Section 1: Main Balance & Add Money Hero Card */}
+          {/* Section 1: Premium Profile Subscription Banner (Top Hero Position) */}
+          <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white border border-slate-800 rounded-3xl p-6 px-8 shadow-md flex items-center justify-between gap-8">
+            <div className="flex-1 flex flex-col">
+              <div className="flex items-center gap-3">
+                <span className="px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30 text-xs font-extrabold tracking-wider uppercase flex items-center gap-1.5">
+                  <Crown size={14} className="text-amber-400" />
+                  PREMIUM PROFILE (1 YEAR)
+                </span>
+                <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold border border-emerald-500/30">
+                  Active Status
+                </span>
+              </div>
+
+              <div className="mt-3">
+                <h3 className="text-xl font-extrabold text-white tracking-tight">
+                  VIP Verified Badge Everywhere
+                </h3>
+                <p className="text-xs text-slate-300 font-medium mt-1 leading-relaxed max-w-[720px]">
+                  Displays your official VIP status badge next to your name across WhatsEvr — profile, chats, live rooms and random matching.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-col items-end justify-between gap-3 border-l border-slate-800/80 pl-8 py-1">
+              <span className="text-xs font-bold text-slate-300">₹4,999 / year • Cancel anytime</span>
+              <button className="bg-sky-500 hover:bg-sky-400 text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-xs transition-colors flex items-center gap-1.5">
+                Manage Subscription <ArrowUpRight size={14} />
+              </button>
+            </div>
+          </div>
+
+          {/* Section 2: Main Balance & Add Money Hero Card */}
           <div className="bg-white border border-slate-200/90 rounded-3xl p-8 shadow-sm flex flex-col gap-7">
             {/* Balance Header Banner */}
             <div className="flex items-center justify-between pb-7 border-b border-slate-100">
@@ -196,26 +228,26 @@ export const WebWalletScreen: FC = () => {
             </div>
           </div>
 
-          {/* Section 2: Two Side-by-Side Status & Subscriptions Cards */}
-          <div className="grid grid-cols-2 gap-6">
-            {/* Card 1: Random Match Filters */}
-            <div className="bg-white border border-slate-200/90 rounded-3xl p-6 shadow-sm flex flex-col justify-between gap-5">
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-extrabold text-slate-900 uppercase tracking-wider">
-                    RANDOM MATCH FILTERS (1 WEEK)
-                  </span>
-                  <span className="px-2.5 py-0.5 rounded-full bg-sky-50 text-sky-600 text-[10px] font-bold">
-                    Active Pass
-                  </span>
-                </div>
-                <p className="text-xs text-slate-500 font-medium mt-1 leading-relaxed">
-                  Configure specific filters for random video matching. Does not affect 1:1 direct calls.
-                </p>
+          {/* Section 3: Random Match Filters Card */}
+          <div className="bg-white border border-slate-200/90 rounded-3xl p-6 shadow-sm flex flex-col gap-5">
+            <div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-extrabold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+                  <Sliders size={14} className="text-sky-500" />
+                  RANDOM MATCH FILTERS (1 WEEK)
+                </span>
+                <span className="px-2.5 py-0.5 rounded-full bg-sky-50 text-sky-600 text-[10px] font-bold">
+                  Active Pass
+                </span>
               </div>
+              <p className="text-xs text-slate-500 font-medium mt-1 leading-relaxed">
+                Configure specific filters for random video matching. Does not affect 1:1 direct calls.
+              </p>
+            </div>
 
+            <div className="grid grid-cols-2 gap-6">
               {/* Gender filter */}
-              <div className="flex items-center justify-between p-3.5 bg-slate-50 rounded-2xl border border-slate-200/80">
+              <div className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200/80">
                 <div className="flex flex-col">
                   <span className="text-xs font-bold text-slate-900">
                     Gender Filter Pass
@@ -236,7 +268,7 @@ export const WebWalletScreen: FC = () => {
               </div>
 
               {/* Country filter */}
-              <div className="flex items-center justify-between p-3.5 bg-slate-50 rounded-2xl border border-slate-200/80">
+              <div className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200/80">
                 <div className="flex flex-col">
                   <span className="text-xs font-bold text-slate-900">
                     Country Filter Pass
@@ -255,40 +287,9 @@ export const WebWalletScreen: FC = () => {
                 </div>
               </div>
             </div>
-
-            {/* Card 2: Premium Profile Subscription */}
-            <div className="bg-gradient-to-br from-slate-900 to-slate-950 text-white border border-slate-800 rounded-3xl p-6 shadow-md flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30 text-xs font-extrabold tracking-wider uppercase flex items-center gap-1.5">
-                    <Crown size={13} className="text-amber-400" />
-                    PREMIUM PROFILE (1 YEAR)
-                  </span>
-                  <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold border border-emerald-500/30">
-                    Active Status
-                  </span>
-                </div>
-
-                <div className="mt-4">
-                  <h3 className="text-lg font-extrabold text-white tracking-tight">
-                    VIP Verified Badge Everywhere
-                  </h3>
-                  <p className="text-xs text-slate-300 font-medium mt-1.5 leading-relaxed">
-                    Displays your official VIP status badge next to your name across WhatsEvr — profile, chats, live rooms and random matching.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between pt-4 border-t border-slate-800 text-xs font-bold text-slate-400">
-                <span>₹4,999 / year • Cancel anytime</span>
-                <button className="text-sky-400 hover:text-sky-300 flex items-center gap-1">
-                  Manage Subscription <ArrowUpRight size={14} />
-                </button>
-              </div>
-            </div>
           </div>
 
-          {/* Section 3: Transaction Ledger Table */}
+          {/* Section 4: Transaction Ledger Table */}
           <div className="bg-white border border-slate-200/90 rounded-3xl p-6 shadow-sm flex flex-col gap-4">
             <div className="flex items-center justify-between pb-2 border-b border-slate-100">
               <span className="text-xs font-extrabold text-slate-900 uppercase tracking-wider flex items-center gap-2">
@@ -326,3 +327,4 @@ export const WebWalletScreen: FC = () => {
     </AbsoluteFill>
   );
 };
+
