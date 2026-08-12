@@ -351,5 +351,35 @@ export const compositions: CompositionEntry[] = [
     fps: 30,
     projectName: 'whatsevr',
     screenName: 'WebWallet'
+  },
+  {
+    id: 'demodontdelete-01-CreatorDashboard',
+    component: React.lazy(() => import('@src/projects/demo-dont-delete/src/screens/CreatorDashboardScreen').then(m => ({ default: m.CreatorDashboardScreen }))),
+    width: 786,
+    height: 1704,
+    durationInFrames: 1,
+    fps: 30,
+    projectName: 'demodontdelete',
+    screenName: 'CreatorDashboard'
+  },
+  {
+    id: 'demodontdelete-02-ContentUpload',
+    component: React.lazy(() => import('@src/projects/demo-dont-delete/src/screens/ContentUploadScreen').then(m => ({ default: m.ContentUploadScreen }))),
+    width: 786,
+    height: 1704,
+    durationInFrames: 1,
+    fps: 30,
+    projectName: 'demodontdelete',
+    screenName: 'ContentUpload'
+  },
+  {
+    id: 'demodontdelete-03-MonetizationHub',
+    component: React.lazy(() => import('@src/projects/demo-dont-delete/src/screens/MonetizationHubScreen').then(m => ({ default: m.MonetizationHubScreen }))),
+    width: 1920,
+    height: 1080,
+    durationInFrames: 1,
+    fps: 30,
+    projectName: 'demodontdelete',
+    screenName: 'MonetizationHub'
   }
 ];

@@ -35,6 +35,10 @@ import {PlatformDashboardScreen} from './projects/vhims/src/screens/PlatformDash
 import {PricingScreen} from './projects/vhims/src/screens/PricingScreen';
 import {HomeScreen} from './projects/vhims/src/screens/HomeScreen';
 import {MarketingPosterScreen as VhimsMarketingPosterScreen} from './projects/vhims/src/screens/MarketingPosterScreen';
+import {CreatorDashboardScreen as DemoCreatorDashboardScreen} from './projects/demo-dont-delete/src/screens/CreatorDashboardScreen';
+import {ContentUploadScreen as DemoContentUploadScreen} from './projects/demo-dont-delete/src/screens/ContentUploadScreen';
+import {MonetizationHubScreen as DemoMonetizationHubScreen} from './projects/demo-dont-delete/src/screens/MonetizationHubScreen';
+
 
 // Each project registers its screens here as <Composition> entries.
 // id="<ProjectName>-<Number>-<ScreenName>", width/height = detected canvas size,
@@ -328,6 +332,30 @@ export const RemotionRoot: FC = () => {
       <Composition
         id="whatsevr-29-WebWallet"
         component={WebWalletScreen}
+        durationInFrames={1}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="demodontdelete-01-CreatorDashboard"
+        component={DemoCreatorDashboardScreen}
+        durationInFrames={1}
+        fps={30}
+        width={786}
+        height={1704}
+      />
+      <Composition
+        id="demodontdelete-02-ContentUpload"
+        component={DemoContentUploadScreen}
+        durationInFrames={1}
+        fps={30}
+        width={786}
+        height={1704}
+      />
+      <Composition
+        id="demodontdelete-03-MonetizationHub"
+        component={DemoMonetizationHubScreen}
         durationInFrames={1}
         fps={30}
         width={1920}
