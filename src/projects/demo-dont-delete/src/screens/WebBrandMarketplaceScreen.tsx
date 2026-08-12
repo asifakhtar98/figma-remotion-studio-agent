@@ -85,13 +85,13 @@ const brandOpportunities = [
 export const WebBrandMarketplaceScreen: FC = () => {
   return (
     <AbsoluteFill
-      style={{fontFamily, backgroundColor: '#090d16', flexDirection: 'row'}}
-      className="flex flex-row w-[1920px] h-[1080px] overflow-hidden select-none text-slate-100"
+      style={{fontFamily, backgroundColor: '#f8fafc', flexDirection: 'row'}}
+      className="flex flex-row w-[1920px] h-[1080px] overflow-hidden select-none text-slate-900"
     >
       {/* ── Left Sidebar Navigation ── */}
-      <div className="w-[300px] bg-slate-900/90 backdrop-blur-xl border-r border-slate-800 flex flex-col justify-between p-7 shrink-0 z-20 shadow-2xl">
+      <div className="w-[300px] bg-white border-r border-slate-200/80 flex flex-col justify-between p-7 shrink-0 z-20 shadow-xs">
         <div className="flex flex-col gap-9">
-          <DemoPlatformLogo size={44} darkBg />
+          <DemoPlatformLogo size={44} />
 
           <nav className="flex flex-col gap-2">
             {[
@@ -106,8 +106,8 @@ export const WebBrandMarketplaceScreen: FC = () => {
                 key={item.label}
                 className={`flex items-center gap-3.5 px-4 py-3.5 rounded-2xl font-extrabold text-sm transition-all ${
                   item.active
-                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/35 border border-indigo-500/30'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                    ? 'bg-indigo-50 text-indigo-600 border border-indigo-100 shadow-2xs'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80'
                 }`}
               >
                 {item.icon}
@@ -118,34 +118,34 @@ export const WebBrandMarketplaceScreen: FC = () => {
         </div>
 
         {/* Sidebar Footer User Badge */}
-        <div className="pt-5 border-t border-slate-800/80 flex items-center justify-between">
+        <div className="pt-5 border-t border-slate-100 flex items-center justify-between">
           <div className="flex items-center gap-3 min-w-0">
-            <div className="w-11 h-11 rounded-2xl overflow-hidden border-2 border-indigo-500 shrink-0 relative shadow-md">
+            <div className="w-11 h-11 rounded-2xl overflow-hidden border-2 border-indigo-600 shrink-0 relative shadow-sm">
               <Img src={AVATAR_URL} className="w-full h-full object-cover" />
             </div>
             <div className="flex flex-col min-w-0">
-              <span className="text-xs font-black text-white truncate">Sarah Jenkins</span>
-              <span className="text-[10px] font-black text-amber-400 flex items-center gap-1">
+              <span className="text-xs font-black text-slate-900 truncate">Sarah Jenkins</span>
+              <span className="text-[10px] font-black text-amber-600 flex items-center gap-1">
                 <Sparkles size={11} /> PRO CREATOR PASS
               </span>
             </div>
           </div>
-          <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl transition-colors">
+          <button className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-colors">
             <LogOut size={18} />
           </button>
         </div>
       </div>
 
       {/* ── Main Dashboard Body ── */}
-      <div className="flex-1 flex flex-col overflow-y-auto bg-[#070a12] p-10 gap-8">
+      <div className="flex-1 flex flex-col overflow-y-auto bg-slate-50 p-10 gap-8">
         {/* Top Header Controls */}
         <div className="flex items-center justify-between">
           <div>
-            <div className="flex items-center gap-2 text-amber-400 font-extrabold text-xs uppercase tracking-widest">
+            <div className="flex items-center gap-2 text-amber-600 font-extrabold text-xs uppercase tracking-widest">
               <Award size={14} />
               <span>SPONSORSHIP & BRAND PARTNERSHIP PORTAL</span>
             </div>
-            <h1 className="text-3xl font-black text-white tracking-tight mt-1">
+            <h1 className="text-3xl font-black text-slate-900 tracking-tight mt-1">
               Brand Deal Marketplace
             </h1>
           </div>
@@ -156,12 +156,12 @@ export const WebBrandMarketplaceScreen: FC = () => {
                 type="text"
                 readOnly
                 placeholder="Search brands, campaigns..."
-                className="w-64 py-2.5 pl-9 pr-4 rounded-2xl bg-slate-900/90 text-xs font-semibold text-slate-200 placeholder:text-slate-500 border border-slate-800 focus:outline-none"
+                className="w-64 py-2.5 pl-9 pr-4 rounded-2xl bg-white text-xs font-semibold text-slate-700 placeholder:text-slate-400 border border-slate-200/80 focus:outline-none shadow-2xs"
               />
-              <Search size={14} className="absolute left-3 top-3 text-slate-500" />
+              <Search size={14} className="absolute left-3 top-3 text-slate-400" />
             </div>
 
-            <button className="px-5 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-xs shadow-lg shadow-indigo-600/30 flex items-center gap-2 transition-all">
+            <button className="px-5 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs shadow-md shadow-indigo-600/25 flex items-center gap-2 transition-all">
               <FileText size={15} />
               <span>Create Media Kit Pitch</span>
             </button>
@@ -175,7 +175,6 @@ export const WebBrandMarketplaceScreen: FC = () => {
             label="Active Deal Pipeline"
             value="$24,500.00"
             trend="+32.4%"
-            darkTheme
             subtext="4 open deals"
           />
           <StatCard
@@ -183,7 +182,6 @@ export const WebBrandMarketplaceScreen: FC = () => {
             label="Avg Deal Rate"
             value="$4,250.00"
             trend="+15.0%"
-            darkTheme
             subtext="per campaign"
           />
           <StatCard
@@ -191,7 +189,6 @@ export const WebBrandMarketplaceScreen: FC = () => {
             label="Pitch Win Rate"
             value="74.2%"
             trend="+8.5%"
-            darkTheme
             subtext="proposal accept"
           />
           <StatCard
@@ -199,25 +196,24 @@ export const WebBrandMarketplaceScreen: FC = () => {
             label="Escrow Protected"
             value="$12,400.00"
             trend="+100%"
-            darkTheme
             subtext="guaranteed payouts"
           />
         </div>
 
         {/* Sponsorship Opportunities Grid */}
-        <div className="p-7 rounded-[28px] bg-slate-900/90 border border-slate-800 flex flex-col gap-6 shadow-xl">
+        <div className="p-7 rounded-[28px] bg-white border border-slate-200/90 flex flex-col gap-6 shadow-xs">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-xl font-black text-white tracking-tight">
+              <h3 className="text-xl font-black text-slate-900 tracking-tight">
                 Curated Brand Sponsorship Opportunities
               </h3>
-              <p className="text-xs text-slate-400 font-medium mt-1">
+              <p className="text-xs text-slate-500 font-medium mt-1">
                 Matched automatically with your creator niche, audience RPM, and content category
               </p>
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="px-3 py-1.5 rounded-xl bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/20 flex items-center gap-1.5">
+              <span className="px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200 flex items-center gap-1.5">
                 <ShieldCheck size={14} /> All Payouts Stripe Escrow Verified
               </span>
             </div>
@@ -227,53 +223,53 @@ export const WebBrandMarketplaceScreen: FC = () => {
             {brandOpportunities.map((opp) => (
               <div
                 key={opp.brand}
-                className="p-6 rounded-[24px] bg-slate-950/70 border border-slate-800 hover:border-slate-700 transition-all flex flex-col justify-between gap-5 relative overflow-hidden group"
+                className="p-6 rounded-[24px] bg-slate-50 border border-slate-200/80 hover:border-slate-300 transition-all flex flex-col justify-between gap-5 relative overflow-hidden group"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3.5">
-                    <div className="w-12 h-12 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center text-2xl shrink-0 shadow-inner">
+                    <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 flex items-center justify-center text-2xl shrink-0 shadow-2xs">
                       {opp.logo}
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <h4 className="text-base font-bold text-white tracking-tight">{opp.brand}</h4>
-                        <span className="px-2 py-0.5 rounded-md bg-slate-800 text-slate-400 text-[10px] font-bold border border-slate-700">
+                        <h4 className="text-base font-bold text-slate-900 tracking-tight">{opp.brand}</h4>
+                        <span className="px-2 py-0.5 rounded-md bg-white text-slate-600 text-[10px] font-bold border border-slate-200">
                           {opp.category}
                         </span>
                       </div>
-                      <h5 className="text-sm font-extrabold text-amber-400 mt-1 tracking-tight">
+                      <h5 className="text-sm font-extrabold text-amber-600 mt-1 tracking-tight">
                         {opp.campaign}
                       </h5>
                     </div>
                   </div>
 
                   <div className="text-right">
-                    <div className="text-xl font-black text-emerald-400">{opp.budget}</div>
+                    <div className="text-xl font-black text-emerald-600">{opp.budget}</div>
                     <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                       Fixed Budget
                     </div>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800/80 flex items-center justify-between text-xs font-semibold text-slate-300">
-                  <span>Deliverables: <strong className="text-white">{opp.deliverables}</strong></span>
-                  <span>Deadline: <strong className="text-slate-400">{opp.deadline}</strong></span>
+                <div className="p-4 rounded-2xl bg-white border border-slate-200/80 flex items-center justify-between text-xs font-semibold text-slate-600 shadow-2xs">
+                  <span>Deliverables: <strong className="text-slate-900">{opp.deliverables}</strong></span>
+                  <span>Deadline: <strong className="text-slate-500">{opp.deadline}</strong></span>
                 </div>
 
                 <div className="flex items-center justify-between pt-1">
                   <span
                     className={`px-3 py-1 rounded-full text-xs font-extrabold border ${
                       opp.status === 'Direct Invite'
-                        ? 'bg-amber-500/15 text-amber-400 border-amber-500/30'
+                        ? 'bg-amber-50 text-amber-700 border-amber-200'
                         : opp.status === 'Contracted'
-                        ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30'
-                        : 'bg-indigo-500/15 text-indigo-400 border-indigo-500/30'
+                        ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                        : 'bg-indigo-50 text-indigo-700 border-indigo-200'
                     }`}
                   >
                     {opp.status}
                   </span>
 
-                  <button className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-xs shadow-md shadow-indigo-600/30 flex items-center gap-1.5 transition-all">
+                  <button className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs shadow-md shadow-indigo-600/25 flex items-center gap-1.5 transition-all">
                     <span>Submit Proposal</span>
                     <Send size={13} />
                   </button>

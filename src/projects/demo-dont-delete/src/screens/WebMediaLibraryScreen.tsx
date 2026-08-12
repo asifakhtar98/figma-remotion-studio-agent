@@ -102,13 +102,13 @@ const mediaAssets = [
 export const WebMediaLibraryScreen: FC = () => {
   return (
     <AbsoluteFill
-      style={{fontFamily, backgroundColor: '#090d16', flexDirection: 'row'}}
-      className="flex flex-row w-[1920px] h-[1080px] overflow-hidden select-none text-slate-100"
+      style={{fontFamily, backgroundColor: '#f8fafc', flexDirection: 'row'}}
+      className="flex flex-row w-[1920px] h-[1080px] overflow-hidden select-none text-slate-900"
     >
       {/* ── Left Sidebar Navigation ── */}
-      <div className="w-[300px] bg-slate-900/90 backdrop-blur-xl border-r border-slate-800 flex flex-col justify-between p-7 shrink-0 z-20 shadow-2xl">
+      <div className="w-[300px] bg-white border-r border-slate-200/80 flex flex-col justify-between p-7 shrink-0 z-20 shadow-xs">
         <div className="flex flex-col gap-9">
-          <DemoPlatformLogo size={44} darkBg />
+          <DemoPlatformLogo size={44} />
 
           <nav className="flex flex-col gap-2">
             {[
@@ -123,8 +123,8 @@ export const WebMediaLibraryScreen: FC = () => {
                 key={item.label}
                 className={`flex items-center gap-3.5 px-4 py-3.5 rounded-2xl font-extrabold text-sm transition-all ${
                   item.active
-                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/35 border border-indigo-500/30'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                    ? 'bg-indigo-50 text-indigo-600 border border-indigo-100 shadow-2xs'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80'
                 }`}
               >
                 {item.icon}
@@ -135,34 +135,34 @@ export const WebMediaLibraryScreen: FC = () => {
         </div>
 
         {/* Sidebar Footer User Badge */}
-        <div className="pt-5 border-t border-slate-800/80 flex items-center justify-between">
+        <div className="pt-5 border-t border-slate-100 flex items-center justify-between">
           <div className="flex items-center gap-3 min-w-0">
-            <div className="w-11 h-11 rounded-2xl overflow-hidden border-2 border-indigo-500 shrink-0 relative shadow-md">
+            <div className="w-11 h-11 rounded-2xl overflow-hidden border-2 border-indigo-600 shrink-0 relative shadow-sm">
               <Img src={AVATAR_URL} className="w-full h-full object-cover" />
             </div>
             <div className="flex flex-col min-w-0">
-              <span className="text-xs font-black text-white truncate">Sarah Jenkins</span>
-              <span className="text-[10px] font-black text-amber-400 flex items-center gap-1">
+              <span className="text-xs font-black text-slate-900 truncate">Sarah Jenkins</span>
+              <span className="text-[10px] font-black text-amber-600 flex items-center gap-1">
                 <Sparkles size={11} /> PRO CREATOR PASS
               </span>
             </div>
           </div>
-          <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl transition-colors">
+          <button className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-colors">
             <LogOut size={18} />
           </button>
         </div>
       </div>
 
       {/* ── Main Dashboard Body ── */}
-      <div className="flex-1 flex flex-col overflow-y-auto bg-[#070a12] p-10 gap-8">
+      <div className="flex-1 flex flex-col overflow-y-auto bg-slate-50 p-10 gap-8">
         {/* Top Header Controls */}
         <div className="flex items-center justify-between">
           <div>
-            <div className="flex items-center gap-2 text-indigo-400 font-extrabold text-xs uppercase tracking-widest">
+            <div className="flex items-center gap-2 text-indigo-600 font-extrabold text-xs uppercase tracking-widest">
               <Folder size={14} />
               <span>CREATOR ASSET & STORAGE HUB</span>
             </div>
-            <h1 className="text-3xl font-black text-white tracking-tight mt-1">
+            <h1 className="text-3xl font-black text-slate-900 tracking-tight mt-1">
               Media & Content Assets
             </h1>
           </div>
@@ -173,12 +173,12 @@ export const WebMediaLibraryScreen: FC = () => {
                 type="text"
                 readOnly
                 placeholder="Search 1,420 files..."
-                className="w-64 py-2.5 pl-9 pr-4 rounded-2xl bg-slate-900/90 text-xs font-semibold text-slate-200 placeholder:text-slate-500 border border-slate-800 focus:outline-none"
+                className="w-64 py-2.5 pl-9 pr-4 rounded-2xl bg-white text-xs font-semibold text-slate-700 placeholder:text-slate-400 border border-slate-200/80 focus:outline-none shadow-2xs"
               />
-              <Search size={14} className="absolute left-3 top-3 text-slate-500" />
+              <Search size={14} className="absolute left-3 top-3 text-slate-400" />
             </div>
 
-            <button className="px-5 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-xs shadow-lg shadow-indigo-600/30 flex items-center gap-2 transition-all">
+            <button className="px-5 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs shadow-md shadow-indigo-600/25 flex items-center gap-2 transition-all">
               <Upload size={15} />
               <span>Upload New Media</span>
             </button>
@@ -192,7 +192,6 @@ export const WebMediaLibraryScreen: FC = () => {
             label="Total Video Assets"
             value="1,420 files"
             trend="+142 files"
-            darkTheme
             subtext="this month"
           />
           <StatCard
@@ -200,7 +199,6 @@ export const WebMediaLibraryScreen: FC = () => {
             label="Cloud Storage Used"
             value="142.4 GB"
             trend="14.2%"
-            darkTheme
             subtext="of 1 TB quota"
           />
           <StatCard
@@ -208,7 +206,6 @@ export const WebMediaLibraryScreen: FC = () => {
             label="AI Auto-Transcribed"
             value="340 hrs"
             trend="98.4%"
-            darkTheme
             subtext="searchable text"
           />
           <StatCard
@@ -216,13 +213,12 @@ export const WebMediaLibraryScreen: FC = () => {
             label="Remotion Stills"
             value="84 compositions"
             trend="+12"
-            darkTheme
             subtext="rendered targets"
           />
         </div>
 
         {/* Media Asset Grid */}
-        <div className="p-7 rounded-[28px] bg-slate-900/90 border border-slate-800 flex flex-col gap-6 shadow-xl">
+        <div className="p-7 rounded-[28px] bg-white border border-slate-200/90 flex flex-col gap-6 shadow-xs">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               {['All Assets (1,420)', '4K Video (340)', 'Remotion Stills (84)', 'Audio Tracks (42)', 'Brand Kits (12)'].map(
@@ -231,8 +227,8 @@ export const WebMediaLibraryScreen: FC = () => {
                     key={tab}
                     className={`px-4 py-2 rounded-xl text-xs font-extrabold transition-all ${
                       idx === 0
-                        ? 'bg-indigo-600 text-white shadow-md'
-                        : 'bg-slate-950/70 text-slate-400 hover:text-white border border-slate-800'
+                        ? 'bg-indigo-600 text-white shadow-2xs'
+                        : 'bg-slate-100/80 text-slate-600 hover:text-slate-900 border border-slate-200/60'
                     }`}
                   >
                     {tab}
@@ -241,8 +237,8 @@ export const WebMediaLibraryScreen: FC = () => {
               )}
             </div>
 
-            <span className="text-xs font-semibold text-slate-400">
-              Storage: <strong className="text-emerald-400">142.4 GB</strong> / 1,000 GB
+            <span className="text-xs font-semibold text-slate-500">
+              Storage: <strong className="text-emerald-600">142.4 GB</strong> / 1,000 GB
             </span>
           </div>
 
@@ -250,11 +246,11 @@ export const WebMediaLibraryScreen: FC = () => {
             {mediaAssets.map((asset) => (
               <div
                 key={asset.title}
-                className="rounded-[24px] bg-slate-950/70 border border-slate-800 overflow-hidden hover:border-slate-700 transition-all flex flex-col justify-between group shadow-md"
+                className="rounded-[24px] bg-slate-50 border border-slate-200/80 overflow-hidden hover:border-slate-300 transition-all flex flex-col justify-between group shadow-2xs"
               >
-                <div className="relative w-full h-44 bg-slate-900">
+                <div className="relative w-full h-44 bg-slate-100">
                   <Img src={asset.thumbnail} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
 
                   <span className="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-black/60 backdrop-blur-md text-white text-[10px] font-extrabold border border-white/10">
                     {asset.resolution}
@@ -266,21 +262,21 @@ export const WebMediaLibraryScreen: FC = () => {
                 </div>
 
                 <div className="p-5 flex flex-col gap-3">
-                  <h4 className="text-sm font-bold text-white leading-snug tracking-tight truncate">
+                  <h4 className="text-sm font-bold text-slate-900 leading-snug tracking-tight truncate">
                     {asset.title}
                   </h4>
 
-                  <div className="flex items-center justify-between text-xs font-semibold text-slate-400">
+                  <div className="flex items-center justify-between text-xs font-semibold text-slate-500">
                     <span>{asset.size}</span>
                     <span>{asset.updatedAgo}</span>
                   </div>
 
-                  <div className="flex items-center justify-between pt-3 border-t border-slate-800/80">
-                    <span className="flex items-center gap-1 text-[11px] font-extrabold text-emerald-400">
+                  <div className="flex items-center justify-between pt-3 border-t border-slate-200/80">
+                    <span className="flex items-center gap-1 text-[11px] font-extrabold text-emerald-600">
                       <CheckCircle2 size={12} /> AI Transcribed
                     </span>
 
-                    <button className="p-2 rounded-xl bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700">
+                    <button className="p-2 rounded-xl bg-white text-slate-600 hover:text-slate-900 border border-slate-200 hover:bg-slate-100 shadow-2xs">
                       <Download size={14} />
                     </button>
                   </div>
