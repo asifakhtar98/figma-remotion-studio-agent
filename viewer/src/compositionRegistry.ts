@@ -301,5 +301,15 @@ export const compositions: CompositionEntry[] = [
     fps: 30,
     projectName: 'whatsevr',
     screenName: 'StudioMinimalistPoster'
+  },
+  {
+    id: 'whatsevr-25-WebHome',
+    component: React.lazy(() => import('@src/projects/whatsevr/src/screens/WebHomeScreen').then(m => ({ default: m.WebHomeScreen }))),
+    width: 1920,
+    height: 1080,
+    durationInFrames: 1,
+    fps: 30,
+    projectName: 'whatsevr',
+    screenName: 'WebHome'
   }
 ];
