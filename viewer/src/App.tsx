@@ -398,7 +398,14 @@ function App() {
                         : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                     }`}
                   >
-                    {comp.screenName}
+                    <span className="flex items-center gap-1.5">
+                      {comp.screenName}
+                      {comp.durationInFrames > 1 && (
+                        <svg className="w-3 h-3 opacity-40 shrink-0" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                          <polygon points="5,3 19,12 5,21" />
+                        </svg>
+                      )}
+                    </span>
                   </button>
                 ))}
               </div>
