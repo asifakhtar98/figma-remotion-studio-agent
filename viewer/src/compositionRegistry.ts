@@ -331,5 +331,15 @@ export const compositions: CompositionEntry[] = [
     fps: 30,
     projectName: 'whatsevr',
     screenName: 'WebRandomMatch'
+  },
+  {
+    id: 'whatsevr-28-WebCalls',
+    component: React.lazy(() => import('@src/projects/whatsevr/src/screens/WebCallsScreen').then(m => ({ default: m.WebCallsScreen }))),
+    width: 1920,
+    height: 1080,
+    durationInFrames: 1,
+    fps: 30,
+    projectName: 'whatsevr',
+    screenName: 'WebCalls'
   }
 ];
