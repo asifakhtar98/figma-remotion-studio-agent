@@ -109,7 +109,7 @@ const digitalProducts = [
   },
 ];
 
-export const MonetizationHubScreen: FC = () => {
+export const WebMonetizationHubScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#090d16', flexDirection: 'row'}}
@@ -351,4 +351,3 @@ export const MonetizationHubScreen: FC = () => {
     </AbsoluteFill>
   );
 };
-

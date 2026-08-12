@@ -82,7 +82,7 @@ const brandOpportunities = [
   },
 ];
 
-export const BrandMarketplaceScreen: FC = () => {
+export const WebBrandMarketplaceScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#090d16', flexDirection: 'row'}}

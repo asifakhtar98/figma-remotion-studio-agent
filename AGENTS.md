@@ -334,7 +334,7 @@ When the user sends more than one screenshot that all belong to the same page (s
 5. **Icons:** swap to the closest Lucide or Heroicons equivalent.
 6. **Photos/images:** consult the asset declaration first, then use in priority order (real asset → Unsplash URL → gray placeholder). Never use AI-generated images unless the user explicitly requests it.
 7. **Styling:** Tailwind utility classes as the primary mechanism. Inline `style={{}}` only for truly dynamic numeric values Tailwind can't express at build-time — never for colors, spacing, or typography that have Tailwind equivalents.
-8. **Naming:** explicit, descriptive names for files/components/props — no abbreviations (`ProfileHeader`, not `PH`).
+8. **Naming & Web Desktop Naming (STRICT):** Explicit, descriptive names for files/components/props — no abbreviations (`ProfileHeader`, not `PH`). **Desktop web screens MUST ALWAYS include `Web` in their component name, filename, and composition ID** (e.g. `WebHomeScreen.tsx`, `WebMonetizationHubScreen.tsx`, composition ID `<project>-03-WebMonetizationHub`). Mobile screens do not use the `Web` prefix.
 9. **Content expansion limits:** applies strictly to user-provided reference images with sparse repetitive elements. Never invent new UI sections or components not present in the reference or explicitly described.
 10. **Presentation-grade copy adaptation:** polish or replace reference text with contextually appropriate copy suitable for presentation mockups and product demos.
 

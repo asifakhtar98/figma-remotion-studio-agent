@@ -373,14 +373,14 @@ export const compositions: CompositionEntry[] = [
     screenName: 'ContentUpload'
   },
   {
-    id: 'demodontdelete-03-MonetizationHub',
-    component: React.lazy(() => import('@src/projects/demo-dont-delete/src/screens/MonetizationHubScreen').then(m => ({ default: m.MonetizationHubScreen }))),
+    id: 'demodontdelete-03-WebMonetizationHub',
+    component: React.lazy(() => import('@src/projects/demo-dont-delete/src/screens/WebMonetizationHubScreen').then(m => ({ default: m.WebMonetizationHubScreen }))),
     width: 1920,
     height: 1080,
     durationInFrames: 1,
     fps: 30,
     projectName: 'demodontdelete',
-    screenName: 'MonetizationHub'
+    screenName: 'WebMonetizationHub'
   },
   {
     id: 'demodontdelete-04-AudienceAnalytics',
@@ -403,23 +403,23 @@ export const compositions: CompositionEntry[] = [
     screenName: 'LiveStreamStudio'
   },
   {
-    id: 'demodontdelete-06-BrandMarketplace',
-    component: React.lazy(() => import('@src/projects/demo-dont-delete/src/screens/BrandMarketplaceScreen').then(m => ({ default: m.BrandMarketplaceScreen }))),
+    id: 'demodontdelete-06-WebBrandMarketplace',
+    component: React.lazy(() => import('@src/projects/demo-dont-delete/src/screens/WebBrandMarketplaceScreen').then(m => ({ default: m.WebBrandMarketplaceScreen }))),
     width: 1920,
     height: 1080,
     durationInFrames: 1,
     fps: 30,
     projectName: 'demodontdelete',
-    screenName: 'BrandMarketplace'
+    screenName: 'WebBrandMarketplace'
   },
   {
-    id: 'demodontdelete-07-MediaLibrary',
-    component: React.lazy(() => import('@src/projects/demo-dont-delete/src/screens/MediaLibraryScreen').then(m => ({ default: m.MediaLibraryScreen }))),
+    id: 'demodontdelete-07-WebMediaLibrary',
+    component: React.lazy(() => import('@src/projects/demo-dont-delete/src/screens/WebMediaLibraryScreen').then(m => ({ default: m.WebMediaLibraryScreen }))),
     width: 1920,
     height: 1080,
     durationInFrames: 1,
     fps: 30,
     projectName: 'demodontdelete',
-    screenName: 'MediaLibrary'
+    screenName: 'WebMediaLibrary'
   }
 ];

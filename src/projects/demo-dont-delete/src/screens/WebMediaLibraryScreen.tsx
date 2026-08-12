@@ -99,7 +99,7 @@ const mediaAssets = [
   },
 ];
 
-export const MediaLibraryScreen: FC = () => {
+export const WebMediaLibraryScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#090d16', flexDirection: 'row'}}
