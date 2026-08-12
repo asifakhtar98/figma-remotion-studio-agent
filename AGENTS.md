@@ -65,7 +65,7 @@ Runs continuously start to finish. It stops only at the four fixed checkpoints m
    - Edit to an existing screen → follow *Modifying an existing screen*, ask its Q&A and wait **[checkpoint]**, then rejoin at step 5 once answered.
 3. **Resolve assets** (see *Asset declaration*). First screen of a project: present the full box and wait **[checkpoint]**. Later screens: reuse everything already declared; only ask about assets this screen introduces that aren't yet known.
 4. **If multiple screenshots share the same page**, treat as one long-scroll design (see *Multiple screenshots of the same page*). Otherwise treat each as its own screen.
-5. Detect (or inherit) canvas size. Strip chrome. Identify or reuse fonts, colours, icons.
+5. Detect (or inherit) canvas size. Strip chrome. Identify or reuse fonts, colours, icons. If the project already has existing designs, automatically adapt the new design to match its vibe and design tokens; if the project is brand-new with no existing designs, build pixel-perfect to the reference input.
 6. Build the screen component(s) under `src/projects/<name>/src/screens/`.
 7. Register Composition(s) in `src/Root.tsx`, then run `npm run sync:viewer` to regenerate the viewer's composition registry.
 8. **2-Pass Automatic Design Review:** Render a still image (`npx remotion still`), visually compare rendered output against reference spec/screenshots, and perform pass 2 precision refinements on spacing, typography, and colors.
@@ -291,7 +291,9 @@ Before building any screen, marketing poster, or journey flow, read every existi
 - **Corner radius** — `rounded-full`, `rounded-2xl`, or something else?
 - **Component patterns** — does a `TextField`, `PrimaryButton`, `Avatar` etc. already exist?
 
-**Mandatory Vibe & Token Inheritance**: If design tokens already exist in the project, ALL new UI screens, marketing posters, and video compositions MUST match the exact vibe, visual identity, typography, and brand color palette of the real product. Never default to arbitrary stock presets or generic color schemes when project tokens exist.
+**Mandatory Vibe & Token Harmonization vs Pixel-Faithful Ground Truth**:
+- **Projects with existing designs:** When creating a new UI screen, marketing poster, or video composition for a project that already has established screens, automatically adapt and style the new UI to match the exact vibe, visual identity, typography, spacing, and brand color palette of the existing project.
+- **Projects with no existing designs:** If the project is brand-new and has no prior screens/designs, build the UI 100% pixel-faithful to the provided reference input (screenshot, URL, or mockup) as exact ground truth.
 
 ### Step 3 — Reuse existing components
 
@@ -329,7 +331,9 @@ When the user sends more than one screenshot that all belong to the same page (s
 
 1. **Strip chrome.** Never code status bars, home indicators, browser tab/address bars, OS nav — only the app/website content itself.
 2. **Canvas size & clipping prevention:** Canvas size = screenshot aspect ratio minus chrome (not a fixed default). For mobile UI, use `786 × 1704` (2x Retina HD) or `393 × 852` for standard 1x. For desktop web UI, use `1920 × 1080` (Full HD 16:9). **For tall scrollable web pages**, measure the full document height (`scrollHeight` via DevTools MCP or sum of section heights) and set the `<Composition>` `height` in `src/Root.tsx` to fit all content cleanly without clipping footers or bottom sections.
-3. **Fidelity: high.** Match colors, spacing, type scale, and layout hierarchy closely. Treat the screenshot as the spec, not a rough guide.
+3. **Fidelity & Vibe Alignment:**
+   - **For projects with existing designs:** Automatically adapt the new UI design to match the visual vibe, design tokens (colors, typography, spacing, corner radius), and component styles of the existing project.
+   - **For new projects without existing designs:** Treat the screenshot/reference as exact ground truth and build the design 100% pixel-faithful (matching colors, spacing, type scale, and layout hierarchy closely).
 4. **Fonts:** identify the closest Google Font, load via `@remotion/google-fonts`.
 5. **Icons:** swap to the closest Lucide or Heroicons equivalent.
 6. **Photos/images:** consult the asset declaration first, then use in priority order (real asset → Unsplash URL → gray placeholder). Never use AI-generated images unless the user explicitly requests it.

@@ -353,6 +353,16 @@ export const compositions: CompositionEntry[] = [
     screenName: 'WebWallet'
   },
   {
+    id: 'whatsevr-30-WebProfile',
+    component: React.lazy(() => import('@src/projects/whatsevr/src/screens/WebProfileScreen').then(m => ({ default: m.WebProfileScreen }))),
+    width: 1920,
+    height: 1400,
+    durationInFrames: 1,
+    fps: 30,
+    projectName: 'whatsevr',
+    screenName: 'WebProfile'
+  },
+  {
     id: 'demodontdelete-01-CreatorDashboard',
     component: React.lazy(() => import('@src/projects/demo-dont-delete/src/screens/CreatorDashboardScreen').then(m => ({ default: m.CreatorDashboardScreen }))),
     width: 786,

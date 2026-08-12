@@ -30,6 +30,7 @@ import {WebOne2OneScreen} from './projects/whatsevr/src/screens/WebOne2OneScreen
 import {WebRandomMatchScreen} from './projects/whatsevr/src/screens/WebRandomMatchScreen';
 import {WebCallsScreen} from './projects/whatsevr/src/screens/WebCallsScreen';
 import {WebWalletScreen} from './projects/whatsevr/src/screens/WebWalletScreen';
+import {WebProfileScreen} from './projects/whatsevr/src/screens/WebProfileScreen';
 import {AdminDashboardScreen} from './projects/vhims/src/screens/AdminDashboardScreen';
 import {PlatformDashboardScreen} from './projects/vhims/src/screens/PlatformDashboardScreen';
 import {PricingScreen} from './projects/vhims/src/screens/PricingScreen';
@@ -340,6 +341,14 @@ export const RemotionRoot: FC = () => {
         fps={30}
         width={1920}
         height={1080}
+      />
+      <Composition
+        id="whatsevr-30-WebProfile"
+        component={WebProfileScreen}
+        durationInFrames={1}
+        fps={30}
+        width={1920}
+        height={1400}
       />
       <Composition
         id="demodontdelete-01-CreatorDashboard"
