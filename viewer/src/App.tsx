@@ -257,7 +257,7 @@ function ExportButton({
 function App() {
   const [selectedId, setSelectedId] = useState(compositions[0]?.id);
   const [collapsedProjects, setCollapsedProjects] = useState<Set<string>>(
-    () => new Set(compositions.map(c => c.projectName).filter(p => p !== compositions[0]?.projectName))
+    () => new Set(compositions.map(c => c.projectName))
   );
   const [zoom, setZoom] = useState(100);
   const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
