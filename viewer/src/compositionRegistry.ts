@@ -341,5 +341,15 @@ export const compositions: CompositionEntry[] = [
     fps: 30,
     projectName: 'whatsevr',
     screenName: 'WebCalls'
+  },
+  {
+    id: 'whatsevr-29-WebWallet',
+    component: React.lazy(() => import('@src/projects/whatsevr/src/screens/WebWalletScreen').then(m => ({ default: m.WebWalletScreen }))),
+    width: 1920,
+    height: 1080,
+    durationInFrames: 1,
+    fps: 30,
+    projectName: 'whatsevr',
+    screenName: 'WebWallet'
   }
 ];
