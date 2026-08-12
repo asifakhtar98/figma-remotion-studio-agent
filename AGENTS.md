@@ -377,9 +377,9 @@ No scroll — overflow text is silently clipped.
 - `line-clamp-*` on multi-line text (descriptions, bios).
 - Always visually verify all text fits within the canvas at rendered size.
 
-### Dark mode vs light mode
+### Dark mode vs light mode (STRICT PRESERVATION)
 
-Match whatever the screenshot shows. If dark, use dark Tailwind classes directly (`bg-gray-900`, `text-white`) — do not use Tailwind's `dark:` variant (Remotion has no system theme; everything is explicit).
+Match whatever the screenshot or existing design shows. **NEVER automatically switch themes from light mode to dark mode, or from dark mode to light mode**, unless explicitly requested by the user. Maintain and enhance within the screen's original theme baseline. If dark, use dark Tailwind classes directly (`bg-gray-900`, `text-white`) — do not use Tailwind's `dark:` variant (Remotion has no system theme; everything is explicit).
 
 ### Visual hierarchy in layout
 
