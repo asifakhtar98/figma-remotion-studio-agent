@@ -128,12 +128,22 @@ function remotionRenderPlugin(): Plugin {
 
             const registryPath = path.resolve(__dirname, 'src', 'compositionRegistry.ts');
             const registryContent = await fs.readFile(registryPath, 'utf-8');
-            // Parse composition entries from the registry
-            const entryPattern = /\{[^}]*id:\s*'([^']+)'[^}]*projectName:\s*'([^']+)'[^}]*durationInFrames:\s*(\d+)[^}]*\}/g;
             const allEntries: { id: string; projectName: string; durationInFrames: number }[] = [];
-            let match;
-            while ((match = entryPattern.exec(registryContent)) !== null) {
-              allEntries.push({ id: match[1], projectName: match[2], durationInFrames: parseInt(match[3], 10) });
+            const lines = registryContent.split('\n');
+            let currentId = '';
+            let currentProject = '';
+            let currentDuration = 0;
+            for (const line of lines) {
+              const idMatch = line.match(/id:\s*'([^']+)'/);
+              if (idMatch) { currentId = idMatch[1]; currentProject = ''; currentDuration = 0; }
+              const projMatch = line.match(/projectName:\s*'([^']+)'/);
+              if (projMatch) currentProject = projMatch[1];
+              const durMatch = line.match(/durationInFrames:\s*(\d+)/);
+              if (durMatch) currentDuration = parseInt(durMatch[1], 10);
+              if (currentId && currentProject && currentDuration > 0) {
+                allEntries.push({ id: currentId, projectName: currentProject, durationInFrames: currentDuration });
+                currentId = ''; currentProject = ''; currentDuration = 0;
+              }
             }
 
             const stillsToRender = allEntries.filter(
