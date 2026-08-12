@@ -311,5 +311,15 @@ export const compositions: CompositionEntry[] = [
     fps: 30,
     projectName: 'whatsevr',
     screenName: 'WebHome'
+  },
+  {
+    id: 'whatsevr-26-WebOne2One',
+    component: React.lazy(() => import('@src/projects/whatsevr/src/screens/WebOne2OneScreen').then(m => ({ default: m.WebOne2OneScreen }))),
+    width: 1920,
+    height: 1080,
+    durationInFrames: 1,
+    fps: 30,
+    projectName: 'whatsevr',
+    screenName: 'WebOne2One'
   }
 ];

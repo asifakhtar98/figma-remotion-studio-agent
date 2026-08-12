@@ -26,6 +26,7 @@ import {WalletScreen} from './projects/whatsevr/src/screens/WalletScreen';
 import {MarketingPosterScreen} from './projects/whatsevr/src/screens/MarketingPosterScreen';
 import {StudioMinimalistPosterScreen} from './projects/whatsevr/src/screens/StudioMinimalistPosterScreen';
 import {WebHomeScreen} from './projects/whatsevr/src/screens/WebHomeScreen';
+import {WebOne2OneScreen} from './projects/whatsevr/src/screens/WebOne2OneScreen';
 import {AdminDashboardScreen} from './projects/vhims/src/screens/AdminDashboardScreen';
 import {PlatformDashboardScreen} from './projects/vhims/src/screens/PlatformDashboardScreen';
 import {PricingScreen} from './projects/vhims/src/screens/PricingScreen';
@@ -292,6 +293,14 @@ export const RemotionRoot: FC = () => {
       <Composition
         id="whatsevr-25-WebHome"
         component={WebHomeScreen}
+        durationInFrames={1}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="whatsevr-26-WebOne2One"
+        component={WebOne2OneScreen}
         durationInFrames={1}
         fps={30}
         width={1920}
