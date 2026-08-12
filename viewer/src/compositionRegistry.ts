@@ -321,5 +321,15 @@ export const compositions: CompositionEntry[] = [
     fps: 30,
     projectName: 'whatsevr',
     screenName: 'WebOne2One'
+  },
+  {
+    id: 'whatsevr-27-WebRandomMatch',
+    component: React.lazy(() => import('@src/projects/whatsevr/src/screens/WebRandomMatchScreen').then(m => ({ default: m.WebRandomMatchScreen }))),
+    width: 1920,
+    height: 1080,
+    durationInFrames: 1,
+    fps: 30,
+    projectName: 'whatsevr',
+    screenName: 'WebRandomMatch'
   }
 ];
