@@ -38,6 +38,10 @@ import {MarketingPosterScreen as VhimsMarketingPosterScreen} from './projects/vh
 import {CreatorDashboardScreen as DemoCreatorDashboardScreen} from './projects/demo-dont-delete/src/screens/CreatorDashboardScreen';
 import {ContentUploadScreen as DemoContentUploadScreen} from './projects/demo-dont-delete/src/screens/ContentUploadScreen';
 import {MonetizationHubScreen as DemoMonetizationHubScreen} from './projects/demo-dont-delete/src/screens/MonetizationHubScreen';
+import {AudienceAnalyticsScreen as DemoAudienceAnalyticsScreen} from './projects/demo-dont-delete/src/screens/AudienceAnalyticsScreen';
+import {LiveStreamStudioScreen as DemoLiveStreamStudioScreen} from './projects/demo-dont-delete/src/screens/LiveStreamStudioScreen';
+import {BrandMarketplaceScreen as DemoBrandMarketplaceScreen} from './projects/demo-dont-delete/src/screens/BrandMarketplaceScreen';
+import {MediaLibraryScreen as DemoMediaLibraryScreen} from './projects/demo-dont-delete/src/screens/MediaLibraryScreen';
 
 
 // Each project registers its screens here as <Composition> entries.
@@ -356,6 +360,38 @@ export const RemotionRoot: FC = () => {
       <Composition
         id="demodontdelete-03-MonetizationHub"
         component={DemoMonetizationHubScreen}
+        durationInFrames={1}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="demodontdelete-04-AudienceAnalytics"
+        component={DemoAudienceAnalyticsScreen}
+        durationInFrames={1}
+        fps={30}
+        width={786}
+        height={1704}
+      />
+      <Composition
+        id="demodontdelete-05-LiveStreamStudio"
+        component={DemoLiveStreamStudioScreen}
+        durationInFrames={1}
+        fps={30}
+        width={786}
+        height={1704}
+      />
+      <Composition
+        id="demodontdelete-06-BrandMarketplace"
+        component={DemoBrandMarketplaceScreen}
+        durationInFrames={1}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="demodontdelete-07-MediaLibrary"
+        component={DemoMediaLibraryScreen}
         durationInFrames={1}
         fps={30}
         width={1920}

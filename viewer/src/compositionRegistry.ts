@@ -381,5 +381,45 @@ export const compositions: CompositionEntry[] = [
     fps: 30,
     projectName: 'demodontdelete',
     screenName: 'MonetizationHub'
+  },
+  {
+    id: 'demodontdelete-04-AudienceAnalytics',
+    component: React.lazy(() => import('@src/projects/demo-dont-delete/src/screens/AudienceAnalyticsScreen').then(m => ({ default: m.AudienceAnalyticsScreen }))),
+    width: 786,
+    height: 1704,
+    durationInFrames: 1,
+    fps: 30,
+    projectName: 'demodontdelete',
+    screenName: 'AudienceAnalytics'
+  },
+  {
+    id: 'demodontdelete-05-LiveStreamStudio',
+    component: React.lazy(() => import('@src/projects/demo-dont-delete/src/screens/LiveStreamStudioScreen').then(m => ({ default: m.LiveStreamStudioScreen }))),
+    width: 786,
+    height: 1704,
+    durationInFrames: 1,
+    fps: 30,
+    projectName: 'demodontdelete',
+    screenName: 'LiveStreamStudio'
+  },
+  {
+    id: 'demodontdelete-06-BrandMarketplace',
+    component: React.lazy(() => import('@src/projects/demo-dont-delete/src/screens/BrandMarketplaceScreen').then(m => ({ default: m.BrandMarketplaceScreen }))),
+    width: 1920,
+    height: 1080,
+    durationInFrames: 1,
+    fps: 30,
+    projectName: 'demodontdelete',
+    screenName: 'BrandMarketplace'
+  },
+  {
+    id: 'demodontdelete-07-MediaLibrary',
+    component: React.lazy(() => import('@src/projects/demo-dont-delete/src/screens/MediaLibraryScreen').then(m => ({ default: m.MediaLibraryScreen }))),
+    width: 1920,
+    height: 1080,
+    durationInFrames: 1,
+    fps: 30,
+    projectName: 'demodontdelete',
+    screenName: 'MediaLibrary'
   }
 ];
