@@ -138,18 +138,18 @@ export const WebWalletScreen: FC = () => {
                 </span>
               </div>
 
-              <div className="grid grid-cols-6 gap-4 mt-1">
+              <div className="grid grid-cols-6 gap-4 mt-3 pt-2">
                 {packages.map((pkg, idx) => (
                   <div
                     key={idx}
                     className={`relative bg-white rounded-2xl p-4 flex flex-col justify-between cursor-pointer transition-all duration-150 ${
                       pkg.popular
-                        ? 'border-2 border-sky-500 shadow-md bg-sky-50/20'
+                        ? 'border-2 border-sky-500 shadow-md bg-sky-50/20 pt-6'
                         : 'border border-slate-200/90 shadow-xs hover:border-slate-300 hover:shadow-md'
                     }`}
                   >
                     {pkg.popular && (
-                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-sky-500 text-white text-[10px] font-black tracking-wider uppercase shadow-xs">
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-sky-500 text-white text-[10px] font-black tracking-wider uppercase shadow-xs whitespace-nowrap z-10">
                         MOST POPULAR
                       </span>
                     )}

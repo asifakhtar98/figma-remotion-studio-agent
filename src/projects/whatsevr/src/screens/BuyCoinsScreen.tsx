@@ -139,7 +139,7 @@ export const BuyCoinsScreen: FC = () => {
                 }`}
               >
                 {pkg.badge && (
-                  <div className="absolute -top-3 right-6 px-3.5 py-1 rounded-full bg-sky-500 text-white text-[10px] font-black tracking-wider uppercase shadow-xs">
+                  <div className="absolute -top-3 right-6 px-3.5 py-1 rounded-full bg-sky-500 text-white text-[10px] font-black tracking-wider uppercase shadow-xs whitespace-nowrap z-10">
                     {pkg.badge}
                   </div>
                 )}
