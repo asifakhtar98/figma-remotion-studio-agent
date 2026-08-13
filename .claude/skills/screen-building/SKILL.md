@@ -275,4 +275,5 @@ A separate lightweight Vite + React app at `viewer/` that previews all compositi
 - **Still vs video detection** — stills (`durationInFrames <= 1`) render via `<Thumbnail>`, videos render via `<Player>` with playback controls.
 - **Zoom slider** — 25% to 300%, stills only. "Fit" button resets to 100%.
 - **Pan / hand tool** — when zoomed past 100%, the cursor changes to a hand and click-drag pans the image.
+- **Copy ID** — a button on the selected composition copies its exact composition id to the clipboard, so a screen can be referenced or tagged by id in a request without retyping it.
 - **Direct export** — "Export" button opens a modal with one-click PNG, JPEG, or MP4 export. The Vite server plugin at `viewer/vite.config.ts` exposes `POST /api/render` which spawns `npx remotion still`/`render` and returns the file.

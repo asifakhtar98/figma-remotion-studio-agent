@@ -16,9 +16,16 @@ r.filter(c => c.isStill).forEach(c => console.log(c.id));
 echo "Rendering all stills in parallel (4 at a time)..."
 
 # Correct syntax: npx remotion still src/index.ts <compositionId> <outputPath>
-echo "$IDS" | xargs -P4 -I{} sh -c '
-  npx remotion still src/index.ts "{}" "'"$OUTDIR"'/{}.png" --log=error 2>/dev/null && echo "  OK: {}" || echo "  FAIL: {}"
-'
+export OUTDIR
+render_one() {
+  if npx remotion still src/index.ts "$1" "$OUTDIR/$1.png" --log=error 2>/dev/null; then
+    echo "  OK: $1"
+  else
+    echo "  FAIL: $1"
+  fi
+}
+export -f render_one
+echo "$IDS" | xargs -P4 -I{} bash -c 'render_one "$@"' _ {}
 
 echo ""
 echo "Measuring content heights..."

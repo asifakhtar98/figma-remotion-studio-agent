@@ -29,10 +29,11 @@ They are hash-locked via `skills-lock.json`. Record any override here instead.
 
 **No vertical scroll view.** Never use vertical scroll containers (`overflow-y-auto`, `overflow-y-scroll`). Horizontal scrolling (`overflow-x-auto`) is allowed. Always set the composition frame height (`height` in `src/Root.tsx` and component height) to fit all screen content top-to-bottom without vertical clipping, inner scrolling, or unnecessary empty margin space at the frame edges.
 
-**No motion or animation.** Never use CSS animations (`animate-pulse`, `animate-ping`, `animate-spin`, `animate-bounce`, `@keyframes`), CSS transitions (`transition-*`), or hover/focus states (`hover:`, `focus:`) in screen components. These are all dead code in Remotion stills — no user interaction, no animation runtime. Show the resting/default visual state only.
+**No motion or animation.** Never use CSS animations (`animate-pulse`, `animate-ping`, `animate-spin`, `animate-bounce`, `@keyframes`), CSS transitions (`transition-*`), or interaction states (`hover:`, `group-hover:`, `focus:`, `focus-visible:`, `active:`) in screen components. These are all dead code in Remotion stills — no user interaction, no animation runtime. Show the resting/default visual state only.
+When an element is only visible on hover (`opacity-0 group-hover:opacity-100` tooltips, reveal-on-hover overlays), delete the element — stripping the variant alone leaves permanently invisible markup in the render.
 
 **Remotion pitfalls are linted.** *(enforced: `npm run lint:remotion` runs on every project-file edit and in the commit gate)*
-Render-breaking patterns (native `<img>`, `dark:` variant, viewport units, `position: fixed`, media tags) block the commit; still-inert patterns (`hover:`, scrolling overflow, `animate-*`, `transition-*`) warn.
+Render-breaking patterns (native `<img>`, `dark:` variant, viewport units, `position: fixed`, media tags) block the commit; still-inert patterns (`hover:`, scrolling overflow, `animate-*`, `transition-*`) warn. `overflow-x-auto` is permitted by the repo rules but still warns — read each warning before acting on it.
 
 **Commit gate.** *(enforced: hook runs `scripts/commit-gate.sh` before every `git commit`)*
 Blocks on: failing `tsc --noEmit`, render-breaking lint errors, or changed screen files with no design review run in the last hour.
@@ -140,6 +141,8 @@ scripts/
 - `id="<ProjectName>-<NN>-<ScreenName>"` where `<NN>` is a zero-padded two-digit serial number representing the screen's chronological flow order.
 - **Dimensions are single-source-of-truth in `src/Root.tsx` ONLY.** `width`/`height` are set on the `<Composition>` element. Screen components must NEVER hardcode their own `w-[1920px]`, `h-[XXXpx]`, or similar fixed dimension classes on `<AbsoluteFill>` — `AbsoluteFill` already fills whatever frame the Composition defines. This eliminates duplication: change height in one place (`Root.tsx`), not two.
 - **Screen content must be responsive to the frame.** Do not constrain main content containers with restrictive `max-w-[...]` classes. Content should stretch to fill the available width naturally using `flex-1`, `w-full`, or natural flow. The frame IS the constraint — no inner max-width needed.
+- **Never let the main body of a fit-to-content screen stretch.** A `flex-1` media grid or feed list absorbs the leftover frame height, so the true content height can never be measured and the bottom navigation bar gets pushed off the canvas. Let the body size naturally (`auto-rows-max`, `content-start`) and give the composition the exact measured height instead.
+- **Measure heights, do not guess.** Render the composition at a deliberately oversized height, find the last row of real content, then set `height` to that plus the bottom breathing room. `scripts/audit-heights.sh` does this across every still. Two known false positives: screens whose background runs full-bleed to the bottom edge (marketing posters) always report as clipped — confirm visually before changing them.
 - `durationInFrames={1}` for every still screen. The custom viewer treats `durationInFrames <= 1` as a still (renders via `<Thumbnail>`); higher values render as video with playback controls. Only flow compositions get a longer duration.
 - No `useCurrentFrame`/timeline animation unless the user explicitly asks. When they do, animation enters through an optional `animateFrom` prop that leaves the still render untouched (see the *journey-flow-video* skill).
 
