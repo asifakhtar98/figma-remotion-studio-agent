@@ -97,7 +97,7 @@ Determine which project and which screen(s) the user wants enhanced. If the user
 
 ### Step 1 — Ask File Handling Strategy [CHECKPOINT]
 
-Before any code changes, ask the user via `ask_question`:
+Before any code changes, ask the user via `AskUserQuestion`:
 
 1. **Which screens to enhance?** (list all screens in the project with concrete options, plus "All screens")
 2. **Replace the existing screen file in place, or create a new "Enhanced" / "V2" version alongside it?**

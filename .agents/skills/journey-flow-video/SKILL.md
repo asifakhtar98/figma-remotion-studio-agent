@@ -5,7 +5,7 @@ description: Turn this repo's still screens into an animated user-journey video 
 
 # Journey flow video
 
-This repo has exactly two purposes, in this order:
+This repo has four purposes (see `AGENTS.md`); this skill owns the second:
 
 1. **Creating UI** — still screens. Always the default, and the only output unless a flow is asked for.
 2. **Creating a user journey flow** — those screens animated into a story. Only on request.

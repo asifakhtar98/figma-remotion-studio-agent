@@ -39,8 +39,8 @@ npm run viewer
 ```
 *The viewer will run at `http://localhost:4000`.*
 
-### 2. Launch Default Remotion Studio
-If you prefer the native Remotion studio experience:
+### 2. Launch Default Remotion Studio (humans only)
+For manual use only — AI agents must always use the custom viewer above, never default Studio:
 
 ```bash
 npm start

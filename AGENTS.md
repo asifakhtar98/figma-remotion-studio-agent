@@ -3,7 +3,7 @@
 Screenshot, **URL**, or plain description in, pixel-faithful React screen out, wired as a Remotion still Composition.
 Full spec: `docs/superpowers/specs/2026-08-11-screenshot-to-remotion-design.md`.
 
-## The three purposes of this repo
+## The four purposes of this repo
 
 1. **Creating UI** — pixel-faithful still screens, `durationInFrames={1}`. The default.
 2. **Creating user journey flows** — those same screens animated into a story. Only on request; read the **journey-flow-video** skill first.
@@ -40,6 +40,8 @@ This project ships official Remotion skills at `.agents/skills/`.
 
 Prefer the official skills above over inventing an approach. `remotion-markup/` already covers transitions, timing, sequencing, and DOM measuring.
 
+**Exception:** ignore `remotion-studio`'s launch command (`npx remotion studio`). This repo never uses default Studio — always the custom viewer (`npm run viewer`, port 4000; see *Session startup*). The vendored `remotion-*` skills are hash-locked via `skills-lock.json` — never edit them; record any override here instead.
+
 Each skill's `SKILL.md` links to deeper reference files inside its folder (e.g. `remotion-markup/images.md`, `remotion-create/tailwind.md`). Follow those links when needed. Skipping this step causes avoidable mistakes: `<img>` instead of `<Img>`, wrong Tailwind wiring, wrong render CLI flags.
 
 **Communication style — every message to the user.**
@@ -49,7 +51,7 @@ Each skill's `SKILL.md` links to deeper reference files inside its folder (e.g. 
 - After each screen is built, say what was done in plain language and list anything still needing a real photo or logo from the user.
 - No code, file paths, or terminal output in chat unless the user specifically asks to see it.
 - **Do not narrate work in progress.** No status updates, no "now building X", no step-by-step commentary between tool calls. Stay silent while working. Speak only at a checkpoint, at a real blocker, or in the final summary.
-- **Ask every checkpoint question through the `ask_question` tool**, not as plain chat text. One call per checkpoint, all its questions batched into that single call, with concrete options the user can pick. Fall back to plain text only if the tool is unavailable.
+- **Ask every checkpoint question through the `AskUserQuestion` tool**, not as plain chat text. One call per checkpoint, all its questions batched into that single call, with concrete options the user can pick. Fall back to plain text only if the tool is unavailable.
 
 ---
 
@@ -57,7 +59,7 @@ Each skill's `SKILL.md` links to deeper reference files inside its folder (e.g. 
 
 Runs continuously start to finish. It stops only at the four fixed checkpoints marked below — no other pauses, no extra questions.
 
-1. **Launch Remotion Studio** (see *Session startup*) if not already running.
+1. **Launch the custom viewer** (see *Session startup*) if not already running.
 2. **Receive input** — a screenshot, a URL, a plain description, or an edit request on an existing screen.
    - Screenshot provided → go to step 3.
    - URL provided → follow *Building from a URL (screenshot-first)*, then rejoin at step 3 with the captured screenshot as the visual reference.
@@ -186,7 +188,7 @@ Summary of mandatory workflow:
 When asked to create a launch poster, hero product graphic, feature poster, or social promo visual, **always read and follow the `marketing-poster-design` skill** (`.agents/skills/marketing-poster-design/SKILL.md`).
 
 Key rules:
-- **Clarify requirements & poster content first:** Always ask the user via `ask_question` what specific features, copy, metrics, aspect ratio, art direction, and download elements should be included on the poster before writing code.
+- **Clarify requirements & poster content first:** Always ask the user via `AskUserQuestion` what specific features, copy, metrics, aspect ratio, art direction, and download elements should be included on the poster before writing code.
 - **Aspect ratios:** Recommend **Square Social Poster (`1080×1080`, 1:1)** as the primary default choice, followed by Vertical (`1080×1920`) or Landscape (`1920×1080`).
 - **Inherit existing poster vibe:** If any poster already exists for the project, inspect it and match its established visual vibe, art direction, and layout treatment to maintain brand consistency.
 - **5-zone layout:** Eyebrow badge → Brand header → Headline → Glassmorphic 3D device mockup with floating feature pills → Store download buttons & QR code.
@@ -246,7 +248,7 @@ Example: *"I need a login page for this project. Use the existing styles."* This
 
 ### Step 1 — Clarify requirements (STRICT Q&A)
 
-Before writing any code for a new screen (whether from a description or an ambiguous screenshot), ask the user these clarifying questions in one `ask_question` call:
+Before writing any code for a new screen (whether from a description or an ambiguous screenshot), ask the user these clarifying questions in one `AskUserQuestion` call:
 
 1. **Which project?**
 2. **What should the screen do / what business problem does it solve?**
@@ -271,7 +273,7 @@ Example: *"I want to edit the Wallet page to add a transaction filter."*
 
 ### Step 1 — Clarify requirements (STRICT Q&A)
 
-Before editing any existing screen, ask the user these clarifying questions in one `ask_question` call:
+Before editing any existing screen, ask the user these clarifying questions in one `AskUserQuestion` call:
 
 1. **Which specific elements or sections on the screen should be updated, added, or removed?**
 2. **Any specific copy, colours, layout adjustments, or new UI components needed for this edit?**
@@ -549,7 +551,7 @@ Run it:
 npm run sync:viewer
 ```
 
-**When to run:** after every change to `src/Root.tsx` (adding, removing, or modifying a Composition). The workflow step 7b covers this automatically.
+**When to run:** after every change to `src/Root.tsx` (adding, removing, or modifying a Composition). Workflow step 7 covers this automatically.
 
 ### Starting the viewer
 

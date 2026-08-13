@@ -113,7 +113,7 @@ When the user requests a QR code on a poster (or provides a target website URL /
 ## 7. Workflow & Implementation Steps
 
 ### Step 1 — Clarify Requirements & Poster Content (Q&A)
-Always ask the user through `ask_question` before writing code, prioritizing the recommended options:
+Always ask the user through `AskUserQuestion` before writing code, prioritizing the recommended options:
 1. **Aspect Ratio / Format**: Always recommend **"(Recommended) Square Social Poster (1080×1080)"** first as the primary format choice.
 2. **Poster Content & Key Features**: What specific features, copy, metrics, app screenshots, or product highlights should be included on the poster?
 3. **Headline & Core Value Prop**: What main headline and key takeaway message should be displayed?
