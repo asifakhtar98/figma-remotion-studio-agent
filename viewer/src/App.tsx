@@ -298,6 +298,13 @@ function App() {
   const [zoom, setZoom] = useState(100);
   const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
   const [renderPanelOpen, setRenderPanelOpen] = useState(false);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const handleCopyId = useCallback((id: string) => {
+    navigator.clipboard.writeText(id);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  }, []);
   const [batchExporting, setBatchExporting] = useState<string | null>(null);
   const [batchError, setBatchError] = useState<string | null>(null);
 
@@ -534,6 +541,23 @@ function App() {
               {selectedComposition.width} × {selectedComposition.height}
               {!isStill && ` · ${selectedComposition.durationInFrames}f`}
             </span>
+            <button 
+              onClick={() => handleCopyId(selectedComposition.id)}
+              className="ml-2 flex items-center gap-1.5 px-2 py-1 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-md text-[10px] font-medium text-gray-500 hover:text-gray-700 transition-colors"
+              title="Copy ID to tag AI agent"
+            >
+              {copiedId === selectedComposition.id ? (
+                <>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-500"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span className="text-emerald-600">Copied</span>
+                </>
+              ) : (
+                <>
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span>Copy ID</span>
+                </>
+              )}
+            </button>
           </div>
 
           <div className="flex items-center gap-4">
