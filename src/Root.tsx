@@ -340,7 +340,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={1920}
-        height={1680}
+        height={1600}
       />
       <Composition
         id="whatsevr-30-WebProfile"
@@ -348,7 +348,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={1920}
-        height={1360}
+        height={1220}
       />
       <Composition
         id="demodontdelete-01-CreatorDashboard"

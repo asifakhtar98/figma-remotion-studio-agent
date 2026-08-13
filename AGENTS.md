@@ -27,6 +27,8 @@ Always the custom viewer: `npm run viewer`, port 4000.
 **Never edit vendored `remotion-*` skills.** *(enforced: hook blocks edits under `.agents/skills/remotion-*`)*
 They are hash-locked via `skills-lock.json`. Record any override here instead.
 
+**No vertical scroll view.** Never use vertical scroll containers (`overflow-y-auto`, `overflow-y-scroll`). Horizontal scrolling (`overflow-x-auto`) is allowed. Always set the composition frame height (`height` in `src/Root.tsx` and component height) to fit all screen content top-to-bottom without vertical clipping, inner scrolling, or unnecessary empty margin space at the frame edges.
+
 **Remotion pitfalls are linted.** *(enforced: `npm run lint:remotion` runs on every project-file edit and in the commit gate)*
 Render-breaking patterns (native `<img>`, `dark:` variant, viewport units, `position: fixed`, media tags) block the commit; still-inert patterns (`hover:`, scrolling overflow) warn.
 

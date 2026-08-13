@@ -332,7 +332,7 @@
   {
     "id": "whatsevr-29-WebWallet",
     "width": 1920,
-    "height": 1680,
+    "height": 1600,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -342,7 +342,7 @@
   {
     "id": "whatsevr-30-WebProfile",
     "width": 1920,
-    "height": 1360,
+    "height": 1220,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,

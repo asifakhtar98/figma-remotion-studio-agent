@@ -164,8 +164,7 @@ When the user sends more than one screenshot that all belong to the same page (s
 
 ## Per-screen build rules
 
-1. **Strip chrome.** Never code status bars, home indicators, browser tab/address bars, OS nav — only the app/website content itself.
-2. **Canvas size & clipping prevention:** Canvas size = screenshot aspect ratio minus chrome (not a fixed default). For mobile UI, use `786 × 1704` (2x Retina HD) or `393 × 852` for standard 1x. For desktop web UI, use `1920 × 1080` (Full HD 16:9). **For tall scrollable web pages**, measure the full document height (`scrollHeight` via DevTools MCP or sum of section heights) and set the `<Composition>` `height` in `src/Root.tsx` to fit all content cleanly without clipping footers or bottom sections.
+2. **Canvas size & clipping prevention (NO VERTICAL SCROLL):** Canvas size = screenshot aspect ratio minus chrome (not a fixed default). For mobile UI, default to `786 × 1704` (2x Retina HD) or `393 × 852` for standard 1x. For desktop web UI, default to `1920 × 1080` (Full HD 16:9). **STRICT RULE: Never use vertical scroll containers (`overflow-y-auto`, `overflow-y-scroll`). Horizontal scrolling (`overflow-x-auto`) is allowed.** For long pages, calculate the exact content height top-to-bottom and set the `<Composition>` `height` in `src/Root.tsx` (and component root) to match it precisely without vertical scrolling or unnecessary empty margin space.
 3. **Fidelity & Vibe Alignment:**
    - **For projects with existing designs:** Automatically adapt the new UI design to match the visual vibe, design tokens (colors, typography, spacing, corner radius), and component styles of the existing project.
    - **For new projects without existing designs:** Treat the screenshot/reference as exact ground truth and build the design 100% pixel-faithful (matching colors, spacing, type scale, and layout hierarchy closely).

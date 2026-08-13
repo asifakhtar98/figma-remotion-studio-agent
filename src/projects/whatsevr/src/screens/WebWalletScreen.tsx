@@ -35,7 +35,7 @@ export const WebWalletScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#f8fafc'}}
-      className="flex flex-row w-[1920px] h-[1680px] overflow-hidden select-none text-slate-900"
+      className="flex flex-row w-[1920px] h-[1600px] overflow-hidden select-none text-slate-900"
     >
       {/* ── Left Sidebar Navigation (260px) ── */}
       <WebSidebarNav activeTab="wallet" />
