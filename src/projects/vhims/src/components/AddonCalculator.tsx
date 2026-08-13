@@ -44,7 +44,7 @@ export const AddonCalculator: React.FC = () => {
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => setCredits(Math.max(0, credits - 500))}
-                  className="w-9 h-9 rounded-xl border border-gray-300 bg-white hover:bg-[#ff4d15] hover:text-white hover:border-[#ff4d15] font-bold transition-colors flex items-center justify-center text-gray-700"
+                  className="w-9 h-9 rounded-xl border border-gray-300 bg-white font-bold flex items-center justify-center text-gray-700"
                 >
                   <Minus className="w-4 h-4" />
                 </button>
@@ -53,12 +53,12 @@ export const AddonCalculator: React.FC = () => {
                   type="number"
                   value={credits}
                   onChange={(e) => setCredits(Number(e.target.value))}
-                  className="w-28 text-center bg-white border border-gray-200 rounded-xl py-2 font-bold text-gray-900 focus:outline-none text-sm"
+                  className="w-28 text-center bg-white border border-gray-200 rounded-xl py-2 font-bold text-gray-900 text-sm"
                 />
 
                 <button
                   onClick={() => setCredits(credits + 500)}
-                  className="w-9 h-9 rounded-xl border border-gray-300 bg-white hover:bg-[#ff4d15] hover:text-white hover:border-[#ff4d15] font-bold transition-colors flex items-center justify-center text-gray-700"
+                  className="w-9 h-9 rounded-xl border border-gray-300 bg-white font-bold flex items-center justify-center text-gray-700"
                 >
                   <Plus className="w-4 h-4" />
                 </button>
@@ -86,7 +86,7 @@ export const AddonCalculator: React.FC = () => {
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => setScreenings(Math.max(0, screenings - 500))}
-                  className="w-9 h-9 rounded-xl border border-gray-300 bg-white hover:bg-[#ff4d15] hover:text-white hover:border-[#ff4d15] font-bold transition-colors flex items-center justify-center text-gray-700"
+                  className="w-9 h-9 rounded-xl border border-gray-300 bg-white font-bold flex items-center justify-center text-gray-700"
                 >
                   <Minus className="w-4 h-4" />
                 </button>
@@ -95,12 +95,12 @@ export const AddonCalculator: React.FC = () => {
                   type="number"
                   value={screenings}
                   onChange={(e) => setScreenings(Number(e.target.value))}
-                  className="w-28 text-center bg-white border border-gray-200 rounded-xl py-2 font-bold text-gray-900 focus:outline-none text-sm"
+                  className="w-28 text-center bg-white border border-gray-200 rounded-xl py-2 font-bold text-gray-900 text-sm"
                 />
 
                 <button
                   onClick={() => setScreenings(screenings + 500)}
-                  className="w-9 h-9 rounded-xl border border-gray-300 bg-white hover:bg-[#ff4d15] hover:text-white hover:border-[#ff4d15] font-bold transition-colors flex items-center justify-center text-gray-700"
+                  className="w-9 h-9 rounded-xl border border-gray-300 bg-white font-bold flex items-center justify-center text-gray-700"
                 >
                   <Plus className="w-4 h-4" />
                 </button>
@@ -124,7 +124,7 @@ export const AddonCalculator: React.FC = () => {
               </div>
             </div>
 
-            <button className="px-6 py-3 bg-[#ff4d15] hover:bg-[#e03e09] text-white text-xs font-bold rounded-xl shadow transition-colors flex items-center gap-2">
+            <button className="px-6 py-3 bg-[#ff4d15] text-white text-xs font-bold rounded-xl shadow flex items-center gap-2">
               <ShoppingCart className="w-4 h-4" />
               <span>Purchase Add-On Pack</span>
             </button>

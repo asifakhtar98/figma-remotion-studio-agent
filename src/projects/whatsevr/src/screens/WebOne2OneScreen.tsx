@@ -171,7 +171,7 @@ export const WebOne2OneScreen: FC = () => {
                 Connect 1:1 with verified hosts — clear price per minute shown upfront.
               </p>
             </div>
-            <button className="bg-sky-500 hover:bg-sky-600 text-white font-bold text-sm px-6 py-3 rounded-2xl shadow-md transition-all flex items-center gap-2">
+            <button className="bg-sky-500 text-white font-bold text-sm px-6 py-3 rounded-2xl shadow-md flex items-center gap-2">
               <Zap size={16} className="fill-white" />
               Quick Match
             </button>
@@ -188,7 +188,7 @@ export const WebOne2OneScreen: FC = () => {
                 readOnly
               />
             </div>
-            <button className="bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm px-7 py-3.5 rounded-2xl shadow-sm transition-all flex items-center gap-2">
+            <button className="bg-slate-900 text-white font-bold text-sm px-7 py-3.5 rounded-2xl shadow-sm flex items-center gap-2">
               Search
             </button>
           </div>
@@ -210,7 +210,7 @@ export const WebOne2OneScreen: FC = () => {
               {/* Filter 1: Country */}
               <div className="flex flex-col gap-2">
                 <span className="text-xs text-slate-600 font-bold">Country</span>
-                <div className="bg-slate-50 border border-slate-200/80 rounded-xl px-3.5 py-2.5 flex items-center justify-between cursor-pointer hover:border-slate-300">
+                <div className="bg-slate-50 border border-slate-200/80 rounded-xl px-3.5 py-2.5 flex items-center justify-between cursor-pointer">
                   <span className="text-sm text-slate-800 font-semibold flex items-center gap-2">
                     <Globe size={14} className="text-slate-400" />
                     Any Country
@@ -222,7 +222,7 @@ export const WebOne2OneScreen: FC = () => {
               {/* Filter 2: Language */}
               <div className="flex flex-col gap-2">
                 <span className="text-xs text-slate-600 font-bold">Language</span>
-                <div className="bg-slate-50 border border-slate-200/80 rounded-xl px-3.5 py-2.5 flex items-center justify-between cursor-pointer hover:border-slate-300">
+                <div className="bg-slate-50 border border-slate-200/80 rounded-xl px-3.5 py-2.5 flex items-center justify-between cursor-pointer">
                   <span className="text-sm text-slate-800 font-semibold">English & Hindi</span>
                   <ChevronDown size={16} className="text-slate-400" />
                 </div>
@@ -239,7 +239,7 @@ export const WebOne2OneScreen: FC = () => {
               {/* Filter 4: Call Type */}
               <div className="flex flex-col gap-2">
                 <span className="text-xs text-slate-600 font-bold">Call Type</span>
-                <div className="bg-slate-50 border border-slate-200/80 rounded-xl px-3.5 py-2.5 flex items-center justify-between cursor-pointer hover:border-slate-300">
+                <div className="bg-slate-50 border border-slate-200/80 rounded-xl px-3.5 py-2.5 flex items-center justify-between cursor-pointer">
                   <span className="text-sm text-slate-800 font-semibold flex items-center gap-2">
                     <Video size={14} className="text-sky-500" />
                     Video & Voice
@@ -265,7 +265,7 @@ export const WebOne2OneScreen: FC = () => {
               {/* Filter 6: Availability */}
               <div className="flex flex-col gap-2">
                 <span className="text-xs text-slate-600 font-bold">Availability</span>
-                <div className="bg-slate-50 border border-slate-200/80 rounded-xl px-3.5 py-2.5 flex items-center justify-between cursor-pointer hover:border-slate-300">
+                <div className="bg-slate-50 border border-slate-200/80 rounded-xl px-3.5 py-2.5 flex items-center justify-between cursor-pointer">
                   <span className="text-sm text-slate-800 font-semibold">Online / Live Now</span>
                   <ChevronDown size={16} className="text-slate-400" />
                 </div>
@@ -287,7 +287,7 @@ export const WebOne2OneScreen: FC = () => {
               {creators.map((creator) => (
                 <div
                   key={creator.id}
-                  className="group bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-200 flex flex-col justify-between"
+                  className="group bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-sm flex flex-col justify-between"
                 >
                   {/* Photo Container */}
                   <div className="relative w-full aspect-[4/4.5] bg-slate-800 overflow-hidden flex items-center justify-center">
@@ -298,7 +298,7 @@ export const WebOne2OneScreen: FC = () => {
                     ) : (
                       <Img
                         src={creator.avatar ?? ''}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover"
                       />
                     )}
 
@@ -371,7 +371,7 @@ export const WebOne2OneScreen: FC = () => {
                     </div>
 
                     {/* Action Button */}
-                    <button className="w-full py-3 bg-slate-900 hover:bg-sky-600 text-white font-extrabold text-xs rounded-2xl shadow-sm transition-all flex items-center justify-center gap-2 mt-1">
+                    <button className="w-full py-3 bg-slate-900 text-white font-extrabold text-xs rounded-2xl shadow-sm flex items-center justify-center gap-2 mt-1">
                       <PhoneCall size={14} />
                       <span>Ring Host Now</span>
                     </button>

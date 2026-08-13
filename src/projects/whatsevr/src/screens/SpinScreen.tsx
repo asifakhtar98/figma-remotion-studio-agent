@@ -59,8 +59,8 @@ export const SpinScreen: FC = () => {
               {/* Outer ring 1 */}
               <div className="w-[320px] h-[320px] rounded-full border border-sky-400/40 flex items-center justify-center">
                 {/* Main Blue Spin Button */}
-                <button className="group w-[250px] h-[250px] rounded-full bg-gradient-to-tr from-sky-500 to-blue-600 text-white flex flex-col items-center justify-center shadow-xl hover:scale-105 transition-all duration-200 cursor-pointer border-4 border-white">
-                  <Shuffle size={58} strokeWidth={2.5} className="group-hover:rotate-180 transition-transform duration-500" />
+                <button className="group w-[250px] h-[250px] rounded-full bg-gradient-to-tr from-sky-500 to-blue-600 text-white flex flex-col items-center justify-center shadow-xl cursor-pointer border-4 border-white">
+                  <Shuffle size={58} strokeWidth={2.5} className="" />
                   <span className="text-3xl font-black mt-2 tracking-wider uppercase">SPIN NOW</span>
                 </button>
               </div>
@@ -81,7 +81,7 @@ export const SpinScreen: FC = () => {
         </div>
 
         {/* Browse Hosts Button */}
-        <div className="mt-10 flex items-center gap-3 px-8 py-4 rounded-full bg-slate-900 text-white font-extrabold text-base shadow-md cursor-pointer hover:bg-slate-800 transition-colors relative z-10">
+        <div className="mt-10 flex items-center gap-3 px-8 py-4 rounded-full bg-slate-900 text-white font-extrabold text-base shadow-md cursor-pointer relative z-10">
           <LayoutGrid size={22} className="text-sky-400" />
           <span>Browse 1:1 Hosts Directory</span>
         </div>

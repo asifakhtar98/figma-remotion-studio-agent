@@ -70,28 +70,28 @@ export const RevenueChart: FC<RevenueChartProps> = ({data}) => {
               key={item.month}
               className="flex-1 flex flex-col items-center gap-3 h-full justify-end group z-10"
             >
-              <div className="w-full max-w-[44px] flex flex-col items-stretch rounded-2xl overflow-hidden shadow-xs transition-all transform group-hover:scale-105 border border-slate-200/60 bg-slate-100">
+              <div className="w-full max-w-[44px] flex flex-col items-stretch rounded-2xl overflow-hidden shadow-xs transform border border-slate-200/60 bg-slate-100">
                 <div
                   style={{height: `${prPct}%`}}
-                  className="bg-emerald-500 hover:bg-emerald-600 transition-all"
+                  className="bg-emerald-500"
                   title={`Products: $${item.digitalProducts}`}
                 />
                 <div
                   style={{height: `${spPct}%`}}
-                  className="bg-amber-500 hover:bg-amber-600 transition-all"
+                  className="bg-amber-500"
                   title={`Sponsored: $${item.sponsored}`}
                 />
                 <div
                   style={{height: `${adPct}%`}}
-                  className="bg-indigo-600 hover:bg-indigo-700 transition-all"
+                  className="bg-indigo-600"
                   title={`AdSense: $${item.adRevenue}`}
                 />
               </div>
               <div className="flex flex-col items-center">
-                <span className="text-[10px] font-extrabold text-slate-500 group-hover:text-indigo-600 transition-colors">
+                <span className="text-[10px] font-extrabold text-slate-500">
                   ${(monthTotal / 1000).toFixed(1)}k
                 </span>
-                <span className="text-xs font-bold text-slate-600 group-hover:text-slate-900 transition-colors">
+                <span className="text-xs font-bold text-slate-600">
                   {item.month}
                 </span>
               </div>

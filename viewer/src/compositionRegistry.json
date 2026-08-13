@@ -72,7 +72,7 @@
   {
     "id": "whatsevr-03-Explore",
     "width": 786,
-    "height": 1760,
+    "height": 1864,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -82,7 +82,7 @@
   {
     "id": "whatsevr-04-ExploreOffers",
     "width": 786,
-    "height": 1760,
+    "height": 2116,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -92,7 +92,7 @@
   {
     "id": "whatsevr-05-ExploreMemories",
     "width": 786,
-    "height": 1760,
+    "height": 2056,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -102,7 +102,7 @@
   {
     "id": "whatsevr-06-ExploreWtv",
     "width": 786,
-    "height": 1760,
+    "height": 2058,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,

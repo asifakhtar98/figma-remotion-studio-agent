@@ -85,7 +85,7 @@ export const SettingsScreen: FC = () => {
               <p className="text-sm text-slate-500 font-semibold">@wtv.aryan675</p>
             </div>
           </div>
-          <button className="p-3 text-slate-700 hover:bg-slate-100 rounded-full cursor-pointer transition-colors">
+          <button className="p-3 text-slate-700 rounded-full cursor-pointer">
             <Pencil size={24} />
           </button>
         </div>
@@ -97,7 +97,7 @@ export const SettingsScreen: FC = () => {
           </h3>
           <div className="flex items-center gap-5 overflow-x-auto pb-1">
             <div className="flex flex-col items-center gap-1.5 cursor-pointer">
-              <div className="flex items-center justify-center w-16 h-16 rounded-full bg-white border-2 border-dashed border-slate-300 text-slate-700 shadow-2xs hover:border-slate-400">
+              <div className="flex items-center justify-center w-16 h-16 rounded-full bg-white border-2 border-dashed border-slate-300 text-slate-700 shadow-2xs">
                 <UserPlus size={26} />
               </div>
               <span className="text-xs font-bold text-slate-600">Create</span>

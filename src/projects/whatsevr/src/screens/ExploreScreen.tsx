@@ -10,7 +10,7 @@ const {fontFamily} = loadFont('normal', {
   weights: ['400', '500', '600', '700', '800'],
 });
 
-const tabs = ['Explore', 'Offers', 'Posts', 'Memories', 'Flicks'];
+const tabs = ['Explore', 'Offers', 'Posts', 'Memories', 'Flicks', 'Wtv'];
 
 const tiles = [
   {
@@ -94,9 +94,9 @@ export const ExploreScreen: FC = () => {
       className="flex flex-col overflow-hidden select-none text-slate-900"
     >
       {/* ── Search Header Bar ── */}
-      <div className="flex items-center gap-4 px-7 pt-10 pb-4 bg-white border-b border-slate-100">
-        <WhatsevrLogo size={48} ringed />
-        <div className="flex flex-1 items-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-5 py-3.5 shadow-2xs">
+      <div className="flex items-center gap-4 px-7 pt-8 pb-5 bg-white border-b border-slate-100 shrink-0">
+        <WhatsevrLogo size={52} ringed />
+        <div className="flex flex-1 items-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-5 py-4 shadow-2xs">
           <Search size={22} className="text-slate-400" />
           <span className="flex-1 text-lg text-slate-400 font-medium">Explore WhatsEvr community...</span>
           <Filter size={18} className="text-sky-500" />
@@ -104,27 +104,27 @@ export const ExploreScreen: FC = () => {
       </div>
 
       {/* ── Sub Navigation Tabs ── */}
-      <div className="flex items-center gap-8 border-b border-slate-200/90 px-7 pt-3 bg-white overflow-x-auto">
+      <div className="flex items-center gap-10 border-b border-slate-200/90 px-8 pt-4 pb-1 bg-white overflow-x-auto shrink-0 scrollbar-none">
         {tabs.map((tab, index) => (
-          <div key={tab} className="relative pb-3.5 cursor-pointer">
+          <div key={tab} className="relative pb-4 shrink-0 cursor-pointer">
             <span
               className={
                 index === 0
-                  ? 'text-xl font-extrabold text-slate-900'
-                  : 'text-xl text-slate-400 font-semibold hover:text-slate-700'
+                  ? 'text-xl font-extrabold text-slate-900 tracking-tight whitespace-nowrap'
+                  : 'text-xl text-slate-400 font-semibold tracking-tight whitespace-nowrap'
               }
             >
               {tab}
             </span>
             {index === 0 && (
-              <div className="absolute bottom-0 left-0 right-0 h-1 rounded-full bg-sky-500 shadow-xs" />
+              <div className="absolute bottom-0 left-0 right-0 h-1.5 rounded-full bg-sky-500 shadow-xs" />
             )}
           </div>
         ))}
       </div>
 
       {/* ── Media Grid (Full Bleed Edge-to-Edge Grid) ── */}
-      <div className="grid flex-1 auto-rows-max grid-cols-3 content-start gap-[2px] p-0 bg-white">
+      <div className="grid auto-rows-max grid-cols-3 content-start gap-[2px] p-0 bg-white">
         {tiles.map((tile, index) => (
           <PlaceholderPhoto
             key={index}

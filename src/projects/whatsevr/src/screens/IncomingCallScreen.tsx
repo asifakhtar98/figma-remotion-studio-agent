@@ -68,13 +68,13 @@ export const IncomingCallScreen: FC = () => {
       {/* ── Secondary Quick Controls ── */}
       <div className="relative z-10 flex items-center justify-center gap-20 pb-12">
         <div className="flex flex-col items-center gap-3">
-          <button className="w-16 h-16 rounded-full bg-slate-900/80 backdrop-blur-md border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white">
+          <button className="w-16 h-16 rounded-full bg-slate-900/80 backdrop-blur-md border border-slate-700 flex items-center justify-center text-slate-300">
             <Mic size={26} />
           </button>
           <span className="text-xs font-extrabold text-slate-400">Mute</span>
         </div>
         <div className="flex flex-col items-center gap-3">
-          <button className="w-16 h-16 rounded-full bg-slate-900/80 backdrop-blur-md border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white">
+          <button className="w-16 h-16 rounded-full bg-slate-900/80 backdrop-blur-md border border-slate-700 flex items-center justify-center text-slate-300">
             <Volume2 size={26} />
           </button>
           <span className="text-xs font-extrabold text-slate-400">Speaker</span>
@@ -84,14 +84,14 @@ export const IncomingCallScreen: FC = () => {
       {/* ── Primary Accept / Decline Actions ── */}
       <div className="relative z-10 flex items-center justify-between px-20 pb-20">
         <div className="flex flex-col items-center gap-3">
-          <button className="w-[88px] h-[88px] rounded-full bg-rose-600 shadow-2xl shadow-rose-600/40 flex items-center justify-center text-white hover:bg-rose-500 transition-all cursor-pointer">
+          <button className="w-[88px] h-[88px] rounded-full bg-rose-600 shadow-2xl shadow-rose-600/40 flex items-center justify-center text-white cursor-pointer">
             <PhoneOff size={36} />
           </button>
           <span className="text-base font-extrabold text-slate-300">Decline</span>
         </div>
 
         <div className="flex flex-col items-center gap-3">
-          <button className="w-[88px] h-[88px] rounded-full bg-emerald-500 shadow-2xl shadow-emerald-500/40 flex items-center justify-center text-white hover:bg-emerald-400 transition-all cursor-pointer">
+          <button className="w-[88px] h-[88px] rounded-full bg-emerald-500 shadow-2xl shadow-emerald-500/40 flex items-center justify-center text-white cursor-pointer">
             <Phone size={36} className="fill-white" />
           </button>
           <span className="text-base font-extrabold text-emerald-400">Accept</span>

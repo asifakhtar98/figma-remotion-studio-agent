@@ -40,7 +40,7 @@ export const HomeHero: React.FC = () => {
             {/* Pill CTA with exact gradient: linear-gradient(45deg, #3e4f47, #ff4500) */}
             <a
               href="/start-trial/"
-              className="px-8 py-4 text-white text-sm font-extrabold rounded-full shadow-[0_4px_15px_rgba(62,79,71,0.2)] hover:opacity-95 transition-all tracking-wider no-underline uppercase"
+              className="px-8 py-4 text-white text-sm font-extrabold rounded-full shadow-[0_4px_15px_rgba(62,79,71,0.2)] tracking-wider no-underline uppercase"
               style={{
                 background: 'linear-gradient(45deg, rgb(62, 79, 71), rgb(255, 69, 0))',
               }}
@@ -49,7 +49,7 @@ export const HomeHero: React.FC = () => {
             </a>
             <button
               type="button"
-              className="px-8 py-4 bg-transparent border-2 border-[#3e4f47] text-[#3e4f47] text-sm font-extrabold rounded-full hover:bg-[#3e4f47]/10 transition-all tracking-wider uppercase"
+              className="px-8 py-4 bg-transparent border-2 border-[#3e4f47] text-[#3e4f47] text-sm font-extrabold rounded-full tracking-wider uppercase"
             >
               BOOK FOR DEMO
             </button>

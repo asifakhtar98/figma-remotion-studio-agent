@@ -24,23 +24,23 @@ export const PricingHeader: React.FC = () => {
 
       {/* Nav Links */}
       <nav className="flex items-center gap-8 text-sm font-medium text-gray-300">
-        <a href="#home" className="hover:text-white flex items-center gap-1.5 transition-colors">
+        <a href="#home" className="flex items-center gap-1.5">
           <Home className="w-4 h-4 text-gray-400" />
           <span>Home</span>
         </a>
-        <a href="#about" className="hover:text-white flex items-center gap-1.5 transition-colors">
+        <a href="#about" className="flex items-center gap-1.5">
           <Info className="w-4 h-4 text-gray-400" />
           <span>About</span>
         </a>
-        <a href="#features" className="hover:text-white flex items-center gap-1.5 transition-colors">
+        <a href="#features" className="flex items-center gap-1.5">
           <Star className="w-4 h-4 text-gray-400" />
           <span>Features</span>
         </a>
-        <a href="#faq" className="hover:text-white flex items-center gap-1.5 transition-colors">
+        <a href="#faq" className="flex items-center gap-1.5">
           <HelpCircle className="w-4 h-4 text-gray-400" />
           <span>FAQ</span>
         </a>
-        <a href="#contact" className="hover:text-white flex items-center gap-1.5 transition-colors">
+        <a href="#contact" className="flex items-center gap-1.5">
           <Mail className="w-4 h-4 text-gray-400" />
           <span>Contact</span>
         </a>
@@ -52,7 +52,7 @@ export const PricingHeader: React.FC = () => {
 
       {/* Action CTA */}
       <div className="flex items-center gap-4">
-        <button className="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs font-semibold flex items-center gap-2 transition-colors border border-white/15">
+        <button className="px-5 py-2.5 bg-white/10 text-white rounded-xl text-xs font-semibold flex items-center gap-2 border border-white/15">
           <LogIn className="w-4 h-4 text-[#ff4d15]" />
           <span>Sign In</span>
         </button>

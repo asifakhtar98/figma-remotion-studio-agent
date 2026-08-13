@@ -211,13 +211,13 @@ export const WebCallsScreen: FC = () => {
               <button className="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold shadow-xs">
                 All Calls
               </button>
-              <button className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:text-slate-900 text-xs font-bold transition-colors">
+              <button className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-600 text-xs font-bold">
                 Direct 1:1
               </button>
-              <button className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:text-slate-900 text-xs font-bold transition-colors">
+              <button className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-600 text-xs font-bold">
                 Random Match
               </button>
-              <button className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:text-slate-900 text-xs font-bold transition-colors">
+              <button className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-600 text-xs font-bold">
                 Missed / Refunded
               </button>
             </div>
@@ -240,7 +240,7 @@ export const WebCallsScreen: FC = () => {
               return (
                 <div
                   key={log.id}
-                  className="px-7 py-4.5 flex items-center justify-between hover:bg-slate-50/80 transition-all duration-150"
+                  className="px-7 py-4.5 flex items-center justify-between"
                 >
                   <div className="flex items-center gap-4">
                     {/* User Avatar Placeholder */}
@@ -290,7 +290,7 @@ export const WebCallsScreen: FC = () => {
                       {log.date}
                     </span>
 
-                    <button className="bg-slate-900 hover:bg-sky-600 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-xs transition-colors flex items-center gap-1.5">
+                    <button className="bg-slate-900 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-xs flex items-center gap-1.5">
                       <PhoneCall size={13} />
                       <span>Re-dial</span>
                     </button>

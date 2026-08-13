@@ -84,7 +84,7 @@ export const MarketingPosterScreen: FC = () => {
       <div className="relative z-10 my-3 flex flex-1 items-center justify-center gap-8">
         {/* ── 3D Rotated Smartphone Frame Mockup ── */}
         <div
-          className="relative overflow-hidden rounded-[40px] border-4 border-black bg-slate-950 shadow-[12px_12px_0px_#000000] transform -rotate-3 transition-transform"
+          className="relative overflow-hidden rounded-[40px] border-4 border-black bg-slate-950 shadow-[12px_12px_0px_#000000] transform -rotate-3"
           style={{width: 360, height: 560}}
         >
           {/* Speaker Notch */}

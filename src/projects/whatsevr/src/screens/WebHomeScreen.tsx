@@ -94,7 +94,7 @@ export const WebHomeScreen: FC = () => {
                 </span>
                 <span className="text-lg font-extrabold text-slate-900">₹1,000.00</span>
               </div>
-              <button className="bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-xs transition-all flex items-center gap-1.5">
+              <button className="bg-sky-500 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-xs flex items-center gap-1.5">
                 <Zap size={14} className="fill-white" />
                 Add Money
               </button>
@@ -105,7 +105,7 @@ export const WebHomeScreen: FC = () => {
           <div className="grid grid-cols-2 gap-6 w-full">
             {/* Card 1: Random Match (Primary Dark Gradient Banner) */}
             <div className="relative overflow-hidden p-8 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-slate-700/60 shadow-xl flex flex-col justify-between min-h-[260px] group">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-sky-500/20 rounded-full blur-2xl pointer-events-none group-hover:bg-sky-500/30 transition-all duration-300" />
+              <div className="absolute top-0 right-0 w-64 h-64 bg-sky-500/20 rounded-full blur-2xl pointer-events-none" />
               
               <div>
                 <div className="flex items-center justify-between">
@@ -137,7 +137,7 @@ export const WebHomeScreen: FC = () => {
                     HD Video & Voice
                   </span>
                 </div>
-                <button className="bg-sky-500 hover:bg-sky-400 text-white font-bold text-sm px-6 py-3 rounded-2xl shadow-md transition-all flex items-center gap-2">
+                <button className="bg-sky-500 text-white font-bold text-sm px-6 py-3 rounded-2xl shadow-md flex items-center gap-2">
                   <span>Start Matching</span>
                   <ArrowRight size={16} />
                 </button>
@@ -145,7 +145,7 @@ export const WebHomeScreen: FC = () => {
             </div>
 
             {/* Card 2: One2One Discovery (Clean Elevated White Tile) */}
-            <div className="relative overflow-hidden p-8 rounded-3xl bg-white border border-slate-200/90 shadow-md flex flex-col justify-between min-h-[260px] group hover:border-slate-300 transition-all">
+            <div className="relative overflow-hidden p-8 rounded-3xl bg-white border border-slate-200/90 shadow-md flex flex-col justify-between min-h-[260px] group">
               <div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center -space-x-2">
@@ -186,7 +186,7 @@ export const WebHomeScreen: FC = () => {
                     Advice
                   </span>
                 </div>
-                <button className="bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm px-6 py-3 rounded-2xl shadow-sm transition-all flex items-center gap-2">
+                <button className="bg-slate-900 text-white font-bold text-sm px-6 py-3 rounded-2xl shadow-sm flex items-center gap-2">
                   <span>Browse Hosts</span>
                   <ArrowRight size={16} />
                 </button>
@@ -205,7 +205,7 @@ export const WebHomeScreen: FC = () => {
                   Active
                 </span>
               </div>
-              <button className="text-sm font-bold text-sky-600 hover:text-sky-700 flex items-center gap-1">
+              <button className="text-sm font-bold text-sky-600 flex items-center gap-1">
                 View All <ArrowRight size={15} />
               </button>
             </div>
@@ -214,7 +214,7 @@ export const WebHomeScreen: FC = () => {
               {featuredCreators.map((creator) => (
                 <div
                   key={creator.id}
-                  className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-xs hover:shadow-md transition-all flex items-center gap-4"
+                  className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-xs flex items-center gap-4"
                 >
                   <div className="relative w-16 h-16 rounded-2xl overflow-hidden shrink-0 border border-slate-100 shadow-2xs">
                     <Img src={creator.avatar} className="w-full h-full object-cover" />
@@ -238,7 +238,7 @@ export const WebHomeScreen: FC = () => {
                       <span className="text-xs font-extrabold text-sky-600">
                         {creator.rate}
                       </span>
-                      <button className="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-3.5 py-1.5 rounded-xl shadow-2xs transition-colors flex items-center gap-1">
+                      <button className="bg-slate-900 text-white font-bold text-xs px-3.5 py-1.5 rounded-xl shadow-2xs flex items-center gap-1">
                         <PhoneCall size={12} />
                         Ring
                       </button>

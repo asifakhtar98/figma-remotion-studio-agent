@@ -67,22 +67,14 @@ export const ApplicantTrendChart: React.FC = () => {
                   {/* Applied Bar */}
                   <div
                     style={{ height: `${appliedHeight}px` }}
-                    className="w-5 bg-[#ff4d15] rounded-t-md transition-all hover:bg-[#e03e09] relative group cursor-pointer"
-                  >
-                    <div className="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow pointer-events-none whitespace-nowrap z-20">
-                      {d.applied}
-                    </div>
-                  </div>
+                    className="w-5 bg-[#ff4d15] rounded-t-md relative"
+                  />
 
                   {/* Shortlisted Bar */}
                   <div
                     style={{ height: `${shortlistedHeight}px` }}
-                    className="w-5 bg-[#2d3736] rounded-t-md transition-all hover:bg-[#1f2726] relative group cursor-pointer"
-                  >
-                    <div className="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow pointer-events-none whitespace-nowrap z-20">
-                      {d.shortlisted}
-                    </div>
-                  </div>
+                    className="w-5 bg-[#2d3736] rounded-t-md relative"
+                  />
                 </div>
                 <span className="text-xs font-semibold text-gray-500">{d.month}</span>
               </div>

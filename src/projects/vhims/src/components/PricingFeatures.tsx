@@ -6,7 +6,7 @@ export const PricingFeatures: React.FC = () => {
     <section className="max-w-6xl mx-auto px-12 py-12">
       <div className="grid md:grid-cols-2 gap-8">
         {/* Feature 1: AI CV Sorting */}
-        <div className="bg-white rounded-3xl border border-gray-200 p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+        <div className="bg-white rounded-3xl border border-gray-200 p-8 shadow-sm flex flex-col justify-between">
           <div>
             <div className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-[#ff4d15] bg-orange-50 border border-orange-100 px-3 py-1 rounded-full mb-4">
               <FolderTree className="w-3.5 h-3.5" />
@@ -72,7 +72,7 @@ export const PricingFeatures: React.FC = () => {
         </div>
 
         {/* Feature 2: AI CV Evaluation */}
-        <div className="bg-white rounded-3xl border border-gray-200 p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+        <div className="bg-white rounded-3xl border border-gray-200 p-8 shadow-sm flex flex-col justify-between">
           <div>
             <div className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-100 px-3 py-1 rounded-full mb-4">
               <Brain className="w-3.5 h-3.5" />

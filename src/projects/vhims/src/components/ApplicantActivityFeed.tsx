@@ -63,7 +63,7 @@ export const ApplicantActivityFeed: React.FC = () => {
             Latest candidate submissions ranked by requisition suitability
           </p>
         </div>
-        <button className="text-xs font-semibold text-[#ff4d15] hover:underline flex items-center gap-1">
+        <button className="text-xs font-semibold text-[#ff4d15] flex items-center gap-1">
           <span>View All (1,428)</span>
           <ChevronRight className="w-3.5 h-3.5" />
         </button>
@@ -103,7 +103,7 @@ export const ApplicantActivityFeed: React.FC = () => {
                 <span>{c.matchScore}% Match</span>
               </div>
 
-              <button className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-semibold rounded-lg transition-colors">
+              <button className="px-3 py-1.5 bg-gray-100 text-gray-800 text-xs font-semibold rounded-lg">
                 Review
               </button>
             </div>

@@ -44,10 +44,10 @@ export const CommunityDetailScreen: FC = () => {
               Hello Sir Testing Community
             </h1>
             <div className="flex items-center gap-3">
-              <button className="p-2.5 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700">
+              <button className="p-2.5 rounded-2xl bg-slate-100 text-slate-700">
                 <Send size={20} />
               </button>
-              <button className="p-2.5 rounded-2xl bg-slate-100 hover:bg-slate-200 text-rose-600">
+              <button className="p-2.5 rounded-2xl bg-slate-100 text-rose-600">
                 <Heart size={20} />
               </button>
             </div>
@@ -79,7 +79,7 @@ export const CommunityDetailScreen: FC = () => {
             </div>
           </div>
 
-          <button className="w-full py-4 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-base shadow-md transition-all flex items-center justify-center gap-2">
+          <button className="w-full py-4 rounded-2xl bg-slate-900 text-white font-extrabold text-base shadow-md flex items-center justify-center gap-2">
             <MessageSquare size={20} />
             <span>Join Community Chat</span>
           </button>
@@ -89,7 +89,7 @@ export const CommunityDetailScreen: FC = () => {
         <div className="flex items-center gap-8 border-b border-slate-200/90 pt-2 pb-1 bg-transparent overflow-x-auto text-base font-bold text-slate-400">
           {tabs.map((tab, index) => (
             <div key={tab} className="relative pb-3 cursor-pointer">
-              <span className={index === 0 ? 'text-slate-900 font-extrabold' : 'hover:text-slate-700'}>
+              <span className={index === 0 ? 'text-slate-900 font-extrabold' : ''}>
                 {tab}
               </span>
               {index === 0 && (

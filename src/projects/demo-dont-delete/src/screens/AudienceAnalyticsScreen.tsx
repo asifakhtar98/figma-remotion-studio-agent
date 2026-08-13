@@ -78,7 +78,7 @@ export const AudienceAnalyticsScreen: FC = () => {
     >
       {/* ── Header ── */}
       <div className="px-8 pt-10 pb-5 bg-white/90 backdrop-blur-md border-b border-slate-200/80 flex items-center justify-between shadow-xs sticky top-0 z-30">
-        <button className="flex items-center gap-2 text-slate-600 font-extrabold text-base hover:text-slate-900 transition-colors">
+        <button className="flex items-center gap-2 text-slate-600 font-extrabold text-base">
           <ArrowLeft size={22} />
           <span>Dashboard</span>
         </button>
@@ -90,7 +90,7 @@ export const AudienceAnalyticsScreen: FC = () => {
           </span>
         </div>
 
-        <button className="p-2.5 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 font-bold border border-slate-200/60">
+        <button className="p-2.5 rounded-xl bg-slate-100 text-slate-700 font-bold border border-slate-200/60">
           <Filter size={18} />
         </button>
       </div>
@@ -167,7 +167,7 @@ export const AudienceAnalyticsScreen: FC = () => {
                 VIP Tier
               </span>
             </div>
-            <button className="text-xs font-extrabold text-indigo-600 flex items-center gap-0.5 hover:underline">
+            <button className="text-xs font-extrabold text-indigo-600 flex items-center gap-0.5">
               Manage All <ChevronRight size={14} />
             </button>
           </div>
@@ -176,7 +176,7 @@ export const AudienceAnalyticsScreen: FC = () => {
             {topSupporters.map((fan) => (
               <div
                 key={fan.handle}
-                className="flex items-center justify-between p-4 rounded-[24px] bg-white border border-slate-200/90 shadow-xs hover:border-slate-300 transition-all"
+                className="flex items-center justify-between p-4 rounded-[24px] bg-white border border-slate-200/90 shadow-xs"
               >
                 <div className="flex items-center gap-3.5">
                   <div className="w-12 h-12 rounded-2xl overflow-hidden border-2 border-amber-400 shrink-0 relative shadow-sm">
@@ -259,8 +259,8 @@ export const AudienceAnalyticsScreen: FC = () => {
         ].map((tab, idx) => (
           <button
             key={idx}
-            className={`flex flex-col items-center gap-1 transition-all ${
-              tab.active ? 'text-indigo-600 scale-105' : 'text-slate-400 hover:text-slate-600'
+            className={`flex flex-col items-center gap-1 ${
+              tab.active ? 'text-indigo-600 scale-105' : 'text-slate-400'
             }`}
           >
             {tab.icon}

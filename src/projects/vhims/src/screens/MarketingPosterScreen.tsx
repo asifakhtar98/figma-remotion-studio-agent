@@ -22,7 +22,7 @@ export const MarketingPosterScreen: React.FC = () => {
   return (
     <AbsoluteFill
       style={{ fontFamily }}
-      className="w-[1080px] h-[1080px] bg-[#eef0f2] text-slate-800 antialiased overflow-hidden select-none relative flex flex-col justify-between p-12"
+      className="bg-[#eef0f2] text-slate-800 antialiased overflow-hidden select-none relative flex flex-col justify-between p-12"
     >
       {/* ── Ambient Background Studio Lighting (VHiMS Sand & Pine Halos) ── */}
       <div className="absolute -top-[140px] -left-[100px] w-[700px] h-[700px] rounded-full bg-[#3e4f47]/12 blur-[150px] pointer-events-none" />
@@ -87,7 +87,7 @@ export const MarketingPosterScreen: React.FC = () => {
       {/* ── MIDDLE SECTION: Real VHiMS Light Dashboard Showcase Frame ── */}
       <div className="relative z-10 my-2 flex-1 flex items-center justify-center">
         {/* Device Container Frame */}
-        <div className="relative w-full max-w-[960px] h-[450px] rounded-2xl bg-white border border-slate-200/90 shadow-[0_25px_60px_-15px_rgba(62,79,71,0.15)] overflow-hidden transform -rotate-1 hover:rotate-0 transition-transform duration-500 flex flex-col">
+        <div className="relative w-full max-w-[960px] h-[450px] rounded-2xl bg-white border border-slate-200/90 shadow-[0_25px_60px_-15px_rgba(62,79,71,0.15)] overflow-hidden transform -rotate-1 flex flex-col">
           
           {/* Dashboard Window Bar */}
           <div className="h-10 bg-[#bab3a9]/30 border-b border-slate-200 px-4 flex items-center justify-between shrink-0">
@@ -231,7 +231,7 @@ export const MarketingPosterScreen: React.FC = () => {
         {/* ── FLOATING GLASSMORTIC FEATURE PILLS (VHiMS BRAND TOKENS) ── */}
 
         {/* Pill 1: Top-Left AI Match Pill */}
-        <div className="absolute top-[230px] -left-3 z-20 flex items-center gap-3 rounded-2xl border border-[#3e4f47]/20 bg-white/95 px-5 py-3.5 backdrop-blur-xl shadow-xl shadow-[#3e4f47]/10 transform -rotate-2 hover:rotate-0 transition-transform">
+        <div className="absolute top-[230px] -left-3 z-20 flex items-center gap-3 rounded-2xl border border-[#3e4f47]/20 bg-white/95 px-5 py-3.5 backdrop-blur-xl shadow-xl shadow-[#3e4f47]/10 transform -rotate-2">
           <div className="w-10 h-10 rounded-xl bg-[#3e4f47]/10 border border-[#3e4f47]/20 flex items-center justify-center text-[#3e4f47] shrink-0">
             <Sparkles className="w-5 h-5 text-[#ff4d15]" />
           </div>
@@ -244,7 +244,7 @@ export const MarketingPosterScreen: React.FC = () => {
         </div>
 
         {/* Pill 2: Middle-Right Funnel Analytics Pill */}
-        <div className="absolute top-28 -right-4 z-20 flex items-center gap-3 rounded-2xl border border-[#ff4d15]/30 bg-white/95 px-5 py-3.5 backdrop-blur-xl shadow-xl shadow-[#ff4d15]/10 transform rotate-2 hover:rotate-0 transition-transform">
+        <div className="absolute top-28 -right-4 z-20 flex items-center gap-3 rounded-2xl border border-[#ff4d15]/30 bg-white/95 px-5 py-3.5 backdrop-blur-xl shadow-xl shadow-[#ff4d15]/10 transform rotate-2">
           <div className="w-10 h-10 rounded-xl bg-[#ff4d15]/10 border border-[#ff4d15]/20 flex items-center justify-center text-[#ff4d15] shrink-0">
             <TrendingUp className="w-5 h-5" />
           </div>
@@ -259,7 +259,7 @@ export const MarketingPosterScreen: React.FC = () => {
         </div>
 
         {/* Pill 3: Bottom-Left Interview Scheduler Pill */}
-        <div className="absolute -bottom-4 left-6 z-20 flex items-center gap-3.5 rounded-2xl border border-[#3e4f47]/30 bg-white/95 px-5 py-3.5 backdrop-blur-xl shadow-xl shadow-[#3e4f47]/10 transform -rotate-1 hover:rotate-0 transition-transform">
+        <div className="absolute -bottom-4 left-6 z-20 flex items-center gap-3.5 rounded-2xl border border-[#3e4f47]/30 bg-white/95 px-5 py-3.5 backdrop-blur-xl shadow-xl shadow-[#3e4f47]/10 transform -rotate-1">
           <div className="w-10 h-10 rounded-xl bg-[#3e4f47]/10 border border-[#3e4f47]/20 flex items-center justify-center text-[#3e4f47] shrink-0">
             <Calendar className="w-5 h-5 text-[#3e4f47]" />
           </div>
@@ -280,7 +280,7 @@ export const MarketingPosterScreen: React.FC = () => {
           {/* Main Pill CTA with Exact VHiMS Gradient */}
           <a
             href="https://vhims.com/start-trial/"
-            className="px-8 py-4 text-white text-sm font-extrabold rounded-full shadow-[0_6px_20px_rgba(62,79,71,0.25)] flex items-center gap-2.5 tracking-wider uppercase cursor-pointer hover:opacity-95 transition-all no-underline"
+            className="px-8 py-4 text-white text-sm font-extrabold rounded-full shadow-[0_6px_20px_rgba(62,79,71,0.25)] flex items-center gap-2.5 tracking-wider uppercase cursor-pointer no-underline"
             style={{
               background: 'linear-gradient(45deg, rgb(62, 79, 71), rgb(255, 69, 0))',
             }}
@@ -290,7 +290,7 @@ export const MarketingPosterScreen: React.FC = () => {
           </a>
 
           {/* Secondary Outline Demo Button */}
-          <div className="px-6 py-3.5 border-2 border-[#3e4f47] text-[#3e4f47] text-xs font-black rounded-full uppercase tracking-wider bg-white/80 hover:bg-[#3e4f47]/10 transition-all cursor-pointer">
+          <div className="px-6 py-3.5 border-2 border-[#3e4f47] text-[#3e4f47] text-xs font-black rounded-full uppercase tracking-wider bg-white/80 cursor-pointer">
             BOOK FOR DEMO
           </div>
 

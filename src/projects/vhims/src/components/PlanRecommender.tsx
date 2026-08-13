@@ -98,7 +98,7 @@ export const PlanRecommender: React.FC = () => {
               {rec.desc}
             </p>
 
-            <button className="w-full mt-5 py-2.5 bg-[#ff4d15] hover:bg-[#e03e09] text-white text-xs font-bold rounded-xl shadow transition-colors flex items-center justify-center gap-1">
+            <button className="w-full mt-5 py-2.5 bg-[#ff4d15] text-white text-xs font-bold rounded-xl shadow flex items-center justify-center gap-1">
               <span>Start 14-Day Free Trial</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>

@@ -22,12 +22,12 @@ export const TopHeader: React.FC = () => {
           </div>
         </div>
 
-        <button className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-gray-900 transition-colors">
+        <button className="flex items-center gap-1.5 text-xs font-semibold text-gray-700">
           <LogOut className="w-4 h-4 text-gray-600" />
           <span>Logout</span>
         </button>
 
-        <button className="text-gray-500 hover:text-gray-800 transition-colors p-1 rounded-full hover:bg-gray-100">
+        <button className="text-gray-500 p-1 rounded-full">
           <Bell className="w-4 h-4" />
         </button>
       </div>

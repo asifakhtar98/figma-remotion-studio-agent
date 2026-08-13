@@ -9,7 +9,7 @@ const {fontFamily} = loadFont('normal', {
   weights: ['400', '500', '600', '700', '800'],
 });
 
-const tabs = ['Offers', 'Posts', 'Memories', 'Flicks', 'Wtv'];
+const tabs = ['Explore', 'Offers', 'Posts', 'Memories', 'Flicks', 'Wtv'];
 
 const memoriesList = [
   {
@@ -69,31 +69,31 @@ export const ExploreMemoriesScreen: FC = () => {
       className="flex flex-col overflow-hidden select-none text-slate-900"
     >
       {/* ── Header ── */}
-      <div className="flex items-center gap-4 px-7 pt-10 pb-4 bg-white border-b border-slate-100">
-        <WhatsevrLogo size={48} ringed />
-        <div className="flex flex-1 items-center justify-between gap-3 rounded-full border border-slate-200 bg-slate-50 px-5 py-3.5 shadow-2xs">
+      <div className="flex items-center gap-4 px-7 pt-8 pb-5 bg-white border-b border-slate-100 shrink-0">
+        <WhatsevrLogo size={52} ringed />
+        <div className="flex flex-1 items-center justify-between gap-3 rounded-full border border-slate-200 bg-slate-50 px-5 py-4 shadow-2xs">
           <span className="text-lg text-slate-400 font-medium">Search Memories...</span>
           <Search size={22} className="text-slate-400" />
         </div>
       </div>
 
       {/* ── Tabs ── */}
-      <div className="flex items-center gap-8 border-b border-slate-200/90 px-7 pt-3 bg-white overflow-x-auto">
+      <div className="flex items-center gap-10 border-b border-slate-200/90 px-8 pt-4 pb-1 bg-white overflow-x-auto shrink-0 scrollbar-none">
         {tabs.map((tab) => {
           const isActive = tab === 'Memories';
           return (
-            <div key={tab} className="relative pb-3.5 cursor-pointer">
+            <div key={tab} className="relative pb-4 shrink-0 cursor-pointer">
               <span
                 className={
                   isActive
-                    ? 'text-xl font-extrabold text-slate-900'
-                    : 'text-xl text-slate-400 font-semibold hover:text-slate-700'
+                    ? 'text-xl font-extrabold text-slate-900 tracking-tight whitespace-nowrap'
+                    : 'text-xl text-slate-400 font-semibold tracking-tight whitespace-nowrap'
                 }
               >
                 {tab}
               </span>
               {isActive && (
-                <div className="absolute bottom-0 left-0 right-0 h-1 rounded-full bg-sky-500 shadow-xs" />
+                <div className="absolute bottom-0 left-0 right-0 h-1.5 rounded-full bg-sky-500 shadow-xs" />
               )}
             </div>
           );
@@ -101,13 +101,13 @@ export const ExploreMemoriesScreen: FC = () => {
       </div>
 
       {/* ── Memories Grid (Full Bleed Edge-to-Edge Grid) ── */}
-      <div className="flex-1 grid grid-cols-2 gap-[2px] p-0 bg-white content-start">
+      <div className="grid grid-cols-2 gap-[2px] p-0 bg-white content-start">
         {memoriesList.map((item) => (
           <div
             key={item.handle}
             className="relative overflow-hidden flex flex-col justify-between p-5 group min-h-[440px]"
           >
-            <Img src={item.bgUrl} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <Img src={item.bgUrl} className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
 
             <div className="relative z-10 w-14 h-14 rounded-full overflow-hidden border-2 border-sky-400 p-0.5 shadow-lg">

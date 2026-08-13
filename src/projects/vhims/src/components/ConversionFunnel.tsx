@@ -50,7 +50,7 @@ export const ConversionFunnel: React.FC = () => {
             {/* Bar Background & Fill */}
             <div className="w-full h-3.5 bg-gray-100 rounded-full overflow-hidden flex">
               <div
-                className={`h-full ${stage.color} ${stage.widthPct} rounded-full transition-all`}
+                className={`h-full ${stage.color} ${stage.widthPct} rounded-full`}
               />
             </div>
           </div>

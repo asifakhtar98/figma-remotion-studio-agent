@@ -21,7 +21,7 @@ export const PricingPlansGrid: React.FC<PricingPlansGridProps> = ({ cycle }) => 
         <p className="text-xs text-gray-800 font-medium">
           <strong className="text-[#ff4d15] font-bold">Start free for 14 days</strong> — 1,000 credits · 100 basic screenings a month · unlimited job postings. No credit card required.
         </p>
-        <button className="px-4 py-2 bg-[#ff4d15] hover:bg-[#e03e09] text-white text-xs font-bold rounded-xl shadow transition-colors shrink-0">
+        <button className="px-4 py-2 bg-[#ff4d15] text-white text-xs font-bold rounded-xl shadow shrink-0">
           Start Free Trial →
         </button>
       </div>
@@ -29,7 +29,7 @@ export const PricingPlansGrid: React.FC<PricingPlansGridProps> = ({ cycle }) => 
       {/* Grid of 5 Tier Cards */}
       <div className="grid grid-cols-5 gap-4 items-stretch">
         {/* Seed Tier */}
-        <div className="bg-white rounded-3xl border border-gray-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
+        <div className="bg-white rounded-3xl border border-gray-200 p-6 flex flex-col justify-between shadow-sm">
           <div>
             <span className="inline-block text-[9px] font-bold uppercase tracking-wider text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full mb-3">
               Seed
@@ -71,13 +71,13 @@ export const PricingPlansGrid: React.FC<PricingPlansGridProps> = ({ cycle }) => 
             </ul>
           </div>
 
-          <button className="w-full mt-6 py-2.5 bg-gray-900 hover:bg-black text-white text-xs font-bold rounded-xl transition-colors">
+          <button className="w-full mt-6 py-2.5 bg-gray-900 text-white text-xs font-bold rounded-xl">
             Select Plan
           </button>
         </div>
 
         {/* Starter Tier */}
-        <div className="bg-white rounded-3xl border border-gray-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
+        <div className="bg-white rounded-3xl border border-gray-200 p-6 flex flex-col justify-between shadow-sm">
           <div>
             <span className="inline-block text-[9px] font-bold uppercase tracking-wider text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full mb-3">
               Starter
@@ -119,7 +119,7 @@ export const PricingPlansGrid: React.FC<PricingPlansGridProps> = ({ cycle }) => 
             </ul>
           </div>
 
-          <button className="w-full mt-6 py-2.5 bg-gray-900 hover:bg-black text-white text-xs font-bold rounded-xl transition-colors">
+          <button className="w-full mt-6 py-2.5 bg-gray-900 text-white text-xs font-bold rounded-xl">
             Select Plan
           </button>
         </div>
@@ -172,14 +172,14 @@ export const PricingPlansGrid: React.FC<PricingPlansGridProps> = ({ cycle }) => 
             </ul>
           </div>
 
-          <button className="w-full mt-6 py-2.5 bg-[#ff4d15] hover:bg-[#e03e09] text-white text-xs font-bold rounded-xl shadow transition-colors flex items-center justify-center gap-1.5">
+          <button className="w-full mt-6 py-2.5 bg-[#ff4d15] text-white text-xs font-bold rounded-xl shadow flex items-center justify-center gap-1.5">
             <span>Select Growth</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
         {/* Scale Tier */}
-        <div className="bg-white rounded-3xl border border-gray-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
+        <div className="bg-white rounded-3xl border border-gray-200 p-6 flex flex-col justify-between shadow-sm">
           <div>
             <span className="inline-block text-[9px] font-bold uppercase tracking-wider text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full mb-3">
               Scale
@@ -221,13 +221,13 @@ export const PricingPlansGrid: React.FC<PricingPlansGridProps> = ({ cycle }) => 
             </ul>
           </div>
 
-          <button className="w-full mt-6 py-2.5 bg-gray-900 hover:bg-black text-white text-xs font-bold rounded-xl transition-colors">
+          <button className="w-full mt-6 py-2.5 bg-gray-900 text-white text-xs font-bold rounded-xl">
             Select Plan
           </button>
         </div>
 
         {/* Enterprise Tier */}
-        <div className="bg-white rounded-3xl border border-gray-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
+        <div className="bg-white rounded-3xl border border-gray-200 p-6 flex flex-col justify-between shadow-sm">
           <div>
             <span className="inline-block text-[9px] font-bold uppercase tracking-wider text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full mb-3">
               Enterprise
@@ -268,7 +268,7 @@ export const PricingPlansGrid: React.FC<PricingPlansGridProps> = ({ cycle }) => 
             </ul>
           </div>
 
-          <button className="w-full mt-6 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-900 text-xs font-bold rounded-xl transition-colors">
+          <button className="w-full mt-6 py-2.5 bg-gray-100 text-gray-900 text-xs font-bold rounded-xl">
             Book Demo
           </button>
         </div>

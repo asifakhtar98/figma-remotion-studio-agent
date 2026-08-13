@@ -100,7 +100,7 @@ export const CallsScreen: FC = () => {
               </div>
               <div className="flex items-center gap-4">
                 <span className="text-xs text-slate-400 font-bold">05:08 PM</span>
-                <button className="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white transition-colors">
+                <button className="p-2.5 rounded-xl bg-slate-900 text-white">
                   <PhoneCall size={16} />
                 </button>
               </div>

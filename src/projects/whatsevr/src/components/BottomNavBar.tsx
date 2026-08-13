@@ -11,13 +11,13 @@ interface BottomNavBarProps {
 
 export const BottomNavBar: FC<BottomNavBarProps> = ({items}) => {
   return (
-    <div className="flex items-center justify-between border-t border-gray-200 bg-white px-8 py-4">
+    <div className="flex items-center justify-between border-t border-slate-200 bg-white px-8 py-5 pb-8 shrink-0">
       {items.map((item, index) => (
         <div
           key={index}
           className={
-            'flex h-11 w-11 items-center justify-center rounded-full ' +
-            (item.active ? 'bg-black text-white' : 'text-gray-800')
+            'flex h-14 w-14 items-center justify-center rounded-full shrink-0 ' +
+            (item.active ? 'bg-black text-white shadow-sm' : 'text-slate-700')
           }
         >
           {item.icon}

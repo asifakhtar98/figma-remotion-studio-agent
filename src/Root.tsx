@@ -120,7 +120,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={786}
-        height={1760}
+        height={1864}
       />
       <Composition
         id="whatsevr-04-ExploreOffers"
@@ -128,7 +128,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={786}
-        height={1760}
+        height={2116}
       />
       <Composition
         id="whatsevr-05-ExploreMemories"
@@ -136,7 +136,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={786}
-        height={1760}
+        height={2056}
       />
       <Composition
         id="whatsevr-06-ExploreWtv"
@@ -144,7 +144,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={786}
-        height={1760}
+        height={2058}
       />
       <Composition
         id="whatsevr-07-Spin"

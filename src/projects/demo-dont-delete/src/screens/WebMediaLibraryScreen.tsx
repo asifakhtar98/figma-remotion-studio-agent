@@ -121,10 +121,10 @@ export const WebMediaLibraryScreen: FC = () => {
             ].map((item) => (
               <button
                 key={item.label}
-                className={`flex items-center gap-3.5 px-4 py-3.5 rounded-2xl font-extrabold text-sm transition-all ${
+                className={`flex items-center gap-3.5 px-4 py-3.5 rounded-2xl font-extrabold text-sm ${
                   item.active
                     ? 'bg-indigo-50 text-indigo-600 border border-indigo-100 shadow-2xs'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80'
+                    : 'text-slate-600'
                 }`}
               >
                 {item.icon}
@@ -147,7 +147,7 @@ export const WebMediaLibraryScreen: FC = () => {
               </span>
             </div>
           </div>
-          <button className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-colors">
+          <button className="p-2 text-slate-400 rounded-xl">
             <LogOut size={18} />
           </button>
         </div>
@@ -173,12 +173,12 @@ export const WebMediaLibraryScreen: FC = () => {
                 type="text"
                 readOnly
                 placeholder="Search 1,420 files..."
-                className="w-64 py-2.5 pl-9 pr-4 rounded-2xl bg-white text-xs font-semibold text-slate-700 placeholder:text-slate-400 border border-slate-200/80 focus:outline-none shadow-2xs"
+                className="w-64 py-2.5 pl-9 pr-4 rounded-2xl bg-white text-xs font-semibold text-slate-700 placeholder:text-slate-400 border border-slate-200/80 shadow-2xs"
               />
               <Search size={14} className="absolute left-3 top-3 text-slate-400" />
             </div>
 
-            <button className="px-5 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs shadow-md shadow-indigo-600/25 flex items-center gap-2 transition-all">
+            <button className="px-5 py-2.5 rounded-2xl bg-indigo-600 text-white font-extrabold text-xs shadow-md shadow-indigo-600/25 flex items-center gap-2">
               <Upload size={15} />
               <span>Upload New Media</span>
             </button>
@@ -225,10 +225,10 @@ export const WebMediaLibraryScreen: FC = () => {
                 (tab, idx) => (
                   <button
                     key={tab}
-                    className={`px-4 py-2 rounded-xl text-xs font-extrabold transition-all ${
+                    className={`px-4 py-2 rounded-xl text-xs font-extrabold ${
                       idx === 0
                         ? 'bg-indigo-600 text-white shadow-2xs'
-                        : 'bg-slate-100/80 text-slate-600 hover:text-slate-900 border border-slate-200/60'
+                        : 'bg-slate-100/80 text-slate-600 border border-slate-200/60'
                     }`}
                   >
                     {tab}
@@ -246,10 +246,10 @@ export const WebMediaLibraryScreen: FC = () => {
             {mediaAssets.map((asset) => (
               <div
                 key={asset.title}
-                className="rounded-[24px] bg-slate-50 border border-slate-200/80 overflow-hidden hover:border-slate-300 transition-all flex flex-col justify-between group shadow-2xs"
+                className="rounded-[24px] bg-slate-50 border border-slate-200/80 overflow-hidden flex flex-col justify-between group shadow-2xs"
               >
                 <div className="relative w-full h-44 bg-slate-100">
-                  <Img src={asset.thumbnail} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                  <Img src={asset.thumbnail} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
 
                   <span className="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-black/60 backdrop-blur-md text-white text-[10px] font-extrabold border border-white/10">
@@ -276,7 +276,7 @@ export const WebMediaLibraryScreen: FC = () => {
                       <CheckCircle2 size={12} /> AI Transcribed
                     </span>
 
-                    <button className="p-2 rounded-xl bg-white text-slate-600 hover:text-slate-900 border border-slate-200 hover:bg-slate-100 shadow-2xs">
+                    <button className="p-2 rounded-xl bg-white text-slate-600 border border-slate-200 shadow-2xs">
                       <Download size={14} />
                     </button>
                   </div>

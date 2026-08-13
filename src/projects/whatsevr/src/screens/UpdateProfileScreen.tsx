@@ -59,10 +59,10 @@ export const UpdateProfileScreen: FC = () => {
             <ChevronUp size={20} className="text-gray-600" />
           </div>
           <div className="flex items-center gap-3">
-            <button className="rounded-full border border-gray-300 bg-white px-5 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50">
+            <button className="rounded-full border border-gray-300 bg-white px-5 py-2 text-sm font-semibold text-gray-900 shadow-sm">
               Add Cover Image
             </button>
-            <button className="rounded-full border border-gray-300 bg-white px-5 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50">
+            <button className="rounded-full border border-gray-300 bg-white px-5 py-2 text-sm font-semibold text-gray-900 shadow-sm">
               Add Cover Video
             </button>
           </div>

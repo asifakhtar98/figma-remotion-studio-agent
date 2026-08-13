@@ -132,7 +132,7 @@ export const BuyCoinsScreen: FC = () => {
             {coinPackages.map((pkg) => (
               <div
                 key={pkg.id}
-                className={`relative flex items-center justify-between p-5 rounded-3xl bg-white transition-all cursor-pointer ${
+                className={`relative flex items-center justify-between p-5 rounded-3xl bg-white cursor-pointer ${
                   pkg.popular
                     ? 'border-2 border-sky-500 shadow-md'
                     : 'border border-slate-200/90 shadow-2xs'

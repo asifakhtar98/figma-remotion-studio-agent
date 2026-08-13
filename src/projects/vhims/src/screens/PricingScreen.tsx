@@ -35,8 +35,8 @@ export const PricingScreen: React.FC = () => {
           <span className="font-bold text-white">VHIMS — VisionaryHire LLP</span>
           <span>© 2026 VisionaryHire LLP. All rights reserved.</span>
           <div className="flex items-center gap-4 text-gray-300">
-            <a href="#privacy" className="hover:text-white">Privacy Policy</a>
-            <a href="#terms" className="hover:text-white">Terms of Service</a>
+            <a href="#privacy" className="">Privacy Policy</a>
+            <a href="#terms" className="">Terms of Service</a>
           </div>
         </div>
       </footer>

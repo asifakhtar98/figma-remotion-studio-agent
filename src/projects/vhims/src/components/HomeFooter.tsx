@@ -25,22 +25,22 @@ export const HomeFooter: React.FC = () => {
             </h4>
             <ul className="list-none p-0 m-0 space-y-2 text-sm text-slate-600">
               <li>
-                <a href="/features/" className="no-underline hover:text-[#3e4f47] transition-colors">
+                <a href="/features/" className="no-underline">
                   Features Overview
                 </a>
               </li>
               <li>
-                <a href="/faq/" className="no-underline hover:text-[#3e4f47] transition-colors">
+                <a href="/faq/" className="no-underline">
                   FAQ
                 </a>
               </li>
               <li>
-                <a href="/pricing/" className="no-underline hover:text-[#3e4f47] transition-colors">
+                <a href="/pricing/" className="no-underline">
                   Pricing
                 </a>
               </li>
               <li>
-                <a href="/security-compliance/" className="no-underline hover:text-[#3e4f47] transition-colors">
+                <a href="/security-compliance/" className="no-underline">
                   Security
                 </a>
               </li>
@@ -54,12 +54,12 @@ export const HomeFooter: React.FC = () => {
             </h4>
             <ul className="list-none p-0 m-0 space-y-2 text-sm text-slate-600">
               <li>
-                <a href="/about/" className="no-underline hover:text-[#3e4f47] transition-colors">
+                <a href="/about/" className="no-underline">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="/contact/" className="no-underline hover:text-[#3e4f47] transition-colors">
+                <a href="/contact/" className="no-underline">
                   Contact Us
                 </a>
               </li>
@@ -73,12 +73,12 @@ export const HomeFooter: React.FC = () => {
             </h4>
             <ul className="list-none p-0 m-0 space-y-2 text-sm text-slate-600">
               <li>
-                <a href="/privacy-policy/" className="no-underline hover:text-[#3e4f47] transition-colors">
+                <a href="/privacy-policy/" className="no-underline">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="/terms-conditions/" className="no-underline hover:text-[#3e4f47] transition-colors">
+                <a href="/terms-conditions/" className="no-underline">
                   Terms & Conditions
                 </a>
               </li>

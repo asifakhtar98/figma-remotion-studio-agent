@@ -44,7 +44,7 @@ export const CreateAccountScreen: FC<CreateAccountScreenProps> = ({
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/30 via-slate-900/50 to-slate-900/80" />
 
         {/* Scan QR Floating Button */}
-        <div className="absolute top-10 right-10 z-10 flex items-center justify-center rounded-2xl bg-orange-600 p-3.5 text-white shadow-lg hover:bg-orange-500 transition-colors">
+        <div className="absolute top-10 right-10 z-10 flex items-center justify-center rounded-2xl bg-orange-600 p-3.5 text-white shadow-lg">
           <Scan size={26} />
         </div>
 
@@ -74,7 +74,7 @@ export const CreateAccountScreen: FC<CreateAccountScreenProps> = ({
 
         {/* Create Account Primary CTA */}
         <div className="mt-8 w-full">
-          <button className="w-full py-5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xl shadow-lg transition-all flex items-center justify-center gap-3">
+          <button className="w-full py-5 rounded-2xl bg-slate-900 text-white font-extrabold text-xl shadow-lg flex items-center justify-center gap-3">
             <span>Create Account</span>
             <ArrowRight size={22} />
           </button>
@@ -82,7 +82,7 @@ export const CreateAccountScreen: FC<CreateAccountScreenProps> = ({
 
         {/* Existing Account Link */}
         <div className="mt-6 text-center">
-          <span className="text-base font-bold text-sky-600 hover:underline cursor-pointer">
+          <span className="text-base font-bold text-sky-600 cursor-pointer">
             Already have an account? Sign In
           </span>
         </div>
@@ -111,11 +111,11 @@ export const CreateAccountScreen: FC<CreateAccountScreenProps> = ({
                   </div>
                 </div>
 
-                <button className="px-5 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-900 font-extrabold text-sm shadow-2xs transition-all">
+                <button className="px-5 py-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 font-extrabold text-sm shadow-2xs">
                   Sign In
                 </button>
 
-                <button className="p-2 text-slate-400 hover:text-slate-700 transition-colors">
+                <button className="p-2 text-slate-400">
                   <X size={20} />
                 </button>
               </div>

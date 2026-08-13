@@ -17,37 +17,37 @@ export const HomeHeader: React.FC = () => {
       {/* Nav Links */}
       <ul className="flex items-center gap-8 list-none m-0 p-0 text-sm font-semibold text-slate-700">
         <li>
-          <a href="/" className="text-[#ff4d15] font-bold flex items-center gap-1.5 px-3 py-1.5 bg-orange-50 rounded-full transition-colors">
+          <a href="/" className="text-[#ff4d15] font-bold flex items-center gap-1.5 px-3 py-1.5 bg-orange-50 rounded-full">
             <Home className="w-4 h-4 text-[#ff4d15]" />
             <span>Home</span>
           </a>
         </li>
         <li>
-          <a href="/about/" className="hover:text-[#3e4f47] flex items-center gap-1.5 transition-colors">
+          <a href="/about/" className="flex items-center gap-1.5">
             <Info className="w-4 h-4 text-slate-400" />
             <span>About</span>
           </a>
         </li>
         <li>
-          <a href="/features/" className="hover:text-[#3e4f47] flex items-center gap-1.5 transition-colors">
+          <a href="/features/" className="flex items-center gap-1.5">
             <Star className="w-4 h-4 text-slate-400" />
             <span>Features</span>
           </a>
         </li>
         <li>
-          <a href="/faq/" className="hover:text-[#3e4f47] flex items-center gap-1.5 transition-colors">
+          <a href="/faq/" className="flex items-center gap-1.5">
             <HelpCircle className="w-4 h-4 text-slate-400" />
             <span>FAQ</span>
           </a>
         </li>
         <li>
-          <a href="/contact/" className="hover:text-[#3e4f47] flex items-center gap-1.5 transition-colors">
+          <a href="/contact/" className="flex items-center gap-1.5">
             <Mail className="w-4 h-4 text-slate-400" />
             <span>Contact</span>
           </a>
         </li>
         <li>
-          <a href="/pricing/" className="hover:text-[#3e4f47] flex items-center gap-1.5 transition-colors">
+          <a href="/pricing/" className="flex items-center gap-1.5">
             <Tag className="w-4 h-4 text-slate-400" />
             <span>Pricing</span>
           </a>
@@ -58,7 +58,7 @@ export const HomeHeader: React.FC = () => {
       <div className="flex items-center gap-4">
         <a
           href="/signin/"
-          className="px-6 py-2.5 text-white rounded-full text-xs font-bold flex items-center gap-2 transition-all shadow-[0_4px_15px_rgba(62,79,71,0.2)] hover:opacity-95 no-underline"
+          className="px-6 py-2.5 text-white rounded-full text-xs font-bold flex items-center gap-2 shadow-[0_4px_15px_rgba(62,79,71,0.2)] no-underline"
           style={{
             background: 'linear-gradient(45deg, rgb(62, 79, 71), rgb(255, 69, 0))',
           }}

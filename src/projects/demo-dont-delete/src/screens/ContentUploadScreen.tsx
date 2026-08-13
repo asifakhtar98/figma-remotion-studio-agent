@@ -44,7 +44,7 @@ export const ContentUploadScreen: FC = () => {
     >
       {/* ── Header ── */}
       <div className="px-8 pt-10 pb-5 bg-white/90 backdrop-blur-md border-b border-slate-200/80 flex items-center justify-between shadow-xs sticky top-0 z-30">
-        <button className="flex items-center gap-2 text-slate-600 font-extrabold text-base hover:text-slate-900 transition-colors">
+        <button className="flex items-center gap-2 text-slate-600 font-extrabold text-base">
           <ArrowLeft size={22} />
           <span>Cancel</span>
         </button>
@@ -56,7 +56,7 @@ export const ContentUploadScreen: FC = () => {
           </span>
         </div>
 
-        <button className="px-5 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm shadow-md shadow-indigo-600/25 flex items-center gap-2 transition-all">
+        <button className="px-5 py-2.5 rounded-2xl bg-indigo-600 text-white font-extrabold text-sm shadow-md shadow-indigo-600/25 flex items-center gap-2">
           <span>Publish Post</span>
           <Send size={16} />
         </button>
@@ -94,11 +94,11 @@ export const ContentUploadScreen: FC = () => {
             </div>
 
             <div className="flex items-center gap-2.5">
-              <button className="px-4 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-xs shadow-lg shadow-indigo-600/40 backdrop-blur-md transition-all flex items-center gap-2 border border-indigo-400/30">
+              <button className="px-4 py-2.5 rounded-2xl bg-indigo-600 text-white font-extrabold text-xs shadow-lg shadow-indigo-600/40 backdrop-blur-md flex items-center gap-2 border border-indigo-400/30">
                 <Wand2 size={15} className="text-amber-300" />
                 <span>AI Enhance & Upscale</span>
               </button>
-              <button className="px-4 py-2.5 rounded-2xl bg-slate-900/80 hover:bg-slate-900 text-white font-extrabold text-xs shadow-md backdrop-blur-md border border-slate-700 transition-all">
+              <button className="px-4 py-2.5 rounded-2xl bg-slate-900/80 text-white font-extrabold text-xs shadow-md backdrop-blur-md border border-slate-700">
                 Replace Media
               </button>
             </div>
@@ -111,14 +111,14 @@ export const ContentUploadScreen: FC = () => {
             <span className="text-xs font-extrabold text-slate-400 uppercase tracking-wider">
               CAPTION & RICH TEXT COPY
             </span>
-            <button className="text-xs font-extrabold text-indigo-600 flex items-center gap-1 hover:underline">
+            <button className="text-xs font-extrabold text-indigo-600 flex items-center gap-1">
               <Sparkles size={13} /> Generate AI Caption
             </button>
           </div>
 
           <div className="p-6 rounded-[28px] bg-white border border-slate-200/90 shadow-xs flex flex-col gap-4">
             <textarea
-              className="w-full h-36 bg-transparent text-slate-900 text-lg font-medium placeholder:text-slate-400 focus:outline-none resize-none leading-relaxed"
+              className="w-full h-36 bg-transparent text-slate-900 text-lg font-medium placeholder:text-slate-400 resize-none leading-relaxed"
               placeholder="What's on your mind? Share your story, insights, or update with your audience..."
               defaultValue="🚀 Excited to reveal our new high-speed canvas engine! Built from the ground up for maximum visual precision and seamless 60fps Remotion rendering. Check out the link below for early access!"
             />
@@ -126,13 +126,13 @@ export const ContentUploadScreen: FC = () => {
             {/* Rich Editor Micro Toolbar */}
             <div className="flex items-center justify-between pt-4 border-t border-slate-100">
               <div className="flex items-center gap-1.5">
-                <button className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold">
+                <button className="p-2 rounded-xl bg-slate-100 text-slate-700 font-bold">
                   <Bold size={15} />
                 </button>
-                <button className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold">
+                <button className="p-2 rounded-xl bg-slate-100 text-slate-700 font-bold">
                   <Italic size={15} />
                 </button>
-                <button className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold">
+                <button className="p-2 rounded-xl bg-slate-100 text-slate-700 font-bold">
                   <Link size={15} />
                 </button>
                 <div className="h-5 w-px bg-slate-200 mx-1" />

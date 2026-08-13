@@ -14,7 +14,7 @@ export const MetricsCards: React.FC = () => {
             <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-700">
               <Crown className="w-4 h-4" />
             </div>
-            <button className="w-8 h-8 rounded-lg bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-700 transition-colors">
+            <button className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-700">
               <Plus className="w-4 h-4" />
             </button>
           </div>

@@ -60,10 +60,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeId = 'accounts' }) => {
           return (
             <div
               key={item.id}
-              className={`flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+              className={`flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm font-medium ${
                 isActive
                   ? 'bg-[#ff4d15] text-white shadow-sm'
-                  : 'text-gray-300 hover:bg-[#364241] hover:text-white'
+                  : 'text-gray-300'
               }`}
             >
               <Icon className="w-4 h-4 shrink-0" />

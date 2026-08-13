@@ -37,7 +37,7 @@ export const ContentThumbnailCard: FC<ContentThumbnailCardProps> = ({
   };
 
   return (
-    <div className="flex items-center gap-4 p-4 rounded-[24px] bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-slate-300 transition-all">
+    <div className="flex items-center gap-4 p-4 rounded-[24px] bg-white border border-slate-200/90 shadow-xs">
       <div className="relative w-36 h-24 rounded-2xl overflow-hidden shrink-0 bg-slate-100 border border-slate-100 shadow-inner group">
         <Img src={thumbnailUrl} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
@@ -98,7 +98,7 @@ export const ContentThumbnailCard: FC<ContentThumbnailCardProps> = ({
         </div>
       </div>
 
-      <button className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-colors shrink-0">
+      <button className="p-2 text-slate-400 rounded-xl shrink-0">
         <MoreVertical size={18} />
       </button>
     </div>

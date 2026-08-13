@@ -101,10 +101,10 @@ export const ProfileScreen: FC = () => {
               </div>
 
               <div className="flex items-center gap-2">
-                <button className="p-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white shadow-sm">
+                <button className="p-3 rounded-2xl bg-slate-900 text-white shadow-sm">
                   <Send size={20} />
                 </button>
-                <button className="p-3 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700 hover:text-slate-900">
+                <button className="p-3 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700">
                   <HeartHandshake size={20} />
                 </button>
               </div>
@@ -148,7 +148,7 @@ export const ProfileScreen: FC = () => {
                   <span className="text-xs font-bold text-slate-900 truncate max-w-full">
                     {person.name}
                   </span>
-                  <button className="w-full py-1.5 rounded-xl bg-slate-900 text-white text-xs font-extrabold shadow-2xs hover:bg-slate-800 transition-colors">
+                  <button className="w-full py-1.5 rounded-xl bg-slate-900 text-white text-xs font-extrabold shadow-2xs">
                     Follow
                   </button>
                 </div>
@@ -160,7 +160,7 @@ export const ProfileScreen: FC = () => {
           <div className="flex items-center justify-between border-t border-slate-200/90 pt-4 text-base font-bold text-slate-400">
             {profileTabs.map((tab, index) => (
               <div key={tab} className="relative pb-2 cursor-pointer">
-                <span className={index === 3 ? 'text-slate-900 font-extrabold' : 'hover:text-slate-700'}>
+                <span className={index === 3 ? 'text-slate-900 font-extrabold' : ''}>
                   {tab}
                 </span>
                 {index === 3 && (
@@ -186,7 +186,7 @@ export const ProfileScreen: FC = () => {
                     <span className="text-xs text-slate-400 font-medium">{pdf.size}</span>
                   </div>
                 </div>
-                <button className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-900 font-extrabold text-xs">
+                <button className="px-4 py-2 rounded-xl bg-slate-100 text-slate-900 font-extrabold text-xs">
                   View
                 </button>
               </div>

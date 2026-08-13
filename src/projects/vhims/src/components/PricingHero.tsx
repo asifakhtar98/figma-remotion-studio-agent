@@ -50,30 +50,30 @@ export const PricingHero: React.FC<PricingHeroProps> = ({ cycle, setCycle }) => 
         <div className="inline-flex bg-white/10 p-1.5 rounded-2xl border border-white/15 backdrop-blur-md shadow-lg">
           <button
             onClick={() => setCycle('monthly')}
-            className={`px-6 py-2.5 rounded-xl text-xs font-bold transition-all ${
+            className={`px-6 py-2.5 rounded-xl text-xs font-bold ${
               cycle === 'monthly'
                 ? 'bg-[#ff4d15] text-white shadow-md'
-                : 'text-gray-300 hover:text-white'
+                : 'text-gray-300'
             }`}
           >
             Monthly
           </button>
           <button
             onClick={() => setCycle('quarterly')}
-            className={`px-6 py-2.5 rounded-xl text-xs font-bold transition-all ${
+            className={`px-6 py-2.5 rounded-xl text-xs font-bold ${
               cycle === 'quarterly'
                 ? 'bg-[#ff4d15] text-white shadow-md'
-                : 'text-gray-300 hover:text-white'
+                : 'text-gray-300'
             }`}
           >
             Quarterly
           </button>
           <button
             onClick={() => setCycle('annual')}
-            className={`px-6 py-2.5 rounded-xl text-xs font-bold transition-all relative ${
+            className={`px-6 py-2.5 rounded-xl text-xs font-bold relative ${
               cycle === 'annual'
                 ? 'bg-[#ff4d15] text-white shadow-md'
-                : 'text-gray-300 hover:text-white'
+                : 'text-gray-300'
             }`}
           >
             Annual

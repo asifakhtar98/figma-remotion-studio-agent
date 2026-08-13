@@ -73,16 +73,16 @@ export const WebSidebarNav: FC<WebSidebarNavProps> = ({
             return (
               <div
                 key={item.id}
-                className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl cursor-pointer transition-all duration-150 ${
+                className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl cursor-pointer ${
                   isActive
                     ? 'bg-slate-100/90 text-slate-900 font-extrabold shadow-2xs'
-                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-semibold'
+                    : 'text-slate-600 font-semibold'
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <IconComponent
                     size={18}
-                    className={isActive ? 'text-slate-900' : 'text-slate-400 group-hover:text-slate-700'}
+                    className={isActive ? 'text-slate-900' : 'text-slate-400'}
                     strokeWidth={isActive ? 2.2 : 1.8}
                   />
                   <span className="text-xs tracking-tight">{item.label}</span>
@@ -128,7 +128,7 @@ export const WebSidebarNav: FC<WebSidebarNavProps> = ({
           </div>
 
           <button
-            className="p-1.5 rounded-lg text-slate-400 hover:text-rose-500 hover:bg-rose-50 transition-colors"
+            className="p-1.5 rounded-lg text-slate-400"
             title="Log out"
           >
             <LogOut size={16} />

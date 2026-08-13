@@ -26,7 +26,7 @@ export const AddMemberForm: React.FC = () => {
             type="email"
             readOnly
             value="user@example.com"
-            className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-400 focus:outline-none"
+            className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-400"
           />
         </div>
 
@@ -40,9 +40,9 @@ export const AddMemberForm: React.FC = () => {
               type="password"
               readOnly
               value="••••••••"
-              className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-400 focus:outline-none pr-10"
+              className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-400 pr-10"
             />
-            <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+            <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
               <Eye className="w-4 h-4" />
             </button>
           </div>
@@ -56,7 +56,7 @@ export const AddMemberForm: React.FC = () => {
           <div className="relative">
             <select
               disabled
-              className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-800 font-medium appearance-none focus:outline-none pr-10 cursor-pointer"
+              className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-800 font-medium appearance-none pr-10 cursor-pointer"
               defaultValue="Standard Member"
             >
               <option value="Standard Member">Standard Member</option>
@@ -76,7 +76,7 @@ export const AddMemberForm: React.FC = () => {
             type="text"
             readOnly
             placeholder="Search parent admin..."
-            className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none"
+            className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400"
           />
           <p className="text-[11px] text-gray-400 mt-2 leading-normal">
             Member inherits the selected admin's company, plan, and expiry.
@@ -85,7 +85,7 @@ export const AddMemberForm: React.FC = () => {
       </div>
 
       {/* Submit Button */}
-      <button className="w-full mt-6 bg-[#2d3736] hover:bg-[#202827] text-white font-medium text-sm py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 shadow-sm transition-colors">
+      <button className="w-full mt-6 bg-[#2d3736] text-white font-medium text-sm py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 shadow-sm">
         <UserPlus className="w-4 h-4" />
         <span>Add Member</span>
       </button>

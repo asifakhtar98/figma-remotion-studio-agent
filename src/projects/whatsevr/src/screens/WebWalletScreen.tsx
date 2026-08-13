@@ -82,7 +82,7 @@ export const WebWalletScreen: FC = () => {
 
             <div className="flex flex-col items-end justify-between gap-3 border-l border-slate-800/80 pl-8 py-1">
               <span className="text-xs font-bold text-slate-300">₹4,999 / year • Cancel anytime</span>
-              <button className="bg-sky-500 hover:bg-sky-400 text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-xs transition-colors flex items-center gap-1.5">
+              <button className="bg-sky-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-xs flex items-center gap-1.5">
                 Manage Subscription <ArrowUpRight size={14} />
               </button>
             </div>
@@ -142,10 +142,10 @@ export const WebWalletScreen: FC = () => {
                 {packages.map((pkg, idx) => (
                   <div
                     key={idx}
-                    className={`relative bg-white rounded-2xl p-4 flex flex-col justify-between cursor-pointer transition-all duration-150 ${
+                    className={`relative bg-white rounded-2xl p-4 flex flex-col justify-between cursor-pointer ${
                       pkg.popular
                         ? 'border-2 border-sky-500 shadow-md bg-sky-50/20 pt-6'
-                        : 'border border-slate-200/90 shadow-xs hover:border-slate-300 hover:shadow-md'
+                        : 'border border-slate-200/90 shadow-xs'
                     }`}
                   >
                     {pkg.popular && (
@@ -195,7 +195,7 @@ export const WebWalletScreen: FC = () => {
                       readOnly
                     />
                   </div>
-                  <button className="bg-sky-500 hover:bg-sky-600 text-white text-xs font-bold px-6 py-3.5 rounded-2xl shadow-sm transition-all">
+                  <button className="bg-sky-500 text-white text-xs font-bold px-6 py-3.5 rounded-2xl shadow-sm">
                     Add Money
                   </button>
                 </div>
@@ -217,7 +217,7 @@ export const WebWalletScreen: FC = () => {
                     className="flex-1 bg-slate-50 border border-slate-200/90 rounded-2xl px-4 py-3 text-sm text-slate-800 font-bold outline-none uppercase tracking-wider"
                     readOnly
                   />
-                  <button className="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-6 py-3.5 rounded-2xl shadow-sm transition-all">
+                  <button className="bg-slate-900 text-white text-xs font-bold px-6 py-3.5 rounded-2xl shadow-sm">
                     Apply Code
                   </button>
                 </div>
@@ -261,7 +261,7 @@ export const WebWalletScreen: FC = () => {
                     <span className="text-xs text-slate-800 font-bold">Female</span>
                     <ChevronDown size={14} className="text-slate-400" />
                   </div>
-                  <button className="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-xs transition-colors">
+                  <button className="bg-slate-900 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-xs">
                     Activate
                   </button>
                 </div>
@@ -281,7 +281,7 @@ export const WebWalletScreen: FC = () => {
                   <div className="bg-white border border-slate-200/90 rounded-xl px-4 py-1.5 shadow-xs">
                     <span className="text-xs text-slate-800 font-bold">India (IN)</span>
                   </div>
-                  <button className="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-xs transition-colors">
+                  <button className="bg-slate-900 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-xs">
                     Activate
                   </button>
                 </div>
@@ -296,7 +296,7 @@ export const WebWalletScreen: FC = () => {
                 <Clock size={15} className="text-sky-500" />
                 RECENT TRANSACTIONS & BILLING LOG
               </span>
-              <button className="text-xs font-bold text-sky-600 hover:text-sky-700">
+              <button className="text-xs font-bold text-sky-600">
                 Download Statement (PDF)
               </button>
             </div>

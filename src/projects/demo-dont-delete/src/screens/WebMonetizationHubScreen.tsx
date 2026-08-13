@@ -130,10 +130,10 @@ export const WebMonetizationHubScreen: FC = () => {
             ].map((item) => (
               <button
                 key={item.label}
-                className={`flex items-center gap-3.5 px-4 py-3.5 rounded-2xl font-extrabold text-sm transition-all ${
+                className={`flex items-center gap-3.5 px-4 py-3.5 rounded-2xl font-extrabold text-sm ${
                   item.active
                     ? 'bg-indigo-50 text-indigo-600 border border-indigo-100 shadow-2xs'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80'
+                    : 'text-slate-600'
                 }`}
               >
                 {item.icon}
@@ -156,7 +156,7 @@ export const WebMonetizationHubScreen: FC = () => {
               </span>
             </div>
           </div>
-          <button className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-colors">
+          <button className="p-2 text-slate-400 rounded-xl">
             <LogOut size={18} />
           </button>
         </div>
@@ -182,7 +182,7 @@ export const WebMonetizationHubScreen: FC = () => {
                 type="text"
                 readOnly
                 placeholder="Search deals, payouts..."
-                className="w-64 py-2.5 pl-9 pr-4 rounded-2xl bg-white text-xs font-semibold text-slate-700 placeholder:text-slate-400 border border-slate-200/80 focus:outline-none shadow-2xs"
+                className="w-64 py-2.5 pl-9 pr-4 rounded-2xl bg-white text-xs font-semibold text-slate-700 placeholder:text-slate-400 border border-slate-200/80 shadow-2xs"
               />
               <Search size={14} className="absolute left-3 top-3 text-slate-400" />
             </div>
@@ -191,10 +191,10 @@ export const WebMonetizationHubScreen: FC = () => {
               {['7D', '30D', '90D', '1Y', 'ALL'].map((period, i) => (
                 <button
                   key={period}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-extrabold transition-all ${
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-extrabold ${
                     i === 1
                       ? 'bg-indigo-600 text-white shadow-2xs'
-                      : 'text-slate-500 hover:text-slate-900'
+                      : 'text-slate-500'
                   }`}
                 >
                   {period}
@@ -202,7 +202,7 @@ export const WebMonetizationHubScreen: FC = () => {
               ))}
             </div>
 
-            <button className="px-4 py-2.5 rounded-2xl bg-white border border-slate-200/80 text-slate-700 font-extrabold text-xs hover:bg-slate-50 flex items-center gap-2 transition-all shadow-2xs">
+            <button className="px-4 py-2.5 rounded-2xl bg-white border border-slate-200/80 text-slate-700 font-extrabold text-xs flex items-center gap-2 shadow-2xs">
               <Download size={15} />
               <span>Export Report</span>
             </button>
@@ -257,7 +257,7 @@ export const WebMonetizationHubScreen: FC = () => {
                   Direct brand partnerships & upcoming milestone deliverables
                 </p>
               </div>
-              <button className="text-xs font-extrabold text-indigo-600 hover:underline flex items-center gap-1">
+              <button className="text-xs font-extrabold text-indigo-600 flex items-center gap-1">
                 View All Deals <ChevronRight size={14} />
               </button>
             </div>
@@ -266,7 +266,7 @@ export const WebMonetizationHubScreen: FC = () => {
               {sponsoredDeals.map((deal) => (
                 <div
                   key={deal.brand}
-                  className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-slate-300 transition-all"
+                  className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 border border-slate-200/80"
                 >
                   <div className="flex items-center gap-3.5">
                     <div className="w-11 h-11 rounded-2xl bg-white border border-slate-200 flex items-center justify-center text-xl shrink-0 shadow-2xs">
@@ -311,7 +311,7 @@ export const WebMonetizationHubScreen: FC = () => {
                   Direct automated sales from your DSP Storefront
                 </p>
               </div>
-              <button className="px-3.5 py-2 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs shadow-md shadow-indigo-600/25 flex items-center gap-1.5">
+              <button className="px-3.5 py-2 rounded-2xl bg-indigo-600 text-white font-extrabold text-xs shadow-md shadow-indigo-600/25 flex items-center gap-1.5">
                 <Plus size={14} /> Add Product
               </button>
             </div>
@@ -320,7 +320,7 @@ export const WebMonetizationHubScreen: FC = () => {
               {digitalProducts.map((prod) => (
                 <div
                   key={prod.title}
-                  className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-slate-300 transition-all"
+                  className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 border border-slate-200/80"
                 >
                   <div className="flex items-center gap-3.5">
                     <div className="w-16 h-12 rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200">

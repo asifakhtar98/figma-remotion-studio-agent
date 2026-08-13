@@ -52,12 +52,12 @@ export const CreatorDashboardScreen: FC = () => {
               type="text"
               readOnly
               placeholder="Search analytics, posts..."
-              className="w-48 py-2.5 pl-9 pr-4 rounded-xl bg-slate-100/90 text-xs font-semibold text-slate-600 placeholder:text-slate-400 border border-slate-200/60 focus:outline-none"
+              className="w-48 py-2.5 pl-9 pr-4 rounded-xl bg-slate-100/90 text-xs font-semibold text-slate-600 placeholder:text-slate-400 border border-slate-200/60"
             />
             <Search size={14} className="absolute left-3 top-3 text-slate-400" />
           </div>
 
-          <button className="p-3 rounded-2xl bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors relative border border-slate-200/60">
+          <button className="p-3 rounded-2xl bg-slate-100 text-slate-700 relative border border-slate-200/60">
             <Bell size={20} />
             <span className="absolute top-2.5 right-2.5 w-2.5 h-2.5 rounded-full bg-indigo-600 ring-2 ring-white" />
           </button>
@@ -165,9 +165,9 @@ export const CreatorDashboardScreen: FC = () => {
             ].map((action) => (
               <button
                 key={action.label}
-                className="flex flex-col items-center justify-center gap-2.5 p-4.5 rounded-[22px] bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-slate-300 transition-all text-slate-800 group"
+                className="flex flex-col items-center justify-center gap-2.5 p-4.5 rounded-[22px] bg-white border border-slate-200/90 shadow-xs text-slate-800 group"
               >
-                <div className="p-3 rounded-2xl bg-slate-50 border border-slate-100 group-hover:scale-110 transition-transform">
+                <div className="p-3 rounded-2xl bg-slate-50 border border-slate-100">
                   {action.icon}
                 </div>
                 <span className="text-xs font-extrabold tracking-tight text-center leading-tight">
@@ -189,7 +189,7 @@ export const CreatorDashboardScreen: FC = () => {
                 4 Items
               </span>
             </div>
-            <button className="text-xs font-extrabold text-indigo-600 flex items-center gap-0.5 hover:underline">
+            <button className="text-xs font-extrabold text-indigo-600 flex items-center gap-0.5">
               View All Content <ChevronRight size={14} />
             </button>
           </div>
@@ -254,8 +254,8 @@ export const CreatorDashboardScreen: FC = () => {
         ].map((tab, idx) => (
           <button
             key={idx}
-            className={`flex flex-col items-center gap-1 transition-all ${
-              tab.active ? 'text-indigo-600 scale-105' : 'text-slate-400 hover:text-slate-600'
+            className={`flex flex-col items-center gap-1 ${
+              tab.active ? 'text-indigo-600 scale-105' : 'text-slate-400'
             }`}
           >
             {tab.icon}

@@ -77,7 +77,7 @@ export const CommunityUploadModalScreen: FC = () => {
           {uploadOptions.map((option) => (
             <div
               key={option.label}
-              className="flex items-center gap-4 p-4 min-h-[64px] bg-gray-50 border border-gray-200/80 rounded-2xl cursor-pointer hover:bg-gray-100/80 transition-colors shadow-2xs"
+              className="flex items-center gap-4 p-4 min-h-[64px] bg-gray-50 border border-gray-200/80 rounded-2xl cursor-pointer shadow-2xs"
             >
               <div className="w-12 h-12 rounded-xl bg-white border border-gray-200/80 flex items-center justify-center shadow-2xs flex-shrink-0">
                 {option.icon}

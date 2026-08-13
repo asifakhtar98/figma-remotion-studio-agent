@@ -90,7 +90,7 @@ export const StudioMinimalistPosterScreen: FC = () => {
       <div className="relative z-10 my-2 flex flex-1 items-center justify-center gap-10">
         {/* ── Sleek Floating Smartphone Mockup ── */}
         <div
-          className="relative overflow-hidden rounded-[38px] border-[6px] border-slate-800 bg-slate-950 shadow-2xl shadow-slate-900/25 transform -rotate-2 transition-transform"
+          className="relative overflow-hidden rounded-[38px] border-[6px] border-slate-800 bg-slate-950 shadow-2xl shadow-slate-900/25 transform -rotate-2"
           style={{width: 350, height: 550}}
         >
           {/* Dynamic Island Notch */}
@@ -259,7 +259,7 @@ export const StudioMinimalistPosterScreen: FC = () => {
           {/* Store Download Buttons */}
           <div className="mt-3 flex items-center gap-3">
             {/* App Store Button */}
-            <div className="flex items-center gap-2.5 rounded-xl bg-slate-900 px-4 py-2 text-white shadow-md cursor-pointer hover:bg-slate-800 transition-colors">
+            <div className="flex items-center gap-2.5 rounded-xl bg-slate-900 px-4 py-2 text-white shadow-md cursor-pointer">
               <svg className="h-5 w-5 fill-current" viewBox="0 0 384 512">
                 <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 66.3 32.1 113c23.6 34.3 49.3 68.6 86 67.5 34.9-1.2 48.6-22.3 90.9-22.3 41.5 0 53.6 22.3 89.7 21.6 37.1-.7 62.4-33.1 85.5-67.4 16.4-24.1 23-47.2 23.4-48.4-1.2-.5-62.9-24.1-62.9-68.8zM250.7 101.4c17.5-21.1 29.5-50.5 26.2-79.9-25.5 1.1-56.1 17.1-74.1 38-16 18.5-29.8 48.5-26.1 77.2 28.5 2.2 56.6-14.2 74-35.3z" />
               </svg>
@@ -270,7 +270,7 @@ export const StudioMinimalistPosterScreen: FC = () => {
             </div>
 
             {/* Google Play Button */}
-            <div className="flex items-center gap-2.5 rounded-xl bg-slate-900 px-4 py-2 text-white shadow-md cursor-pointer hover:bg-slate-800 transition-colors">
+            <div className="flex items-center gap-2.5 rounded-xl bg-slate-900 px-4 py-2 text-white shadow-md cursor-pointer">
               <svg className="h-5 w-5 fill-current text-sky-400" viewBox="0 0 512 512">
                 <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-10.3 18-40.5-1.2-60.8zM104.6 499l220.7-221.3 60.1 60.1L104.6 499z" />
               </svg>

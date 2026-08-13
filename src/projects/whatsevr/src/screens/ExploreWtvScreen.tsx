@@ -21,7 +21,7 @@ const {fontFamily} = loadFont('normal', {
   weights: ['400', '500', '600', '700', '800'],
 });
 
-const tabs = ['Offers', 'Posts', 'Memories', 'Flicks', 'Wtv'];
+const tabs = ['Explore', 'Offers', 'Posts', 'Memories', 'Flicks', 'Wtv'];
 
 const videoPosts = [
   {
@@ -60,31 +60,31 @@ export const ExploreWtvScreen: FC = () => {
       className="flex flex-col overflow-hidden select-none text-slate-900"
     >
       {/* ── Search Header Bar ── */}
-      <div className="flex items-center gap-4 px-7 pt-10 pb-4 bg-white border-b border-slate-100">
-        <WhatsevrLogo size={48} ringed />
-        <div className="flex flex-1 items-center justify-between gap-3 rounded-full border border-slate-200 bg-slate-50 px-5 py-3.5 shadow-2xs">
+      <div className="flex items-center gap-4 px-7 pt-8 pb-5 bg-white border-b border-slate-100 shrink-0">
+        <WhatsevrLogo size={52} ringed />
+        <div className="flex flex-1 items-center justify-between gap-3 rounded-full border border-slate-200 bg-slate-50 px-5 py-4 shadow-2xs">
           <span className="text-lg text-slate-400 font-medium">Explore Wtv Video Content...</span>
           <Search size={22} className="text-slate-400" />
         </div>
       </div>
 
       {/* ── Sub Navigation Tabs ── */}
-      <div className="flex items-center gap-8 border-b border-slate-200/90 px-7 pt-3 bg-white overflow-x-auto">
+      <div className="flex items-center gap-10 border-b border-slate-200/90 px-8 pt-4 pb-1 bg-white overflow-x-auto shrink-0 scrollbar-none">
         {tabs.map((tab) => {
           const isActive = tab === 'Wtv';
           return (
-            <div key={tab} className="relative pb-3.5 cursor-pointer">
+            <div key={tab} className="relative pb-4 shrink-0 cursor-pointer">
               <span
                 className={
                   isActive
-                    ? 'text-xl font-extrabold text-slate-900'
-                    : 'text-xl text-slate-400 font-semibold hover:text-slate-700'
+                    ? 'text-xl font-extrabold text-slate-900 tracking-tight whitespace-nowrap'
+                    : 'text-xl text-slate-400 font-semibold tracking-tight whitespace-nowrap'
                 }
               >
                 {tab}
               </span>
               {isActive && (
-                <div className="absolute bottom-0 left-0 right-0 h-1 rounded-full bg-sky-500 shadow-xs" />
+                <div className="absolute bottom-0 left-0 right-0 h-1.5 rounded-full bg-sky-500 shadow-xs" />
               )}
             </div>
           );
@@ -92,11 +92,11 @@ export const ExploreWtvScreen: FC = () => {
       </div>
 
       {/* ── Video Feed Container (Full Bleed Edge-to-Edge) ── */}
-      <div className="flex flex-1 flex-col bg-white p-0">
+      <div className="flex flex-col bg-white p-0">
         {videoPosts.map((post) => (
           <div key={post.id} className="flex flex-col w-full bg-white border-b-8 border-slate-100/70">
             <div className="relative w-full aspect-[16/9] overflow-hidden bg-slate-900 cursor-pointer group">
-              <Img src={post.thumb} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <Img src={post.thumb} className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
                 <div className="w-20 h-20 rounded-full bg-sky-500 text-white backdrop-blur-md flex items-center justify-center shadow-xl">
                   <Play size={36} fill="white" className="ml-1.5" />
@@ -117,17 +117,17 @@ export const ExploreWtvScreen: FC = () => {
 
             <div className="flex items-center justify-between px-6 py-3.5 border-t border-slate-100 bg-white">
               <div className="flex items-center gap-6 text-slate-700">
-                <div className="flex items-center gap-2 font-bold text-sm cursor-pointer hover:text-rose-500">
+                <div className="flex items-center gap-2 font-bold text-sm cursor-pointer">
                   <Heart size={22} className="text-rose-500" />
                   <span>{post.likes}</span>
                 </div>
-                <div className="flex items-center gap-2 font-bold text-sm cursor-pointer hover:text-sky-500">
+                <div className="flex items-center gap-2 font-bold text-sm cursor-pointer">
                   <MessageCircle size={22} className="text-sky-500" />
                   <span>{post.comments}</span>
                 </div>
-                <Send size={20} className="cursor-pointer hover:text-sky-500" />
+                <Send size={20} className="cursor-pointer" />
               </div>
-              <Bookmark size={20} className="text-slate-400 cursor-pointer hover:text-slate-800" />
+              <Bookmark size={20} className="text-slate-400 cursor-pointer" />
             </div>
           </div>
         ))}

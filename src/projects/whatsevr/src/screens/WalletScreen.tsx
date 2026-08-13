@@ -77,7 +77,7 @@ export const WalletScreen: FC = () => {
         </div>
 
         {/* ── Top Up Button ── */}
-        <button className="flex items-center justify-center gap-2 w-full py-5 rounded-2xl bg-sky-500 hover:bg-sky-600 text-white text-xl font-extrabold shadow-md transition-all">
+        <button className="flex items-center justify-center gap-2 w-full py-5 rounded-2xl bg-sky-500 text-white text-xl font-extrabold shadow-md">
           <Plus size={22} strokeWidth={3} />
           <span>Top Up Credits</span>
         </button>
@@ -99,10 +99,10 @@ export const WalletScreen: FC = () => {
             </div>
 
             <div className="mt-2 flex gap-3">
-              <button className="flex-1 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-sm rounded-2xl shadow-2xs transition-colors">
+              <button className="flex-1 py-3.5 bg-slate-900 text-white font-extrabold text-sm rounded-2xl shadow-2xs">
                 Withdraw Funds
               </button>
-              <button className="flex-1 py-3.5 bg-slate-50 hover:bg-slate-100 text-slate-900 font-extrabold border border-slate-200 text-sm rounded-2xl shadow-2xs transition-colors">
+              <button className="flex-1 py-3.5 bg-slate-50 text-slate-900 font-extrabold border border-slate-200 text-sm rounded-2xl shadow-2xs">
                 History Log
               </button>
             </div>
@@ -125,7 +125,7 @@ export const WalletScreen: FC = () => {
               Callers pay ₹0.25 on voice and ₹0.50 on video. You receive instant wallet payout per minute.
             </p>
 
-            <button className="mt-2 py-3.5 w-full bg-slate-50 hover:bg-slate-100 text-slate-900 font-extrabold border border-slate-200 text-sm rounded-2xl shadow-2xs transition-colors">
+            <button className="mt-2 py-3.5 w-full bg-slate-50 text-slate-900 font-extrabold border border-slate-200 text-sm rounded-2xl shadow-2xs">
               Change Rate & Availability
             </button>
           </div>

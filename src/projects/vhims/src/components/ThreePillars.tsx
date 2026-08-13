@@ -29,7 +29,7 @@ export const ThreePillars: React.FC = () => {
         {/* 3 Pillar Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 text-left">
           {/* Pillar 1 */}
-          <div className="bg-white rounded-2xl border border-[#e5e5e3] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.1)] hover:shadow-[0_6px_25px_rgba(0,0,0,0.15)] transition-all flex flex-col items-center text-center">
+          <div className="bg-white rounded-2xl border border-[#e5e5e3] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.1)] flex flex-col items-center text-center">
             <div className="text-4xl text-[#ff4500] mb-4 flex justify-center items-center w-[50px] h-[50px]">
               <Database className="w-10 h-10 text-[#ff4500]" />
             </div>
@@ -54,7 +54,7 @@ export const ThreePillars: React.FC = () => {
           </div>
 
           {/* Pillar 2 */}
-          <div className="bg-white rounded-2xl border border-[#e5e5e3] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.1)] hover:shadow-[0_6px_25px_rgba(0,0,0,0.15)] transition-all flex flex-col items-center text-center">
+          <div className="bg-white rounded-2xl border border-[#e5e5e3] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.1)] flex flex-col items-center text-center">
             <div className="text-4xl text-[#ff4500] mb-4 flex justify-center items-center w-[50px] h-[50px]">
               <Gauge className="w-10 h-10 text-[#ff4500]" />
             </div>
@@ -79,7 +79,7 @@ export const ThreePillars: React.FC = () => {
           </div>
 
           {/* Pillar 3 */}
-          <div className="bg-white rounded-2xl border border-[#e5e5e3] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.1)] hover:shadow-[0_6px_25px_rgba(0,0,0,0.15)] transition-all flex flex-col items-center text-center">
+          <div className="bg-white rounded-2xl border border-[#e5e5e3] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.1)] flex flex-col items-center text-center">
             <div className="text-4xl text-[#ff4500] mb-4 flex justify-center items-center w-[50px] h-[50px]">
               <Brain className="w-10 h-10 text-[#ff4500]" />
             </div>

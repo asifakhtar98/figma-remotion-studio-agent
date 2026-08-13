@@ -22,10 +22,10 @@ export const StatCard: FC<StatCardProps> = ({
 }) => {
   return (
     <div
-      className={`p-5 rounded-[24px] flex flex-col justify-between transition-all relative overflow-hidden ${
+      className={`p-5 rounded-[24px] flex flex-col justify-between relative overflow-hidden ${
         darkTheme
-          ? 'bg-gradient-to-b from-slate-900/90 to-slate-900/60 border border-slate-800 text-white shadow-xl shadow-black/20 hover:border-slate-700/80'
-          : 'bg-white border border-slate-200/90 text-slate-900 shadow-xs hover:shadow-md hover:border-slate-300'
+          ? 'bg-gradient-to-b from-slate-900/90 to-slate-900/60 border border-slate-800 text-white shadow-xl shadow-black/20'
+          : 'bg-white border border-slate-200/90 text-slate-900 shadow-xs'
       }`}
     >
       <div className="flex items-center justify-between z-10">

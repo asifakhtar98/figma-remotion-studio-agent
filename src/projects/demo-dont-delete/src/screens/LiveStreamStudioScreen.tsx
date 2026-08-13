@@ -88,10 +88,10 @@ export const LiveStreamStudioScreen: FC = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <button className="p-3 rounded-2xl bg-white/90 backdrop-blur-md text-slate-700 border border-slate-200/80 hover:bg-white shadow-xs">
+          <button className="p-3 rounded-2xl bg-white/90 backdrop-blur-md text-slate-700 border border-slate-200/80 shadow-xs">
             <Share2 size={20} />
           </button>
-          <button className="p-3 rounded-2xl bg-rose-600 text-white border border-rose-500 shadow-md hover:bg-rose-700">
+          <button className="p-3 rounded-2xl bg-rose-600 text-white border border-rose-500 shadow-md">
             <X size={20} />
           </button>
         </div>
@@ -181,9 +181,9 @@ export const LiveStreamStudioScreen: FC = () => {
               type="text"
               readOnly
               placeholder="Send message to live audience..."
-              className="w-full py-3.5 pl-4 pr-12 rounded-2xl bg-slate-100/90 text-xs font-semibold text-slate-900 placeholder:text-slate-400 border border-slate-200/80 focus:outline-none"
+              className="w-full py-3.5 pl-4 pr-12 rounded-2xl bg-slate-100/90 text-xs font-semibold text-slate-900 placeholder:text-slate-400 border border-slate-200/80"
             />
-            <button className="absolute right-2 top-2 p-2 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 shadow-2xs">
+            <button className="absolute right-2 top-2 p-2 rounded-xl bg-indigo-600 text-white shadow-2xs">
               <Send size={14} />
             </button>
           </div>
@@ -195,23 +195,23 @@ export const LiveStreamStudioScreen: FC = () => {
 
         {/* Live Hardware & Overlay Buttons */}
         <div className="flex items-center justify-between pt-2">
-          <button className="p-4 rounded-2xl bg-slate-100 hover:bg-slate-200 border border-slate-200/80 text-slate-800 flex flex-col items-center gap-1">
+          <button className="p-4 rounded-2xl bg-slate-100 border border-slate-200/80 text-slate-800 flex flex-col items-center gap-1">
             <Mic size={20} className="text-indigo-600" />
             <span className="text-[10px] font-extrabold">Mic On</span>
           </button>
-          <button className="p-4 rounded-2xl bg-slate-100 hover:bg-slate-200 border border-slate-200/80 text-slate-800 flex flex-col items-center gap-1">
+          <button className="p-4 rounded-2xl bg-slate-100 border border-slate-200/80 text-slate-800 flex flex-col items-center gap-1">
             <Video size={20} className="text-emerald-600" />
             <span className="text-[10px] font-extrabold">4K Cam</span>
           </button>
-          <button className="p-4 rounded-2xl bg-slate-100 hover:bg-slate-200 border border-slate-200/80 text-slate-800 flex flex-col items-center gap-1">
+          <button className="p-4 rounded-2xl bg-slate-100 border border-slate-200/80 text-slate-800 flex flex-col items-center gap-1">
             <RotateCw size={20} className="text-amber-600" />
             <span className="text-[10px] font-extrabold">Flip Cam</span>
           </button>
-          <button className="p-4 rounded-2xl bg-slate-100 hover:bg-slate-200 border border-slate-200/80 text-slate-800 flex flex-col items-center gap-1">
+          <button className="p-4 rounded-2xl bg-slate-100 border border-slate-200/80 text-slate-800 flex flex-col items-center gap-1">
             <Sparkles size={20} className="text-rose-600" />
             <span className="text-[10px] font-extrabold">Filters</span>
           </button>
-          <button className="px-6 py-4 rounded-2xl bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs shadow-md shadow-rose-600/30 flex items-center gap-2 border border-rose-500">
+          <button className="px-6 py-4 rounded-2xl bg-rose-600 text-white font-extrabold text-xs shadow-md shadow-rose-600/30 flex items-center gap-2 border border-rose-500">
             <Radio size={16} />
             <span>End Live</span>
           </button>

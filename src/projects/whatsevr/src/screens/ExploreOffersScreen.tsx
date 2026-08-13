@@ -67,31 +67,32 @@ export const ExploreOffersScreen: FC = () => {
       className="flex flex-col overflow-hidden select-none text-slate-900"
     >
       {/* ── Search Header Bar ── */}
-      <div className="flex items-center gap-4 px-7 pt-10 pb-4 bg-white border-b border-slate-100">
-        <WhatsevrLogo size={48} ringed />
-        <div className="flex flex-1 items-center justify-between gap-3 rounded-full border border-slate-200 bg-slate-50 px-5 py-3.5 shadow-2xs">
+      {/* ── Header ── */}
+      <div className="flex items-center gap-4 px-7 pt-8 pb-5 bg-white border-b border-slate-100 shrink-0">
+        <WhatsevrLogo size={52} ringed />
+        <div className="flex flex-1 items-center justify-between gap-3 rounded-full border border-slate-200 bg-slate-50 px-5 py-4 shadow-2xs">
           <span className="text-lg text-slate-400 font-medium">Explore Offers & Services...</span>
           <Search size={22} className="text-slate-400" />
         </div>
       </div>
 
       {/* ── Sub Navigation Tabs ── */}
-      <div className="flex items-center gap-8 border-b border-slate-200/90 px-7 pt-3 bg-white overflow-x-auto">
+      <div className="flex items-center gap-10 border-b border-slate-200/90 px-8 pt-4 pb-1 bg-white overflow-x-auto shrink-0 scrollbar-none">
         {tabs.map((tab) => {
           const isActive = tab === 'Offers';
           return (
-            <div key={tab} className="relative pb-3.5 cursor-pointer">
+            <div key={tab} className="relative pb-4 shrink-0 cursor-pointer">
               <span
                 className={
                   isActive
-                    ? 'text-xl font-extrabold text-slate-900'
-                    : 'text-xl text-slate-400 font-semibold hover:text-slate-700'
+                    ? 'text-xl font-extrabold text-slate-900 tracking-tight whitespace-nowrap'
+                    : 'text-xl text-slate-400 font-semibold tracking-tight whitespace-nowrap'
                 }
               >
                 {tab}
               </span>
               {isActive && (
-                <div className="absolute bottom-0 left-0 right-0 h-1 rounded-full bg-sky-500 shadow-xs" />
+                <div className="absolute bottom-0 left-0 right-0 h-1.5 rounded-full bg-sky-500 shadow-xs" />
               )}
             </div>
           );
@@ -99,7 +100,7 @@ export const ExploreOffersScreen: FC = () => {
       </div>
 
       {/* ── Offers Feed Container (Full Bleed Edge-to-Edge) ── */}
-      <div className="flex flex-1 flex-col bg-white p-0">
+      <div className="flex flex-col bg-white p-0">
         {offerPosts.map((post) => (
           <div key={post.id} className="flex flex-col w-full bg-white border-b-8 border-slate-100/70">
             {/* Post Media */}
@@ -126,7 +127,7 @@ export const ExploreOffersScreen: FC = () => {
                 </p>
                 <p className="text-xs text-slate-400 font-medium mt-1">{post.time}</p>
               </div>
-              <button className="text-slate-400 hover:text-slate-800">
+              <button className="text-slate-400">
                 <MoreVertical size={20} />
               </button>
             </div>
@@ -134,17 +135,17 @@ export const ExploreOffersScreen: FC = () => {
             {/* Actions */}
             <div className="flex items-center justify-between px-6 py-3.5 border-t border-slate-100 bg-white">
               <div className="flex items-center gap-6 text-slate-700">
-                <div className="flex items-center gap-2 font-bold text-sm cursor-pointer hover:text-rose-500">
+                <div className="flex items-center gap-2 font-bold text-sm cursor-pointer">
                   <Heart size={22} />
                   <span>{post.likes}</span>
                 </div>
-                <div className="flex items-center gap-2 font-bold text-sm cursor-pointer hover:text-sky-500">
+                <div className="flex items-center gap-2 font-bold text-sm cursor-pointer">
                   <MessageCircle size={22} />
                   <span>{post.comments}</span>
                 </div>
-                <Send size={20} className="cursor-pointer hover:text-sky-500" />
+                <Send size={20} className="cursor-pointer" />
               </div>
-              <Bookmark size={20} className="text-slate-400 cursor-pointer hover:text-slate-800" />
+              <Bookmark size={20} className="text-slate-400 cursor-pointer" />
             </div>
           </div>
         ))}

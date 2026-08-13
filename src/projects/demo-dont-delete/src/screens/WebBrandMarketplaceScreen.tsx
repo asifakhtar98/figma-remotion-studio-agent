@@ -104,10 +104,10 @@ export const WebBrandMarketplaceScreen: FC = () => {
             ].map((item) => (
               <button
                 key={item.label}
-                className={`flex items-center gap-3.5 px-4 py-3.5 rounded-2xl font-extrabold text-sm transition-all ${
+                className={`flex items-center gap-3.5 px-4 py-3.5 rounded-2xl font-extrabold text-sm ${
                   item.active
                     ? 'bg-indigo-50 text-indigo-600 border border-indigo-100 shadow-2xs'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80'
+                    : 'text-slate-600'
                 }`}
               >
                 {item.icon}
@@ -130,7 +130,7 @@ export const WebBrandMarketplaceScreen: FC = () => {
               </span>
             </div>
           </div>
-          <button className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-colors">
+          <button className="p-2 text-slate-400 rounded-xl">
             <LogOut size={18} />
           </button>
         </div>
@@ -156,12 +156,12 @@ export const WebBrandMarketplaceScreen: FC = () => {
                 type="text"
                 readOnly
                 placeholder="Search brands, campaigns..."
-                className="w-64 py-2.5 pl-9 pr-4 rounded-2xl bg-white text-xs font-semibold text-slate-700 placeholder:text-slate-400 border border-slate-200/80 focus:outline-none shadow-2xs"
+                className="w-64 py-2.5 pl-9 pr-4 rounded-2xl bg-white text-xs font-semibold text-slate-700 placeholder:text-slate-400 border border-slate-200/80 shadow-2xs"
               />
               <Search size={14} className="absolute left-3 top-3 text-slate-400" />
             </div>
 
-            <button className="px-5 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs shadow-md shadow-indigo-600/25 flex items-center gap-2 transition-all">
+            <button className="px-5 py-2.5 rounded-2xl bg-indigo-600 text-white font-extrabold text-xs shadow-md shadow-indigo-600/25 flex items-center gap-2">
               <FileText size={15} />
               <span>Create Media Kit Pitch</span>
             </button>
@@ -223,7 +223,7 @@ export const WebBrandMarketplaceScreen: FC = () => {
             {brandOpportunities.map((opp) => (
               <div
                 key={opp.brand}
-                className="p-6 rounded-[24px] bg-slate-50 border border-slate-200/80 hover:border-slate-300 transition-all flex flex-col justify-between gap-5 relative overflow-hidden group"
+                className="p-6 rounded-[24px] bg-slate-50 border border-slate-200/80 flex flex-col justify-between gap-5 relative overflow-hidden group"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3.5">
@@ -269,7 +269,7 @@ export const WebBrandMarketplaceScreen: FC = () => {
                     {opp.status}
                   </span>
 
-                  <button className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs shadow-md shadow-indigo-600/25 flex items-center gap-1.5 transition-all">
+                  <button className="px-4 py-2 rounded-xl bg-indigo-600 text-white font-extrabold text-xs shadow-md shadow-indigo-600/25 flex items-center gap-1.5">
                     <span>Submit Proposal</span>
                     <Send size={13} />
                   </button>

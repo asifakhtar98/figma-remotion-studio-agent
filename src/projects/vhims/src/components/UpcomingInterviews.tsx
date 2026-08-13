@@ -115,7 +115,7 @@ export const UpcomingInterviews: React.FC = () => {
                 <span>{item.type}</span>
               </div>
 
-              <button className="p-1.5 bg-[#2d3736] hover:bg-[#202827] text-white rounded-lg transition-colors flex items-center gap-1 text-xs px-2.5 font-medium">
+              <button className="p-1.5 bg-[#2d3736] text-white rounded-lg flex items-center gap-1 text-xs px-2.5 font-medium">
                 <span>Join</span>
                 <ExternalLink className="w-3 h-3" />
               </button>

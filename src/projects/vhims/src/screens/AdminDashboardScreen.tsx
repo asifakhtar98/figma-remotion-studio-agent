@@ -26,7 +26,7 @@ export const AdminDashboardScreen: React.FC = () => {
                 Admin Control
               </span>
 
-              <button className="bg-[#2d3736] hover:bg-[#202827] text-white text-xs font-semibold px-4 py-2 rounded-lg flex items-center gap-2 shadow-sm transition-colors">
+              <button className="bg-[#2d3736] text-white text-xs font-semibold px-4 py-2 rounded-lg flex items-center gap-2 shadow-sm">
                 <ShieldCheck className="w-4 h-4" />
                 <span>Role Permissions</span>
               </button>

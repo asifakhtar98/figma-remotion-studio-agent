@@ -81,10 +81,10 @@ export const ChatScreen: FC<ChatScreenProps> = ({
         </div>
 
         <div className="flex items-center gap-3">
-          <button className="p-2.5 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700 hover:text-slate-900">
+          <button className="p-2.5 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700">
             <PhoneCall size={20} />
           </button>
-          <button className="p-2.5 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700 hover:text-slate-900">
+          <button className="p-2.5 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700">
             <MoreVertical size={20} />
           </button>
         </div>
@@ -195,7 +195,7 @@ export const ChatScreen: FC<ChatScreenProps> = ({
 
       {/* ── Bottom Input Bar ── */}
       <div className="relative z-10 flex items-center gap-4 px-8 py-5 bg-white border-t border-slate-200/90 shadow-lg">
-        <button className="p-3 rounded-2xl bg-slate-100 border border-slate-200 text-sky-600 hover:text-sky-700">
+        <button className="p-3 rounded-2xl bg-slate-100 border border-slate-200 text-sky-600">
           <Paperclip size={24} />
         </button>
         <div className="flex-1 bg-slate-50 border border-slate-200 rounded-2xl px-5 py-4 flex items-center">
@@ -210,7 +210,7 @@ export const ChatScreen: FC<ChatScreenProps> = ({
             <span className="text-slate-400 text-base font-medium">Type a message...</span>
           )}
         </div>
-        <button className="w-14 h-14 rounded-2xl bg-slate-900 hover:bg-slate-800 flex items-center justify-center text-white shadow-md shrink-0 transition-transform active:scale-95">
+        <button className="w-14 h-14 rounded-2xl bg-slate-900 flex items-center justify-center text-white shadow-md shrink-0">
           <Send size={24} className="translate-x-0.5" />
         </button>
       </div>

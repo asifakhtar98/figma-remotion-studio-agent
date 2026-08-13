@@ -99,7 +99,7 @@ export const OrganizationDirectory: React.FC = () => {
               type="text"
               readOnly
               placeholder="Search name, ID, email, company..."
-              className="w-full pl-3 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-700 placeholder-gray-400 focus:outline-none"
+              className="w-full pl-3 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-700 placeholder-gray-400"
             />
           </div>
 
@@ -127,11 +127,11 @@ export const OrganizationDirectory: React.FC = () => {
           <ShieldCheck className="w-4 h-4 text-gray-800" />
           <span>Admins (5)</span>
         </div>
-        <div className="py-3 font-medium text-gray-500 hover:text-gray-800 flex items-center gap-1.5 cursor-pointer transition-colors">
+        <div className="py-3 font-medium text-gray-500 flex items-center gap-1.5 cursor-pointer">
           <Users className="w-4 h-4 text-gray-400" />
           <span>Members (1)</span>
         </div>
-        <div className="py-3 font-medium text-gray-500 hover:text-gray-800 flex items-center gap-1.5 cursor-pointer transition-colors">
+        <div className="py-3 font-medium text-gray-500 flex items-center gap-1.5 cursor-pointer">
           <Crown className="w-4 h-4 text-gray-400" />
           <span>Superadmins (1)</span>
         </div>
@@ -163,7 +163,7 @@ export const OrganizationDirectory: React.FC = () => {
           </thead>
           <tbody className="divide-y divide-gray-100 text-xs">
             {mockDirectoryRows.map((row) => (
-              <tr key={row.id} className="hover:bg-gray-50/60 transition-colors">
+              <tr key={row.id} className="">
                 {/* QR Code */}
                 <td className="py-3.5 px-4 text-center">
                   <div className="w-7 h-7 bg-gray-100 rounded border border-gray-200 mx-auto flex items-center justify-center text-gray-600">
@@ -230,7 +230,7 @@ export const OrganizationDirectory: React.FC = () => {
 
                 {/* Actions */}
                 <td className="py-3.5 px-4 text-right">
-                  <button className="w-8 h-8 rounded-lg hover:bg-gray-100 flex items-center justify-center text-gray-500 hover:text-gray-800 ml-auto transition-colors">
+                  <button className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 ml-auto">
                     <MoreVertical className="w-4 h-4" />
                   </button>
                 </td>

@@ -50,7 +50,7 @@ export const ResetPasswordScreen: FC = () => {
 
         {/* Send Code CTA */}
         <div className="mt-8 w-full">
-          <button className="w-full py-5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xl shadow-lg transition-all flex items-center justify-center gap-3">
+          <button className="w-full py-5 rounded-2xl bg-slate-900 text-white font-extrabold text-xl shadow-lg flex items-center justify-center gap-3">
             <Send size={22} />
             <span>Send Reset Code</span>
           </button>
@@ -58,7 +58,7 @@ export const ResetPasswordScreen: FC = () => {
 
         {/* Back to Sign In */}
         <div className="mt-6 text-center">
-          <span className="text-base font-bold text-slate-500 hover:text-slate-900 cursor-pointer flex items-center justify-center gap-2">
+          <span className="text-base font-bold text-slate-500 cursor-pointer flex items-center justify-center gap-2">
             <ArrowLeft size={18} />
             <span>Back to Sign In</span>
           </span>
@@ -88,11 +88,11 @@ export const ResetPasswordScreen: FC = () => {
                   </div>
                 </div>
 
-                <button className="px-5 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-900 font-extrabold text-sm shadow-2xs transition-all">
+                <button className="px-5 py-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 font-extrabold text-sm shadow-2xs">
                   Sign In
                 </button>
 
-                <button className="p-2 text-slate-400 hover:text-slate-700 transition-colors">
+                <button className="p-2 text-slate-400">
                   <X size={20} />
                 </button>
               </div>

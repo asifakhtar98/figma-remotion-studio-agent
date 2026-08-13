@@ -54,7 +54,7 @@ export const WebRandomMatchScreen: FC = () => {
               <Globe size={14} className="text-sky-500" />
               <span>Matching Region: India</span>
             </div>
-            <button className="p-2.5 rounded-xl bg-white border border-slate-200/90 text-slate-700 hover:text-slate-900 shadow-2xs transition-colors">
+            <button className="p-2.5 rounded-xl bg-white border border-slate-200/90 text-slate-700 shadow-2xs">
               <Settings size={18} />
             </button>
           </div>
@@ -122,10 +122,10 @@ export const WebRandomMatchScreen: FC = () => {
 
           {/* Action Trigger Button */}
           <div className="mt-8 flex flex-col items-center">
-            <button className="group relative bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-lg tracking-wider uppercase px-12 py-5 rounded-2xl shadow-xl transition-all duration-200 cursor-pointer flex items-center gap-3">
+            <button className="group relative bg-slate-900 text-white font-extrabold text-lg tracking-wider uppercase px-12 py-5 rounded-2xl shadow-xl cursor-pointer flex items-center gap-3">
               <Zap size={22} className="fill-white" />
               <span>START MATCHING NOW</span>
-              <Shuffle size={20} className="group-hover:rotate-180 transition-transform duration-300" />
+              <Shuffle size={20} className="" />
             </button>
             <span className="text-xs text-slate-500 font-medium mt-3">
               ⚡ Instant connection • Average queue time: &lt; 2 seconds

@@ -95,7 +95,7 @@ export const SignInScreen: FC<SignInScreenProps> = ({
 
         {/* Sign In Primary CTA */}
         <div className="mt-8 w-full">
-          <button className="w-full py-5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xl shadow-lg transition-all flex items-center justify-center gap-3">
+          <button className="w-full py-5 rounded-2xl bg-slate-900 text-white font-extrabold text-xl shadow-lg flex items-center justify-center gap-3">
             <span>Sign In</span>
             <ArrowRight size={22} />
           </button>
@@ -103,10 +103,10 @@ export const SignInScreen: FC<SignInScreenProps> = ({
 
         {/* Secondary Actions Row */}
         <div className="mt-6 flex w-full items-center justify-between text-base font-bold px-1">
-          <span className="text-slate-500 hover:text-slate-800 cursor-pointer">
+          <span className="text-slate-500 cursor-pointer">
             Forgot password?
           </span>
-          <span className="text-sky-600 hover:text-sky-700 cursor-pointer flex items-center gap-1">
+          <span className="text-sky-600 cursor-pointer flex items-center gap-1">
             Sign in with OTP →
           </span>
         </div>
@@ -117,7 +117,7 @@ export const SignInScreen: FC<SignInScreenProps> = ({
         {/* Register Prompt */}
         <div className="mt-6 flex items-center justify-center gap-2 text-base font-medium text-slate-500">
           <span>Don&apos;t have an account?</span>
-          <span className="font-extrabold text-sky-600 hover:underline cursor-pointer">
+          <span className="font-extrabold text-sky-600 cursor-pointer">
             Create Account
           </span>
         </div>
@@ -144,11 +144,11 @@ export const SignInScreen: FC<SignInScreenProps> = ({
                   </div>
                 </div>
 
-                <button className="px-5 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-900 font-extrabold text-sm shadow-2xs transition-all">
+                <button className="px-5 py-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 font-extrabold text-sm shadow-2xs">
                   Sign In
                 </button>
 
-                <button className="p-2 text-slate-400 hover:text-slate-700 transition-colors">
+                <button className="p-2 text-slate-400">
                   <X size={20} />
                 </button>
               </div>

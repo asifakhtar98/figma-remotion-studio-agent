@@ -88,7 +88,7 @@ export const WebProfileScreen: FC = () => {
                   </div>
                 </div>
 
-                <button className="w-full py-2.5 px-4 rounded-2xl border border-slate-200/90 bg-white text-slate-600 font-semibold text-xs shadow-2xs text-center cursor-pointer hover:bg-slate-50 transition-colors">
+                <button className="w-full py-2.5 px-4 rounded-2xl border border-slate-200/90 bg-white text-slate-600 font-semibold text-xs shadow-2xs text-center cursor-pointer">
                   Choose a photo...
                 </button>
               </div>
@@ -108,7 +108,7 @@ export const WebProfileScreen: FC = () => {
                   No photos yet.
                 </p>
 
-                <button className="px-4 py-2.5 rounded-xl border border-slate-200/90 bg-white text-slate-700 font-semibold text-xs shadow-2xs self-start cursor-pointer hover:bg-slate-50 transition-colors mt-1">
+                <button className="px-4 py-2.5 rounded-xl border border-slate-200/90 bg-white text-slate-700 font-semibold text-xs shadow-2xs self-start cursor-pointer mt-1">
                   Choose a photo...
                 </button>
               </div>
@@ -136,7 +136,7 @@ export const WebProfileScreen: FC = () => {
                     <input
                       type="text"
                       defaultValue="performance marketer"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200/90 bg-white text-xs font-medium text-slate-900 outline-none focus:border-sky-400"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200/90 bg-white text-xs font-medium text-slate-900 outline-none"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
@@ -146,7 +146,7 @@ export const WebProfileScreen: FC = () => {
                     <input
                       type="text"
                       placeholder="A short line people see first"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200/90 bg-white text-xs font-medium text-slate-900 placeholder-slate-400 outline-none focus:border-sky-400"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200/90 bg-white text-xs font-medium text-slate-900 placeholder-slate-400 outline-none"
                     />
                   </div>
                 </div>
@@ -159,7 +159,7 @@ export const WebProfileScreen: FC = () => {
                   <textarea
                     rows={3}
                     defaultValue={`🎯 Meta Ads Expert | Performance Marketer\n💬 Let's jump on a quick call — I'll show you how I bring 3-7x ROAS for clients!\n⚡️ Reach out if you have any query about your website or your business 📈`}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200/90 bg-white text-xs font-medium text-slate-900 outline-none resize-none leading-relaxed focus:border-sky-400"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200/90 bg-white text-xs font-medium text-slate-900 outline-none resize-none leading-relaxed"
                   />
                 </div>
 
@@ -171,7 +171,7 @@ export const WebProfileScreen: FC = () => {
                   <textarea
                     rows={4}
                     placeholder="Tell people more about you"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200/90 bg-white text-xs font-medium text-slate-900 placeholder-slate-400 outline-none resize-none focus:border-sky-400"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200/90 bg-white text-xs font-medium text-slate-900 placeholder-slate-400 outline-none resize-none"
                   />
                 </div>
 
@@ -184,7 +184,7 @@ export const WebProfileScreen: FC = () => {
                     <input
                       type="text"
                       placeholder="dd/mm/yyyy"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200/90 bg-white text-xs font-medium text-slate-900 placeholder-slate-400 outline-none focus:border-sky-400"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200/90 bg-white text-xs font-medium text-slate-900 placeholder-slate-400 outline-none"
                     />
                     <span className="text-[11px] text-slate-400 font-medium">
                       You must be 18 or older.
@@ -197,7 +197,7 @@ export const WebProfileScreen: FC = () => {
                     <input
                       type="text"
                       placeholder="What you do"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200/90 bg-white text-xs font-medium text-slate-900 placeholder-slate-400 outline-none focus:border-sky-400"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200/90 bg-white text-xs font-medium text-slate-900 placeholder-slate-400 outline-none"
                     />
                   </div>
                 </div>
@@ -209,7 +209,7 @@ export const WebProfileScreen: FC = () => {
                       Relationship status
                     </label>
                     <div className="relative">
-                      <select className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200/90 bg-white text-xs font-medium text-slate-900 appearance-none outline-none focus:border-sky-400 pr-9">
+                      <select className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200/90 bg-white text-xs font-medium text-slate-900 appearance-none outline-none pr-9">
                         <option>Prefer not to say</option>
                         <option>Single</option>
                         <option>In a relationship</option>
@@ -228,7 +228,7 @@ export const WebProfileScreen: FC = () => {
                     <input
                       type="text"
                       defaultValue="Male"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200/90 bg-white text-xs font-medium text-slate-900 outline-none focus:border-sky-400"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200/90 bg-white text-xs font-medium text-slate-900 outline-none"
                     />
                     <span className="text-[11px] text-slate-400 font-medium">
                       This can't be changed. Write to us if it's wrong.
@@ -279,7 +279,7 @@ export const WebProfileScreen: FC = () => {
                     </div>
                   </div>
 
-                  <button className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-slate-200/90 bg-white text-slate-700 font-medium text-xs shadow-2xs hover:bg-slate-50 cursor-pointer transition-colors self-start mt-1">
+                  <button className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-slate-200/90 bg-white text-slate-700 font-medium text-xs shadow-2xs cursor-pointer self-start mt-1">
                     <MapPin size={13} className="text-slate-500" />
                     Use my current location
                   </button>
@@ -304,7 +304,7 @@ export const WebProfileScreen: FC = () => {
 
                 {/* Save Profile Button */}
                 <div className="pt-2">
-                  <button className="px-6 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs shadow-2xs hover:bg-slate-800 transition-colors">
+                  <button className="px-6 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs shadow-2xs">
                     Save profile
                   </button>
                 </div>
