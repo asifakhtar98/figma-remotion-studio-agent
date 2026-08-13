@@ -56,21 +56,21 @@ export const WebHomeScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#f8fafc'}}
-      className="flex flex-row w-[1920px] h-[1080px] overflow-hidden select-none text-slate-900"
+      className="flex flex-row overflow-hidden select-none text-slate-900"
     >
       {/* ── Left Sidebar Navigation (260px) ── */}
       <WebSidebarNav activeTab="home" />
 
       {/* ── Main Dashboard Viewport ── */}
-      <main className="relative flex-1 h-full bg-slate-50 flex flex-col overflow-hidden">
+      <main className="relative flex-1 bg-slate-50 flex flex-col overflow-hidden">
         {/* Subtle Ambient Background Gradients */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-1/3 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
 
-        {/* Scrollable Dashboard Content */}
-        <div className="relative z-10 flex flex-col p-10 pl-14 pr-12 overflow-y-auto h-full gap-8">
+        {/* Dashboard Content */}
+        <div className="relative z-10 flex flex-col p-10 pl-14 pr-12 gap-8">
           {/* Header Welcome Bar */}
-          <div className="flex items-center justify-between w-full max-w-[1280px]">
+          <div className="flex items-center justify-between w-full">
             <div className="flex flex-col">
               <div className="flex items-center gap-3">
                 <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -102,7 +102,7 @@ export const WebHomeScreen: FC = () => {
           </div>
 
           {/* Core Feature Action Cards (2 Columns Asymmetric) */}
-          <div className="grid grid-cols-2 gap-6 w-full max-w-[1280px]">
+          <div className="grid grid-cols-2 gap-6 w-full">
             {/* Card 1: Random Match (Primary Dark Gradient Banner) */}
             <div className="relative overflow-hidden p-8 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-slate-700/60 shadow-xl flex flex-col justify-between min-h-[260px] group">
               <div className="absolute top-0 right-0 w-64 h-64 bg-sky-500/20 rounded-full blur-2xl pointer-events-none group-hover:bg-sky-500/30 transition-all duration-300" />
@@ -195,7 +195,7 @@ export const WebHomeScreen: FC = () => {
           </div>
 
           {/* Featured Live Hosts Row */}
-          <div className="flex flex-col gap-4 w-full max-w-[1280px] mt-2">
+          <div className="flex flex-col gap-4 w-full mt-2">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <h3 className="text-xl font-bold text-slate-900 tracking-tight">

@@ -35,18 +35,18 @@ export const WebWalletScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#f8fafc'}}
-      className="flex flex-row w-[1920px] h-[1600px] overflow-hidden select-none text-slate-900"
+      className="flex flex-row overflow-hidden select-none text-slate-900"
     >
       {/* ── Left Sidebar Navigation (260px) ── */}
       <WebSidebarNav activeTab="wallet" />
 
       {/* ── Main Viewport Area ── */}
-      <main className="relative flex-1 h-full bg-slate-50 flex flex-col overflow-hidden">
+      <main className="relative flex-1 bg-slate-50 flex flex-col overflow-hidden">
         {/* Subtle Background Glow */}
         <div className="absolute top-0 right-1/3 w-[500px] h-[500px] bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Content Container */}
-        <div className="relative z-10 flex flex-col p-10 pl-14 pr-12 h-full gap-7 max-w-[1240px]">
+        <div className="relative z-10 flex flex-col p-10 pl-14 pr-12 gap-7">
           {/* Header Title */}
           <div className="flex flex-col">
             <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">

@@ -136,7 +136,8 @@ scripts/
 
 - One screen = one `<Composition>` in `src/Root.tsx`.
 - `id="<ProjectName>-<NN>-<ScreenName>"` where `<NN>` is a zero-padded two-digit serial number representing the screen's chronological flow order.
-- `width`/`height` = detected canvas size.
+- **Dimensions are single-source-of-truth in `src/Root.tsx` ONLY.** `width`/`height` are set on the `<Composition>` element. Screen components must NEVER hardcode their own `w-[1920px]`, `h-[XXXpx]`, or similar fixed dimension classes on `<AbsoluteFill>` — `AbsoluteFill` already fills whatever frame the Composition defines. This eliminates duplication: change height in one place (`Root.tsx`), not two.
+- **Screen content must be responsive to the frame.** Do not constrain main content containers with restrictive `max-w-[...]` classes. Content should stretch to fill the available width naturally using `flex-1`, `w-full`, or natural flow. The frame IS the constraint — no inner max-width needed.
 - `durationInFrames={1}` for every still screen. The custom viewer treats `durationInFrames <= 1` as a still (renders via `<Thumbnail>`); higher values render as video with playback controls. Only flow compositions get a longer duration.
 - No `useCurrentFrame`/timeline animation unless the user explicitly asks. When they do, animation enters through an optional `animateFrom` prop that leaves the still render untouched (see the *journey-flow-video* skill).
 

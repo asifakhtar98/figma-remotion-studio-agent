@@ -125,18 +125,18 @@ export const WebCallsScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#f8fafc'}}
-      className="flex flex-row w-[1920px] h-[1480px] overflow-hidden select-none text-slate-900"
+      className="flex flex-row overflow-hidden select-none text-slate-900"
     >
       {/* ── Left Sidebar Navigation ── */}
       <WebSidebarNav activeTab="calls" />
 
       {/* ── Main Viewport Area ── */}
-      <main className="relative flex-1 h-full bg-slate-50 flex flex-col overflow-hidden">
+      <main className="relative flex-1 bg-slate-50 flex flex-col overflow-hidden">
         {/* Subtle Ambient Background Glow */}
         <div className="absolute top-0 right-1/3 w-[500px] h-[500px] bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Content Container */}
-        <div className="relative z-10 flex flex-col p-10 pl-14 pr-12 h-full gap-7 max-w-[1200px]">
+        <div className="relative z-10 flex flex-col p-10 pl-14 pr-12 gap-7">
           {/* Header Row */}
           <div className="flex items-center justify-between w-full">
             <div className="flex flex-col">

@@ -49,7 +49,7 @@ export const WebProfileScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily}}
-      className="flex flex-row w-[1920px] h-[1220px] overflow-hidden select-none bg-[#f4f8fb] text-slate-900"
+      className="flex flex-row overflow-hidden select-none bg-[#f4f8fb] text-slate-900"
     >
       {/* Background Dot Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(#d3e3f0_1.2px,transparent_1.2px)] [background-size:18px_18px] pointer-events-none opacity-80" />
@@ -59,7 +59,7 @@ export const WebProfileScreen: FC = () => {
 
       {/* ── Main Viewport Area ── */}
       <main className="relative z-10 flex-1 h-full flex flex-col overflow-y-auto p-10 pl-14 pr-12">
-        <div className="flex flex-col gap-6 max-w-[1020px] mx-auto w-full">
+        <div className="flex flex-col gap-6 w-full">
           {/* Header Section */}
           <div className="flex flex-col">
             <div className="flex items-center gap-2.5">

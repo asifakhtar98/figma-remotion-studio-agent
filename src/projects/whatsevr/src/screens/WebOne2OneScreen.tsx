@@ -144,7 +144,7 @@ export const WebOne2OneScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#f8fafc'}}
-      className="flex flex-row w-[1920px] h-[1580px] overflow-hidden select-none text-slate-900"
+      className="flex flex-row overflow-hidden select-none text-slate-900"
     >
       {/* ── Left Sidebar Navigation (260px) ── */}
       <WebSidebarNav activeTab="one2one" />
@@ -157,7 +157,7 @@ export const WebOne2OneScreen: FC = () => {
         {/* Content Container */}
         <div className="relative z-10 flex flex-col p-10 pl-14 pr-12 h-full gap-7">
           {/* Header Row */}
-          <div className="flex items-start justify-between w-full max-w-[1320px]">
+          <div className="flex items-start justify-between w-full">
             <div className="flex flex-col">
               <div className="flex items-center gap-3">
                 <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -178,7 +178,7 @@ export const WebOne2OneScreen: FC = () => {
           </div>
 
           {/* Search & Filter Bar */}
-          <div className="flex items-center gap-4 w-full max-w-[1320px]">
+          <div className="flex items-center gap-4 w-full">
             <div className="flex-1 bg-white border border-slate-200/90 rounded-2xl px-5 py-3.5 shadow-sm flex items-center gap-3">
               <Search size={20} className="text-slate-400" />
               <input
@@ -194,7 +194,7 @@ export const WebOne2OneScreen: FC = () => {
           </div>
 
           {/* Main Layout Grid: Filters (240px) + Creator Cards Grid */}
-          <div className="flex flex-row gap-7 w-full max-w-[1320px]">
+          <div className="flex flex-row gap-7 w-full">
             {/* Left Filter Panel */}
             <div className="w-[240px] bg-white border border-slate-200/90 rounded-3xl p-6 shadow-sm flex flex-col gap-5 shrink-0 h-fit">
               <div className="flex items-center justify-between pb-3 border-b border-slate-100">
