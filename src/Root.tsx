@@ -348,7 +348,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={1920}
-        height={1400}
+        height={1280}
       />
       <Composition
         id="demodontdelete-01-CreatorDashboard"

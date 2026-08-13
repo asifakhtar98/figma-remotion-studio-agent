@@ -49,7 +49,7 @@ export const WebProfileScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily}}
-      className="flex flex-row w-[1920px] h-[1480px] overflow-hidden select-none bg-[#f4f8fb] text-slate-900"
+      className="flex flex-row w-[1920px] h-[1280px] overflow-hidden select-none bg-[#f4f8fb] text-slate-900"
     >
       {/* Background Dot Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(#d3e3f0_1.2px,transparent_1.2px)] [background-size:18px_18px] pointer-events-none opacity-80" />

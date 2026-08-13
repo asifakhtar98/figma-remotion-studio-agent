@@ -391,7 +391,7 @@ export const compositions: CompositionEntry[] = [
     id: 'whatsevr-30-WebProfile',
     component: React.lazy(() => import('@src/projects/whatsevr/src/screens/WebProfileScreen').then(m => ({ default: m.WebProfileScreen }))),
     width: 1920,
-    height: 1400,
+    height: 1280,
     durationInFrames: 1,
     fps: 30,
     isStill: true,
