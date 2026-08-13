@@ -91,11 +91,11 @@ export const ExploreWtvScreen: FC = () => {
         })}
       </div>
 
-      {/* ── Video Feed Container (Expanded) ── */}
-      <div className="flex flex-1 flex-col gap-6 overflow-y-auto bg-slate-50 p-4">
+      {/* ── Video Feed Container (Full Bleed Edge-to-Edge) ── */}
+      <div className="flex flex-1 flex-col overflow-y-auto bg-white p-0">
         {videoPosts.map((post) => (
-          <div key={post.id} className="flex flex-col rounded-3xl bg-white border border-slate-200/90 overflow-hidden shadow-sm">
-            <div className="relative w-full aspect-[16/9] overflow-hidden bg-slate-100 cursor-pointer group">
+          <div key={post.id} className="flex flex-col w-full bg-white border-b-8 border-slate-100/70">
+            <div className="relative w-full aspect-[16/9] overflow-hidden bg-slate-900 cursor-pointer group">
               <Img src={post.thumb} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
                 <div className="w-20 h-20 rounded-full bg-sky-500 text-white backdrop-blur-md flex items-center justify-center shadow-xl">
@@ -115,7 +115,7 @@ export const ExploreWtvScreen: FC = () => {
               <MoreVertical size={20} className="text-slate-400" />
             </div>
 
-            <div className="flex items-center justify-between px-6 py-3 border-t border-slate-100 bg-slate-50/50">
+            <div className="flex items-center justify-between px-6 py-3.5 border-t border-slate-100 bg-white">
               <div className="flex items-center gap-6 text-slate-700">
                 <div className="flex items-center gap-2 font-bold text-sm cursor-pointer hover:text-rose-500">
                   <Heart size={22} className="text-rose-500" />
