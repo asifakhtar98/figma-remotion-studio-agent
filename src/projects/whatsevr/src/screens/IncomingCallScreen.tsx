@@ -14,7 +14,7 @@ export const IncomingCallScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#090d16'}}
-      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-100 relative"
+      className="flex flex-col overflow-hidden select-none text-slate-100 relative"
     >
       {/* ── Blurred Caller Photo Backdrop ── */}
       <div className="absolute inset-0">
@@ -48,7 +48,7 @@ export const IncomingCallScreen: FC = () => {
       {/* ── Caller Identity ── */}
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center -mt-10 gap-8">
         <div className="relative">
-          <div className="absolute inset-0 rounded-full bg-sky-500/20 animate-ping" />
+          <div className="absolute inset-0 rounded-full bg-sky-500/20" />
           <div className="relative w-[240px] h-[240px] rounded-full overflow-hidden border-4 border-slate-700/80 shadow-2xl">
             <Img src={CALLER_AVATAR} className="w-full h-full object-cover" />
           </div>
@@ -59,7 +59,7 @@ export const IncomingCallScreen: FC = () => {
             Priya Sharma
           </h1>
           <p className="text-xl font-bold text-emerald-400 flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
             Incoming Voice Call • ₹0.50 / min
           </p>
         </div>

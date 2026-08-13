@@ -29,8 +29,10 @@ They are hash-locked via `skills-lock.json`. Record any override here instead.
 
 **No vertical scroll view.** Never use vertical scroll containers (`overflow-y-auto`, `overflow-y-scroll`). Horizontal scrolling (`overflow-x-auto`) is allowed. Always set the composition frame height (`height` in `src/Root.tsx` and component height) to fit all screen content top-to-bottom without vertical clipping, inner scrolling, or unnecessary empty margin space at the frame edges.
 
+**No motion or animation.** Never use CSS animations (`animate-pulse`, `animate-ping`, `animate-spin`, `animate-bounce`, `@keyframes`), CSS transitions (`transition-*`), or hover/focus states (`hover:`, `focus:`) in screen components. These are all dead code in Remotion stills — no user interaction, no animation runtime. Show the resting/default visual state only.
+
 **Remotion pitfalls are linted.** *(enforced: `npm run lint:remotion` runs on every project-file edit and in the commit gate)*
-Render-breaking patterns (native `<img>`, `dark:` variant, viewport units, `position: fixed`, media tags) block the commit; still-inert patterns (`hover:`, scrolling overflow) warn.
+Render-breaking patterns (native `<img>`, `dark:` variant, viewport units, `position: fixed`, media tags) block the commit; still-inert patterns (`hover:`, scrolling overflow, `animate-*`, `transition-*`) warn.
 
 **Commit gate.** *(enforced: hook runs `scripts/commit-gate.sh` before every `git commit`)*
 Blocks on: failing `tsc --noEmit`, render-breaking lint errors, or changed screen files with no design review run in the last hour.

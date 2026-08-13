@@ -41,7 +41,7 @@ export const SignInScreen: FC<SignInScreenProps> = ({
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#f8fafc'}}
-      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900"
+      className="flex flex-col overflow-hidden select-none text-slate-900"
     >
       {/* ── Top Hero Banner ── */}
       <div className="relative w-full overflow-hidden" style={{height: 480}}>

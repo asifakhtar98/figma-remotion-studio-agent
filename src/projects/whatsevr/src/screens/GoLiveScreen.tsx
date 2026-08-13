@@ -11,7 +11,7 @@ export const GoLiveScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#f8fafc'}}
-      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900"
+      className="flex flex-col overflow-hidden select-none text-slate-900"
     >
       {/* ── Header ── */}
       <div className="flex items-center gap-5 px-8 pt-10 pb-5 bg-white border-b border-slate-200/90">
@@ -28,7 +28,7 @@ export const GoLiveScreen: FC = () => {
 
         {/* Concentric Circle Graphic */}
         <div className="relative flex items-center justify-center w-[360px] h-[360px]">
-          <div className="absolute inset-0 rounded-full border border-sky-200/60 animate-pulse" />
+          <div className="absolute inset-0 rounded-full border border-sky-200/60" />
           <div className="absolute w-[290px] h-[290px] rounded-full border border-sky-300/60 bg-white/80 backdrop-blur-md flex items-center justify-center shadow-md" />
           <div className="absolute w-[200px] h-[200px] rounded-full bg-gradient-to-tr from-sky-500 to-blue-600 flex items-center justify-center shadow-xl border-4 border-white">
             <Video size={76} className="text-white fill-white" />
@@ -53,7 +53,7 @@ export const GoLiveScreen: FC = () => {
       {/* ── Bottom Fixed CTA Button ── */}
       <div className="p-8 w-full bg-white border-t border-slate-200/90 shadow-lg">
         <button className="flex items-center justify-center gap-3 w-full py-5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white text-2xl font-black shadow-xl cursor-pointer transition-all">
-          <Radio size={28} className="animate-pulse" />
+          <Radio size={28} />
           <span>GO LIVE NOW</span>
         </button>
       </div>

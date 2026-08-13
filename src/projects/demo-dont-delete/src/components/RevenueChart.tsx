@@ -102,7 +102,7 @@ export const RevenueChart: FC<RevenueChartProps> = ({data}) => {
 
       <div className="flex items-center justify-between text-xs font-semibold text-slate-500 z-10 pt-1">
         <span className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-emerald-500" />
           Total Period Yield: <strong className="text-emerald-600 text-sm font-black">$34,890.00</strong>
         </span>
         <span>Average Monthly: <strong className="text-slate-900 text-sm font-black">$5,815.00</strong></span>

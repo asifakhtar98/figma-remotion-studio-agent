@@ -10,7 +10,7 @@ import { UpcomingInterviews } from '../components/UpcomingInterviews';
 
 export const PlatformDashboardScreen: React.FC = () => {
   return (
-    <div className="w-[1920px] h-[1080px] flex bg-[#f4f5f6] font-sans antialiased text-gray-900 select-none overflow-hidden">
+    <div className="flex bg-[#f4f5f6] font-sans antialiased text-gray-900 select-none overflow-hidden">
       {/* Left Sidebar with Platform Dashboard Active */}
       <Sidebar activeId="platform" />
 
@@ -20,7 +20,7 @@ export const PlatformDashboardScreen: React.FC = () => {
         <TopHeader />
 
         {/* Scrollable Main Content */}
-        <main className="flex-1 p-8 overflow-y-auto flex flex-col">
+        <main className="flex-1 p-8 flex flex-col">
           {/* Header & Controls Bar */}
           <div className="flex items-start justify-between gap-6 mb-6">
             <div>

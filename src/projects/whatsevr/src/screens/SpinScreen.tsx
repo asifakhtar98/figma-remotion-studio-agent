@@ -21,7 +21,7 @@ export const SpinScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#f8fafc'}}
-      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900"
+      className="flex flex-col overflow-hidden select-none text-slate-900"
     >
       {/* ── Top Header ── */}
       <div className="flex items-center justify-between px-8 pt-10 pb-4 z-10">
@@ -53,7 +53,7 @@ export const SpinScreen: FC = () => {
         {/* Concentric Pulsing Spin Button */}
         <div className="mt-16 relative flex items-center justify-center z-10">
           {/* Outer ring 3 */}
-          <div className="w-[460px] h-[460px] rounded-full border border-sky-200/60 flex items-center justify-center animate-pulse">
+          <div className="w-[460px] h-[460px] rounded-full border border-sky-200/60 flex items-center justify-center">
             {/* Outer ring 2 */}
             <div className="w-[390px] h-[390px] rounded-full border border-sky-300/60 flex items-center justify-center">
               {/* Outer ring 1 */}
@@ -71,7 +71,7 @@ export const SpinScreen: FC = () => {
         {/* Status Indicator Pill */}
         <div className="mt-12 flex flex-col items-center relative z-10">
           <div className="px-5 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm font-extrabold flex items-center gap-2 shadow-2xs">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
             <span>3 Free Spins Available</span>
           </div>
           <p className="text-xs text-slate-400 mt-2 font-medium flex items-center gap-1">

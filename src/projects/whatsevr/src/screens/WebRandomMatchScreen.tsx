@@ -40,7 +40,7 @@ export const WebRandomMatchScreen: FC = () => {
                 Random Video Chat
               </h1>
               <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 text-xs font-bold flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-emerald-500" />
                 2,450 Users Online Now
               </span>
             </div>
@@ -79,9 +79,9 @@ export const WebRandomMatchScreen: FC = () => {
               {/* Central Radar Pulse Animation Graphic */}
               <div className="flex flex-col items-center justify-center z-10 text-center p-6">
                 <div className="relative mb-6">
-                  <div className="absolute inset-0 rounded-full bg-sky-500/20 animate-ping" />
+                  <div className="absolute inset-0 rounded-full bg-sky-500/20" />
                   <div className="relative w-28 h-28 rounded-full bg-gradient-to-tr from-sky-500 to-blue-600 border-4 border-slate-900 shadow-xl flex items-center justify-center text-white">
-                    <Shuffle size={44} className="animate-spin-slow" />
+                    <Shuffle size={44} />
                   </div>
                 </div>
 

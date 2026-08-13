@@ -74,7 +74,7 @@ export const AudienceAnalyticsScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#f8fafc'}}
-      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900"
+      className="flex flex-col overflow-hidden select-none text-slate-900"
     >
       {/* ── Header ── */}
       <div className="px-8 pt-10 pb-5 bg-white/90 backdrop-blur-md border-b border-slate-200/80 flex items-center justify-between shadow-xs sticky top-0 z-30">
@@ -96,7 +96,7 @@ export const AudienceAnalyticsScreen: FC = () => {
       </div>
 
       {/* ── Scrollable Body Content ── */}
-      <div className="flex-1 overflow-y-auto px-8 py-8 flex flex-col gap-8">
+      <div className="flex-1 px-8 py-8 flex flex-col gap-8">
         {/* Audience Overview Hero Card */}
         <div className="relative p-8 rounded-[32px] bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 text-white shadow-2xl overflow-hidden border border-indigo-500/20">
           <div className="absolute right-0 top-0 w-[380px] h-[380px] bg-indigo-600/20 rounded-full filter blur-3xl -translate-y-1/3 translate-x-1/4 pointer-events-none" />

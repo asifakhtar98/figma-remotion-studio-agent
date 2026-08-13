@@ -14,7 +14,7 @@ export const PricingHero: React.FC<PricingHeroProps> = ({ cycle, setCycle }) => 
 
       {/* Top Badge */}
       <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#ff4d15] bg-[#ff4d15]/10 border border-[#ff4d15]/20 px-4 py-1.5 rounded-full mb-6 shadow-sm backdrop-blur-sm">
-        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+        <span className="w-2 h-2 rounded-full bg-emerald-400" />
         <span>Transparent Pricing · No Hidden Fees</span>
       </div>
 

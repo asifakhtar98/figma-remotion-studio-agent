@@ -58,7 +58,7 @@ export const WebProfileScreen: FC = () => {
       <WebSidebarNav activeTab="profile" />
 
       {/* ── Main Viewport Area ── */}
-      <main className="relative z-10 flex-1 h-full flex flex-col overflow-y-auto p-10 pl-14 pr-12">
+      <main className="relative z-10 flex-1 flex flex-col p-10 pl-14 pr-12">
         <div className="flex flex-col gap-6 w-full">
           {/* Header Section */}
           <div className="flex flex-col">

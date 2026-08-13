@@ -61,7 +61,7 @@ export const ProfileScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#f8fafc'}}
-      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900 relative"
+      className="flex flex-col overflow-hidden select-none text-slate-900 relative"
     >
       {/* ── Top Header ── */}
       <div className="flex items-center justify-between px-7 pt-10 pb-4 bg-white border-b border-slate-100 z-10">
@@ -77,7 +77,7 @@ export const ProfileScreen: FC = () => {
       </div>
 
       {/* ── Scrollable Body Area ── */}
-      <div className="flex-1 flex flex-col overflow-y-auto pb-24">
+      <div className="flex-1 flex flex-col pb-24">
         {/* ── Cover Media Section ── */}
         <div className="relative w-full h-[320px] bg-slate-100 overflow-hidden shrink-0">
           <Img src={COVER_MEDIA_URL} className="w-full h-full object-cover" />

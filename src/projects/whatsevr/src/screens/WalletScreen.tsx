@@ -46,7 +46,7 @@ export const WalletScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#f8fafc'}}
-      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900"
+      className="flex flex-col overflow-hidden select-none text-slate-900"
     >
       {/* ── Header ── */}
       <div className="flex items-center gap-5 px-8 pt-10 pb-5 bg-white border-b border-slate-200/90">
@@ -57,7 +57,7 @@ export const WalletScreen: FC = () => {
       </div>
 
       {/* ── Main Content ── */}
-      <div className="flex flex-col px-8 py-6 gap-7 overflow-y-auto bg-slate-50">
+      <div className="flex flex-col px-8 py-6 gap-7 bg-slate-50">
         {/* ── Balance Card ── */}
         <div className="flex flex-col p-8 bg-slate-900 rounded-[32px] text-white shadow-xl relative overflow-hidden">
           <div className="absolute right-[-20px] top-[-20px] w-48 h-48 rounded-full bg-sky-500/20 blur-2xl pointer-events-none" />

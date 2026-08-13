@@ -56,6 +56,18 @@ const RULES = [
     message: 'Native <video>/<audio> tag — will not play in stills. Use Remotion media components in flow compositions only.',
     skipInFlow: true,
   },
+  {
+    severity: 'warn',
+    id: 'css-animation',
+    pattern: /\banimate-(?:pulse|ping|spin|bounce|spin-slow)\b/,
+    message: 'CSS animation class — runs unpredictably in single-frame stills. Remove and show resting state.',
+  },
+  {
+    severity: 'warn',
+    id: 'css-transition',
+    pattern: /\btransition(?:-(?:all|colors|opacity|shadow|transform|none))?\b/,
+    message: 'CSS transition class — no user interaction in stills, dead code. Remove.',
+  },
 ];
 
 function collectFiles(dir, out = []) {

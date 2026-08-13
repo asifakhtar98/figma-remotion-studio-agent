@@ -57,7 +57,7 @@ export const ExploreWtvScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#ffffff'}}
-      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900"
+      className="flex flex-col overflow-hidden select-none text-slate-900"
     >
       {/* ── Search Header Bar ── */}
       <div className="flex items-center gap-4 px-7 pt-10 pb-4 bg-white border-b border-slate-100">
@@ -92,7 +92,7 @@ export const ExploreWtvScreen: FC = () => {
       </div>
 
       {/* ── Video Feed Container (Full Bleed Edge-to-Edge) ── */}
-      <div className="flex flex-1 flex-col overflow-y-auto bg-white p-0">
+      <div className="flex flex-1 flex-col bg-white p-0">
         {videoPosts.map((post) => (
           <div key={post.id} className="flex flex-col w-full bg-white border-b-8 border-slate-100/70">
             <div className="relative w-full aspect-[16/9] overflow-hidden bg-slate-900 cursor-pointer group">

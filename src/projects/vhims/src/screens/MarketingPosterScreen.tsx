@@ -60,7 +60,7 @@ export const MarketingPosterScreen: React.FC = () => {
           {/* Launch Status Pill */}
           <div className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/90 border border-slate-200 backdrop-blur-md shadow-sm">
             <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ff4d15] opacity-75"></span>
+              <span className="absolute inline-flex h-full w-full rounded-full bg-[#ff4d15] opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#ff4d15]"></span>
             </span>
             <span className="text-xs font-extrabold tracking-wider uppercase text-[#3e4f47]">

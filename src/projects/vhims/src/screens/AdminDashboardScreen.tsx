@@ -8,7 +8,7 @@ import { OrganizationDirectory } from '../components/OrganizationDirectory';
 
 export const AdminDashboardScreen: React.FC = () => {
   return (
-    <div className="w-[1920px] h-[1080px] flex bg-[#f4f5f6] font-sans antialiased text-gray-900 select-none overflow-hidden">
+    <div className="flex bg-[#f4f5f6] font-sans antialiased text-gray-900 select-none overflow-hidden">
       {/* Left Sidebar */}
       <Sidebar />
 
@@ -18,7 +18,7 @@ export const AdminDashboardScreen: React.FC = () => {
         <TopHeader />
 
         {/* Scrollable Dashboard Body */}
-        <main className="flex-1 p-8 overflow-y-auto flex flex-col">
+        <main className="flex-1 p-8 flex flex-col">
           {/* Main Title & Action Row */}
           <div className="mb-6">
             <div className="flex items-center justify-between">

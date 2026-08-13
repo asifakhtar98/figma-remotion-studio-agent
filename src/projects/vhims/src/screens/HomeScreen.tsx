@@ -12,7 +12,7 @@ export const HomeScreen: React.FC = () => {
   return (
     <div
       style={{ fontFamily }}
-      className="w-[1920px] h-full bg-white antialiased text-slate-800 select-none flex flex-col justify-between"
+      className="h-full bg-white antialiased text-slate-800 select-none flex flex-col justify-between"
     >
       <div>
         {/* Header Bar */}

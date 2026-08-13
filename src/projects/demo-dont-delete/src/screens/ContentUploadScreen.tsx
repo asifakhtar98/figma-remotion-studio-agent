@@ -40,7 +40,7 @@ export const ContentUploadScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#f8fafc'}}
-      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900"
+      className="flex flex-col overflow-hidden select-none text-slate-900"
     >
       {/* ── Header ── */}
       <div className="px-8 pt-10 pb-5 bg-white/90 backdrop-blur-md border-b border-slate-200/80 flex items-center justify-between shadow-xs sticky top-0 z-30">
@@ -63,7 +63,7 @@ export const ContentUploadScreen: FC = () => {
       </div>
 
       {/* ── Scrollable Form Body ── */}
-      <div className="flex-1 overflow-y-auto px-8 py-8 flex flex-col gap-8">
+      <div className="flex-1 px-8 py-8 flex flex-col gap-8">
         {/* Media Preview Slot */}
         <div className="relative w-full h-84 rounded-[32px] overflow-hidden bg-slate-950 border border-slate-800 shadow-2xl group">
           <Img src={PREVIEW_IMAGE_URL} className="w-full h-full object-cover" />
@@ -72,7 +72,7 @@ export const ContentUploadScreen: FC = () => {
           {/* Top Floating Badge Row */}
           <div className="absolute top-5 left-5 right-5 flex items-center justify-between">
             <div className="px-3.5 py-1.5 rounded-2xl bg-black/60 backdrop-blur-md text-white text-xs font-extrabold flex items-center gap-2 border border-white/10 shadow-lg">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-emerald-400" />
               <Video size={15} className="text-indigo-400" />
               <span>4K Ultra HD • 16:9 • 60fps</span>
             </div>

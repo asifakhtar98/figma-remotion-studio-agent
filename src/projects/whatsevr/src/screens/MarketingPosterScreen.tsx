@@ -55,7 +55,7 @@ export const MarketingPosterScreen: FC = () => {
       <div className="relative z-10 flex flex-col items-center text-center">
         {/* Launch Eyebrow Badge */}
         <div className="inline-flex items-center gap-2.5 rounded-2xl border-4 border-black bg-black px-6 py-2 text-white shadow-[6px_6px_0px_#EC4899] transform -rotate-1">
-          <Sparkles size={20} className="text-yellow-300 animate-pulse" />
+          <Sparkles size={20} className="text-yellow-300" />
           <span className="text-sm font-black tracking-wider uppercase">
             🚀 OFFICIAL LAUNCH • CREATOR REVOLUTION
           </span>
@@ -118,7 +118,7 @@ export const MarketingPosterScreen: FC = () => {
 
               {/* LIVE Badge */}
               <div className="flex items-center gap-1.5 rounded-full bg-red-600 px-2.5 py-0.5 text-[11px] font-black text-white shadow-md">
-                <Radio size={12} className="animate-pulse" />
+                <Radio size={12} />
                 <span>LIVE</span>
               </div>
             </div>

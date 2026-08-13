@@ -65,7 +65,7 @@ export const LiveStreamStudioScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily}}
-      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900 relative bg-slate-100"
+      className="flex flex-col overflow-hidden select-none text-slate-900 relative bg-slate-100"
     >
       {/* ── Background Live Video Feed ── */}
       <div className="absolute inset-0 z-0">
@@ -77,7 +77,7 @@ export const LiveStreamStudioScreen: FC = () => {
       <div className="relative z-20 px-8 pt-12 pb-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-600 text-white font-black text-xs uppercase tracking-wider shadow-md shadow-rose-600/25 border border-rose-400/40">
-            <Radio size={15} className="animate-pulse" />
+            <Radio size={15} />
             <span>LIVE • 01:24:18</span>
           </div>
 
@@ -100,7 +100,7 @@ export const LiveStreamStudioScreen: FC = () => {
       {/* ── Mid Overlay: Stream Health & SuperChat Highlight ── */}
       <div className="relative z-20 px-8 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 backdrop-blur-md text-slate-700 text-xs font-extrabold border border-slate-200/80 shadow-2xs">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-emerald-500" />
           <span>4K 60fps • 8.4 Mbps • Optimal Health</span>
         </div>
 
@@ -138,7 +138,7 @@ export const LiveStreamStudioScreen: FC = () => {
       </div>
 
       {/* ── Live Stream Scrolling Chat Box ── */}
-      <div className="relative z-20 px-8 flex flex-col gap-3 max-h-96 overflow-y-auto mb-6">
+      <div className="relative z-20 px-8 flex flex-col gap-3 max-h-96 mb-6">
         {liveChatMessages.map((msg, i) => (
           <div
             key={i}

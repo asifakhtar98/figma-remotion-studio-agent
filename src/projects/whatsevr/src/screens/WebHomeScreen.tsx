@@ -77,7 +77,7 @@ export const WebHomeScreen: FC = () => {
                   Hi Rahul Sharma
                 </h1>
                 <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 text-xs font-bold flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
                   1,420 Creators Live Now
                 </span>
               </div>

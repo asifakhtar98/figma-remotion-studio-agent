@@ -123,7 +123,7 @@ export const StudioMinimalistPosterScreen: FC = () => {
 
               {/* LIVE Badge */}
               <div className="flex items-center gap-1 rounded-full bg-red-600 px-2.5 py-0.5 text-[10px] font-bold text-white shadow-sm">
-                <Radio size={11} className="animate-pulse" />
+                <Radio size={11} />
                 <span>LIVE</span>
               </div>
             </div>

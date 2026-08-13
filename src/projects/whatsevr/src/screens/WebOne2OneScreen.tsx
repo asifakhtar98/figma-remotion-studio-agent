@@ -306,7 +306,7 @@ export const WebOne2OneScreen: FC = () => {
                     <div className="absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white text-xs font-extrabold">
                       <span
                         className={`w-2 h-2 rounded-full ${
-                          creator.status === 'Live' ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'
+                          creator.status === 'Live' ? 'bg-emerald-400' : 'bg-amber-400'
                         }`}
                       />
                       <span>{creator.status}</span>

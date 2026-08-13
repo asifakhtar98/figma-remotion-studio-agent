@@ -28,7 +28,7 @@ export const CommunityDetailScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#f8fafc'}}
-      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900"
+      className="flex flex-col overflow-hidden select-none text-slate-900"
     >
       {/* ── Community Cover Media Banner ── */}
       <div className="relative w-full h-[360px] bg-slate-900 overflow-hidden shrink-0">

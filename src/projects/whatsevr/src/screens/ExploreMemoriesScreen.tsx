@@ -66,7 +66,7 @@ export const ExploreMemoriesScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#ffffff'}}
-      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900"
+      className="flex flex-col overflow-hidden select-none text-slate-900"
     >
       {/* ── Header ── */}
       <div className="flex items-center gap-4 px-7 pt-10 pb-4 bg-white border-b border-slate-100">
@@ -101,7 +101,7 @@ export const ExploreMemoriesScreen: FC = () => {
       </div>
 
       {/* ── Memories Grid (Full Bleed Edge-to-Edge Grid) ── */}
-      <div className="flex-1 grid grid-cols-2 gap-[2px] p-0 bg-white content-start overflow-y-auto">
+      <div className="flex-1 grid grid-cols-2 gap-[2px] p-0 bg-white content-start">
         {memoriesList.map((item) => (
           <div
             key={item.handle}

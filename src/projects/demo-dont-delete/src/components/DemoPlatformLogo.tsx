@@ -30,7 +30,7 @@ export const DemoPlatformLogo: FC<DemoPlatformLogoProps> = ({
             DemoSuperPlatform
           </span>
           <span className="text-[10px] font-extrabold text-amber-500 uppercase tracking-widest mt-1 flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
             Creator Suite
           </span>
         </div>

@@ -28,7 +28,7 @@ export const CallsScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#f8fafc'}}
-      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900"
+      className="flex flex-col overflow-hidden select-none text-slate-900"
     >
       {/* ── Header ── */}
       <div className="flex items-center justify-between px-8 pt-10 pb-5 bg-white border-b border-slate-200/90">
@@ -47,7 +47,7 @@ export const CallsScreen: FC = () => {
       </div>
 
       {/* ── Call Logs List (Expanded with 11 items across dates) ── */}
-      <div className="flex flex-1 flex-col px-8 py-6 gap-6 overflow-y-auto bg-slate-50">
+      <div className="flex flex-1 flex-col px-8 py-6 gap-6 bg-slate-50">
         {/* ── 21 JUNE ── */}
         <div className="flex flex-col gap-3">
           <span className="text-xs font-extrabold uppercase text-slate-400 tracking-wider px-1">

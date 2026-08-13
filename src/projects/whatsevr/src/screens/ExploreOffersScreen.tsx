@@ -64,7 +64,7 @@ export const ExploreOffersScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#ffffff'}}
-      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900"
+      className="flex flex-col overflow-hidden select-none text-slate-900"
     >
       {/* ── Search Header Bar ── */}
       <div className="flex items-center gap-4 px-7 pt-10 pb-4 bg-white border-b border-slate-100">
@@ -99,7 +99,7 @@ export const ExploreOffersScreen: FC = () => {
       </div>
 
       {/* ── Offers Feed Container (Full Bleed Edge-to-Edge) ── */}
-      <div className="flex flex-1 flex-col overflow-y-auto bg-white p-0">
+      <div className="flex flex-1 flex-col bg-white p-0">
         {offerPosts.map((post) => (
           <div key={post.id} className="flex flex-col w-full bg-white border-b-8 border-slate-100/70">
             {/* Post Media */}

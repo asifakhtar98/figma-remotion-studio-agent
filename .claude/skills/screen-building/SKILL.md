@@ -164,7 +164,8 @@ When the user sends more than one screenshot that all belong to the same page (s
 
 ## Per-screen build rules
 
-2. **Canvas size & clipping prevention (NO VERTICAL SCROLL):** Canvas size = screenshot aspect ratio minus chrome (not a fixed default). For mobile UI, default to `786 × 1704` (2x Retina HD) or `393 × 852` for standard 1x. For desktop web UI, default to `1920 × 1080` (Full HD 16:9). **STRICT RULE: Never use vertical scroll containers (`overflow-y-auto`, `overflow-y-scroll`). Horizontal scrolling (`overflow-x-auto`) is allowed.** For long pages, calculate the exact content height top-to-bottom and set the `<Composition>` `height` in `src/Root.tsx` (and component root) to match it precisely without vertical scrolling or unnecessary empty margin space.
+1. **Strip browser/device chrome:** remove status bars, navigation bars, browser address bars — keep only the app content.
+2. **Canvas size & clipping prevention (NO VERTICAL SCROLL):** Canvas size = screenshot aspect ratio minus chrome (not a fixed default). For mobile UI, default to `786 × 1704` (2x Retina HD) or `393 × 852` for standard 1x. For desktop web UI, default to `1920 × 1080` (Full HD 16:9). **STRICT RULE: Never use vertical scroll containers (`overflow-y-auto`, `overflow-y-scroll`). Horizontal scrolling (`overflow-x-auto`) is allowed.** For long pages, calculate the exact content height top-to-bottom and set the `<Composition>` `height` in `src/Root.tsx` to match it precisely — screen components must NOT hardcode their own dimensions (AbsoluteFill fills the frame automatically).
 3. **Fidelity & Vibe Alignment:**
    - **For projects with existing designs:** Automatically adapt the new UI design to match the visual vibe, design tokens (colors, typography, spacing, corner radius), and component styles of the existing project.
    - **For new projects without existing designs:** Treat the screenshot/reference as exact ground truth and build the design 100% pixel-faithful (matching colors, spacing, type scale, and layout hierarchy closely).
@@ -172,9 +173,10 @@ When the user sends more than one screenshot that all belong to the same page (s
 5. **Icons:** swap to the closest Lucide or Heroicons equivalent.
 6. **Photos/images:** consult the asset declaration first, then use in priority order (real asset → Unsplash URL → gray placeholder). Never use AI-generated images unless the user explicitly requests it.
 7. **Styling:** Tailwind utility classes as the primary mechanism. Inline `style={{}}` only for truly dynamic numeric values Tailwind can't express at build-time — never for colors, spacing, or typography that have Tailwind equivalents.
-8. **Naming & Web Desktop Naming (STRICT):** Explicit, descriptive names for files/components/props — no abbreviations (`ProfileHeader`, not `PH`). **Desktop web screens MUST ALWAYS include `Web` in their component name, filename, and composition ID** (e.g. `WebHomeScreen.tsx`, `WebMonetizationHubScreen.tsx`, composition ID `<project>-03-WebMonetizationHub`). Mobile screens do not use the `Web` prefix.
-9. **Content expansion limits:** applies strictly to user-provided reference images with sparse repetitive elements. Never invent new UI sections or components not present in the reference or explicitly described.
-10. **Presentation-grade copy adaptation:** polish or replace reference text with contextually appropriate copy suitable for presentation mockups and product demos.
+8. **No motion or animation:** Never use CSS animations (`animate-pulse`, `animate-ping`, `animate-spin`, `animate-bounce`, `@keyframes`), CSS transitions (`transition-*`), or hover/focus states (`hover:`, `focus:`) in screen components. These are dead code in Remotion stills. Show the resting/default visual state only.
+9. **Naming & Web Desktop Naming (STRICT):** Explicit, descriptive names for files/components/props — no abbreviations (`ProfileHeader`, not `PH`). **Desktop web screens MUST ALWAYS include `Web` in their component name, filename, and composition ID** (e.g. `WebHomeScreen.tsx`, `WebMonetizationHubScreen.tsx`, composition ID `<project>-03-WebMonetizationHub`). Mobile screens do not use the `Web` prefix.
+10. **Content expansion limits:** applies strictly to user-provided reference images with sparse repetitive elements. Never invent new UI sections or components not present in the reference or explicitly described.
+11. **Presentation-grade copy adaptation:** polish or replace reference text with contextually appropriate copy suitable for presentation mockups and product demos.
 
 ## UI design best practices (for Remotion stills)
 
@@ -230,6 +232,8 @@ These are mechanically enforced by `npm run lint:remotion` (auto-run on every ed
 | Pitfall | Why it breaks | What to do instead |
 |---|---|---|
 | `overflow-y-auto` / scrolling | Canvas is fixed — nothing scrolls | Make the canvas tall enough, or paginate into multiple compositions |
+| `animate-*` classes | CSS animations run unpredictably in single-frame stills | Remove entirely — show the resting visual state |
+| `transition-*` classes | No user interaction in a still render — dead code | Remove entirely — no transitions needed |
 | `:hover`, `:focus`, `:active` states | No user interaction in a still render | Show the default (resting) state only |
 | `vh` / `vw` / `dvh` units | Viewport is the composition size, may behave unexpectedly | Use explicit `px` values or Tailwind spacing classes |
 | CSS `position: fixed` | Fixes to the composition frame, not the "viewport" | Use `absolute` within a positioned parent |

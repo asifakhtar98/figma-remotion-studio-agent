@@ -91,7 +91,7 @@ export const ExploreScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#ffffff'}}
-      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900"
+      className="flex flex-col overflow-hidden select-none text-slate-900"
     >
       {/* ── Search Header Bar ── */}
       <div className="flex items-center gap-4 px-7 pt-10 pb-4 bg-white border-b border-slate-100">
@@ -124,7 +124,7 @@ export const ExploreScreen: FC = () => {
       </div>
 
       {/* ── Media Grid (Full Bleed Edge-to-Edge Grid) ── */}
-      <div className="grid flex-1 auto-rows-max grid-cols-3 content-start gap-[2px] overflow-y-auto p-0 bg-white">
+      <div className="grid flex-1 auto-rows-max grid-cols-3 content-start gap-[2px] p-0 bg-white">
         {tiles.map((tile, index) => (
           <PlaceholderPhoto
             key={index}

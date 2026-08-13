@@ -40,7 +40,7 @@ const TypingBubble: FC<{avatarUrl: string}> = ({avatarUrl}) => (
     </div>
     <div className="bg-white border border-slate-200/90 rounded-2xl rounded-tl-xs px-4 py-3 shadow-2xs inline-flex items-center gap-1.5">
       {[0, 1, 2].map((i) => (
-        <span key={i} className="w-2 h-2 rounded-full bg-slate-400 animate-pulse" />
+        <span key={i} className="w-2 h-2 rounded-full bg-slate-400" />
       ))}
     </div>
   </div>
@@ -58,7 +58,7 @@ export const ChatScreen: FC<ChatScreenProps> = ({
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#f8fafc'}}
-      className="flex flex-col w-[786px] h-[1704px] overflow-hidden select-none text-slate-900 relative"
+      className="flex flex-col overflow-hidden select-none text-slate-900 relative"
     >
       {/* ── Top Header ── */}
       <div className="relative z-10 flex items-center justify-between px-8 pt-10 pb-5 bg-white border-b border-slate-200/90 shadow-2xs">
@@ -91,7 +91,7 @@ export const ChatScreen: FC<ChatScreenProps> = ({
       </div>
 
       {/* ── Main Chat Area ── */}
-      <div className="relative z-10 flex-1 flex flex-col justify-end px-8 py-6 gap-5 overflow-y-auto bg-slate-50">
+      <div className="relative z-10 flex-1 flex flex-col justify-end px-8 py-6 gap-5 bg-slate-50">
         {/* Date Badge */}
         <div className="flex justify-center my-2">
           <span className="bg-white border border-slate-200 text-slate-500 text-xs font-bold px-5 py-2 rounded-full uppercase tracking-wider shadow-2xs">

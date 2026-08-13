@@ -10,7 +10,7 @@ export const PricingScreen: React.FC = () => {
   const [cycle, setCycle] = useState<'monthly' | 'quarterly' | 'annual'>('annual');
 
   return (
-    <div className="w-[1920px] h-[2400px] bg-[#f4f5f6] font-sans antialiased text-gray-900 select-none overflow-y-auto flex flex-col">
+    <div className="bg-[#f4f5f6] font-sans antialiased text-gray-900 select-none flex flex-col">
       {/* Navigation Header */}
       <PricingHeader />
 

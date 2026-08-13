@@ -113,7 +113,7 @@ export const WebMonetizationHubScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#f8fafc', flexDirection: 'row'}}
-      className="flex flex-row w-[1920px] h-[1080px] overflow-hidden select-none text-slate-900"
+      className="flex flex-row overflow-hidden select-none text-slate-900"
     >
       {/* ── Left Sidebar Navigation ── */}
       <div className="w-[300px] bg-white border-r border-slate-200/80 flex flex-col justify-between p-7 shrink-0 z-20 shadow-xs">
@@ -163,7 +163,7 @@ export const WebMonetizationHubScreen: FC = () => {
       </div>
 
       {/* ── Main Dashboard Body ── */}
-      <div className="flex-1 flex flex-col overflow-y-auto bg-slate-50 p-10 gap-8">
+      <div className="flex-1 flex flex-col bg-slate-50 p-10 gap-8">
         {/* Top Header Controls */}
         <div className="flex items-center justify-between">
           <div>
