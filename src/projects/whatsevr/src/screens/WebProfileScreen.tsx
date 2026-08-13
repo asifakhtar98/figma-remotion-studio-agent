@@ -78,22 +78,44 @@ export const WebProfileScreen: FC = () => {
 
           {/* Main 2-Column Content Layout */}
           <div className="flex flex-row items-start gap-6">
-            {/* Left Card: Profile Photo Box */}
-            <div className="w-[320px] shrink-0 bg-white rounded-3xl border border-slate-200/80 p-8 flex flex-col items-center justify-between min-h-[460px] shadow-2xs">
-              <div className="w-full flex-1 flex flex-col items-center justify-center py-6">
-                <div className="w-[160px] h-[160px] rounded-full bg-[#3d434d] flex items-center justify-center text-white shadow-inner">
-                  <User size={88} className="text-[#3d434d] fill-[#64748b]" />
+            {/* Left Column Stack: Profile Photo Box + Photos Gallery Card */}
+            <div className="w-[320px] shrink-0 flex flex-col gap-6">
+              {/* Profile Photo Card */}
+              <div className="bg-white rounded-3xl border border-slate-200/80 p-8 flex flex-col items-center justify-between min-h-[440px] shadow-2xs">
+                <div className="w-full flex-1 flex flex-col items-center justify-center py-6">
+                  <div className="w-[160px] h-[160px] rounded-full bg-[#3d434d] flex items-center justify-center text-white shadow-inner">
+                    <User size={88} className="text-[#3d434d] fill-[#64748b]" />
+                  </div>
                 </div>
+
+                <button className="w-full py-2.5 px-4 rounded-2xl border border-slate-200/90 bg-white text-slate-600 font-semibold text-xs shadow-2xs text-center cursor-pointer hover:bg-slate-50 transition-colors">
+                  Choose a photo...
+                </button>
               </div>
 
-              <button className="w-full py-2.5 px-4 rounded-2xl border border-slate-200/90 bg-white text-slate-600 font-semibold text-xs shadow-2xs text-center cursor-pointer hover:bg-slate-50 transition-colors">
-                Choose a photo...
-              </button>
+              {/* Photos Gallery Card */}
+              <div className="bg-white rounded-3xl border border-slate-200/80 p-7 flex flex-col gap-3 shadow-2xs">
+                <div className="flex flex-col">
+                  <h2 className="text-xs font-bold text-slate-500 tracking-wider uppercase">
+                    PHOTOS
+                  </h2>
+                  <p className="text-xs text-slate-400 font-medium mt-0.5">
+                    Drag them into the order you want. The first one is what people see first.
+                  </p>
+                </div>
+
+                <p className="text-xs text-slate-500 font-medium mt-1">
+                  No photos yet.
+                </p>
+
+                <button className="px-4 py-2.5 rounded-xl border border-slate-200/90 bg-white text-slate-700 font-semibold text-xs shadow-2xs self-start cursor-pointer hover:bg-slate-50 transition-colors mt-1">
+                  Choose a photo...
+                </button>
+              </div>
             </div>
 
-            {/* Right Stack: Form Cards */}
-            <div className="flex-1 flex flex-col gap-6">
-              {/* Card 1: ABOUT YOU */}
+            {/* Right Column: About & Details Form Card */}
+            <div className="flex-1 flex flex-col">
               <div className="bg-white rounded-3xl border border-slate-200/80 p-7 flex flex-col gap-5 shadow-2xs">
                 {/* Section Header */}
                 <div className="flex flex-col">
@@ -286,26 +308,6 @@ export const WebProfileScreen: FC = () => {
                     Save profile
                   </button>
                 </div>
-              </div>
-
-              {/* Card 2: PHOTOS */}
-              <div className="bg-white rounded-3xl border border-slate-200/80 p-7 flex flex-col gap-3 shadow-2xs">
-                <div className="flex flex-col">
-                  <h2 className="text-xs font-bold text-slate-500 tracking-wider uppercase">
-                    PHOTOS
-                  </h2>
-                  <p className="text-xs text-slate-400 font-medium mt-0.5">
-                    Drag them into the order you want. The first one is what people see first.
-                  </p>
-                </div>
-
-                <p className="text-xs text-slate-500 font-medium mt-1">
-                  No photos yet.
-                </p>
-
-                <button className="px-4 py-2.5 rounded-xl border border-slate-200/90 bg-white text-slate-700 font-semibold text-xs shadow-2xs self-start cursor-pointer hover:bg-slate-50 transition-colors mt-1">
-                  Choose a photo...
-                </button>
               </div>
             </div>
           </div>
