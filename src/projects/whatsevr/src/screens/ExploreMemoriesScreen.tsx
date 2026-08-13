@@ -100,12 +100,12 @@ export const ExploreMemoriesScreen: FC = () => {
         })}
       </div>
 
-      {/* ── Memories Grid (Expanded to 8 items) ── */}
-      <div className="flex-1 grid grid-cols-2 gap-4 p-5 bg-slate-50 content-start overflow-y-auto">
+      {/* ── Memories Grid (Full Bleed Edge-to-Edge Grid) ── */}
+      <div className="flex-1 grid grid-cols-2 gap-[2px] p-0 bg-white content-start overflow-y-auto">
         {memoriesList.map((item) => (
           <div
             key={item.handle}
-            className="relative rounded-3xl overflow-hidden shadow-md flex flex-col justify-between p-5 group min-h-[440px]"
+            className="relative overflow-hidden flex flex-col justify-between p-5 group min-h-[440px]"
           >
             <Img src={item.bgUrl} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />

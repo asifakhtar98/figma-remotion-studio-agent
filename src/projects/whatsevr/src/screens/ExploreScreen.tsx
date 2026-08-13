@@ -123,12 +123,12 @@ export const ExploreScreen: FC = () => {
         ))}
       </div>
 
-      {/* ── Media Grid (Expanded with 18 items) ── */}
-      <div className="grid flex-1 auto-rows-max grid-cols-3 content-start gap-2 overflow-y-auto p-2 bg-slate-50">
+      {/* ── Media Grid (Full Bleed Edge-to-Edge Grid) ── */}
+      <div className="grid flex-1 auto-rows-max grid-cols-3 content-start gap-[2px] overflow-y-auto p-0 bg-white">
         {tiles.map((tile, index) => (
           <PlaceholderPhoto
             key={index}
-            aspectClassName="aspect-square rounded-2xl"
+            aspectClassName="aspect-square rounded-none"
             badge={tile.badge}
             src={tile.src}
           />

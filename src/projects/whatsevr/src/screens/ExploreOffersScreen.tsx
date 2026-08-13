@@ -98,12 +98,12 @@ export const ExploreOffersScreen: FC = () => {
         })}
       </div>
 
-      {/* ── Offers Feed Container (Expanded) ── */}
-      <div className="flex flex-1 flex-col overflow-y-auto bg-slate-50 gap-6 p-4">
+      {/* ── Offers Feed Container (Full Bleed Edge-to-Edge) ── */}
+      <div className="flex flex-1 flex-col overflow-y-auto bg-white p-0">
         {offerPosts.map((post) => (
-          <div key={post.id} className="flex flex-col rounded-3xl bg-white border border-slate-200/90 overflow-hidden shadow-sm">
+          <div key={post.id} className="flex flex-col w-full bg-white border-b-8 border-slate-100/70">
             {/* Post Media */}
-            <div className="relative w-full aspect-[4/3] overflow-hidden bg-slate-100">
+            <div className="relative w-full aspect-[16/9] overflow-hidden bg-slate-900">
               <Img src={post.banner} className="w-full h-full object-cover" />
               <div className="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 rounded-full bg-sky-500 text-white text-xs font-extrabold shadow-md">
                 <Sparkles size={14} />
@@ -132,7 +132,7 @@ export const ExploreOffersScreen: FC = () => {
             </div>
 
             {/* Actions */}
-            <div className="flex items-center justify-between px-6 py-3 border-t border-slate-100 bg-slate-50/50">
+            <div className="flex items-center justify-between px-6 py-3.5 border-t border-slate-100 bg-white">
               <div className="flex items-center gap-6 text-slate-700">
                 <div className="flex items-center gap-2 font-bold text-sm cursor-pointer hover:text-rose-500">
                   <Heart size={22} />
