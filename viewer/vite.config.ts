@@ -61,19 +61,30 @@ function remotionRenderPlugin(): Plugin {
   async function createRenderSession() {
     const { bundle } = rootRequire('@remotion/bundler');
     const renderer = rootRequire('@remotion/renderer');
+    // remotion.config.ts only applies to the Remotion CLI, so the Tailwind
+    // webpack override has to be repeated here — without it every image this
+    // endpoint produces comes out completely unstyled.
+    const { enableTailwind } = rootRequire('@remotion/tailwind');
     const serveUrl: string = await bundle({
       entryPoint: path.join(projectRoot, 'src', 'index.ts'),
+      webpackOverride: (config: unknown) => enableTailwind(config),
       onProgress: () => {},
     });
 
     return {
-      async renderStillTo(compositionId: string, outputPath: string, imageFormat: 'png' | 'jpeg') {
+      async renderStillTo(
+        compositionId: string,
+        outputPath: string,
+        imageFormat: 'png' | 'jpeg',
+        scale = 1
+      ) {
         const composition = await renderer.selectComposition({ serveUrl, id: compositionId });
         await renderer.renderStill({
           composition,
           serveUrl,
           output: outputPath,
           imageFormat,
+          scale,
           jpegQuality: imageFormat === 'jpeg' ? 90 : undefined,
         });
       },
@@ -127,9 +138,10 @@ function remotionRenderPlugin(): Plugin {
         }
 
         (async () => {
-          const { compositionId, format } = await readJsonBody(req) as {
+          const { compositionId, format, scale } = await readJsonBody(req) as {
             compositionId: unknown;
             format: unknown;
+            scale: unknown;
           };
 
           if (typeof compositionId !== 'string' || !COMPOSITION_ID_PATTERN.test(compositionId)) {
@@ -142,6 +154,11 @@ function remotionRenderPlugin(): Plugin {
             return;
           }
 
+          if (scale !== undefined && (typeof scale !== 'number' || !(scale > 0) || scale > 1)) {
+            sendJson(res, 400, { error: 'Invalid scale' });
+            return;
+          }
+
           const ext = format as SupportedFormat;
           const outputPath = path.join(projectRoot, 'out', `${randomUUID()}.${ext}`);
           await fs.mkdir(path.dirname(outputPath), { recursive: true });
@@ -151,7 +168,7 @@ function remotionRenderPlugin(): Plugin {
             if (ext === 'mp4') {
               await session.renderVideoTo(compositionId, outputPath);
             } else {
-              await session.renderStillTo(compositionId, outputPath, ext);
+              await session.renderStillTo(compositionId, outputPath, ext, (scale as number) ?? 1);
             }
           } catch (e: any) {
             sendJson(res, 500, { error: e?.message || 'Render failed' });

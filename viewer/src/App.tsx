@@ -2,6 +2,11 @@ import { useState, Suspense, useMemo, useRef, useCallback, useEffect } from 'rea
 import { Player, Thumbnail } from '@remotion/player';
 import { compositions, type CompositionEntry } from './compositionRegistry';
 
+// Copying is for pasting into a chat or a doc, not for handoff — three quarters of
+// the canvas keeps small text crisp while still rendering faster and pasting lighter
+// than the real thing. "Export" stays full size.
+const COPY_IMAGE_SCALE = 0.75;
+
 const ZOOM_MIN = 25;
 const ZOOM_MAX = 300;
 
@@ -316,7 +321,7 @@ function App() {
       const response = await fetch('/api/render', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ compositionId, format: 'png' }),
+        body: JSON.stringify({ compositionId, format: 'png', scale: COPY_IMAGE_SCALE }),
       });
       if (!response.ok) {
         const data = await response.json();
@@ -598,7 +603,10 @@ function App() {
                 onClick={() => handleCopyImage(selectedComposition.id)}
                 disabled={copyImageState === 'copying'}
                 className="flex items-center gap-1.5 px-2 py-1 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-md text-[10px] font-medium text-gray-500 hover:text-gray-700 transition-colors disabled:opacity-60"
-                title={copyImageError ?? 'Render this still and copy the image to the clipboard'}
+                title={
+                  copyImageError ??
+                  `Copy this still to the clipboard at ${Math.round(COPY_IMAGE_SCALE * 100)}% size (${Math.round(selectedComposition.width * COPY_IMAGE_SCALE)} × ${Math.round(selectedComposition.height * COPY_IMAGE_SCALE)})`
+                }
               >
                 {copyImageState === 'copied' ? (
                   <>
