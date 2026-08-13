@@ -10,7 +10,8 @@
     "viewer": "npm run sync:viewer && cd viewer && npm run dev",
     "new:project": "node scripts/new-project.mjs",
     "export:project": "node scripts/export-project.mjs",
-    "design:review": "node scripts/design-review.mjs"
+    "design:review": "node scripts/design-review.mjs",
+    "lint:remotion": "node scripts/lint-remotion.mjs"
   },
   "dependencies": {
     "@remotion/cli": "4.0.508",

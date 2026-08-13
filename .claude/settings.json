@@ -6,11 +6,17 @@
       "Bash(npm run new:project:*)",
       "Bash(npm run export:project:*)",
       "Bash(npm run design:review:*)",
+      "Bash(npm run lint:remotion:*)",
       "Bash(npx tsc:*)",
       "Bash(npx remotion still:*)",
       "Bash(npx remotion render:*)",
       "Bash(npx remotion compositions:*)",
       "Bash(node scripts/:*)"
+    ],
+    "deny": [
+      "Bash(npm start)",
+      "Bash(npm run start:*)",
+      "Bash(npx remotion studio:*)"
     ]
   },
   "hooks": {
@@ -21,6 +27,10 @@
           {
             "type": "command",
             "command": "jq -r '.tool_input.file_path // \"\"' | grep -q 'src/Root.tsx' && npm run sync:viewer >/dev/null 2>&1 && echo 'viewer registry synced' || true"
+          },
+          {
+            "type": "command",
+            "command": "f=$(jq -r '.tool_input.file_path // \"\"'); case \"$f\" in */src/projects/*.tsx|*/src/projects/*.ts) out=$(LINT_REMOTION_QUIET=1 node \"$CLAUDE_PROJECT_DIR/scripts/lint-remotion.mjs\" \"$f\" 2>&1) || { echo \"$out\" >&2; exit 2; };; esac; exit 0"
           }
         ]
       }
@@ -31,7 +41,20 @@
         "hooks": [
           {
             "type": "command",
-            "command": "input=$(jq -r '.tool_input.command // \"\"'); if echo \"$input\" | grep -qE '^git commit|; *git commit|&& *git commit'; then npx tsc --noEmit >/dev/null 2>&1 || { echo 'BLOCKED: tsc --noEmit failing — fix type errors before committing' >&2; exit 2; }; fi"
+            "command": "input=$(jq -r '.tool_input.command // \"\"'); if echo \"$input\" | grep -qE '(^|[;&|] *)git commit'; then bash \"$CLAUDE_PROJECT_DIR/scripts/commit-gate.sh\" || exit 2; fi; exit 0"
+          },
+          {
+            "type": "command",
+            "command": "input=$(jq -r '.tool_input.command // \"\"'); if echo \"$input\" | grep -qE '(^|[;&|] *)npm (start|run start)\\b|remotion studio'; then echo 'BLOCKED: never default Remotion Studio — use `npm run viewer` (port 4000)' >&2; exit 2; fi; exit 0"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/scripts/guard-file-writes.sh\""
           }
         ]
       }
