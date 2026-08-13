@@ -305,6 +305,41 @@ function App() {
     setCopiedId(id);
     setTimeout(() => setCopiedId(null), 2000);
   }, []);
+  const [copyImageState, setCopyImageState] = useState<'idle' | 'copying' | 'copied' | 'failed'>('idle');
+  const [copyImageError, setCopyImageError] = useState<string | null>(null);
+
+  const handleCopyImage = useCallback(async (compositionId: string) => {
+    setCopyImageState('copying');
+    setCopyImageError(null);
+
+    const renderPng = async () => {
+      const response = await fetch('/api/render', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ compositionId, format: 'png' }),
+      });
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Render failed');
+      }
+      return response.blob();
+    };
+
+    try {
+      if (typeof ClipboardItem === 'undefined' || !navigator.clipboard?.write) {
+        throw new Error('This browser cannot copy images to the clipboard');
+      }
+      // Handing the promise to ClipboardItem keeps the user gesture alive
+      // across the render, which Safari requires.
+      await navigator.clipboard.write([new ClipboardItem({ 'image/png': renderPng() })]);
+      setCopyImageState('copied');
+      setTimeout(() => setCopyImageState('idle'), 2000);
+    } catch (err) {
+      setCopyImageState('failed');
+      setCopyImageError(err instanceof Error ? err.message : 'Copy failed');
+      setTimeout(() => setCopyImageState('idle'), 4000);
+    }
+  }, []);
   const [batchExporting, setBatchExporting] = useState<string | null>(null);
   const [batchError, setBatchError] = useState<string | null>(null);
 
@@ -558,6 +593,28 @@ function App() {
                 </>
               )}
             </button>
+            {isStill && (
+              <button
+                onClick={() => handleCopyImage(selectedComposition.id)}
+                disabled={copyImageState === 'copying'}
+                className="flex items-center gap-1.5 px-2 py-1 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-md text-[10px] font-medium text-gray-500 hover:text-gray-700 transition-colors disabled:opacity-60"
+                title={copyImageError ?? 'Render this still and copy the image to the clipboard'}
+              >
+                {copyImageState === 'copied' ? (
+                  <>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-500"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span className="text-emerald-600">Copied</span>
+                  </>
+                ) : copyImageState === 'failed' ? (
+                  <span className="text-red-600">Copy failed</span>
+                ) : (
+                  <>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                    <span>{copyImageState === 'copying' ? 'Rendering…' : 'Copy image'}</span>
+                  </>
+                )}
+              </button>
+            )}
           </div>
 
           <div className="flex items-center gap-4">

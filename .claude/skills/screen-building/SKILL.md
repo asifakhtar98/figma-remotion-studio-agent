@@ -276,4 +276,5 @@ A separate lightweight Vite + React app at `viewer/` that previews all compositi
 - **Zoom slider** — 25% to 300%, stills only. "Fit" button resets to 100%.
 - **Pan / hand tool** — when zoomed past 100%, the cursor changes to a hand and click-drag pans the image.
 - **Copy ID** — a button on the selected composition copies its exact composition id to the clipboard, so a screen can be referenced or tagged by id in a request without retyping it.
+- **Copy image** — stills only. Renders the composition to PNG through the same `POST /api/render` endpoint as Export and writes the image straight to the clipboard, ready to paste into chat, Slack, or a design tool without saving a file first. The button reports `Rendering…`, then `Copied`, or `Copy failed` with the reason in its tooltip. It must be triggered by a real click: browsers refuse a clipboard image write that has no user gesture behind it.
 - **Direct export** — "Export" button opens a modal with one-click PNG, JPEG, or MP4 export. The Vite server plugin at `viewer/vite.config.ts` exposes `POST /api/render` which spawns `npx remotion still`/`render` and returns the file.
