@@ -2,20 +2,43 @@ import { useState, Suspense, useMemo, useRef, useCallback, useEffect } from 'rea
 import { Player, Thumbnail } from '@remotion/player';
 import { compositions, type CompositionEntry } from './compositionRegistry';
 
+const ZOOM_MIN = 25;
+const ZOOM_MAX = 300;
+
 function StillPreview({
   composition,
   zoom,
   panOffset,
   onPanChange,
+  onZoomChange,
 }: {
   composition: CompositionEntry;
   zoom: number;
   panOffset: { x: number; y: number };
   onPanChange: (offset: { x: number; y: number }) => void;
+  onZoomChange: (zoom: number) => void;
 }) {
   const [isDragging, setIsDragging] = useState(false);
   const dragStart = useRef({ x: 0, y: 0 });
   const panStart = useRef({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const zoomRef = useRef(zoom);
+  zoomRef.current = zoom;
+
+  // Wheel zoom needs a non-passive listener to preventDefault page scroll.
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      const next = Math.round(
+        Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, zoomRef.current - e.deltaY * 0.5))
+      );
+      onZoomChange(next);
+    };
+    el.addEventListener('wheel', onWheel, { passive: false });
+    return () => el.removeEventListener('wheel', onWheel);
+  }, [onZoomChange]);
 
   const handlePointerDown = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
     if (zoom <= 100) return;
@@ -45,8 +68,10 @@ function StillPreview({
 
   return (
     <div
+      ref={containerRef}
       className="w-full h-full overflow-hidden relative touch-none"
       style={{ cursor: canPan ? (isDragging ? 'grabbing' : 'grab') : 'default' }}
+      onDoubleClick={() => onZoomChange(100)}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
@@ -117,7 +142,7 @@ function RenderPanel({
 
   if (!isOpen) return null;
 
-  const isStill = composition.durationInFrames <= 1;
+  const isStill = composition.isStill;
 
   const handleExport = async (format: 'png' | 'jpeg' | 'mp4') => {
     setRendering(format);
@@ -254,20 +279,31 @@ function ExportButton({
   );
 }
 
+const SELECTED_ID_STORAGE_KEY = 'viewer.selectedCompositionId';
+const COLLAPSED_PROJECTS_STORAGE_KEY = 'viewer.collapsedProjects';
+
 function App() {
-  const [selectedId, setSelectedId] = useState(compositions[0]?.id);
-  const [collapsedProjects, setCollapsedProjects] = useState<Set<string>>(
-    () => new Set(compositions.map(c => c.projectName))
-  );
+  const [selectedId, setSelectedId] = useState(() => {
+    const stored = localStorage.getItem(SELECTED_ID_STORAGE_KEY);
+    return compositions.some(c => c.id === stored) ? stored! : compositions[0]?.id;
+  });
+  const [collapsedProjects, setCollapsedProjects] = useState<Set<string>>(() => {
+    try {
+      const stored = localStorage.getItem(COLLAPSED_PROJECTS_STORAGE_KEY);
+      if (stored) return new Set(JSON.parse(stored) as string[]);
+    } catch { /* fall through to default */ }
+    return new Set(compositions.map(c => c.projectName));
+  });
+  const [searchQuery, setSearchQuery] = useState('');
   const [zoom, setZoom] = useState(100);
   const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
   const [renderPanelOpen, setRenderPanelOpen] = useState(false);
   const [batchExporting, setBatchExporting] = useState<string | null>(null);
-  const [, setBatchProgress] = useState<{ current: number; total: number } | null>(null);
+  const [batchError, setBatchError] = useState<string | null>(null);
 
-  const handleBatchExport = useCallback(async (projectName: string, totalStills: number) => {
+  const handleBatchExport = useCallback(async (projectName: string) => {
     setBatchExporting(projectName);
-    setBatchProgress({ current: 0, total: totalStills });
+    setBatchError(null);
     try {
       const response = await fetch('/api/render-project-zip', {
         method: 'POST',
@@ -290,16 +326,24 @@ function App() {
       document.body.removeChild(anchor);
       URL.revokeObjectURL(url);
     } catch (err) {
-      alert(err instanceof Error ? err.message : 'Batch export failed');
+      setBatchError(err instanceof Error ? err.message : 'Batch export failed');
     } finally {
       setBatchExporting(null);
-      setBatchProgress(null);
     }
   }, []);
+
+  const normalizedQuery = searchQuery.trim().toLowerCase();
 
   const projectGroups = useMemo(() => {
     const groups: { name: string; compositions: CompositionEntry[] }[] = [];
     for (const comp of compositions) {
+      if (
+        normalizedQuery &&
+        !comp.screenName.toLowerCase().includes(normalizedQuery) &&
+        !comp.projectName.toLowerCase().includes(normalizedQuery)
+      ) {
+        continue;
+      }
       const existing = groups.find(g => g.name === comp.projectName);
       if (existing) {
         existing.compositions.push(comp);
@@ -308,7 +352,7 @@ function App() {
       }
     }
     return groups;
-  }, []);
+  }, [normalizedQuery]);
 
   const selectedComposition = compositions.find(c => c.id === selectedId) || compositions[0];
 
@@ -319,9 +363,42 @@ function App() {
     setRenderPanelOpen(false);
   }, [selectedId]);
 
+  useEffect(() => {
+    if (selectedId) localStorage.setItem(SELECTED_ID_STORAGE_KEY, selectedId);
+  }, [selectedId]);
+
+  useEffect(() => {
+    localStorage.setItem(COLLAPSED_PROJECTS_STORAGE_KEY, JSON.stringify([...collapsedProjects]));
+  }, [collapsedProjects]);
+
+  // Arrow keys step through the compositions visible in the sidebar
+  // (search-filtered; collapsed groups are skipped unless a search is active).
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || renderPanelOpen) return;
+      const expanded = projectGroups
+        .filter(g => normalizedQuery || !collapsedProjects.has(g.name))
+        .flatMap(g => g.compositions);
+      // With every group collapsed, fall back to stepping through all screens.
+      const visible = expanded.length > 0 ? expanded : projectGroups.flatMap(g => g.compositions);
+      if (visible.length === 0) return;
+      e.preventDefault();
+      const currentIndex = visible.findIndex(c => c.id === selectedId);
+      const delta = e.key === 'ArrowDown' ? 1 : -1;
+      const nextIndex = currentIndex === -1
+        ? 0
+        : (currentIndex + delta + visible.length) % visible.length;
+      setSelectedId(visible[nextIndex].id);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [projectGroups, collapsedProjects, normalizedQuery, selectedId, renderPanelOpen]);
+
   if (!selectedComposition) return null;
 
-  const isStill = selectedComposition.durationInFrames <= 1;
+  const isStill = selectedComposition.isStill;
 
   const toggleProject = (projectName: string) => {
     setCollapsedProjects(prev => {
@@ -335,10 +412,10 @@ function App() {
     });
   };
 
-  const handleZoomChange = (value: number) => {
+  const handleZoomChange = useCallback((value: number) => {
     setZoom(value);
     if (value <= 100) setPanOffset({ x: 0, y: 0 });
-  };
+  }, []);
 
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-[#f8f8f8] text-gray-900 relative">
@@ -347,9 +424,21 @@ function App() {
         <div className="px-4 py-3 border-b border-gray-200">
           <span className="text-[13px] font-semibold text-gray-800">designnflow</span>
         </div>
+        <div className="px-3 py-2 border-b border-gray-100">
+          <input
+            type="search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search screens…"
+            className="w-full text-[12px] px-2.5 py-1.5 rounded-md border border-gray-200 bg-gray-50 focus:bg-white focus:border-blue-300 focus:outline-none placeholder:text-gray-400 transition-colors"
+          />
+        </div>
         <div className="flex-1 overflow-y-auto">
+          {projectGroups.length === 0 && (
+            <div className="px-4 py-6 text-[12px] text-gray-400 text-center">No screens match</div>
+          )}
           {projectGroups.map((group) => {
-            const isCollapsed = collapsedProjects.has(group.name);
+            const isCollapsed = !normalizedQuery && collapsedProjects.has(group.name);
             return (
               <div key={group.name}>
                 <div className="flex items-center sticky top-0 bg-white z-10 border-b border-gray-100">
@@ -363,9 +452,8 @@ function App() {
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      const stillCount = group.compositions.filter(c => c.durationInFrames <= 1).length;
-                      if (stillCount === 0) return;
-                      handleBatchExport(group.name, stillCount);
+                      if (!group.compositions.some(c => c.isStill)) return;
+                      handleBatchExport(group.name);
                     }}
                     disabled={batchExporting !== null}
                     title={`Export all stills as ZIP`}
@@ -402,7 +490,7 @@ function App() {
                   >
                     <span className="flex items-center gap-1.5">
                       {comp.screenName}
-                      {comp.durationInFrames > 1 && (
+                      {!comp.isStill && (
                         <svg className="w-3 h-3 opacity-40 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <rect x="2" y="2" width="20" height="20" rx="2" />
                           <line x1="7" y1="2" x2="7" y2="22" />
@@ -422,6 +510,18 @@ function App() {
             );
           })}
         </div>
+        {batchError && (
+          <div className="border-t border-red-100 bg-red-50 px-4 py-2.5 flex items-start justify-between gap-2">
+            <span className="text-[11px] text-red-600 break-words min-w-0">{batchError}</span>
+            <button
+              onClick={() => setBatchError(null)}
+              className="text-red-400 hover:text-red-600 text-sm leading-none shrink-0"
+              aria-label="Dismiss error"
+            >
+              &times;
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Main Area */}
@@ -488,6 +588,7 @@ function App() {
                   zoom={zoom}
                   panOffset={panOffset}
                   onPanChange={setPanOffset}
+                  onZoomChange={handleZoomChange}
                 />
               ) : (
                 <VideoPreview

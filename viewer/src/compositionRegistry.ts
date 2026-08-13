@@ -7,6 +7,7 @@ export interface CompositionEntry {
   height: number;
   durationInFrames: number;
   fps: number;
+  isStill: boolean;
   projectName: string;
   screenName: string;
 }
@@ -19,6 +20,7 @@ export const compositions: CompositionEntry[] = [
     height: 3400,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'vhims',
     screenName: 'Home'
   },
@@ -29,6 +31,7 @@ export const compositions: CompositionEntry[] = [
     height: 1080,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'vhims',
     screenName: 'AdminDashboard'
   },
@@ -39,6 +42,7 @@ export const compositions: CompositionEntry[] = [
     height: 1080,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'vhims',
     screenName: 'PlatformDashboard'
   },
@@ -49,6 +53,7 @@ export const compositions: CompositionEntry[] = [
     height: 2400,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'vhims',
     screenName: 'Pricing'
   },
@@ -59,6 +64,7 @@ export const compositions: CompositionEntry[] = [
     height: 1080,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'vhims',
     screenName: 'MarketingPoster'
   },
@@ -69,6 +75,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'SignIn'
   },
@@ -79,6 +86,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'ResetPassword'
   },
@@ -89,6 +97,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'Explore'
   },
@@ -99,6 +108,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'ExploreOffers'
   },
@@ -109,6 +119,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'ExploreMemories'
   },
@@ -119,6 +130,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'ExploreWtv'
   },
@@ -129,6 +141,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'Spin'
   },
@@ -139,6 +152,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'Calls'
   },
@@ -149,6 +163,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'Chat'
   },
@@ -159,6 +174,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'Profile'
   },
@@ -169,6 +185,7 @@ export const compositions: CompositionEntry[] = [
     height: 2368,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'UpdateProfile'
   },
@@ -179,6 +196,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'CommunityDetail'
   },
@@ -189,6 +207,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'CommunityUploadModal'
   },
@@ -199,6 +218,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'Wallet'
   },
@@ -209,6 +229,7 @@ export const compositions: CompositionEntry[] = [
     height: 2272,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'Settings'
   },
@@ -219,6 +240,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 569,
     fps: 30,
+    isStill: false,
     projectName: 'whatsevr',
     screenName: 'Flow'
   },
@@ -229,6 +251,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'CreateAccount'
   },
@@ -239,6 +262,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'GoLive'
   },
@@ -249,6 +273,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'WalletRateModal'
   },
@@ -259,6 +284,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'BuyCoins'
   },
@@ -269,6 +295,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'IncomingCall'
   },
@@ -279,6 +306,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 415,
     fps: 30,
+    isStill: false,
     projectName: 'whatsevr',
     screenName: 'FanFlow'
   },
@@ -289,6 +317,7 @@ export const compositions: CompositionEntry[] = [
     height: 1080,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'MarketingPoster'
   },
@@ -299,6 +328,7 @@ export const compositions: CompositionEntry[] = [
     height: 1080,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'StudioMinimalistPoster'
   },
@@ -309,6 +339,7 @@ export const compositions: CompositionEntry[] = [
     height: 1080,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'WebHome'
   },
@@ -319,6 +350,7 @@ export const compositions: CompositionEntry[] = [
     height: 1080,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'WebOne2One'
   },
@@ -329,6 +361,7 @@ export const compositions: CompositionEntry[] = [
     height: 1080,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'WebRandomMatch'
   },
@@ -339,6 +372,7 @@ export const compositions: CompositionEntry[] = [
     height: 1080,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'WebCalls'
   },
@@ -349,6 +383,7 @@ export const compositions: CompositionEntry[] = [
     height: 1080,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'WebWallet'
   },
@@ -359,6 +394,7 @@ export const compositions: CompositionEntry[] = [
     height: 1400,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'whatsevr',
     screenName: 'WebProfile'
   },
@@ -369,6 +405,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'demodontdelete',
     screenName: 'CreatorDashboard'
   },
@@ -379,6 +416,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'demodontdelete',
     screenName: 'ContentUpload'
   },
@@ -389,6 +427,7 @@ export const compositions: CompositionEntry[] = [
     height: 1080,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'demodontdelete',
     screenName: 'WebMonetizationHub'
   },
@@ -399,6 +438,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'demodontdelete',
     screenName: 'AudienceAnalytics'
   },
@@ -409,6 +449,7 @@ export const compositions: CompositionEntry[] = [
     height: 1704,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'demodontdelete',
     screenName: 'LiveStreamStudio'
   },
@@ -419,6 +460,7 @@ export const compositions: CompositionEntry[] = [
     height: 1080,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'demodontdelete',
     screenName: 'WebBrandMarketplace'
   },
@@ -429,6 +471,7 @@ export const compositions: CompositionEntry[] = [
     height: 1080,
     durationInFrames: 1,
     fps: 30,
+    isStill: true,
     projectName: 'demodontdelete',
     screenName: 'WebMediaLibrary'
   }

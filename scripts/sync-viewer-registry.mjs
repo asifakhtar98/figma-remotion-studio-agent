@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 
 /**
- * Parses src/Root.tsx and regenerates viewer/src/compositionRegistry.ts
+ * Parses src/Root.tsx and regenerates:
+ *   - viewer/src/compositionRegistry.ts   (typed registry with lazy components, for the viewer UI)
+ *   - viewer/src/compositionRegistry.json (plain metadata manifest, for the vite render plugin)
  * so the viewer always stays in sync with the main Remotion project.
  *
  * Usage: node scripts/sync-viewer-registry.mjs
@@ -14,7 +16,8 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = resolve(__dirname, '..');
 const rootTsxPath = resolve(projectRoot, 'src/Root.tsx');
-const registryPath = resolve(projectRoot, 'viewer/src/compositionRegistry.ts');
+const registryTsPath = resolve(projectRoot, 'viewer/src/compositionRegistry.ts');
+const registryJsonPath = resolve(projectRoot, 'viewer/src/compositionRegistry.json');
 
 const rootSource = readFileSync(rootTsxPath, 'utf-8');
 
@@ -24,11 +27,30 @@ for (const match of rootSource.matchAll(/const\s+(\w+)\s*=\s*(\d+)/g)) {
   constants.set(match[1], parseInt(match[2], 10));
 }
 
-function resolveValue(raw) {
-  const num = parseInt(raw, 10);
-  if (!isNaN(num)) return num;
-  if (constants.has(raw)) return constants.get(raw);
-  throw new Error(`Cannot resolve value: ${raw}`);
+/**
+ * Resolves a prop value expression to a number. Supports numeric literals,
+ * known constants, and simple arithmetic over both (e.g. `5 * 30`, `FPS * 4`).
+ */
+function resolveValue(raw, context) {
+  const substituted = raw.replace(/[A-Za-z_]\w*/g, (identifier) => {
+    if (!constants.has(identifier)) {
+      throw new Error(
+        `Cannot resolve "${raw}" in ${context}: unknown identifier "${identifier}". ` +
+        `Only numeric literals, top-level numeric constants from Root.tsx, and arithmetic over them are supported.`
+      );
+    }
+    return String(constants.get(identifier));
+  });
+
+  if (!/^[\d\s+\-*/().]+$/.test(substituted)) {
+    throw new Error(`Cannot resolve "${raw}" in ${context}: unsupported expression.`);
+  }
+
+  const value = Function(`"use strict"; return (${substituted});`)();
+  if (typeof value !== 'number' || !Number.isFinite(value)) {
+    throw new Error(`Expression "${raw}" in ${context} did not evaluate to a finite number.`);
+  }
+  return value;
 }
 
 // 2. Extract import paths: { LocalName → { importPath, exportName } }
@@ -48,7 +70,8 @@ for (const match of rootSource.matchAll(/import\s*\{([^}]+)\}\s*from\s*'\.\/(.+?
 
 // 3. Parse each <Composition ... /> block
 const compositionRegex = /<Composition\s+([\s\S]*?)\/>/g;
-const propRegex = /(\w+)=\{([^}]+)\}/g;
+// Expression props: tolerates one level of nested braces (e.g. defaultProps={{ a: 1 }}).
+const propRegex = /(\w+)=\{([^{}]*(?:\{[^{}]*\}[^{}]*)*)\}/g;
 const stringPropRegex = /(\w+)="([^"]+)"/g;
 
 const compositions = [];
@@ -83,15 +106,19 @@ for (const block of rootSource.matchAll(compositionRegex)) {
 
   const projectName = idParts[1];
   const screenName = idParts[3];
+  const context = `composition "${id}"`;
+
+  const durationInFrames = resolveValue(props.durationInFrames, context);
 
   compositions.push({
     id,
     exportName: importInfo.exportName,
     importPath: `@src/${importInfo.importPath}`,
-    width: resolveValue(props.width),
-    height: resolveValue(props.height),
-    durationInFrames: resolveValue(props.durationInFrames),
-    fps: resolveValue(props.fps),
+    width: resolveValue(props.width, context),
+    height: resolveValue(props.height, context),
+    durationInFrames,
+    fps: resolveValue(props.fps, context),
+    isStill: durationInFrames <= 1,
     projectName,
     screenName,
   });
@@ -106,6 +133,7 @@ const entries = compositions.map((c) => {
     height: ${c.height},
     durationInFrames: ${c.durationInFrames},
     fps: ${c.fps},
+    isStill: ${c.isStill},
     projectName: '${c.projectName}',
     screenName: '${c.screenName}'
   }`;
@@ -120,6 +148,7 @@ export interface CompositionEntry {
   height: number;
   durationInFrames: number;
   fps: number;
+  isStill: boolean;
   projectName: string;
   screenName: string;
 }
@@ -129,5 +158,9 @@ ${entries}
 ];
 `;
 
-writeFileSync(registryPath, output, 'utf-8');
-console.log(`Synced ${compositions.length} compositions to ${registryPath}`);
+writeFileSync(registryTsPath, output, 'utf-8');
+
+const manifest = compositions.map(({ exportName, importPath, ...meta }) => meta);
+writeFileSync(registryJsonPath, JSON.stringify(manifest, null, 2) + '\n', 'utf-8');
+
+console.log(`Synced ${compositions.length} compositions to ${registryTsPath} and ${registryJsonPath}`);
