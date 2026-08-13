@@ -70,7 +70,7 @@ Runs continuously start to finish. It stops only at the four fixed checkpoints m
 5. Detect (or inherit) canvas size. Strip chrome. Identify or reuse fonts, colours, icons. If the project already has existing designs, automatically adapt the new design to match its vibe and design tokens; if the project is brand-new with no existing designs, build pixel-perfect to the reference input.
 6. Build the screen component(s) under `src/projects/<name>/src/screens/`.
 7. Register Composition(s) in `src/Root.tsx`, then run `npm run sync:viewer` to regenerate the viewer's composition registry.
-8. **2-Pass Automatic Design Review:** Render a still image (`npx remotion still`), visually compare rendered output against reference spec/screenshots, and perform pass 2 precision refinements on spacing, typography, and colors.
+8. **2-Pass Automatic Design Review:** Run `npm run design:review -- <compositionId>` — it renders the still and writes a side-by-side reference/render comparison page under `tmp/design-review/`. Visually compare, then perform pass 2 precision refinements on spacing, typography, and colors.
 9. Run `npx tsc --noEmit`.
 10. **If step 9 reports errors:** fix and re-run, up to 3 attempts. If still failing after 3 attempts, stop and report the problem in plain language — do not proceed to sweep or commit with failing types.
 11. Run the *post-task sweep*.
@@ -236,7 +236,8 @@ scripts/
   sync-viewer-registry.mjs          # parses Root.tsx → regenerates compositionRegistry.ts
 ```
 
-- `<project-name>` = one client or app/domain (kebab-case, e.g. `acme-banking-app`).
+- `<project-name>` = one client or app/domain (kebab-case, e.g. `acme-banking-app`). Scaffold a new one with `npm run new:project -- <name>` (creates the folder structure plus an empty `designTokens.ts` to fill in with the first screen).
+- Batch-render every composition of a project for handoff with `npm run export:project -- <name> [png|jpeg]` (outputs to `out/<name>/`; flows render as MP4).
 - Projects are fully isolated under `src/projects/<project-name>/`. **Never** share components or assets across `src/projects/*/`.
 - All project paths in this file are relative to the repo root and always begin with `src/projects/`.
 
@@ -285,7 +286,7 @@ Always confirm these details with the user before mutating existing screen code.
 
 ### Step 2 — Scan the existing project for design tokens
 
-Before building any screen, marketing poster, or journey flow, read every existing screen and shared component in the project to extract:
+First check `src/projects/<name>/src/designTokens.ts` — if filled in, use it as the token source of truth and skip the full scan. If it is missing or empty, read every existing screen and shared component in the project to extract the tokens below, then record them in `designTokens.ts` for future sessions:
 
 - **Colours** — background, text, button, link, accent gradients, and border colours already in use.
 - **Font** — which Google Font is loaded (from `loadFont()` calls).

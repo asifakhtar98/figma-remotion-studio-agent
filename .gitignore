@@ -31,3 +31,6 @@ yarn-error.log*
 
 # TypeScript cache
 *.tsbuildinfo
+
+# Design review scratch
+tmp/

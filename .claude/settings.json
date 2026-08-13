@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run viewer:*)",
+      "Bash(npm run sync:viewer)",
+      "Bash(npm run new:project:*)",
+      "Bash(npm run export:project:*)",
+      "Bash(npm run design:review:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx remotion still:*)",
+      "Bash(npx remotion render:*)",
+      "Bash(npx remotion compositions:*)",
+      "Bash(node scripts/:*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // \"\"' | grep -q 'src/Root.tsx' && npm run sync:viewer >/dev/null 2>&1 && echo 'viewer registry synced' || true"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "input=$(jq -r '.tool_input.command // \"\"'); if echo \"$input\" | grep -qE '^git commit|; *git commit|&& *git commit'; then npx tsc --noEmit >/dev/null 2>&1 || { echo 'BLOCKED: tsc --noEmit failing — fix type errors before committing' >&2; exit 2; }; fi"
+          }
+        ]
+      }
+    ]
+  }
+}

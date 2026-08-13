@@ -7,7 +7,10 @@
     "build": "remotion render",
     "upgrade": "remotion upgrade",
     "sync:viewer": "node scripts/sync-viewer-registry.mjs",
-    "viewer": "npm run sync:viewer && cd viewer && npm run dev"
+    "viewer": "npm run sync:viewer && cd viewer && npm run dev",
+    "new:project": "node scripts/new-project.mjs",
+    "export:project": "node scripts/export-project.mjs",
+    "design:review": "node scripts/design-review.mjs"
   },
   "dependencies": {
     "@remotion/cli": "4.0.508",
