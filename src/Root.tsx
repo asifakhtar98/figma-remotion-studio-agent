@@ -316,7 +316,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={1920}
-        height={1080}
+        height={1580}
       />
       <Composition
         id="whatsevr-27-WebRandomMatch"
@@ -332,7 +332,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={1920}
-        height={1080}
+        height={1480}
       />
       <Composition
         id="whatsevr-29-WebWallet"
@@ -340,7 +340,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={1920}
-        height={1080}
+        height={1680}
       />
       <Composition
         id="whatsevr-30-WebProfile"
@@ -348,7 +348,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={1920}
-        height={1280}
+        height={1360}
       />
       <Composition
         id="demodontdelete-01-CreatorDashboard"

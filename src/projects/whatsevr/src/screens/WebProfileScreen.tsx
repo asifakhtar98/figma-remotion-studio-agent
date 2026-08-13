@@ -49,7 +49,7 @@ export const WebProfileScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily}}
-      className="flex flex-row w-[1920px] h-[1280px] overflow-hidden select-none bg-[#f4f8fb] text-slate-900"
+      className="flex flex-row w-[1920px] h-[1360px] overflow-hidden select-none bg-[#f4f8fb] text-slate-900"
     >
       {/* Background Dot Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(#d3e3f0_1.2px,transparent_1.2px)] [background-size:18px_18px] pointer-events-none opacity-80" />
@@ -290,7 +290,7 @@ export const WebProfileScreen: FC = () => {
                   <h3 className="text-xs font-bold text-slate-400 tracking-wider uppercase">
                     COMMUNICATION LANGUAGES
                   </h3>
-                  <div className="flex flex-wrap gap-2 max-h-[170px] overflow-y-auto pr-2 py-1">
+                  <div className="flex flex-wrap gap-2 py-1">
                     {languages.map((lang) => (
                       <span
                         key={lang}

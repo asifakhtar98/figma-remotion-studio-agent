@@ -144,7 +144,7 @@ export const WebOne2OneScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#f8fafc'}}
-      className="flex flex-row w-[1920px] h-[1080px] overflow-hidden select-none text-slate-900"
+      className="flex flex-row w-[1920px] h-[1580px] overflow-hidden select-none text-slate-900"
     >
       {/* ── Left Sidebar Navigation (260px) ── */}
       <WebSidebarNav activeTab="one2one" />
@@ -154,8 +154,8 @@ export const WebOne2OneScreen: FC = () => {
         {/* Ambient background glow */}
         <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
 
-        {/* Scrollable Content Container */}
-        <div className="relative z-10 flex flex-col p-10 pl-14 pr-12 overflow-y-auto h-full gap-7">
+        {/* Content Container */}
+        <div className="relative z-10 flex flex-col p-10 pl-14 pr-12 h-full gap-7">
           {/* Header Row */}
           <div className="flex items-start justify-between w-full max-w-[1320px]">
             <div className="flex flex-col">

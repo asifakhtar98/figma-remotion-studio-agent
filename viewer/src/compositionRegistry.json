@@ -302,7 +302,7 @@
   {
     "id": "whatsevr-26-WebOne2One",
     "width": 1920,
-    "height": 1080,
+    "height": 1580,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -322,7 +322,7 @@
   {
     "id": "whatsevr-28-WebCalls",
     "width": 1920,
-    "height": 1080,
+    "height": 1480,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -332,7 +332,7 @@
   {
     "id": "whatsevr-29-WebWallet",
     "width": 1920,
-    "height": 1080,
+    "height": 1680,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -342,7 +342,7 @@
   {
     "id": "whatsevr-30-WebProfile",
     "width": 1920,
-    "height": 1280,
+    "height": 1360,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
