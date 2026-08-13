@@ -55,7 +55,7 @@ export const WebProfileScreen: FC = () => {
       <div className="absolute inset-0 bg-[radial-gradient(#d3e3f0_1.2px,transparent_1.2px)] [background-size:18px_18px] pointer-events-none opacity-80" />
 
       {/* ── Left Sidebar Navigation (260px) ── */}
-      <WebSidebarNav activeTab="profile" variant="minimal" />
+      <WebSidebarNav activeTab="profile" />
 
       {/* ── Main Viewport Area ── */}
       <main className="relative z-10 flex-1 h-full flex flex-col overflow-y-auto p-10 pl-14 pr-12">
