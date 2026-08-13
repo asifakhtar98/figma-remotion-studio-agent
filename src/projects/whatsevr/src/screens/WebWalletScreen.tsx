@@ -38,7 +38,7 @@ export const WebWalletScreen: FC = () => {
       className="flex flex-row w-[1920px] h-[1080px] overflow-hidden select-none text-slate-900"
     >
       {/* ── Left Sidebar Navigation (260px) ── */}
-      <WebSidebarNav activeTab="wallet" balance="₹10,000.00" />
+      <WebSidebarNav activeTab="wallet" />
 
       {/* ── Main Viewport Area ── */}
       <main className="relative flex-1 h-full bg-slate-50 flex flex-col overflow-hidden">

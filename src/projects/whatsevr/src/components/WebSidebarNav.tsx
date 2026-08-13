@@ -1,4 +1,5 @@
 import type {FC} from 'react';
+import {Img} from 'remotion';
 import {
   Home,
   Shuffle,
@@ -7,7 +8,6 @@ import {
   Wallet,
   User,
   LogOut,
-  Zap,
 } from 'lucide-react';
 import {WhatsevrLogo} from './WhatsevrLogo';
 
@@ -15,7 +15,6 @@ export type WebNavTab = 'home' | 'random' | 'one2one' | 'calls' | 'wallet' | 'pr
 
 interface WebSidebarNavProps {
   activeTab: WebNavTab;
-  balance?: string;
   variant?: 'standard' | 'minimal';
 }
 
@@ -39,7 +38,6 @@ const minimalNavItems = [
 
 export const WebSidebarNav: FC<WebSidebarNavProps> = ({
   activeTab,
-  balance = '₹10,000.00',
   variant = 'standard',
 }) => {
   const items = variant === 'minimal' ? minimalNavItems : standardNavItems;
@@ -108,63 +106,35 @@ export const WebSidebarNav: FC<WebSidebarNavProps> = ({
       </div>
 
       {/* Sidebar Footer */}
-      {variant === 'minimal' ? (
-        <div className="flex flex-col gap-3 pt-4">
-          <div className="w-full py-2.5 px-4 rounded-xl border border-slate-200/90 bg-white text-slate-700 font-bold text-xs shadow-2xs flex items-center justify-start">
-            <span>{balance}</span>
+      <div className="flex flex-col gap-3 pt-4 border-t border-slate-100">
+        {/* User Profile Mini Tile */}
+        <div className="flex items-center justify-between px-1">
+          <div className="flex items-center gap-2.5">
+            <div className="relative w-8 h-8 rounded-full bg-slate-100 overflow-hidden border border-slate-200 shadow-2xs">
+              <Img
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&q=80"
+                className="w-full h-full object-cover"
+              />
+              <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-emerald-500 border border-white" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xs font-bold text-slate-900 leading-tight">
+                Rahul Sharma
+              </span>
+              <span className="text-[10px] text-slate-400 font-medium">
+                PRO Member
+              </span>
+            </div>
           </div>
-          <button className="text-xs font-semibold text-slate-500 hover:text-slate-800 text-left px-1 cursor-pointer">
-            Log out
+
+          <button
+            className="p-1.5 rounded-lg text-slate-400 hover:text-rose-500 hover:bg-rose-50 transition-colors"
+            title="Log out"
+          >
+            <LogOut size={16} />
           </button>
         </div>
-      ) : (
-        <div className="flex flex-col gap-3 pt-4 border-t border-slate-100">
-          {/* Wallet Balance Card */}
-          <div className="w-full p-3.5 rounded-2xl bg-slate-50 border border-slate-200/90 flex items-center justify-between shadow-2xs">
-            <div className="flex flex-col">
-              <span className="text-[10px] font-bold text-slate-400 tracking-wider uppercase">
-                BALANCE
-              </span>
-              <span className="text-base font-extrabold text-slate-900 mt-0.5">
-                {balance}
-              </span>
-            </div>
-            <div className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-sky-600 text-xs font-bold shadow-2xs">
-              <Zap size={13} className="fill-sky-500 text-sky-500" />
-              <span>Refill</span>
-            </div>
-          </div>
-
-          {/* User Profile Mini Tile */}
-          <div className="flex items-center justify-between px-1">
-            <div className="flex items-center gap-2.5">
-              <div className="relative w-8 h-8 rounded-full bg-slate-100 overflow-hidden border border-slate-200 shadow-2xs">
-                <img
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&q=80"
-                  alt="User Avatar"
-                  className="w-full h-full object-cover"
-                />
-                <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-emerald-500 border border-white" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xs font-bold text-slate-900 leading-tight">
-                  Rahul Sharma
-                </span>
-                <span className="text-[10px] text-slate-400 font-medium">
-                  PRO Member
-                </span>
-              </div>
-            </div>
-
-            <button
-              className="p-1.5 rounded-lg text-slate-400 hover:text-rose-500 hover:bg-rose-50 transition-colors"
-              title="Log out"
-            >
-              <LogOut size={16} />
-            </button>
-          </div>
-        </div>
-      )}
+      </div>
     </aside>
   );
 };

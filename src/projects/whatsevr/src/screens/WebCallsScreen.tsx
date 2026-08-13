@@ -127,8 +127,8 @@ export const WebCallsScreen: FC = () => {
       style={{fontFamily, backgroundColor: '#f8fafc'}}
       className="flex flex-row w-[1920px] h-[1080px] overflow-hidden select-none text-slate-900"
     >
-      {/* ── Left Sidebar Navigation (260px) ── */}
-      <WebSidebarNav activeTab="calls" balance="₹10,000.00" />
+      {/* ── Left Sidebar Navigation ── */}
+      <WebSidebarNav activeTab="calls" />
 
       {/* ── Main Viewport Area ── */}
       <main className="relative flex-1 h-full bg-slate-50 flex flex-col overflow-hidden">

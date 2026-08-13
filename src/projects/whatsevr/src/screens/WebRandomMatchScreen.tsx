@@ -25,7 +25,7 @@ export const WebRandomMatchScreen: FC = () => {
       className="flex flex-row w-[1920px] h-[1080px] overflow-hidden select-none text-slate-900"
     >
       {/* ── Left Sidebar Navigation (260px) ── */}
-      <WebSidebarNav activeTab="random" balance="₹1,000.00" />
+      <WebSidebarNav activeTab="random" />
 
       {/* ── Main Viewport Matching Hub (Light Mode) ── */}
       <main className="relative flex-1 h-full bg-slate-50 flex flex-col items-center justify-between p-10 overflow-hidden">

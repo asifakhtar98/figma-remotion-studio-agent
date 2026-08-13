@@ -59,7 +59,7 @@ export const WebHomeScreen: FC = () => {
       className="flex flex-row w-[1920px] h-[1080px] overflow-hidden select-none text-slate-900"
     >
       {/* ── Left Sidebar Navigation (260px) ── */}
-      <WebSidebarNav activeTab="home" balance="₹1,000.00" />
+      <WebSidebarNav activeTab="home" />
 
       {/* ── Main Dashboard Viewport ── */}
       <main className="relative flex-1 h-full bg-slate-50 flex flex-col overflow-hidden">
