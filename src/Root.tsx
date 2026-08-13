@@ -46,26 +46,14 @@ import {WebMediaLibraryScreen as DemoWebMediaLibraryScreen} from './projects/dem
 
 
 // Each project registers its screens here as <Composition> entries.
-// id="<ProjectName>-<Number>-<ScreenName>", width/height = detected canvas size,
+// id="<ProjectName>-<Number>-<ScreenName>", width/height = exact measured content size per screen,
 // short still duration (no animation unless requested).
+// Heights are measured per-screen via scripts/audit-heights.sh — no shared constants.
 
-const VHIMS_WIDTH = 1920;
-const VHIMS_HEIGHT = 1080;
-const VHIMS_PRICING_HEIGHT = 2400;
-const VHIMS_HOME_HEIGHT = 3400;
-const VHIMS_POSTER_WIDTH = 1080;
-const VHIMS_POSTER_HEIGHT = 1080;
-
-const WHATSEVR_WIDTH = 786;
-const WHATSEVR_HEIGHT = 1704;
-const WHATSEVR_SETTINGS_HEIGHT = 2272;
-const WHATSEVR_UPDATE_PROFILE_HEIGHT = 2368;
 // Keep in sync with FLOW_DURATION_IN_FRAMES in flow/FlowSequence.tsx, which warns on drift.
 const WHATSEVR_FLOW_DURATION = 569;
 // Keep in sync with FAN_FLOW_DURATION_IN_FRAMES in flow/FanFlowSequence.tsx
 const WHATSEVR_FAN_FLOW_DURATION = 415;
-const WHATSEVR_POSTER_WIDTH = 1080;
-const WHATSEVR_POSTER_HEIGHT = 1080;
 
 export const RemotionRoot: FC = () => {
   return (
@@ -75,232 +63,232 @@ export const RemotionRoot: FC = () => {
         component={HomeScreen}
         durationInFrames={1}
         fps={30}
-        width={VHIMS_WIDTH}
-        height={VHIMS_HOME_HEIGHT}
+        width={1920}
+        height={3400}
       />
       <Composition
         id="vhims-01-AdminDashboard"
         component={AdminDashboardScreen}
         durationInFrames={1}
         fps={30}
-        width={VHIMS_WIDTH}
-        height={VHIMS_HEIGHT}
+        width={1920}
+        height={1080}
       />
       <Composition
         id="vhims-02-PlatformDashboard"
         component={PlatformDashboardScreen}
         durationInFrames={1}
         fps={30}
-        width={VHIMS_WIDTH}
-        height={VHIMS_HEIGHT}
+        width={1920}
+        height={1080}
       />
       <Composition
         id="vhims-03-Pricing"
         component={PricingScreen}
         durationInFrames={1}
         fps={30}
-        width={VHIMS_WIDTH}
-        height={VHIMS_PRICING_HEIGHT}
+        width={1920}
+        height={2400}
       />
       <Composition
         id="vhims-04-MarketingPoster"
         component={VhimsMarketingPosterScreen}
         durationInFrames={1}
         fps={30}
-        width={VHIMS_POSTER_WIDTH}
-        height={VHIMS_POSTER_HEIGHT}
+        width={1080}
+        height={1120}
       />
       <Composition
         id="whatsevr-01-SignIn"
         component={SignInScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1704}
       />
       <Composition
         id="whatsevr-02-ResetPassword"
         component={ResetPasswordScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1704}
       />
       <Composition
         id="whatsevr-03-Explore"
         component={ExploreScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1760}
       />
       <Composition
         id="whatsevr-04-ExploreOffers"
         component={ExploreOffersScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1760}
       />
       <Composition
         id="whatsevr-05-ExploreMemories"
         component={ExploreMemoriesScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1760}
       />
       <Composition
         id="whatsevr-06-ExploreWtv"
         component={ExploreWtvScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1760}
       />
       <Composition
         id="whatsevr-07-Spin"
         component={SpinScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1740}
       />
       <Composition
         id="whatsevr-08-Calls"
         component={CallsScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1140}
       />
       <Composition
         id="whatsevr-09-Chat"
         component={ChatScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1740}
       />
       <Composition
         id="whatsevr-10-Profile"
         component={ProfileScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1740}
       />
       <Composition
         id="whatsevr-11-UpdateProfile"
         component={UpdateProfileScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_UPDATE_PROFILE_HEIGHT}
+        width={786}
+        height={2160}
       />
       <Composition
         id="whatsevr-12-CommunityDetail"
         component={CommunityDetailScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1020}
       />
       <Composition
         id="whatsevr-13-CommunityUploadModal"
         component={CommunityUploadModalScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1704}
       />
       <Composition
         id="whatsevr-14-Wallet"
         component={WalletScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1340}
       />
       <Composition
         id="whatsevr-15-Settings"
         component={SettingsScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_SETTINGS_HEIGHT}
+        width={786}
+        height={860}
       />
       <Composition
         id="whatsevr-16-Flow"
         component={FlowSequence}
         durationInFrames={WHATSEVR_FLOW_DURATION}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1704}
       />
       <Composition
         id="whatsevr-17-CreateAccount"
         component={CreateAccountScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1704}
       />
       <Composition
         id="whatsevr-18-GoLive"
         component={GoLiveScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1704}
       />
       <Composition
         id="whatsevr-19-WalletRateModal"
         component={WalletRateModalScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1704}
       />
       <Composition
         id="whatsevr-20-BuyCoins"
         component={BuyCoinsScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1260}
       />
       <Composition
         id="whatsevr-21-IncomingCall"
         component={IncomingCallScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1740}
       />
       <Composition
         id="whatsevr-22-FanFlow"
         component={FanFlowSequence}
         durationInFrames={WHATSEVR_FAN_FLOW_DURATION}
         fps={30}
-        width={WHATSEVR_WIDTH}
-        height={WHATSEVR_HEIGHT}
+        width={786}
+        height={1704}
       />
       <Composition
         id="whatsevr-23-MarketingPoster"
         component={MarketingPosterScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_POSTER_WIDTH}
-        height={WHATSEVR_POSTER_HEIGHT}
+        width={1080}
+        height={1120}
       />
       <Composition
         id="whatsevr-24-StudioMinimalistPoster"
         component={StudioMinimalistPosterScreen}
         durationInFrames={1}
         fps={30}
-        width={WHATSEVR_POSTER_WIDTH}
-        height={WHATSEVR_POSTER_HEIGHT}
+        width={1080}
+        height={1080}
       />
       <Composition
         id="whatsevr-25-WebHome"
@@ -308,7 +296,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={1920}
-        height={1040}
+        height={700}
       />
       <Composition
         id="whatsevr-26-WebOne2One"
@@ -340,7 +328,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={1920}
-        height={1360}
+        height={1300}
       />
       <Composition
         id="whatsevr-30-WebProfile"
@@ -396,7 +384,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={1920}
-        height={1080}
+        height={980}
       />
       <Composition
         id="demodontdelete-07-WebMediaLibrary"
@@ -404,7 +392,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={1920}
-        height={1080}
+        height={1120}
       />
     </>
   );

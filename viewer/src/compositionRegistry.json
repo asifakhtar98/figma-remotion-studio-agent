@@ -42,7 +42,7 @@
   {
     "id": "vhims-04-MarketingPoster",
     "width": 1080,
-    "height": 1080,
+    "height": 1120,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -72,7 +72,7 @@
   {
     "id": "whatsevr-03-Explore",
     "width": 786,
-    "height": 1704,
+    "height": 1760,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -82,7 +82,7 @@
   {
     "id": "whatsevr-04-ExploreOffers",
     "width": 786,
-    "height": 1704,
+    "height": 1760,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -92,7 +92,7 @@
   {
     "id": "whatsevr-05-ExploreMemories",
     "width": 786,
-    "height": 1704,
+    "height": 1760,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -102,7 +102,7 @@
   {
     "id": "whatsevr-06-ExploreWtv",
     "width": 786,
-    "height": 1704,
+    "height": 1760,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -112,7 +112,7 @@
   {
     "id": "whatsevr-07-Spin",
     "width": 786,
-    "height": 1704,
+    "height": 1740,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -122,7 +122,7 @@
   {
     "id": "whatsevr-08-Calls",
     "width": 786,
-    "height": 1704,
+    "height": 1140,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -132,7 +132,7 @@
   {
     "id": "whatsevr-09-Chat",
     "width": 786,
-    "height": 1704,
+    "height": 1740,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -142,7 +142,7 @@
   {
     "id": "whatsevr-10-Profile",
     "width": 786,
-    "height": 1704,
+    "height": 1740,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -152,7 +152,7 @@
   {
     "id": "whatsevr-11-UpdateProfile",
     "width": 786,
-    "height": 2368,
+    "height": 2160,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -162,7 +162,7 @@
   {
     "id": "whatsevr-12-CommunityDetail",
     "width": 786,
-    "height": 1704,
+    "height": 1020,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -182,7 +182,7 @@
   {
     "id": "whatsevr-14-Wallet",
     "width": 786,
-    "height": 1704,
+    "height": 1340,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -192,7 +192,7 @@
   {
     "id": "whatsevr-15-Settings",
     "width": 786,
-    "height": 2272,
+    "height": 860,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -242,7 +242,7 @@
   {
     "id": "whatsevr-20-BuyCoins",
     "width": 786,
-    "height": 1704,
+    "height": 1260,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -252,7 +252,7 @@
   {
     "id": "whatsevr-21-IncomingCall",
     "width": 786,
-    "height": 1704,
+    "height": 1740,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -272,7 +272,7 @@
   {
     "id": "whatsevr-23-MarketingPoster",
     "width": 1080,
-    "height": 1080,
+    "height": 1120,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -292,7 +292,7 @@
   {
     "id": "whatsevr-25-WebHome",
     "width": 1920,
-    "height": 1040,
+    "height": 700,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -302,7 +302,7 @@
   {
     "id": "whatsevr-26-WebOne2One",
     "width": 1920,
-    "height": 1480,
+    "height": 1660,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -332,7 +332,7 @@
   {
     "id": "whatsevr-29-WebWallet",
     "width": 1920,
-    "height": 1360,
+    "height": 1300,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -342,7 +342,7 @@
   {
     "id": "whatsevr-30-WebProfile",
     "width": 1920,
-    "height": 1260,
+    "height": 1180,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -402,7 +402,7 @@
   {
     "id": "demodontdelete-06-WebBrandMarketplace",
     "width": 1920,
-    "height": 1080,
+    "height": 980,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -412,7 +412,7 @@
   {
     "id": "demodontdelete-07-WebMediaLibrary",
     "width": 1920,
-    "height": 1080,
+    "height": 1120,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
