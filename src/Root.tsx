@@ -64,7 +64,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={1920}
-        height={3400}
+        height={4020}
       />
       <Composition
         id="vhims-01-AdminDashboard"
@@ -72,7 +72,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={1920}
-        height={1080}
+        height={1140}
       />
       <Composition
         id="vhims-02-PlatformDashboard"
@@ -80,7 +80,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={1920}
-        height={1080}
+        height={1280}
       />
       <Composition
         id="vhims-03-Pricing"
@@ -88,7 +88,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={1920}
-        height={2400}
+        height={2760}
       />
       <Composition
         id="vhims-04-MarketingPoster"
@@ -344,7 +344,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={786}
-        height={1704}
+        height={2220}
       />
       <Composition
         id="demodontdelete-02-ContentUpload"
@@ -360,7 +360,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={1920}
-        height={1080}
+        height={1320}
       />
       <Composition
         id="demodontdelete-04-AudienceAnalytics"
@@ -368,7 +368,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={786}
-        height={1704}
+        height={2220}
       />
       <Composition
         id="demodontdelete-05-LiveStreamStudio"
@@ -376,7 +376,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={786}
-        height={1704}
+        height={2220}
       />
       <Composition
         id="demodontdelete-06-WebBrandMarketplace"

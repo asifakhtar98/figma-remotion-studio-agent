@@ -2,7 +2,7 @@
   {
     "id": "vhims-00-Home",
     "width": 1920,
-    "height": 3400,
+    "height": 4020,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -12,7 +12,7 @@
   {
     "id": "vhims-01-AdminDashboard",
     "width": 1920,
-    "height": 1080,
+    "height": 1140,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -22,7 +22,7 @@
   {
     "id": "vhims-02-PlatformDashboard",
     "width": 1920,
-    "height": 1080,
+    "height": 1280,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -32,7 +32,7 @@
   {
     "id": "vhims-03-Pricing",
     "width": 1920,
-    "height": 2400,
+    "height": 2760,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -352,7 +352,7 @@
   {
     "id": "demodontdelete-01-CreatorDashboard",
     "width": 786,
-    "height": 1704,
+    "height": 2220,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -372,7 +372,7 @@
   {
     "id": "demodontdelete-03-WebMonetizationHub",
     "width": 1920,
-    "height": 1080,
+    "height": 1320,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -382,7 +382,7 @@
   {
     "id": "demodontdelete-04-AudienceAnalytics",
     "width": 786,
-    "height": 1704,
+    "height": 2220,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
@@ -392,7 +392,7 @@
   {
     "id": "demodontdelete-05-LiveStreamStudio",
     "width": 786,
-    "height": 1704,
+    "height": 2220,
     "durationInFrames": 1,
     "fps": 30,
     "isStill": true,
