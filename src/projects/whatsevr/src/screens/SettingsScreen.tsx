@@ -9,11 +9,6 @@ import {
   ArrowLeftRight,
   UserCheck,
   Wallet,
-  LogIn,
-  Asterisk,
-  Smartphone,
-  HardDrive,
-  Bell,
   Briefcase,
   Star,
   FileText,
@@ -24,7 +19,6 @@ import {
   LogOut,
   UserX,
   ChevronRight,
-  User,
 } from 'lucide-react';
 
 const {fontFamily} = loadFont('normal', {
@@ -57,11 +51,19 @@ const communities = [
   },
 ];
 
+const legalLinks = [
+  {title: 'Terms of Use', icon: FileText},
+  {title: 'Privacy Policy', icon: Shield},
+  {title: 'Community Guidelines', icon: Users},
+  {title: 'Refund & Cancellation', icon: Receipt},
+  {title: 'User Guide', icon: Info},
+];
+
 export const SettingsScreen: FC = () => {
   return (
     <AbsoluteFill
       style={{fontFamily, backgroundColor: '#f8fafc'}}
-      className="flex flex-col overflow-hidden select-none text-slate-900"
+      className="flex flex-col select-none text-slate-900"
     >
       {/* ── Top Header ── */}
       <div className="flex items-center gap-5 px-8 pt-10 pb-5 bg-white border-b border-slate-200/90">
@@ -73,7 +75,6 @@ export const SettingsScreen: FC = () => {
 
       {/* ── Settings Content Body ── */}
       <div className="flex flex-col px-8 py-6 gap-6 bg-slate-50">
-
         {/* User Profile Card */}
         <div className="flex items-center justify-between p-6 bg-white rounded-3xl border border-slate-200/90 shadow-sm">
           <div className="flex items-center gap-4">
@@ -85,18 +86,18 @@ export const SettingsScreen: FC = () => {
               <p className="text-sm text-slate-500 font-semibold">@wtv.aryan675</p>
             </div>
           </div>
-          <button className="p-3 text-slate-700 rounded-full cursor-pointer">
+          <button className="p-3 text-slate-700 rounded-full">
             <Pencil size={24} />
           </button>
         </div>
 
-        {/* Your Communities Section (Expanded) */}
+        {/* Your Communities Section */}
         <div>
           <h3 className="text-xs font-extrabold text-slate-400 uppercase tracking-wider mb-3 px-1">
             YOUR ACTIVE COMMUNITIES
           </h3>
           <div className="flex items-center gap-5 overflow-x-auto pb-1">
-            <div className="flex flex-col items-center gap-1.5 cursor-pointer">
+            <div className="flex flex-col items-center gap-1.5">
               <div className="flex items-center justify-center w-16 h-16 rounded-full bg-white border-2 border-dashed border-slate-300 text-slate-700 shadow-2xs">
                 <UserPlus size={26} />
               </div>
@@ -104,7 +105,7 @@ export const SettingsScreen: FC = () => {
             </div>
 
             {communities.map((c) => (
-              <div key={c.name} className="flex flex-col items-center gap-1.5 cursor-pointer">
+              <div key={c.name} className="flex flex-col items-center gap-1.5">
                 <div className={`relative w-16 h-16 rounded-full overflow-hidden border-2 ${c.color} p-0.5 shadow-2xs`}>
                   <Img src={c.avatar} className="w-full h-full rounded-full object-cover" />
                 </div>
@@ -120,7 +121,7 @@ export const SettingsScreen: FC = () => {
             ACCOUNT & PREFERENCES
           </h3>
           <div className="flex flex-col gap-3">
-            <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200/90 shadow-2xs cursor-pointer">
+            <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200/90 shadow-2xs">
               <div className="flex items-start gap-4">
                 <div className="mt-0.5 text-slate-900"><Lock size={22} /></div>
                 <div>
@@ -131,7 +132,7 @@ export const SettingsScreen: FC = () => {
               <ChevronRight size={20} className="text-slate-400" />
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200/90 shadow-2xs cursor-pointer">
+            <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200/90 shadow-2xs">
               <div className="flex items-start gap-4">
                 <div className="mt-0.5 text-slate-900"><ArrowLeftRight size={22} /></div>
                 <div>
@@ -145,7 +146,7 @@ export const SettingsScreen: FC = () => {
               </div>
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200/90 shadow-2xs cursor-pointer">
+            <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200/90 shadow-2xs">
               <div className="flex items-start gap-4">
                 <div className="mt-0.5 text-slate-900"><UserCheck size={22} /></div>
                 <div>
@@ -162,7 +163,7 @@ export const SettingsScreen: FC = () => {
           <h3 className="text-xs font-extrabold text-slate-400 uppercase tracking-wider mb-3 px-1">
             WALLET & BILLING
           </h3>
-          <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200/90 shadow-2xs cursor-pointer">
+          <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200/90 shadow-2xs">
             <div className="flex items-start gap-4">
               <div className="mt-0.5 text-slate-900"><Wallet size={22} /></div>
               <div>
@@ -172,6 +173,96 @@ export const SettingsScreen: FC = () => {
             </div>
             <ChevronRight size={20} className="text-slate-400" />
           </div>
+        </div>
+
+        {/* Collaboration Section */}
+        <div>
+          <h3 className="text-xs font-extrabold text-slate-400 uppercase tracking-wider mb-3 px-1">
+            COLLABORATION
+          </h3>
+          <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200/90 shadow-2xs">
+            <div className="flex items-start gap-4">
+              <div className="mt-0.5 text-slate-900"><Briefcase size={22} /></div>
+              <div>
+                <h4 className="text-base font-bold text-slate-900">Promote With Us</h4>
+                <p className="text-xs text-slate-500 font-medium mt-0.5">Contact us to promote your content or business with whatsevr</p>
+              </div>
+            </div>
+            <ChevronRight size={20} className="text-slate-400" />
+          </div>
+        </div>
+
+        {/* Support Section */}
+        <div>
+          <h3 className="text-xs font-extrabold text-slate-400 uppercase tracking-wider mb-3 px-1">
+            SUPPORT
+          </h3>
+          <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200/90 shadow-2xs">
+            <div className="flex items-start gap-4">
+              <div className="mt-0.5 text-slate-900"><Star size={22} /></div>
+              <div>
+                <h4 className="text-base font-bold text-slate-900">Rate & Review</h4>
+                <p className="text-xs text-slate-500 font-medium mt-0.5">Love the app? Let us know!</p>
+              </div>
+            </div>
+            <ChevronRight size={20} className="text-slate-400" />
+          </div>
+        </div>
+
+        {/* Legal Section */}
+        <div>
+          <h3 className="text-xs font-extrabold text-slate-400 uppercase tracking-wider mb-3 px-1">
+            LEGAL
+          </h3>
+          <div className="flex flex-col gap-3">
+            {legalLinks.map((item) => {
+              const IconComponent = item.icon;
+              return (
+                <div
+                  key={item.title}
+                  className="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200/90 shadow-2xs"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="text-slate-900">
+                      <IconComponent size={22} />
+                    </div>
+                    <h4 className="text-base font-bold text-slate-900">{item.title}</h4>
+                  </div>
+                  <ChevronRight size={20} className="text-slate-400" />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Account Actions Section */}
+        <div>
+          <h3 className="text-xs font-extrabold text-slate-400 uppercase tracking-wider mb-3 px-1">
+            ACCOUNT ACTIONS
+          </h3>
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200/90 shadow-2xs">
+              <div className="flex items-center gap-4">
+                <div className="text-slate-900"><LogOut size={22} /></div>
+                <h4 className="text-base font-bold text-slate-900">Sign out</h4>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200/90 shadow-2xs">
+              <div className="flex items-start gap-4">
+                <div className="mt-0.5 text-rose-500"><UserX size={22} /></div>
+                <div>
+                  <h4 className="text-base font-bold text-slate-900">Delete account</h4>
+                  <p className="text-xs text-slate-500 font-medium mt-0.5">Deactivates your account and signs you out</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* App Version Footer */}
+        <div className="pt-2 pb-6 text-center">
+          <span className="text-xs font-semibold text-slate-400">Version 26.2.0 (37)</span>
         </div>
       </div>
     </AbsoluteFill>
