@@ -32,5 +32,21 @@ yarn-error.log*
 # TypeScript cache
 *.tsbuildinfo
 
-# Design review scratch
+# Design review scratch & outputs
 tmp/
+out/
+
+# Media & Rendered files (temporary ignore)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+*.mp4
+*.mov
+*.webm
+*.mp3
+*.wav
+*.ogg
+!.agents/**
+
