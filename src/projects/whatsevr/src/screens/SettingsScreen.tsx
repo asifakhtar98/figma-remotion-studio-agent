@@ -74,7 +74,7 @@ export const SettingsScreen: FC = () => {
       </div>
 
       {/* ── Settings Content Body ── */}
-      <div className="flex flex-col px-8 py-6 gap-6 bg-slate-50">
+      <div className="flex flex-col px-8 py-6 pb-12 gap-6 bg-slate-50">
         {/* User Profile Card */}
         <div className="flex items-center justify-between p-6 bg-white rounded-3xl border border-slate-200/90 shadow-sm">
           <div className="flex items-center gap-4">

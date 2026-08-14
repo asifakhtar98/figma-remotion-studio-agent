@@ -216,7 +216,7 @@ export const RemotionRoot: FC = () => {
         durationInFrames={1}
         fps={30}
         width={786}
-        height={1760}
+        height={1840}
       />
       <Composition
         id="whatsevr-16-Flow"

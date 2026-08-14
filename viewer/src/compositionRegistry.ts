@@ -226,7 +226,7 @@ export const compositions: CompositionEntry[] = [
     id: 'whatsevr-15-Settings',
     component: React.lazy(() => import('@src/projects/whatsevr/src/screens/SettingsScreen').then(m => ({ default: m.SettingsScreen }))),
     width: 786,
-    height: 860,
+    height: 1840,
     durationInFrames: 1,
     fps: 30,
     isStill: true,
