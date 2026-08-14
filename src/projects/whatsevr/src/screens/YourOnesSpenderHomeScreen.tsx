@@ -155,9 +155,13 @@ export const YourOnesSpenderHomeScreen: FC = () => {
           >
             {/* Top row: Avatar + Profile Details */}
             <div className="flex items-start gap-4">
-              {/* Thumbnail with styled fallback / letter block */}
+              {/* Thumbnail photo */}
               <div className="w-24 h-24 rounded-2xl bg-slate-100 border border-slate-200/80 shadow-2xs shrink-0 flex items-center justify-center overflow-hidden relative">
-                <span className="text-4xl font-black text-slate-400">{host.letter}</span>
+                {host.photoUrl ? (
+                  <Img src={host.photoUrl} className="w-full h-full object-cover" />
+                ) : (
+                  <span className="text-4xl font-black text-slate-400">{host.letter}</span>
+                )}
               </div>
 
               {/* Text Information */}
