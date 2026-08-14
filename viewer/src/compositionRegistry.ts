@@ -410,6 +410,17 @@ export const compositions: CompositionEntry[] = [
     screenName: 'Alerts'
   },
   {
+    id: 'whatsevr-32-YourOnesSpenderHome',
+    component: React.lazy(() => import('@src/projects/whatsevr/src/screens/YourOnesSpenderHomeScreen').then(m => ({ default: m.YourOnesSpenderHomeScreen }))),
+    width: 786,
+    height: 1704,
+    durationInFrames: 1,
+    fps: 30,
+    isStill: true,
+    projectName: 'whatsevr',
+    screenName: 'YourOnesSpenderHome'
+  },
+  {
     id: 'demodontdelete-01-CreatorDashboard',
     component: React.lazy(() => import('@src/projects/demo-dont-delete/src/screens/CreatorDashboardScreen').then(m => ({ default: m.CreatorDashboardScreen }))),
     width: 786,

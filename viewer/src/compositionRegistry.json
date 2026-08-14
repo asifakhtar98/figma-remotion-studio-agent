@@ -360,6 +360,16 @@
     "screenName": "Alerts"
   },
   {
+    "id": "whatsevr-32-YourOnesSpenderHome",
+    "width": 786,
+    "height": 1704,
+    "durationInFrames": 1,
+    "fps": 30,
+    "isStill": true,
+    "projectName": "whatsevr",
+    "screenName": "YourOnesSpenderHome"
+  },
+  {
     "id": "demodontdelete-01-CreatorDashboard",
     "width": 786,
     "height": 2220,

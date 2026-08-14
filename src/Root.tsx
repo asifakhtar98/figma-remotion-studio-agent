@@ -32,6 +32,7 @@ import {WebCallsScreen} from './projects/whatsevr/src/screens/WebCallsScreen';
 import {WebWalletScreen} from './projects/whatsevr/src/screens/WebWalletScreen';
 import {WebProfileScreen} from './projects/whatsevr/src/screens/WebProfileScreen';
 import {AlertsScreen} from './projects/whatsevr/src/screens/AlertsScreen';
+import {YourOnesSpenderHomeScreen} from './projects/whatsevr/src/screens/YourOnesSpenderHomeScreen';
 import {AdminDashboardScreen} from './projects/vhims/src/screens/AdminDashboardScreen';
 import {PlatformDashboardScreen} from './projects/vhims/src/screens/PlatformDashboardScreen';
 import {PricingScreen} from './projects/vhims/src/screens/PricingScreen';
@@ -342,6 +343,14 @@ export const RemotionRoot: FC = () => {
       <Composition
         id="whatsevr-31-Alerts"
         component={AlertsScreen}
+        durationInFrames={1}
+        fps={30}
+        width={786}
+        height={1704}
+      />
+      <Composition
+        id="whatsevr-32-YourOnesSpenderHome"
+        component={YourOnesSpenderHomeScreen}
         durationInFrames={1}
         fps={30}
         width={786}
