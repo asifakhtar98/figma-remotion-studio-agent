@@ -32,11 +32,18 @@ yarn-error.log*
 # TypeScript cache
 *.tsbuildinfo
 
-# Design review scratch & outputs
+# Design review scratch & session outputs
 tmp/
 out/
 
-# Media & Rendered files (temporary ignore)
+# Session media directories (screenshots, assets, references dumped during sessions)
+src/projects/**/reference/
+src/projects/**/assets/
+**/reference/
+**/assets/
+!.agents/**
+
+# Media & Rendered file extensions (temporary ignore)
 *.png
 *.jpg
 *.jpeg
@@ -48,5 +55,5 @@ out/
 *.mp3
 *.wav
 *.ogg
-!.agents/**
+
 
