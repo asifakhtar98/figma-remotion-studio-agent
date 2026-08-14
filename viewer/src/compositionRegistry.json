@@ -350,6 +350,16 @@
     "screenName": "WebProfile"
   },
   {
+    "id": "whatsevr-31-Alerts",
+    "width": 786,
+    "height": 1704,
+    "durationInFrames": 1,
+    "fps": 30,
+    "isStill": true,
+    "projectName": "whatsevr",
+    "screenName": "Alerts"
+  },
+  {
     "id": "demodontdelete-01-CreatorDashboard",
     "width": 786,
     "height": 2220,

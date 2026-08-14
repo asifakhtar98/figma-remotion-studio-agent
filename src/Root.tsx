@@ -31,6 +31,7 @@ import {WebRandomMatchScreen} from './projects/whatsevr/src/screens/WebRandomMat
 import {WebCallsScreen} from './projects/whatsevr/src/screens/WebCallsScreen';
 import {WebWalletScreen} from './projects/whatsevr/src/screens/WebWalletScreen';
 import {WebProfileScreen} from './projects/whatsevr/src/screens/WebProfileScreen';
+import {AlertsScreen} from './projects/whatsevr/src/screens/AlertsScreen';
 import {AdminDashboardScreen} from './projects/vhims/src/screens/AdminDashboardScreen';
 import {PlatformDashboardScreen} from './projects/vhims/src/screens/PlatformDashboardScreen';
 import {PricingScreen} from './projects/vhims/src/screens/PricingScreen';
@@ -337,6 +338,14 @@ export const RemotionRoot: FC = () => {
         fps={30}
         width={1920}
         height={1180}
+      />
+      <Composition
+        id="whatsevr-31-Alerts"
+        component={AlertsScreen}
+        durationInFrames={1}
+        fps={30}
+        width={786}
+        height={1704}
       />
       <Composition
         id="demodontdelete-01-CreatorDashboard"
